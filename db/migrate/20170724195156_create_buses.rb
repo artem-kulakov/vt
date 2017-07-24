@@ -8,6 +8,7 @@ class CreateBuses < ActiveRecord::Migration
       t.string :placa
       t.string :version
       t.references :user, index: true, foreign_key: true
+      t.references :bus, index: true, foreign_key: true
 
       t.timestamps null: false
     end

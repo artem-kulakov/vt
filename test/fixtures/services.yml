@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_id: 
+  record_id: 
+  user_id: 
+  caseta: 1.5
+  hotel: 1.5
+  viaticos: 1.5
+  estacionamientos: 1.5
+  lavadas: 1.5
+  aeropuerto: 1.5
+  diesel: 1.5
+  otros: 1.5
+  km_inicio: 1.5
+  km_fin: 1.5
+  precio_unidad: 1.5
+  dia_extra: 1.5
+
+two:
+  bus_id: 
+  record_id: 
+  user_id: 
+  caseta: 1.5
+  hotel: 1.5
+  viaticos: 1.5
+  estacionamientos: 1.5
+  lavadas: 1.5
+  aeropuerto: 1.5
+  diesel: 1.5
+  otros: 1.5
+  km_inicio: 1.5
+  km_fin: 1.5
+  precio_unidad: 1.5
+  dia_extra: 1.5

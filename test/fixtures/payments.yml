@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  metodo: MyString
+  num_recibo: MyString
+  fecha: 2017-07-24
+  cantidad: 1.5
+  record_id: 
+  user_id: 
+
+two:
+  metodo: MyString
+  num_recibo: MyString
+  fecha: 2017-07-24
+  cantidad: 1.5
+  record_id: 
+  user_id: 

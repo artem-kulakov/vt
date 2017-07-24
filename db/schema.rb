@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724220056) do
+ActiveRecord::Schema.define(version: 20170724230312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20170724220056) do
     t.string   "placa"
     t.string   "version"
     t.integer  "user_id"
+    t.integer  "bus_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "buses", ["bus_id"], name: "index_buses_on_bus_id", using: :btree
   add_index "buses", ["user_id"], name: "index_buses_on_user_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
@@ -55,14 +57,28 @@ ActiveRecord::Schema.define(version: 20170724220056) do
   create_table "operators", force: :cascade do |t|
     t.string   "nombre"
     t.string   "telefono"
-    t.string   "papeles"
+    t.boolean  "papeles",       default: true
     t.integer  "user_id"
     t.text     "observaciones"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "operators", ["user_id"], name: "index_operators_on_user_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "metodo"
+    t.string   "num_recibo"
+    t.date     "fecha"
+    t.float    "cantidad"
+    t.integer  "record_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "payments", ["record_id"], name: "index_payments_on_record_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "records", force: :cascade do |t|
     t.datetime "start_time"
@@ -93,6 +109,41 @@ ActiveRecord::Schema.define(version: 20170724220056) do
   add_index "records", ["client_id"], name: "index_records_on_client_id", using: :btree
   add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
 
+  create_table "routes", force: :cascade do |t|
+    t.string   "place"
+    t.integer  "record_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "routes", ["record_id"], name: "index_routes_on_record_id", using: :btree
+  add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
+
+  create_table "services", force: :cascade do |t|
+    t.integer  "bus_id"
+    t.integer  "record_id"
+    t.integer  "user_id"
+    t.float    "caseta"
+    t.float    "hotel"
+    t.float    "viaticos"
+    t.float    "estacionamientos"
+    t.float    "lavadas"
+    t.float    "aeropuerto"
+    t.float    "diesel"
+    t.float    "otros"
+    t.float    "km_inicio"
+    t.float    "km_fin"
+    t.float    "precio_unidad"
+    t.float    "dia_extra"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "services", ["bus_id"], name: "index_services_on_bus_id", using: :btree
+  add_index "services", ["record_id"], name: "index_services_on_record_id", using: :btree
+  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -115,9 +166,17 @@ ActiveRecord::Schema.define(version: 20170724220056) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "buses", "buses"
   add_foreign_key "buses", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "operators", "users"
+  add_foreign_key "payments", "records"
+  add_foreign_key "payments", "users"
   add_foreign_key "records", "clients"
   add_foreign_key "records", "users"
+  add_foreign_key "routes", "records"
+  add_foreign_key "routes", "users"
+  add_foreign_key "services", "buses"
+  add_foreign_key "services", "records"
+  add_foreign_key "services", "users"
 end
