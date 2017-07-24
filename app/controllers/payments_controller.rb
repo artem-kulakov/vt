@@ -1,5 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :set_record
+  before_action :authenticate_user!
 
   # GET /payments
   # GET /payments.json
@@ -25,10 +27,12 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
+    @payment.user_id = current_user.id
+    @payment.record_id = @record.id
 
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
+        format.html { redirect_to @record, notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class PaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @payment.update(payment_params)
-        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
+        format.html { redirect_to @record, notice: 'Payment was successfully updated.' }
         format.json { render :show, status: :ok, location: @payment }
       else
         format.html { render :edit }
@@ -65,6 +69,10 @@ class PaymentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
       @payment = Payment.find(params[:id])
+    end
+
+    def set_record
+      @record = Record.find(params[:record_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,5 +1,7 @@
 class RoutesController < ApplicationController
   before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_record
+  before_action :authenticate_user!
 
   # GET /routes
   # GET /routes.json
@@ -25,10 +27,12 @@ class RoutesController < ApplicationController
   # POST /routes.json
   def create
     @route = Route.new(route_params)
+    @route.user_id = current_user.id
+    @route.record_id = @record.id
 
     respond_to do |format|
       if @route.save
-        format.html { redirect_to @route, notice: 'Route was successfully created.' }
+        format.html { redirect_to @record, notice: 'Route was successfully created.' }
         format.json { render :show, status: :created, location: @route }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class RoutesController < ApplicationController
   def update
     respond_to do |format|
       if @route.update(route_params)
-        format.html { redirect_to @route, notice: 'Route was successfully updated.' }
+        format.html { redirect_to @record, notice: 'Route was successfully updated.' }
         format.json { render :show, status: :ok, location: @route }
       else
         format.html { render :edit }
@@ -65,6 +69,10 @@ class RoutesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_route
       @route = Route.find(params[:id])
+    end
+
+    def set_record
+      @record = Record.find(params[:record_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 20170724230312) do
     t.string   "placa"
     t.string   "version"
     t.integer  "user_id"
-    t.integer  "bus_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "operator_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "buses", ["bus_id"], name: "index_buses_on_bus_id", using: :btree
+  add_index "buses", ["operator_id"], name: "index_buses_on_operator_id", using: :btree
   add_index "buses", ["user_id"], name: "index_buses_on_user_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
@@ -70,11 +70,11 @@ ActiveRecord::Schema.define(version: 20170724230312) do
     t.string   "metodo"
     t.string   "num_recibo"
     t.date     "fecha"
-    t.float    "cantidad"
+    t.float    "cantidad",   default: 0.0
     t.integer  "record_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "payments", ["record_id"], name: "index_payments_on_record_id", using: :btree
@@ -124,20 +124,20 @@ ActiveRecord::Schema.define(version: 20170724230312) do
     t.integer  "bus_id"
     t.integer  "record_id"
     t.integer  "user_id"
-    t.float    "caseta"
-    t.float    "hotel"
-    t.float    "viaticos"
-    t.float    "estacionamientos"
-    t.float    "lavadas"
-    t.float    "aeropuerto"
-    t.float    "diesel"
-    t.float    "otros"
-    t.float    "km_inicio"
-    t.float    "km_fin"
-    t.float    "precio_unidad"
-    t.float    "dia_extra"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.float    "caseta",           default: 0.0
+    t.float    "hotel",            default: 0.0
+    t.float    "viaticos",         default: 0.0
+    t.float    "estacionamientos", default: 0.0
+    t.float    "lavadas",          default: 0.0
+    t.float    "aeropuerto",       default: 0.0
+    t.float    "diesel",           default: 0.0
+    t.float    "otros",            default: 0.0
+    t.float    "km_inicio",        default: 0.0
+    t.float    "km_fin",           default: 0.0
+    t.float    "precio_unidad",    default: 0.0
+    t.float    "dia_extra",        default: 0.0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "services", ["bus_id"], name: "index_services_on_bus_id", using: :btree
@@ -145,28 +145,28 @@ ActiveRecord::Schema.define(version: 20170724230312) do
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "name"
     t.string   "puesto"
     t.string   "phone"
-    t.boolean  "admin"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "buses", "buses"
+  add_foreign_key "buses", "operators"
   add_foreign_key "buses", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "operators", "users"

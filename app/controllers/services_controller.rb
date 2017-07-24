@@ -1,5 +1,7 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_action :set_record
+  before_action :authenticate_user!
 
   # GET /services
   # GET /services.json
@@ -25,10 +27,12 @@ class ServicesController < ApplicationController
   # POST /services.json
   def create
     @service = Service.new(service_params)
+    @service.user_id = current_user.id
+    @service.record_id = @record.id
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @service, notice: 'Service was successfully created.' }
+        format.html { redirect_to @record, notice: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
+        format.html { redirect_to @record, notice: 'Service was successfully updated.' }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -65,6 +69,10 @@ class ServicesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_service
       @service = Service.find(params[:id])
+    end
+
+    def set_record
+      @record = Record.find(params[:record_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

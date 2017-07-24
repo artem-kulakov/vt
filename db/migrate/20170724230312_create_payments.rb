@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :metodo
       t.string :num_recibo
       t.date :fecha
-      t.float :cantidad
+      t.float :cantidad, default: 0
       t.references :record, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
 

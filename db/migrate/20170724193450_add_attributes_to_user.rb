@@ -3,6 +3,6 @@ class AddAttributesToUser < ActiveRecord::Migration
     add_column :users, :name, :string
     add_column :users, :puesto, :string
     add_column :users, :phone, :string
-    add_column :users, :admin, :boolean
+    add_column :users, :admin, :boolean, default: false
   end
 end
