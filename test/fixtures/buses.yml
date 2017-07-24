@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero: MyString
+  marca: MyString
+  capacidad: 1
+  modelo: MyString
+  placa: MyString
+  version: MyString
+  user_id: 
+
+two:
+  numero: MyString
+  marca: MyString
+  capacidad: 1
+  modelo: MyString
+  placa: MyString
+  version: MyString
+  user_id: 

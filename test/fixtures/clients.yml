@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  alias: MyString
+  razon_social: MyString
+  rfc: MyString
+  calle_y_numero: MyString
+  colonia: MyString
+  municipio: MyString
+  estado: MyString
+  cp: MyString
+  pais: MyString
+  telefono: MyString
+  email: MyString
+  nombre_cobro: MyString
+  telefono_cobro: MyString
+  email_cobro: MyString
+
+two:
+  user_id: 
+  alias: MyString
+  razon_social: MyString
+  rfc: MyString
+  calle_y_numero: MyString
+  colonia: MyString
+  municipio: MyString
+  estado: MyString
+  cp: MyString
+  pais: MyString
+  telefono: MyString
+  email: MyString
+  nombre_cobro: MyString
+  telefono_cobro: MyString
+  email_cobro: MyString

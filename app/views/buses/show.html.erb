@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @bus.numero %>
+</p>
+
+<p>
+  <strong>Marca:</strong>
+  <%= @bus.marca %>
+</p>
+
+<p>
+  <strong>Capacidad:</strong>
+  <%= @bus.capacidad %>
+</p>
+
+<p>
+  <strong>Modelo:</strong>
+  <%= @bus.modelo %>
+</p>
+
+<p>
+  <strong>Placa:</strong>
+  <%= @bus.placa %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @bus.version %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bus.user %>
+</p>
+
+<%= link_to 'Edit', edit_bus_path(@bus) %> |
+<%= link_to 'Back', buses_path %>
