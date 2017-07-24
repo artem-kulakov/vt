@@ -26,6 +26,7 @@ class OperatorsController < ApplicationController
   # POST /operators.json
   def create
     @operator = Operator.new(operator_params)
+    @operator.user_id = current_user.id
 
     respond_to do |format|
       if @operator.save

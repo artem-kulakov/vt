@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2017-07-24 17:00:56
+  end_time: 2017-07-24 17:00:56
+  initial_time: 2017-07-24
+  finish_time: 2017-07-24
+  title: MyString
+  client_id: 
+  user_id: 
+  numero_pasajeros: 1
+  numero_de_camiones: 1
+  lugar_salida: MyString
+  referencia_salida: MyString
+  nombre_referencia: MyString
+  telefono_referencia: MyString
+  precio: 1.5
+  precio: 
+  factura: false
+  num_factura: MyString
+  status_op: MyString
+  status_admin: MyString
+  observaciones: MyText
+  distancia: 1
+
+two:
+  start_time: 2017-07-24 17:00:56
+  end_time: 2017-07-24 17:00:56
+  initial_time: 2017-07-24
+  finish_time: 2017-07-24
+  title: MyString
+  client_id: 
+  user_id: 
+  numero_pasajeros: 1
+  numero_de_camiones: 1
+  lugar_salida: MyString
+  referencia_salida: MyString
+  nombre_referencia: MyString
+  telefono_referencia: MyString
+  precio: 1.5
+  precio: 
+  factura: false
+  num_factura: MyString
+  status_op: MyString
+  status_admin: MyString
+  observaciones: MyText
+  distancia: 1

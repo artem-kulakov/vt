@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :records
   resources :operators
   resources :buses
   resources :clients

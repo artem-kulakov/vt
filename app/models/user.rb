@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :clients
   has_many :buses
   has_many :operators
+  has_many :records
 end

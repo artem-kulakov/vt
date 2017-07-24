@@ -3,7 +3,7 @@ class CreateOperators < ActiveRecord::Migration
     create_table :operators do |t|
       t.string :nombre
       t.string :telefono
-      t.string :papeles
+      t.boolean :papeles, default: true
       t.references :user, index: true, foreign_key: true
       t.text :observaciones
 
