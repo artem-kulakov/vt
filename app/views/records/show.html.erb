@@ -1,152 +1,153 @@
-<p>
-  <strong>Start time:</strong>
-  <%= @record.start_time %>
-</p>
+<h2>Servicio: <%= @record.id %></h2>
 
-<p>
-  <strong>End time:</strong>
-  <%= @record.end_time %>
-</p>
+<h5>Registro creado por: <%= @record.user.name %> </h5>
 
-<p>
-  <strong>Initial time:</strong>
-  <%= @record.initial_time %>
-</p>
+<div class="row">
+<div id="status">
+<ul>
+<li><h5>Status Op: <%= @record.status_op %></h5></li>
+<li><h5>Status Amin: <%= @record.status_admin %></h5></li>
+</ul>
+</div>
+</div>
 
-<p>
-  <strong>Finish time:</strong>
-  <%= @record.finish_time %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @record.title %>
-</p>
-
-<p>
-  <strong>Client:</strong>
-  <%= @record.client %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @record.user %>
-</p>
-
-<p>
-  <strong>Numero pasajeros:</strong>
-  <%= @record.numero_pasajeros %>
-</p>
-
-<p>
-  <strong>Numero de camiones:</strong>
-  <%= @record.numero_de_camiones %>
-</p>
-
-<p>
-  <strong>Lugar salida:</strong>
-  <%= @record.lugar_salida %>
-</p>
-
-<p>
-  <strong>Referencia salida:</strong>
-  <%= @record.referencia_salida %>
-</p>
-
-<p>
-  <strong>Nombre referencia:</strong>
-  <%= @record.nombre_referencia %>
-</p>
-
-<p>
-  <strong>Telefono referencia:</strong>
-  <%= @record.telefono_referencia %>
-</p>
-
-<p>
-  <strong>Precio:</strong>
-  <%= @record.precio %>
-</p>
-
-<p>
-  <strong>Precio:</strong>
-  <%= @record.precio %>
-</p>
-
-<p>
-  <strong>Factura:</strong>
-  <%= @record.factura %>
-</p>
-
-<p>
-  <strong>Num factura:</strong>
-  <%= @record.num_factura %>
-</p>
-
-<p>
-  <strong>Status op:</strong>
-  <%= @record.status_op %>
-</p>
-
-<p>
-  <strong>Status admin:</strong>
-  <%= @record.status_admin %>
-</p>
-
-<p>
-  <strong>Observaciones:</strong>
-  <%= @record.observaciones %>
-</p>
-
-<p>
-  <strong>Distancia:</strong>
-  <%= @record.distancia %>
-</p>
+<div class="row">
+    <div class="col-md-6">
+  <div id="formario">
 
 
-<%= form_for [@record, @service], :html => {:id => 'service_form'} do |f| %>
+<h2><%= @record.title %></h2>
+
+<div class="row">
+<div class="col-sm-6">
+<h4>Fecha de Salida:</h4>
+<p><%= @record.try(:start_time).strftime(" %b-%d-%Y") %></p>
+</div>
+
+<div class="col-sm-6">
+<h4>Fecha de Regreso:</h4>
+<p><%= @record.try(:end_time).strftime(" %b-%d-%Y") %></p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6">
+<h4>Hora de Salida:</h4>
+<p><%= @record.initial_time %></p>
+</div>
+
+<div class="col-sm-6">
+<h4>Hora de Regreso:</h4>
+<p><%= @record.finish_time %></p>
+</div>
+</div>
+
+
+<br><br>
+<div class="row">
+<div class="col-sm-6">
+<h4>Número de Pasajeros:</h4>
+<p><%= @record.numero_pasajeros %></p>
+</div>
+
+<div class="col-sm-6">
+<h4>Número de Camiones:</h4>
+<p><%= @record.numero_de_camiones %></p>
+</div>
+</div>
+
+<br><br>
+<div class="row">
+<div class="col-sm-6">
+<h4>Lugar de Salida:</h4>
+<p><%= @record.lugar_salida %></p>
+</div>
+
+<div class="col-sm-6">
+<h4>Referencia de Salida:</h4>
+<p><%= @record.referencia_salida %></p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6">
+<h4>Nombre de Referencia:</h4>
+<p><%= @record.nombre_referencia %></p>
+</div>
+
+<div class="col-sm-6">
+<h4>Teléfono de Referencia:</h4>
+<p><%= @record.telefono_referencia %></p>
+</div>
+</div>
+
+
+<br><br>
+<div class="row">
+<div class="col-sm-6">
+  <h4>¿Requiere Factura?</h4>
+  <p><%= @record.factura %></p>
+</div>
+
+<div class="col-sm-6">
+  <h4>Número de Factura o Recibo</h4>
+  <p><%= @record.num_factura %></p>
+</div>
+</div>
+
+
+<br><br>
+<div class="row">
+<div class="col-sm-12">
+  <h4>Observaciones:</h4>
+  <p><%= @record.observaciones %></p><br>
+</div>
+</div>
+
+</div>
+
+<div id="formario">
+
+  <h2>Precios</h2>
+<div class="row">
+<div class="col-sm-6">
+  <h4>Precio:</h4>
+  <p><%= @record.precio %></p>
+</div>
+<div class="col-sm-6">
+  <h4>Precio Final:</h4>
+  <p><%= @record.precio_final %></p>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="col-md-6">
+
+
+<div id="formario">
+<h2>Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h2>
+      <%= form_for [@record, @service], :html => {:id => 'service_form'} do |f| %>
 
   <div class="field">
-    <%= f.label :bus_id %><br>
+    <%= f.label :Autobús %><br>
     <%= f.number_field :bus_id %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit class: "botones button_red" %>
+    <%= f.submit "Añadir Autobús", class: "button button_red" %> <br><br>
   </div>
 <% end %>
+    </div>
 
+  <div id="formario">
+  <h2>Itinerario</h2>
 
-
-<%= form_for [@record, @payment], :html => {:id => 'payment_form'} do |f| %>
-
-  <div class="field">
-    <%= f.label :metodo %><br>
-    <%= f.text_field :metodo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :num_recibo %><br>
-    <%= f.text_field :num_recibo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :fecha %><br>
-    <%= f.date_field :fecha %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cantidad %><br>
-    <%= f.number_field :cantidad %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit class: "botones button_red" %>
-  </div>
-<% end %>
-
+<h4>Distancia:</h4>   
+<p><%= @record.distancia %></p>
 
 <%= form_for [@record, @route], :html => {:id => 'route_form'} do |f| %>
 
@@ -157,9 +158,114 @@
 
 
   <div class="actions">
-    <%= f.submit class: "botones button_red" %>
+    <%= f.submit "Añadir Lugar", class: "button button_red" %> <br><br>
+  </div>
+<% end %>
+  
+  </div>
+
+  <div id="formario">
+    <h2>Pagos</h2>
+
+<%= form_for [@record, @payment], :html => {:id => 'payment_form'} do |f| %>
+  
+  <div class="row">
+  <div class="col-sm-3">
+    <h4><%= f.label :metodo %></h4>
+    <p><%= f.text_field :metodo %></p>
+  </div>
+
+  <div class="col-sm-3">
+    <h4><%= f.label :num_recibo %></h4>
+    <p><%= f.text_field :num_recibo %></p>
+  </div>
+
+  <div class="col-sm-3">
+    <h4><%= f.label :fecha %></h4>
+    <p><%= f.date_field :fecha %></p>
+  </div>
+
+  <div class="col-sm-3">
+    <h4><%= f.label :cantidad %></h4>
+    <p><%= f.number_field :cantidad %></p>
+  </div>
+</div>
+
+  <div class="actions">
+    <%= f.submit "Añadir Pago", class: "button button_red" %> <br><br>
   </div>
 <% end %>
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+  </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="formario">
+      <h2>Cliente</h2>
+    <div class="row">
+
+  <div class="col-sm-3">
+  <h4>Alias:</h4>
+  <p><%= @record.client.alias %></p>
+  </div>
+
+  <div class="col-sm-3">
+  <h4>Razón Social:</h4>
+  <p><%= @record.client.razon_social %></p>
+  </div>
+
+  <div class="col-sm-2">
+  <h4>R.F.C.:</h4>
+  <p><%= @record.client.rfc %></p>
+  </div>
+
+  <div class="col-sm-2">
+  <h4>Email:</h4>
+  <p><%= @record.client.email %></p>
+  </div>
+
+  <div class="col-sm-2">
+  <h4>Teléfono:</h4>
+  <p><%= @record.client.telefono %></p>
+  </div>
+
+  </div>
+
+  <div class="row">
+    
+  <div class="col-sm-3">
+  <h4>Nombre Cobro:</h4>
+  <p><%= @record.client.nombre_cobro %></p>
+  </div>
+
+  <div class="col-sm-3">
+  <h4>Teléfono Cobro:</h4>
+  <p><%= @record.client.telefono_cobro %></p>
+  </div>
+
+  <div class="col-sm-3">
+  <h4>Email Cobro:</h4>
+  <p><%= @record.client.email_cobro %></p>
+  </div>
+  </div>
+  <br>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+<% @services.each do |service| %>
+  <div class="col-md-4">
+    <div id="formario">
+      <h2><%= service.bus %></h2>
+    </div>
+  </div>
+<% end %>
+</div>
+
+
+

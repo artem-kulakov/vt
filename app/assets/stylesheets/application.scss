@@ -16,3 +16,137 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+$grey: #F3F3F2;
+$red: #9763d9;
+$light_grey: #979797;
+body {
+  background-color: $grey;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+    font-family: 'Akzid', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+#formario {
+  margin: 2rem 0;
+  background-color: white;
+  box-shadow: 0 2px 2px 0 $red, 0 3px 1px -2px$red, 0 1px 5px 0 $red;
+  padding: 3rem 5rem 0;
+  border-radius: 1px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: box-shadow 0.28s ease, -webkit-transform 0.28s ease;
+  transition: box-shadow 0.28s ease, -webkit-transform 0.28s ease;
+  transition: box-shadow 0.28s ease, transform 0.28s ease;
+  transition: box-shadow 0.28s ease, transform 0.28s ease, -webkit-transform 0.28s ease;
+
+h2, h1 {
+  text-align: center;
+  color: $red;
+  width: 100%;
+  font-size: 100%;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-bottom: solid 2px $red;
+  border-top: solid 2px $red;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  a {
+    color: white;
+  }
+}
+
+h4 {
+  color: black;
+  font-weight: 900;
+  font-size: 15px;
+}
+
+input[type="date"],input[type="name"], input[type="email"], input[type="number"], input[type="tel"], input[type="text"], input[type="password"], textarea, select {
+  width: 100%;
+  height: 3.5rem;
+  border:none;
+  border-bottom:2px solid #dadada;
+  margin-bottom: 1.5rem;
+  background-color: white !important;
+  }
+  textarea {
+    height: 20rem !important;
+  }
+  label {
+  margin-top: 1rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: $red;
+}
+}
+
+
+.button {
+  transition: background-color .25s linear;
+  font-size: 15px;
+  min-width: 160px;
+  border-radius: 17px;
+  padding: 11px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: 1rem;
+  background-color: transparent;
+}
+
+.button_red {
+  color: $red;
+  background-color: white;
+  border: solid 2px $red;
+  &:hover {
+    color: white;
+    background-color: $red;
+  }
+
+}
+
+.button_grey {
+  color: $red;
+  background-color: white;
+  border: solid 1.5px $red;
+  &:hover {
+    color: white;
+    background-color: $red;
+  }
+
+}
+
+.button_block {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 2rem;
+  font-weight: 700;
+}
+
+.center {
+  text-align: center;
+}
+
+#status {
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline;
+    float: left;
+    margin-left: 30px;
+    background-color: $red;
+    padding: 5px 20px;
+    color: white;
+  }
+}
+}
