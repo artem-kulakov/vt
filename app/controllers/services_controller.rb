@@ -1,7 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
   before_action :set_record
-  before_action :set_bus
   before_action :authenticate_user!
 
   # GET /services
@@ -76,9 +75,6 @@ class ServicesController < ApplicationController
       @record = Record.find(params[:record_id])
     end
 
-    def set_bus
-      @bus = Bus.find(params[:bus_id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
