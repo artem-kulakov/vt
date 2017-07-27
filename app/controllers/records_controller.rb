@@ -13,8 +13,10 @@ class RecordsController < ApplicationController
   def show
     @payments = @record.payments
     @payment = @record.payments.new
+
+    @service = Service.new
     @services = @record.services
-    @service = @record.services.new
+    
     @routes = @record.routes
     @route = @record.routes.new
   end

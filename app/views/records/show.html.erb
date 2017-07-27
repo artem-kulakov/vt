@@ -133,7 +133,7 @@
 
   <div class="field">
     <%= f.label :Autobús %><br>
-    <%= f.number_field :bus_id %>
+    <%= f.select :bus_id, Bus.all.collect { |p| [ p.numero, p.id ] } %>
   </div>
 
 
@@ -148,6 +148,14 @@
 
 <h4>Distancia:</h4>   
 <p><%= @record.distancia %></p>
+
+<% @routes.each_with_index do |route, i| %>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4><%= i+1 %>.- <%= route.place %></h4>
+    </div>
+  </div>
+<% end %>
 
 <%= form_for [@record, @route], :html => {:id => 'route_form'} do |f| %>
 
@@ -261,7 +269,7 @@
 <% @services.each do |service| %>
   <div class="col-md-4">
     <div id="formario">
-      <h2><%= service.bus %></h2>
+      <h2><%= service.record.title %></h2>
     </div>
   </div>
 <% end %>
