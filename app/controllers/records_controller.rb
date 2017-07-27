@@ -12,13 +12,13 @@ class RecordsController < ApplicationController
   # GET /records/1.json
   def show
     @payments = @record.payments
-    @payment = @record.payments.new
+    @payment = Payment.new
 
     @service = Service.new
     @services = @record.services
     
     @routes = @record.routes
-    @route = @record.routes.new
+    @route = Route.new
   end
 
   # GET /records/new

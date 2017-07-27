@@ -29,6 +29,9 @@ body {
 }
 
 
+.grey {
+  color: #b3b3b3!important;
+}
 
 #formario {
   margin: 2rem 0;
@@ -63,6 +66,12 @@ h4 {
   color: black;
   font-weight: 900;
   font-size: 15px;
+}
+
+table {
+  th {
+    margin-right: 10px;
+  }
 }
 
 input[type="date"],input[type="name"], input[type="email"], input[type="number"], input[type="tel"], input[type="text"], input[type="password"], textarea, select {

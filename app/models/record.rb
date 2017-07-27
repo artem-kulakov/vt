@@ -5,4 +5,9 @@ class Record < ActiveRecord::Base
   has_many :buses, through: :services
   has_many :payments
   has_many :routes
+
+  def sum_payments
+    payments.count == 0 ? 0 : payments.sum(:cantidad).round(2)
+  end
+
 end

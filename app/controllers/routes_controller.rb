@@ -60,7 +60,7 @@ class RoutesController < ApplicationController
   def destroy
     @route.destroy
     respond_to do |format|
-      format.html { redirect_to routes_url, notice: 'Route was successfully destroyed.' }
+      format.html { redirect_to @record, notice: 'Route was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
