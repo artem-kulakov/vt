@@ -42,6 +42,7 @@ class BusesController < ApplicationController
   # PATCH/PUT /buses/1
   # PATCH/PUT /buses/1.json
   def update
+    @bus.user_id = current_user.id
     respond_to do |format|
       if @bus.update(bus_params)
         format.html { redirect_to @bus, notice: 'Bus was successfully updated.' }
@@ -71,6 +72,6 @@ class BusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bus_params
-      params.require(:bus).permit(:numero, :marca, :capacidad, :modelo, :placa, :version, :user_id)
+      params.require(:bus).permit(:numero, :marca, :capacidad, :modelo, :placa, :version, :user_id, :operator_id)
     end
 end

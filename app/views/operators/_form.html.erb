@@ -20,8 +20,8 @@
     <%= f.text_field :telefono %>
   </div>
   <div class="field">
-    <%= f.label :papeles %><br>
-    <%= f.text_field :papeles %>
+    <%= f.label :papeles_completos? %><br>
+    <%= f.check_box :papeles %>
   </div>
 
   <div class="field">
@@ -29,6 +29,6 @@
     <%= f.text_area :observaciones %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "button button_red" %>
   </div>
 <% end %>

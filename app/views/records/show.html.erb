@@ -121,6 +121,29 @@
       </div>
     </div>
 
+    <div id="formario">
+      <h2>Avance Registro</h2>
+
+<div class="center">
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value"><%= @record.sum_total %>%</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <br><br>
+    </div>
+
+
   </div>
 
 
@@ -398,6 +421,10 @@
             <td><% service.km_fin%></td>
           </tr>
         </table>
+      </div>
+
+      <div class="row">
+        <%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' }, class: "button button_red button_block" %> <br><br>
       </div>
 
     </div>

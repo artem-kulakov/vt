@@ -1,35 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div id="formario">
+      <h1>Lista de Operadores</h1>
 
-<h1>Listing Operators</h1>
+<%= link_to 'New Operator', new_operator_path, class: "button button_red" %>
+      <div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Telefono</th>
+              <th>Papeles</th>
+              <th>Observaciones</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @operators.each do |operator| %>
+            <tr>
+              <td><%= operator.nombre %></td>
+              <td><%= operator.telefono %></td>
+              <td><%= operator.papeles %></td>
+              <td><%= operator.observaciones %></td>
+              <td><%= link_to 'Editar', edit_operator_path(operator) %></td>
+              <td><%= link_to 'Eliminar', operator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Telefono</th>
-      <th>Papeles</th>
-      <th>User</th>
-      <th>Observaciones</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @operators.each do |operator| %>
-      <tr>
-        <td><%= operator.nombre %></td>
-        <td><%= operator.telefono %></td>
-        <td><%= operator.papeles %></td>
-        <td><%= operator.user %></td>
-        <td><%= operator.observaciones %></td>
-        <td><%= link_to 'Show', operator %></td>
-        <td><%= link_to 'Edit', edit_operator_path(operator) %></td>
-        <td><%= link_to 'Destroy', operator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Operator', new_operator_path %>
