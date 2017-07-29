@@ -32,15 +32,15 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="root_path" class="simple-text">
                     Tutto Il Mondo - Ventas
                 </a>
             </div>
 
             <ul class="nav">
 
-                <li class="<%= 'active' if current_page?(root_path) %>">
-                    <a href="<%= root_path %>">
+                <li class="<%= 'active' if current_page?(pizarron_records_path) %>">
+                    <a href="<%= pizarron_records_path %>">
                         <i class="material-icons">dashboard</i>
                         <p>Pizarrón</p>
                     </a>
@@ -60,8 +60,8 @@
                     </a>
                 </li>
 
-                <li class="<%= 'active' if current_page?(root_path) %>">
-                    <a href="<%= root_path %>">
+                <li class="<%= 'active' if current_page?(cobranza_records_path) %>">
+                    <a href="<%= cobranza_records_path %>">
                         <i class="material-icons">monetization_on</i>
                         <p>Cobranza</p>
                     </a>
@@ -95,8 +95,8 @@
                     </a>
                 </li>
 
-                <li class="<%= 'active' if current_page?(root_path) %>">
-                    <a href="<%= root_path %>">
+                <li class="<%= 'active' if current_page?(historico_records_path) %>">
+                    <a href="<%= historico_records_path %>">
                         <i class="material-icons">hourglass_empty</i>
                         <p>Histórico</p>
                     </a>

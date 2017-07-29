@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :records do
+      collection do
+      get :pizarron
+      get :reportes
+      get :cobranza
+      get :historico
+    end
     resources :payments
     resources :routes
     resources :services

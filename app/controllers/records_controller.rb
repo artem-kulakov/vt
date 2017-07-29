@@ -8,6 +8,20 @@ class RecordsController < ApplicationController
     @records = Record.all
   end
 
+  def cobranza
+    @records = Record.where(status_admin: "false")
+  end
+
+  def pizarron
+  end
+
+  def historico
+  end
+
+  def reportes
+    
+  end
+
   # GET /records/1
   # GET /records/1.json
   def show
