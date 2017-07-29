@@ -37,8 +37,8 @@
         		<td><%= service.record.client.razon_social %></td>
         		<td><%= service.bus.numero %></td>
         		<td><%= service.bus.operator%></td>
-        		<td><%= service.record.start_time %></td>
-        		<td><%= service.record.end_time %></td>
+        		<td><%= service.record.start_time.strftime(" %b-%d-%Y") %></td>
+        		<td><%= service.record.end_time.strftime(" %b-%d-%Y") %></td>
         		<td><%= service.record.lugar_salida %></td>
         		<td><%= service.record.factura %></td>
         		<td><%= service.precio_unidad %></td>
