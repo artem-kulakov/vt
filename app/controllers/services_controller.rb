@@ -47,10 +47,10 @@ class ServicesController < ApplicationController
     respond_to do |format|
       if @service.update(service_params)
         format.html { redirect_to @record, notice: 'Service was successfully updated.' }
-        format.json { render :show, status: :ok, location: @service }
+        format.json { respond_with_bip(@service) }
       else
         format.html { render :edit }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@service) }
       end
     end
   end

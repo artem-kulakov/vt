@@ -39,10 +39,10 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
+        format.json { respond_with_bip(@record) }
       else
         format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@record) }
       end
     end
   end
@@ -79,6 +79,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:start_time, :end_time, :initial_time, :finish_time, :title, :client_id, :user_id, :numero_pasajeros, :numero_de_camiones, :lugar_salida, :referencia_salida, :nombre_referencia, :telefono_referencia, :precio, :precio, :factura, :num_factura, :status_op, :status_admin, :observaciones, :distancia)
+      params.require(:record).permit(:start_time, :end_time, :initial_time, :finish_time, :title, :client_id, :user_id, :numero_pasajeros, :numero_de_camiones, :lugar_salida, :referencia_salida, :nombre_referencia, :telefono_referencia, :precio, :precio_final, :factura, :num_factura, :status_op, :status_admin, :observaciones, :distancia)
     end
 end
