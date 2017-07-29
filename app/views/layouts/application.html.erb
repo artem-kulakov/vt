@@ -21,7 +21,7 @@
 
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="purple" data-image="../assets/sidebar-3.jpg">
 
     <!--
 
@@ -32,7 +32,7 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="root_path" class="simple-text">
+                <a href="<%= root_path %>" class="simple-text">
                     Tutto Il Mondo - Ventas
                 </a>
             </div>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
 
-                <li class="<%= 'active' if current_page?(root_path) %>">
-                    <a href="<%= root_path %>">
+                <li class="<%= 'active' if current_page?(users_path) %>">
+                    <a href="<%= users_path %>">
                         <i class="material-icons">account_circle</i>
                         <p>Usuarios</p>
                     </a>

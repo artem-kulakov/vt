@@ -329,7 +329,7 @@
 
 
 <div class="row">
-  <% @services.each do |service| %>
+  <% @services.each_with_index do |service, i| %>
   <div class="col-sm-4">
     <div id="formario">
       <h2><%= service.bus.numero %></h2>
@@ -341,13 +341,13 @@
 
       <div class="row">
         <div class="col-sm-6">
-          <h4>X unidad <a href="#" id="27"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record, service], :precio_unidad, :activator => "#27"%></p>
+          <h4>X unidad <a href="#" id="27-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
+          <p><%= best_in_place [@record, service], :precio_unidad, :activator => "#27-#{i}"%></p>
         </div>
 
         <div class="col-sm-6">
-          <h4>Día extra <a href="#" id="28"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record, service], :dia_extra, :activator => "#28"%></p>
+          <h4>Día extra <a href="#" id="28-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
+          <p><%= best_in_place [@record, service], :dia_extra, :activator => "#28-#{i}"%></p>
         </div>
       </div>
 
@@ -364,36 +364,36 @@
           </thead>
           <tbody>
             <tr>
-              <td>Casetas: <a href="#" id="16"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :caseta, :activator => "#16"%></td>
+              <td>Casetas: <a href="#" id="16-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :caseta, :activator => "#16-#{i}"%></td>
             </tr>
             <tr>
-              <td>Hotel: <a href="#" id="17"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :hotel, :activator => "#17"%></td>
+              <td>Hotel: <a href="#" id="17-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :hotel, :activator => "#17-#{i}"%></td>
             </tr>
             <tr>
-              <td>Viáticos: <a href="#" id="18"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :viaticos, :activator => "#18"%></td>
+              <td>Viáticos: <a href="#" id="18-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :viaticos, :activator => "#18-#{i}"%></td>
             </tr>
             <tr>
-              <td>Estacionamientos: <a href="#" id="19"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :estacionamientos, :activator => "#19"%></td>
+              <td>Estacionamientos: <a href="#" id="19-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :estacionamientos, :activator => "#19-#{i}"%></td>
             </tr>
             <tr>
-              <td>Lavadas: <a href="#" id="20"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :lavadas, :activator => "#20"%></td>
+              <td>Lavadas: <a href="#" id="20-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :lavadas, :activator => "#20-#{i}"%></td>
             </tr>
             <tr>
-              <td>Aeropuerto: <a href="#" id="21"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :aeropuerto, :activator => "#21"%></td>
+              <td>Aeropuerto: <a href="#" id="21-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :aeropuerto, :activator => "#21-#{i}"%></td>
             </tr>
             <tr>
-              <td>Diesel: <a href="#" id="22"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :diesel, :activator => "#22"%></td>
+              <td>Diesel: <a href="#" id="22-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :diesel, :activator => "#22-#{i}"%></td>
             </tr>
             <tr>
-              <td>Otros: <a href="#" id="23"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :otros, :activator => "#23"%></td>
+              <td>Otros: <a href="#" id="23-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
+              <td><%=best_in_place [@record, service], :otros, :activator => "#23-#{i}"%></td>
             </tr>
             <tr>
               <td></td>
@@ -416,12 +416,12 @@
       <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
           <thead>
-            <th>Km Inicial <a href="#" id="24"> <span class="grande fa fa-pencil"></span></a></th>
-            <th>Km Final <a href="#" id="25"> <span class="grande fa fa-pencil"></span></a></th>
+            <th>Km Inicial <a href="#" id="24-<%=i%>"> <span class="grande fa fa-pencil"></span></a></th>
+            <th>Km Final <a href="#" id="25-<%=i%>"> <span class="grande fa fa-pencil"></span></a></th>
           </thead>
           <tr>
-            <td><%= best_in_place [@record, service], :km_inicio, :activator => "#24"%></td>
-            <td><%= best_in_place [@record, service], :km_fin, :activator => "#25"%></td>
+            <td><%= best_in_place [@record, service], :km_inicio, :activator => "#24-#{i}"%></td>
+            <td><%= best_in_place [@record, service], :km_fin, :activator => "#25-#{i}"%></td>
           </tr>
         </table>
       </div>

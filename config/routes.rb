@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :buses
   resources :clients
   devise_for :users
+  resources :users
 
   resources :records do
       collection do

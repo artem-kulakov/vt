@@ -11,12 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
-//= require jquery_ujs
-//= require turbolinks
-//= require best_in_place
 //= require jquery-ui
+//= require jquery_ujs
+//= require bootstrap-sprockets
+//= require moment
+//= require fullcalendar
+//= require underscore
+//= require best_in_place
 //= require best_in_place.jquery-ui
 //= require_tree .
+
 
 

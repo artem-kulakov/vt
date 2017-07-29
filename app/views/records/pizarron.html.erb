@@ -1,0 +1,41 @@
+<%= link_to 'Regresar', :back, class: "button button_red" %> <br><br>
+<div class="container">
+<div id="calendar"></div>
+</div>
+
+<br>
+
+<%= @buses.count %>
+
+<script>
+
+  $(function() { // document ready
+
+    $('#calendar').fullCalendar({
+      aspectRatio: 1.8,
+      scrollTime: '00:00',
+      header: {
+        left: 'today prev,next',
+        center: 'title',
+        right: 'timelineMonth,timelineYear'
+      },
+      defaultView: 'timelineMonth',
+      resourceAreaWidth: '10%',
+      resourceLabelText: 'Autobuses',
+      resources: [
+      <% @buses.each do |bus| %>
+        { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
+      <% end %>
+      ],
+      events: '/records/pizarron.json'
+    });
+  
+  });
+
+</script>
+
+<style>
+  #calendar {
+
+  }
+</style>

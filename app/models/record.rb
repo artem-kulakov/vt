@@ -82,4 +82,11 @@ class Record < ActiveRecord::Base
   	@sum_total = (sum_1+sum_2+sum_3+sum_4+sum_5+sum_6+sum_7+sum_8+sum_9+sum_10+sum_11+sum_12+sum_13+sum_14+sum_15+sum_16+sum_17).round(2)
   end
 
+  def color
+    if self.status_op == "Prob Baja" ; '#D61212' elsif self.status_op == "Prob Media" ; '#D6D612' elsif self.status_op == "Prob Alta" ; '#5AD612' elsif self.status_op == "Venta" ; '#1237D6' end
+      
+  end
+
+
+
 end

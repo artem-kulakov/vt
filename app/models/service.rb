@@ -7,4 +7,8 @@ class Service < ActiveRecord::Base
     (self.hotel+self.caseta+self.viaticos+self.estacionamientos+self.lavadas+self.aeropuerto+self.diesel+self.otros).round(2)
   end
 
+  def resourceId
+      @resourceId = self.bus_id
+  end	
+
 end

@@ -13,6 +13,10 @@ class RecordsController < ApplicationController
   end
 
   def pizarron
+    @buses = Bus.all.order("created_at asc")
+    @records = Record.all
+    @services = Service.all
+    render layout: "other"
   end
 
   def historico
