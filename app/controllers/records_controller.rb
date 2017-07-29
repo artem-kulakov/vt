@@ -16,6 +16,7 @@ class RecordsController < ApplicationController
   end
 
   def historico
+    @services = Service.all
   end
 
   def reportes
