@@ -5,8 +5,10 @@
 <div class="row">
   <div id="status">
     <ul>
-      <li><h5>Status Op: <%= @record.status_op %></h5></li>
-      <li><h5>Status Amin: <%= @record.status_admin %></h5></li>
+      <li class="strike"><h5>Status Op: <%= best_in_place [@record], :status_op, :as => :select, :collection => {"Prob Baja" => "Prob Baja", "Prob Media" => "Prob Media", "Prob Alta" => "Prob Alta", "Venta" => "Venta"} %></h5></li>
+
+      <%= best_in_place [@record], :status_admin, as: :checkbox, collection: {true: "#{'<li class = "strike"><h5>Cobrado</h5></li>'}".html_safe, false: "#{'<li class = "strikero"><h5>Por Cobrar</h5></li>'}".html_safe}%>
+
     </ul>
   </div>
 </div>
@@ -33,12 +35,12 @@
       <div class="row">
         <div class="col-sm-6">
           <h4>Hora de Salida: <a href="#" id="3"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place @record, :initial_time, :type => :input, :activator => "#3"%></p>
+          <p><%= best_in_place @record, :initial_time, :type => :input, :activator => "#3", :place_holder => "00:00"%></p>
         </div>
 
         <div class="col-sm-6">
           <h4>Hora de Regreso: <a href="#" id="4"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place @record, :finish_time, :type => :input, :activator => "#4" %></p>
+          <p><%= best_in_place @record, :finish_time, :type => :input, :activator => "#4", :place_holder => "00:00" %></p>
         </div>
       </div>
 
@@ -86,7 +88,7 @@
       <div class="row">
         <div class="col-sm-6">
           <h4>¿Requiere Factura? <a href="#" id="11"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record], :factura, :place_holder => "Añande factura", :activator => "#11"%></p>
+          <p><%= best_in_place [@record], :factura, as: :checkbox, collection: {false: "Sin factura", true: "Con Factura"}, :activator => "#11"%></p>
         </div>
 
         <div class="col-sm-6">
@@ -272,7 +274,7 @@
 <div class="row">
   <div class="col-md-12">
     <div id="formario">
-      <h2>Cliente</h2>
+      <h2>Cliente |<span><%= link_to "Editar", edit_record_path(@record) %></span>|</h2>
       <div class="row">
 
         <div class="col-sm-3">
@@ -445,3 +447,5 @@
 <script> 
 $.datepicker.setDefaults({ dateFormat: 'M-dd-yy' });
 </script>
+
+

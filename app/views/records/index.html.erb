@@ -33,7 +33,11 @@
         <td><%= record.lugar_salida %></td>
         <td><%= record.precio %></td>
         <td><%= record.status_op %></td>
-        <td><%= record.status_admin %></td>
+        <% if record.status_admin == "true" %>
+        <td>Cobrado</td>
+        <% else %>
+        <td>Por Cobrar</td>
+        <% end %>
         <td><%= record.sum_total %> % </td>
         <td><%= link_to 'Ver más', record %></td>
         <td><%= link_to 'Editar', edit_record_path(record) %></td>

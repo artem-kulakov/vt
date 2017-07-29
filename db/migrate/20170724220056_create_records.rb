@@ -19,7 +19,7 @@ class CreateRecords < ActiveRecord::Migration
       t.boolean :factura, default: false
       t.string :num_factura
       t.string :status_op
-      t.string :status_admin
+      t.boolean :status_admin, default: false
       t.text :observaciones
       t.integer :distancia, default: false
 
