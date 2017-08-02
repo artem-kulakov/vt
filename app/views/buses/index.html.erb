@@ -24,7 +24,7 @@
               <td><%= bus.modelo %></td>
               <td><%= bus.placa %></td>
               <td><%= bus.version %></td>
-              <td><%= bus.operator %></td>
+              <td><%= bus.operator.nombre %></td>
               <td><%= link_to 'Editar', edit_bus_path(bus) %></td>
               <td><%= link_to 'Eliminar', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

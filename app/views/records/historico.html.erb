@@ -1,63 +1,54 @@
 <div class="row">
-		<div class="col-md-12">
-	<div id="formario">
-<h2>Histórico</h2>
-		<div class="content table-responsive table-full-width">
+  <div class="col-md-12">
+    <div id="formario">
+      <h1>Histórico</h1>
+      <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
-        <thead>
-        		<th>Id Registro</th>
-        		<th>Id Servicio</th>
-        		<th>Referencia</th>
-        		<th>Cliente</th>
-        		<th>Autobús</th>
-        		<th>Operador</th>
-        		<th>Fecha Salida</th>
-        		<th>Fecha de Regreso</th>
-        		<th>Lugar de Salida</th>
-        		<th>Facturado</th>
-        		<th>Precio x Unidad</th>
-        		<th>Día Extra</th>
-        		<th>Precio Final</th>
-        		<th>Pagos totales</th>
-        		<th>distancia</th>
-        		<th>Km inicial</th>
-        		<th>Km Final</th>
-        		<th>Progreso</th>
-        		<th>Status Op</th>
-        		<th>Status Admin</th>
-						<th>Total Gastos</th>
-						<th colspan="1"></th>
-        </thead>
-        <tbody>
-        <% @services.each do |service| %>
-        	<tr>
-        		<td><%= service.record.id %></td>
-        		<td><%= service.id %></td>
-        		<td><%= service.record.title%></td>
-        		<td><%= service.record.client.razon_social %></td>
-        		<td><%= service.bus.numero %></td>
-        		<td><%= service.bus.operator%></td>
-        		<td><%= service.record.start_time.strftime(" %b-%d-%Y") %></td>
-        		<td><%= service.record.end_time.strftime(" %b-%d-%Y") %></td>
-        		<td><%= service.record.lugar_salida %></td>
-        		<td><%= service.record.factura %></td>
-        		<td><%= service.precio_unidad %></td>
-        		<td><%= service.dia_extra %></td>
-        		<td><%= service.record.precio_final %></td>
-        		<td><%= service.record.sum_payments %></td>
-        		<td><%= service.record.distancia %></td>
-        		<td><%= service.km_inicio %></td>
-        		<td><%= service.km_fin %></td>
-        		<td><%= service.record.sum_total %>%</td>
-        		<td><%= service.record.status_op %></td>
-        		<td><%= service.record.status_admin %></td>
-        		<td><%= service.sum_gastos %></td>
-        		<td><%= link_to 'Ver más', @record %></td>
-        	</tr>
+          <thead>
+            <th>I.D</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Regreso</th>
+            <th>Referencia</th>
+            <th>Cliente</th>
+            <th>R.F.C</th>
+            <th>Numero pasajeros</th>
+            <th>Numero de camiones</th>
+            <th>Luagr de Salida</th>
+            <th>Precio</th>
+            <th>Pagos</th>
+            <th>Status op</th>
+            <th>Status admin</th>
+            <th>% Completo</th>
+            <th colspan="2"></th>
+          </thead>
+          <tbody>
+      <% @records.each do |record| %>
+      <tr>
+        <td><%= record.id%></td>
+        <td><%= record.start_time.strftime(" %b-%d-%Y") %></td>
+        <td><%= record.end_time.strftime(" %b-%d-%Y") %></td>
+        <td><%= record.title %></td>
+        <td><%= record.client.razon_social %></td>
+        <td><%= record.client.rfc %></td>
+        <td><%= record.numero_pasajeros %></td>
+        <td><%= record.numero_de_camiones %></td>
+        <td><%= record.lugar_salida %></td>
+        <td><%= record.precio %></td>
+        <td><%= record.sum_payments %></td>
+        <td><%= record.status_op %></td>
+        <% if record.status_admin == "true" %>
+        <td>Cobrado</td>
+        <% else %>
+        <td>Por Cobrar</td>
         <% end %>
-        </tbody>
+        <td><%= record.sum_total %> % </td>
+        <td><%= link_to 'Ver más', record %></td>
+        <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+     <% end %>
+          </tbody>
         </table>
+      </div>
     </div>
-		</div>		
-	</div>
+  </div>
 </div>

@@ -87,6 +87,14 @@ class Record < ActiveRecord::Base
       
   end
 
+  def client_id
+    client.try(:razon_social)
+  end
+
+  def client_id=(razon_social)
+    self.client = Client.find_by_razon_social(razon_social) if razon_social.present?
+  end
+
 
 
 end

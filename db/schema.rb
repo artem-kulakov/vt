@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724230312) do
+ActiveRecord::Schema.define(version: 20170802151350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20170724230312) do
     t.text     "observaciones"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "licencia"
+    t.date     "validez"
   end
 
   add_index "operators", ["user_id"], name: "index_operators_on_user_id", using: :btree
@@ -99,7 +101,7 @@ ActiveRecord::Schema.define(version: 20170724230312) do
     t.boolean  "factura",             default: false
     t.string   "num_factura"
     t.string   "status_op"
-    t.string   "status_admin"
+    t.boolean  "status_admin",        default: false
     t.text     "observaciones"
     t.integer  "distancia",           default: 0
     t.datetime "created_at",                          null: false

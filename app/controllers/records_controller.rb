@@ -20,6 +20,10 @@ class RecordsController < ApplicationController
   end
 
   def historico
+    @records = Record.all
+  end
+
+  def registro
     @services = Service.all
   end
 

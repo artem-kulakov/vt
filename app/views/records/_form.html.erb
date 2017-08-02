@@ -38,8 +38,8 @@
 
 
 			<div class="field">
-				<%= f.label :Cliente %><br>
-				<%= f.text_field :client_id %>
+				<%= f.label :Razon_social_o_Alias %><br>
+				<%= f.text_field :client_id, data: {autocomplete_source: categories_path}, class:"form-control", :required => true %>
 			</div>
 
 			<div class="row">

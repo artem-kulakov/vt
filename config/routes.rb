@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :clients
   devise_for :users
   resources :users
+  resources :categories
 
   resources :records do
       collection do
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       get :reportes
       get :cobranza
       get :historico
+      get :registro
     end
     resources :payments
     resources :routes

@@ -71,6 +71,6 @@ class OperatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operator_params
-      params.require(:operator).permit(:nombre, :telefono, :papeles, :user_id, :observaciones)
+      params.require(:operator).permit(:nombre, :telefono, :papeles, :user_id, :observaciones, :validez, :licencia)
     end
 end
