@@ -5,11 +5,16 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @q = Record.ransack(params[:q])
+    @records = @q.result.includes(:services, :buses, :client).uniq
+
+    @records = @records.order('id ASC').paginate(:page => params[:page], :per_page => 30)
+
+    @buses = Bus.all
   end
 
   def cobranza
-    @records = Record.where(status_admin: "false")
+    @records = Record.where(status_admin: "false").paginate(:page => params[:page], :per_page => 30)
   end
 
   def pizarron
@@ -19,12 +24,12 @@ class RecordsController < ApplicationController
     render layout: "other"
   end
 
-  def historico
-    @records = Record.all
+  def operaciones
+    @records = Record.all.paginate(:page => params[:page], :per_page => 30)
   end
 
   def registro
-    @services = Service.all
+    @services = Service.all.paginate(:page => params[:page], :per_page => 30)
   end
 
   def reportes

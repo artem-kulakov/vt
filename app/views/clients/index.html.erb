@@ -35,3 +35,12 @@
 </div>
 </div>
 </div>
+
+
+<div class="row">
+<div class="center">
+<% unless @clients.blank? %>
+  <%= will_paginate @clients %>
+<% end %>
+</div>
+</div>

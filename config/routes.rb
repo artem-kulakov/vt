@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get :cobranza
       get :historico
       get :registro
+      get :operaciones
     end
     resources :payments
     resources :routes

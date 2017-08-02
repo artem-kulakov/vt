@@ -36,6 +36,8 @@ gem 'kaminari'
 gem "prawnto_2", :require => "prawnto"
 gem 'prawn-table'
 gem 'best_in_place', '~> 3.0.1'
+gem 'ransack'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
