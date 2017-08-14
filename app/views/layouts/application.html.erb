@@ -46,6 +46,20 @@
                     </a>
                 </li>
 
+                <li class="<%= 'active' if current_page?(new_quotation_path) %>">
+                    <a href="<%= new_quotation_path %>">
+                        <i class="material-icons">library_books</i>
+                        <p>Crear Cotización</p>
+                    </a>
+                </li>
+
+                <li class="<%= 'active' if current_page?(quotations_path) %>">
+                    <a href="<%= quotations_path %>">
+                        <i class="material-icons">content_paste</i>
+                        <p>Cotizaciones</p>
+                    </a>
+                </li>
+
                 <li class="<%= 'active' if current_page?(new_record_path) %>">
                     <a href="<%= new_record_path %>">
                         <i class="material-icons">indeterminate_check_box</i>

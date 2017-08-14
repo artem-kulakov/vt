@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   has_many :operators
   has_many :records
   has_many :services
+  has_many :quotations
+  has_many :places
 end

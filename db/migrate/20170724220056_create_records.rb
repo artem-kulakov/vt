@@ -21,6 +21,7 @@ class CreateRecords < ActiveRecord::Migration
       t.string :status_op
       t.boolean :status_admin, default: false
       t.text :observaciones
+      t.text :condiciones
       t.integer :distancia, default: false
 
       t.timestamps null: false

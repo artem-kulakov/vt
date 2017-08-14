@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  telefono: MyString
+  email: MyString
+  origen: MyString
+  num_dias: 1.5
+  fecha_inicio: 2017-08-14
+  fecha_fin: 2017-08-14
+  pasajeros: 1
+  distancia: 1.5
+  observaciones: MyText
+  user_id: 
+  segmento1: 1.5
+  dia_extra1: 1.5
+  segmento2: 1.5
+  dia_extra2: 1.5
+  segmento3: 1.5
+  dia_extra3: 1.5
+  segmento4: 1.5
+  dia_extra4: 1.5
+
+two:
+  nombre: MyString
+  telefono: MyString
+  email: MyString
+  origen: MyString
+  num_dias: 1.5
+  fecha_inicio: 2017-08-14
+  fecha_fin: 2017-08-14
+  pasajeros: 1
+  distancia: 1.5
+  observaciones: MyText
+  user_id: 
+  segmento1: 1.5
+  dia_extra1: 1.5
+  segmento2: 1.5
+  dia_extra2: 1.5
+  segmento3: 1.5
+  dia_extra3: 1.5
+  segmento4: 1.5
+  dia_extra4: 1.5

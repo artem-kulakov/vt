@@ -38,8 +38,8 @@
 
 
 			<div class="field">
-				<%= f.label :Razon_social_o_Alias %><br>
-				<%= f.text_field :client_id, data: {autocomplete_source: categories_path}, class:"form-control", :required => true %>
+				<%= f.label :Razon_social %><br>
+				<%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq}, required:true, placeholder: "Busca Cliente..." %>
 			</div>
 
 			<div class="row">

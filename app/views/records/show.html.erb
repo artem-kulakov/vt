@@ -74,7 +74,7 @@
       <div class="row">
         <div class="col-sm-6">
           <h4>Persona de Referencia: <a href="#" id="9"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record], :nombre_referencia, :place_holder => "Añande nombre referencia", :activator => "#9"%></p>
+          <p><%= best_in_place [@record], :nombre_referencia, :place_holder => "Añande nombre referencia", :activator => "#9", :classes => 'highlight_on_success'%></p>
         </div>
 
         <div class="col-sm-6">
@@ -103,6 +103,14 @@
         <div class="col-sm-12">
           <h4>Observaciones: <a href="#" id="13"> <span class="grande fa fa-pencil"></span></a></h4>
           <p><%= best_in_place [@record], :observaciones, :as => :textarea, :place_holder => "Añande observaciones", :activator => "#13"%></p>
+          <br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Condiciones: <a href="#" id="130"> <span class="grande fa fa-pencil"></span></a></h4>
+          <p><%= best_in_place [@record], :condiciones, :as => :textarea, :place_holder => "Añande condiciones", :activator => "#130"%></p>
           <br>
         </div>
       </div>
@@ -137,7 +145,9 @@
                 <span class="progress-right">
                     <span class="progress-bar"></span>
                 </span>
-                <div class="progress-value"><%= @record.sum_total %>%</div>
+                <div id="results">
+              <%= render 'results' %>
+              </div>
             </div>
         </div>
     </div>
@@ -450,6 +460,14 @@
   /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
 });
+</script>
+
+<script>
+  $('.best_in_place').bind("ajax:success", function(){
+    // alert('Name updated');
+    location.reload();
+  });
+
 </script>
 
 <script> 

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   
+  
+  resources :quotations do
+    resources :places
+  end
   resources :operators
   resources :buses
   resources :clients

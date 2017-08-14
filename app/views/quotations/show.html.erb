@@ -1,0 +1,322 @@
+<h4>Cotización creada por: <%= @quotation.user.name %> </h4>
+
+<h5>Origen: <%= @quotation.origen %> <a href="<%= edit_quotation_path(@quotation) %>" id="5"> <span class="grande fa fa-pencil"></span></a> </h5>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="formario">
+<h2>Cotización: <%= @quotation.id %></h2>
+
+<div class="row">
+<div class="col-sm-4">
+  <h4>Nombre:  <a href="#" id="1"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :nombre, :place_holder => "Añadir ", :activator => "#1" %></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Telefono:  <a href="#" id="2"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :telefono, :place_holder => "Añadir ", :activator => "#2" %></p>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+  <h4>Email:  <a href="#" id="3"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :email, :place_holder => "Añadir ", :activator => "#3" %></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Num dias:  <a href="#" id="4"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :num_dias, :place_holder => "Añadir ", :activator => "#4" %></p>
+</div>
+</div>
+
+<div class="row">
+
+
+<div class="col-sm-4">
+  <h4>Fecha inicio:  <a href="<%= edit_quotation_path(@quotation) %>" id="5"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= @quotation.fecha_inicio%></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Fecha fin:  <a href="<%= edit_quotation_path(@quotation) %>" id="6"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= @quotation.fecha_fin%></p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-4">
+  <h4>Pasajeros:  <a href="#" id="7"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :pasajeros, :place_holder => "Añadir ", :activator => "#7" %></p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+  <h4>Observaciones: <a href="#" id="90"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place [@quotation], :observaciones, :as => :textarea, :place_holder => "Añande observaciones", :activator => "#90"%></p><br><br>
+</div>
+</div>
+
+  <h2>Distancia: <span id= "total"></span> km</h2>
+  <div class="row">
+    <div class="col-sm-8">
+  <h4>Confirmar Distancia:  <a href="#" id="8"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :distancia, :place_holder => "Añadir ", :activator => "#8" %></p>
+</div>
+  </div>
+
+
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+  <div id="formario">
+    <h2>Itinerario:</h2>
+
+      <div class="row">
+        <% @places.each_with_index do |place, i| %>
+        <div class="col-sm-6">
+          <h4><%= i+1 %>.- <%= place.address %>    | <span><%= link_to 'Eliminar', quotation_place_path(@quotation, place), method: :delete, data: { confirm: 'Are you sure?' } %></span> |</h4>
+
+        </div>
+        <% end %>
+      </div>
+
+      <%= form_for [@quotation, @place], :html => {:id => 'place_form'} do |f| %>
+
+      <div class="field">
+        <%= f.label :Nuevo_lugar %><br>
+        <%= f.text_field :address %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "Añadir Lugar", class: "button button_red" %> <br><br>
+      </div>
+      <% end %>
+
+  </div>
+
+  <div id="formario">
+    <h2>Precios:</h2>
+<div class="row">
+  <div class="col-sm-8">
+  <h4>Irizar pb 47 e irizar i6 51-53:  <a href="#" id="10"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :segmento1, :place_holder => "Añadir ", :activator => "#10" %></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Dia extra <-  <a href="#" id="11"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :dia_extra1, :place_holder => "Añadir ", :activator => "#11" %></p>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+  <h4>Irizar i6 47 e irizar century 53:  <a href="#" id="12"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :segmento2, :place_holder => "Añadir ", :activator => "#12" %></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Dia extra <-  <a href="#" id="13"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :dia_extra2, :place_holder => "Añadir ", :activator => "#13" %></p>
+</div>
+
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+  <h4>Volvo 9700 44 47:  <a href="#" id="14"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :segmento3, :place_holder => "Añadir ", :activator => "#14" %></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Dia extra <-  <a href="#" id="15"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :dia_extra3, :place_holder => "Añadir ", :activator => "#15" %></p>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+  <h4>Sprinter 20:  <a href="#" id="16"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :segmento4, :place_holder => "Añadir ", :activator => "#16" %></p>
+</div>
+
+<div class="col-sm-4">
+  <h4>Dia extra <-  <a href="#" id="17"> <span class="grande fa fa-pencil"></span></a></h4>
+  <p><%= best_in_place @quotation, :dia_extra4, :place_holder => "Añadir ", :activator => "#17" %></p>
+</div>
+</div>
+<br>
+  </div>
+</div>
+
+</div>
+
+
+<div class="row">
+  <div id="formario">
+    <h2>Precios sugeridos por KM (<%= @quotation.distancia %>)</h2>
+    <div class="row">
+      <div class="col-sm-2">
+        <h4>Irizar PB 47:</h4>
+        <p>$ <%= @quotation.distancia.to_i * 22.5 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Irizar I6 51-53:</h4>
+        <p>$ <%= @quotation.distancia.to_i * 22.5 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Irizar I6 47:</h4>
+        <p>$ <%= @quotation.distancia.to_i * 21.25 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Irizar Century 53:</h4>
+        <p>$ <%= @quotation.distancia.to_i * 21.25 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Volvo 9700 44-47:</h4>
+        <p>$ <%= @quotation.distancia.to_i * 20 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Sprinter 20:</h4>
+        <p>$ <%= @quotation.distancia.to_i * 11.25 %></p>
+      </div>
+    </div>
+
+    <h2>Precios sugeridos por número de días (<%= @quotation.num_dias %>)</h2>
+    <div class="row">
+      <div class="col-sm-2">
+        <h4>Irizar PB 47:</h4>
+        <p>$ <%= @quotation.num_dias.to_i * 9000 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Irizar I6 51-53:</h4>
+        <p>$ <%= @quotation.num_dias.to_i * 9000 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Irizar I6 47:</h4>
+        <p>$ <%= @quotation.num_dias.to_i * 8500 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Irizar Century 53:</h4>
+        <p>$ <%= @quotation.num_dias.to_i * 8500 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Volvo 9700 44-47:</h4>
+        <p>$ <%= @quotation.num_dias.to_i * 8000 %></p>
+      </div>
+      <div class="col-sm-2">
+        <h4>Sprinter 20:</h4>
+        <p>$ <%= @quotation.num_dias * 4500 %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<div id="formario">
+  <div id="map4"></div> <br><br>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+  <%= link_to 'Ver Cotización', quotation_path(@quotation, :format => 'pdf'), class: "button button_red button_block", :target => "_blank" %>
+  </div>
+</div>
+
+
+<script>
+        function initMap() {
+
+        var inicio = {lat: 19.5054552, lng: -99.1505334};
+        // 
+        <% @places.each_with_index do |place, i| %>
+          var address<%=i%> = {lat: <%= place.latitude.round(3) %>, lng: <%= place.longitude.round(3) %>};
+        <% end %>
+        // 
+        var final = {lat: 19.5054552, lng: -99.1505334};
+
+
+        var map = new google.maps.Map(document.getElementById('map4'), {
+          center: inicio,
+          scrollwheel: false,
+          zoom: 7
+        });
+
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+          map: map
+        });
+
+        // Set destination, origin and travel mode.
+        var request = {
+          destination: final,
+          waypoints: [
+          <% @places.each_with_index do |place, i| %>
+          {location: address<%=i%>},
+          <% end %>
+          ],
+          origin: inicio,
+          travelMode: 'DRIVING'
+        };
+
+
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+           var total = 0;
+           var myroute = response.routes[0];
+
+          for (var i = 0; i < myroute.legs.length; i++) {
+           total += myroute.legs[i].distance.value;
+           }
+          total = total / 1000;
+          document.getElementById('total').innerHTML = total;
+
+          
+
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+
+          }
+        });
+      }
+
+
+
+
+
+
+
+
+</script>
+
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&callback=initMap"
+        async defer></script>
+
+
+<script>
+  $(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
+</script>
+
+<script>
+  $('.best_in_place').bind("ajax:success", function(){
+    // alert('Name updated');
+    location.reload();
+  });
+
+</script>
+
+<script> 
+$.datepicker.setDefaults({ dateFormat: 'M-dd-yy' });
+</script>

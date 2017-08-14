@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802151350) do
+ActiveRecord::Schema.define(version: 20170814180018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,45 @@ ActiveRecord::Schema.define(version: 20170802151350) do
   add_index "payments", ["record_id"], name: "index_payments_on_record_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
+  create_table "places", force: :cascade do |t|
+    t.integer  "quotation_id"
+    t.integer  "user_id"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "places", ["quotation_id"], name: "index_places_on_quotation_id", using: :btree
+  add_index "places", ["user_id"], name: "index_places_on_user_id", using: :btree
+
+  create_table "quotations", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "telefono"
+    t.string   "email"
+    t.string   "origen"
+    t.float    "num_dias",      default: 0.0
+    t.date     "fecha_inicio"
+    t.date     "fecha_fin"
+    t.integer  "pasajeros"
+    t.float    "distancia",     default: 0.0
+    t.text     "observaciones"
+    t.integer  "user_id"
+    t.float    "segmento1",     default: 0.0
+    t.float    "dia_extra1",    default: 0.0
+    t.float    "segmento2",     default: 0.0
+    t.float    "dia_extra2",    default: 0.0
+    t.float    "segmento3",     default: 0.0
+    t.float    "dia_extra3",    default: 0.0
+    t.float    "segmento4",     default: 0.0
+    t.float    "dia_extra4",    default: 0.0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "quotations", ["user_id"], name: "index_quotations_on_user_id", using: :btree
+
   create_table "records", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
@@ -103,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170802151350) do
     t.string   "status_op"
     t.boolean  "status_admin",        default: false
     t.text     "observaciones"
+    t.text     "condiciones"
     t.integer  "distancia",           default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -174,6 +214,9 @@ ActiveRecord::Schema.define(version: 20170802151350) do
   add_foreign_key "operators", "users"
   add_foreign_key "payments", "records"
   add_foreign_key "payments", "users"
+  add_foreign_key "places", "quotations"
+  add_foreign_key "places", "users"
+  add_foreign_key "quotations", "users"
   add_foreign_key "records", "clients"
   add_foreign_key "records", "users"
   add_foreign_key "routes", "records"
