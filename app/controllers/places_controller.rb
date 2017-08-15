@@ -35,7 +35,7 @@ class PlacesController < ApplicationController
         format.html { redirect_to @quotation, notice: 'Place was successfully created.' }
         format.json { render :show, status: :created, location: @place }
       else
-        format.html { render :new }
+        format.html { redirect_to @quotation }
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
