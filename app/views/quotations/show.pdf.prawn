@@ -30,9 +30,9 @@ data = [ ["","Irizar PB 47 plazas e
 	Irizar I6 51-53 plazas", "Irizar I6 47 plazas e 
 	Irizar Century 53 plazas", "Volvo 9700
 	44-47 plazas", "Sprinter 20 plazas"],
- ["", "$ #{@quotation.segmento1} por unidad", "$ #{@quotation.segmento2} por unidad", "$ #{@quotation.segmento3} por unidad", "$ #{@quotation.segmento4} por unidad"], 
+ ["", "$ #{@quotation.segmento1.round(2)} por unidad", "$ #{@quotation.segmento2.round(2)} por unidad", "$ #{@quotation.segmento3.round(2)} por unidad", "$ #{@quotation.segmento4.round(2)} por unidad"], 
  ["", "", "", "", ""],
- ["Día adicional", "$ #{@quotation.dia_extra1}", "$ #{@quotation.dia_extra2}", "$ #{@quotation.dia_extra3}", "$ #{@quotation.dia_extra4}"]
+ ["Día adicional", "$ #{@quotation.dia_extra1.round(2)}", "$ #{@quotation.dia_extra2.round(2)}", "$ #{@quotation.dia_extra3.round(2)}", "$ #{@quotation.dia_extra4.round(2)}"]
  ]
 
 table data, :position => :center, :width => 520, :row_colors => ["FFFFFF", "E6E6E6"], :cell_style => { :font => "Helvetica", :size => 11 }
