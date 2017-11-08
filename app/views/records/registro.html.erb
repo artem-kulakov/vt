@@ -19,7 +19,7 @@
         		<th>Día Extra</th>
         		<th>Precio Final</th>
         		<th>Pagos totales</th>
-        		<th>distancia</th>
+        		<th>Distancia</th>
         		<th>Km inicial</th>
         		<th>Km Final</th>
         		<th>Progreso</th>
@@ -45,14 +45,14 @@
         		<td><%= service.dia_extra %></td>
         		<td><%= service.record.precio_final %></td>
         		<td><%= service.record.sum_payments %></td>
-        		<td><%= service.record.distancia %></td>
+        		<td><%= service.km_fin - service.km_inicio %></td>
         		<td><%= service.km_inicio %></td>
         		<td><%= service.km_fin %></td>
         		<td><%= service.record.sum_total %>%</td>
         		<td><%= service.record.status_op %></td>
         		<td><%= service.record.status_admin %></td>
         		<td><%= service.sum_gastos %></td>
-        		<td><%= link_to 'Ver más', @record %></td>
+        		<td><%= link_to 'Ver más', record_path(service.record_id) %></td>
         	</tr>
         <% end %>
         </tbody>

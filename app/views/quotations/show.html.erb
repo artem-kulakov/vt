@@ -79,7 +79,7 @@
     <h2>Itinerario:</h2>
 
       <div class="row">
-        <% @places.each_with_index do |place, i| %>
+        <% @places.order('id ASC').each_with_index do |place, i| %>
         <div class="col-sm-6">
           <h4><%= i+1 %>.- <%= place.address %>    | <span><%= link_to 'Eliminar', quotation_place_path(@quotation, place), method: :delete, data: { confirm: 'Are you sure?' } %></span> |</h4>
 
@@ -237,7 +237,7 @@
 
         var inicio = {lat: 19.5054552, lng: -99.1505334};
         // 
-        <% @places.each_with_index do |place, i| %>
+        <% @places.order('id ASC').each_with_index do |place, i| %>
           var address<%=i%> = {lat: <%= place.latitude.round(3) %>, lng: <%= place.longitude.round(3) %>};
         <% end %>
         // 
@@ -258,7 +258,7 @@
         var request = {
           destination: final,
           waypoints: [
-          <% @places.each_with_index do |place, i| %>
+          <% @places.order('id ASC').each_with_index do |place, i| %>
           {location: address<%=i%>},
           <% end %>
           ],

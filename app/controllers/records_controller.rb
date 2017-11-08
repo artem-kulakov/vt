@@ -14,7 +14,7 @@ class RecordsController < ApplicationController
   end
 
   def cobranza
-    @records = Record.where(status_admin: "false").paginate(:page => params[:page], :per_page => 30)
+    @records = Record.order('id ASC').where(status_admin: "false").paginate(:page => params[:page], :per_page => 30)
   end
 
   def pizarron
@@ -25,7 +25,7 @@ class RecordsController < ApplicationController
   end
 
   def operaciones
-    @records = Record.all.paginate(:page => params[:page], :per_page => 30)
+    @records = Record.where("start_time >= ?", Time.zone.now.beginning_of_day).order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end
 
   def registro

@@ -169,7 +169,7 @@
 
       <div class="field">
         <%= f.label :Autobús %><br>
-        <%= f.select :bus_id, Bus.all.collect { |p| [ p.numero, p.id ] } %>
+        <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] },{:prompt => 'Elige un Autobús..'} %>
       </div>
 
 
@@ -181,12 +181,10 @@
 <% end %>
 
     <div id="formario">
-      <h2>Itinerario</h2>
-
-      <h3>Distancia: <%= best_in_place [@record], :distancia, :place_holder => "Añande distancia", :activator => "#26" %> <a href="#" id="26"> <span class="grande fa fa-pencil"></span></a></h3>   
+      <h2>Itinerario</h2>   
 
       <div class="row">
-        <% @routes.each_with_index do |route, i| %>
+        <% @routes.order('id ASC').each_with_index do |route, i| %>
         <div class="col-sm-6">
           <h4><%= i+1 %>.- <%= route.place %>    | <span><%= link_to 'Eliminar', record_route_path(@record, route), method: :delete, data: { confirm: 'Are you sure?' } %></span> |</h4>
 
@@ -222,15 +220,17 @@
           </thead>
           <tbody>
 
-            <tr>
+            
               <% @payments.each do |payment| %>
+              <tr>
               <td><%= payment.metodo %></td>
               <td><%= payment.num_recibo %></td>
               <td><%= payment.fecha.strftime(" %b-%d-%Y") %></td>
               <td><%= payment.cantidad %></td>
               <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
               <% end %>
-            </tr>
+            
             <tr>
               <td></td>
               <td></td>

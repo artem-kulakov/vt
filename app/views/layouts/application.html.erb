@@ -40,10 +40,10 @@
             <ul class="nav">
 
                 <li class="<%= 'active' if current_page?(pizarron_records_path) %>">
-                    <a href="<%= pizarron_records_path %>">
+                    <%= link_to pizarron_records_path, :target => "_blank" do %>
                         <i class="material-icons">dashboard</i>
                         <p>Pizarrón</p>
-                    </a>
+                    <% end %>
                 </li>
 
                 <li class="<%= 'active' if current_page?(new_quotation_path) %>">
@@ -74,17 +74,25 @@
                     </a>
                 </li>
 
-                <li class="<%= 'active' if current_page?(registro_records_path) %>">
-                    <a href="<%= registro_records_path %>">
-                        <i class="material-icons">assignment</i>
-                        <p>Registro</p>
-                    </a>
-                </li>
 
                 <li class="<%= 'active' if current_page?(cobranza_records_path) %>">
                     <a href="<%= cobranza_records_path %>">
                         <i class="material-icons">monetization_on</i>
                         <p>Cobranza</p>
+                    </a>
+                </li>
+
+                <li class="<%= 'active' if current_page?(records_path) %>">
+                    <a href="<%= records_path %>">
+                        <i class="material-icons">hourglass_empty</i>
+                        <p>Histórico</p>
+                    </a>
+                </li>
+
+                <li class="<%= 'active' if current_page?(registro_records_path) %>">
+                    <a href="<%= registro_records_path %>">
+                        <i class="material-icons">assignment</i>
+                        <p>Registros</p>
                     </a>
                 </li>
 
@@ -116,12 +124,7 @@
                     </a>
                 </li>
 
-                <li class="<%= 'active' if current_page?(records_path) %>">
-                    <a href="<%= records_path %>">
-                        <i class="material-icons">hourglass_empty</i>
-                        <p>Histórico</p>
-                    </a>
-                </li>
+
 
             </ul>
     	</div>
