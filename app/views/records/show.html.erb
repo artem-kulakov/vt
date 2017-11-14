@@ -151,6 +151,8 @@
             </div>
         </div>
     </div>
+    <%@new = @record.updated_at-21500%>
+    <h6>Actualizado: <%= @new.strftime(" %b-%d-%Y, %H:%M") %></h6>
 </div>
 
       <br><br>
@@ -462,13 +464,13 @@
 });
 </script>
 
-<script>
+<!-- <script>
   $('.best_in_place').bind("ajax:success", function(){
     // alert('Name updated');
     location.reload();
   });
 
-</script>
+</script> -->
 
 <script> 
 $.datepicker.setDefaults({ dateFormat: 'M-dd-yy' });
