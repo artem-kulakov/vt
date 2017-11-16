@@ -65,6 +65,7 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
     end
 
     start_new_page
+    start_new_page
 
 # Segunda pagina 
 text "#{index} - 2/7", size: 8, style: :bold
