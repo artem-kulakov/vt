@@ -9,27 +9,28 @@ text "CONTRATO-ORDEN DE SERVICIO", :align => :center, size: 10, style: :bold
 move_down 20
 stroke_horizontal_rule
 move_down 10 
-text "Precio sin I.V.A:    #{service.record.precio}", align: :left
 text "Folio:  00#{service.id}", align: :right
+text "Precio sin I.V.A:    #{service.record.precio}", align: :left
 text "Precio con I.V.A:    #{service.record.precio_final}", align: :left, style: :bold
-move_down 20
+text "Precio Unitario:    #{service.precio_unidad}", align: :left
+move_down 3
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
-move_down 20
+move_down 3
 text "Fecha de Regreso:    #{service.record.end_time.strftime(" %b-%d-%Y")}", align: :left
-move_down 20
+move_down 3
 text "Cliente:    #{service.record.client.razon_social}", align: :left
-move_down 30
+move_down 10
 stroke_horizontal_rule
 move_down 10 
 text "Referencia:    #{service.record.title}", align: :left
 text "Nombre de contacto:    #{service.record.nombre_referencia}", align: :left
 text "Teléfono de contacto:    #{service.record.telefono_referencia}", align: :left
-move_down 30
+move_down 10
 stroke_horizontal_rule
 move_down 10 
 text "Autobús:    #{service.bus.numero}", align: :left
 text "Pasajeros:    #{service.record.numero_pasajeros}", align: :left
-move_down 30
+move_down 10
 stroke_horizontal_rule
 move_down 10 
 text "Operador:   #{service.bus.operator.nombre}", align: :left
@@ -38,20 +39,20 @@ move_down 20
 text "Hora de Cita:    #{service.record.initial_time}", align: :left
 
 
-move_down 30
+move_down 10
 stroke_horizontal_rule
 move_down 10 
 text "Dirección de la Cita:    #{service.record.lugar_salida}", align: :left
 text "Referencia de la Cita:    #{service.record.referencia_salida}", align: :left
 
-move_down 30
+move_down 10
 stroke_horizontal_rule
 move_down 10 
 text "Itinerario:"
 @a= service.record.routes.map(&:place)
 text "#{@a.join ', '}"
 
-move_down 30
+move_down 10
 stroke_horizontal_rule
 move_down 10 
 text "Observaciones: ", :align => :left, :style => :bold 
@@ -150,7 +151,7 @@ move_down 10
 
 move_down 10
 
-data = [ ["", "Entregado", "Comprobado"], ["Casetas efectivo:", " ", " "], ["Hotel:", " ", " "], ["Viáticos:", " ", " "], ["Estacionamiento:", " ", " "], ["Lavadas:", " ", " "], ["Aeropuerto:", " ", " "], ["Otros", " ", " "], ["Diesel", " ", " "], ["", " ", " "], ["Total:", " ", " "]
+data = [ ["", "Entregado", "Comprobado"], ["Casetas efectivo:", " #{service.caseta}", " "], ["Hotel:", " #{service.hotel}", " "], ["Viáticos:", " #{service.viaticos}", " "], ["Estacionamiento:", " #{service.estacionamientos}", " "], ["Lavadas:", " #{service.lavadas}", " "], ["Aeropuerto:", " #{service.aeropuerto}", " "], ["Otros", " #{service.otros}", " "], ["Diesel", " #{service.diesel}", " "], ["", " ", " "], ["Total:", " #{service.sum_gastos}", " "]
  ]
 
 table data, :position => :center, :width => 520, :row_colors => ["FFFFFF", "d0d0d0"], :cell_style => { :font => "Helvetica", :size => 11 }
