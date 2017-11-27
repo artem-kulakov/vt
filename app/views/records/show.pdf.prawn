@@ -66,6 +66,29 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
     end
 
     start_new_page
+
+
+move_down 20
+stroke_horizontal_rule
+move_down 20 
+
+
+data = [ ["", "Entregado", "Comprobado"], ["Casetas efectivo:", " #{service.caseta}", " "], ["Hotel:", " #{service.hotel}", " "], ["Viáticos:", " #{service.viaticos}", " "], ["Estacionamiento:", " #{service.estacionamientos}", " "], ["Lavadas:", " #{service.lavadas}", " "], ["Aeropuerto:", " #{service.aeropuerto}", " "], ["Otros", " #{service.otros}", " "], ["Diesel", " #{service.diesel}", " "], ["", " ", " "], ["Total:", " #{service.sum_gastos}", " "]
+ ]
+
+table data, :position => :center, :width => 520, :row_colors => ["FFFFFF", "d0d0d0"], :cell_style => { :font => "Helvetica", :size => 11 }
+move_down 15
+
+
+
+bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+        font "Helvetica"
+        stroke_horizontal_rule
+        move_down(5)
+        text "Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX   -   www.tuttoilmondo.com", :size => 11, :align => :center
+    end
+
+
     start_new_page
 
 # Segunda pagina 
