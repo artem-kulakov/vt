@@ -87,8 +87,8 @@
             <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
             <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
             <td><%= record.try(:title) %></td>
-            <td><%= record.try(:client).razon_social %></td>
-            <td><%= record.try(:client).rfc %></td>
+            <td><%= record.client.try(:razon_social) %></td>
+            <td><%= record.client.try(:rfc) %></td>
             <td><%= record.try(:numero_pasajeros) %></td>
             <td><%= record.try(:numero_de_camiones) %></td>
             <td><%= record.try(:lugar_salida) %></td>
