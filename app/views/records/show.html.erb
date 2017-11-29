@@ -171,7 +171,7 @@
 
       <div class="field">
         <%= f.label :Autobús %><br>
-        <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] },{:prompt => 'Elige un Autobús..'} %>
+        <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] } %>
       </div>
 
 
