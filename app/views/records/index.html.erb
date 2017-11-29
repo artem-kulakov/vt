@@ -83,19 +83,19 @@
         <tbody>
           <% @records.each do |record| %>
           <tr>
-            <td><%= record.id%></td>
-            <td><%= record.start_time.strftime(" %b-%d-%Y") %></td>
-            <td><%= record.end_time.strftime(" %b-%d-%Y") %></td>
-            <td><%= record.title %></td>
-            <td><%= record.client.razon_social %></td>
-            <td><%= record.client.rfc %></td>
-            <td><%= record.numero_pasajeros %></td>
-            <td><%= record.numero_de_camiones %></td>
-            <td><%= record.lugar_salida %></td>
-            <td><%= record.precio %></td>
-            <td><%= record.sum_payments %></td>
-            <td><%= record.status_op %></td>
-            <% if record.status_admin == "true" %>
+            <td><%= record.try(:id)%></td>
+            <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
+            <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
+            <td><%= record.try(:title) %></td>
+            <td><%= record.try(:client).razon_social %></td>
+            <td><%= record.try(:client).rfc %></td>
+            <td><%= record.try(:numero_pasajeros) %></td>
+            <td><%= record.try(:numero_de_camiones) %></td>
+            <td><%= record.try(:lugar_salida) %></td>
+            <td><%= record.try(:precio) %></td>
+            <td><%= record.try(:sum_payments) %></td>
+            <td><%= record.try(:status_op) %></td>
+            <% if record.try(:status_admin) == "true" %>
             <td>Cobrado</td>
             <% else %>
             <td>Por Cobrar</td>
