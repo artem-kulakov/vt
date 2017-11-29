@@ -291,27 +291,27 @@
 
         <div class="col-sm-3">
           <h4>Alias:</h4>
-          <p><%= @record.client.alias %></p>
+          <p><%= @record.client.try(:alias) %></p>
         </div>
 
         <div class="col-sm-3">
           <h4>Razón Social:</h4>
-          <p><%= @record.client.razon_social %></p>
+          <p><%= @record.client.try(:razon_social) %></p>
         </div>
 
         <div class="col-sm-2">
           <h4>R.F.C.:</h4>
-          <p><%= @record.client.rfc %></p>
+          <p><%= @record.client.try(:rfc) %></p>
         </div>
 
         <div class="col-sm-2">
           <h4>Email:</h4>
-          <p><%= @record.client.email %></p>
+          <p><%= @record.client.try(:email) %></p>
         </div>
 
         <div class="col-sm-2">
           <h4>Teléfono:</h4>
-          <p><%= @record.client.telefono %></p>
+          <p><%= @record.client.try(:telefono) %></p>
         </div>
 
       </div>
@@ -320,17 +320,17 @@
 
         <div class="col-sm-3">
           <h4>Nombre Cobro:</h4>
-          <p><%= @record.client.nombre_cobro %></p>
+          <p><%= @record.client.try(:nombre_cobro) %></p>
         </div>
 
         <div class="col-sm-3">
           <h4>Teléfono Cobro:</h4>
-          <p><%= @record.client.telefono_cobro %></p>
+          <p><%= @record.client.try(:telefono_cobro) %></p>
         </div>
 
         <div class="col-sm-3">
           <h4>Email Cobro:</h4>
-          <p><%= @record.client.email_cobro %></p>
+          <p><%= @record.client.try(:email_cobro) %></p>
         </div>
       </div>
       <br>
