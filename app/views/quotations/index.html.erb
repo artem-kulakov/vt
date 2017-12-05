@@ -6,6 +6,26 @@
 
 <h1>Listing Quotations</h1>
 
+<%= search_form_for @q do |f| %>
+
+      
+      <div class="row">
+      <div class="col-md-6">
+      <h6>Registro:</h6>
+      <%= f.search_field :id_eq, placeholder: "Buscar número de cotización"  %>
+      </div>
+
+      <div class="col-md-6">
+      <h6>Cliente:</h6>
+      <%= f.search_field :email_or_nombre_cont, placeholder: "Buscar Cotización"  %>
+      </div>
+
+      </div>
+      
+
+      <%= f.submit "Buscar", class: "button button_red button_block" %>
+      <% end %>
+
 <%= link_to 'Nueva Cotización', new_quotation_path, class: "button button_red" %>
 <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">

@@ -7,7 +7,7 @@
     <ul>
       <li class="strike"><h5>Status Op: <%= best_in_place [@record], :status_op, :as => :select, :collection => {"Prob Baja" => "Prob Baja", "Prob Media" => "Prob Media", "Prob Alta" => "Prob Alta", "Venta" => "Venta"} %></h5></li>
 
-      <%= best_in_place [@record], :status_admin, as: :checkbox, collection: {true: "#{'<li class = "strike"><h5>Cobrado</h5></li>'}".html_safe, false: "#{'<li class = "strikero"><h5>Por Cobrar</h5></li>'}".html_safe}%>
+      
 
     </ul>
   </div>
@@ -280,6 +280,35 @@
       <% end %>
 
     </div>
+
+    <div id="formario">
+      <h2>Cobranza</h2>
+      <div class="row">
+        <div class="col-sm-4">
+          <h4>Precio Final:</h4>
+          <p><%=@record.try(:precio_final) %></p>
+        </div>
+        <div class="col-sm-4">
+          <h4>Cobrado:</h4>
+          <p><%=@record.try(:sum_payments) %></p>
+        </div>
+        <div class="col-sm-4">
+          <h4>Debe:</h4>
+          <p><%=@totis = @record.try(:precio_final) - @record.try(:sum_payments) %></p>
+        </div>
+      </div>
+      <% if  @totis < 1 && @totis > -1%>
+        <div id="status">
+          <div class="row">
+          <ul>
+          <%= best_in_place [@record], :status_admin, as: :checkbox, collection: {true: "#{'<li class = "strike"><h5>Cobrado</h5></li>'}".html_safe, false: "#{'<li class = "strikero"><h5>Por Cobrar</h5></li>'}".html_safe}%> 
+          </ul>
+          </div>
+      </div>
+      <% end %>
+      <br>
+    </div>
+
   </div>
 </div>
 

@@ -5,7 +5,10 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
-    @quotations = Quotation.all.order('fecha_inicio asc')
+    @q = Quotation.ransack(params[:q])
+    @quotations = @q.result.uniq
+
+    @quotations = @quotations.order('fecha_inicio ASC').paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /quotations/1
