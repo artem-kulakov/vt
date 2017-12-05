@@ -315,7 +315,7 @@
 <div class="row">
   <div class="col-md-12">
     <div id="formario">
-      <h2>Cliente |<span><%= link_to "Editar", edit_record_path(@record) %></span>|</h2>
+      <h2>Cliente |<span><%= link_to "Editar Bloqueo", edit_record_path(@record) %></span>|</h2>
       <div class="row">
 
         <div class="col-sm-3">
@@ -360,6 +360,10 @@
         <div class="col-sm-3">
           <h4>Email Cobro:</h4>
           <p><%= @record.client.try(:email_cobro) %></p>
+        </div>
+
+        <div class="col-sm-3">
+          <%= link_to "Editar datos de Cliente", edit_client_path(@record.client), class: "button button_red" %>
         </div>
       </div>
       <br>
