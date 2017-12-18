@@ -34,7 +34,7 @@
         		<td><%= service.record.id %></td>
         		<td><%= service.id %></td>
         		<td><%= service.record.title%></td>
-        		<td><%= service.record.client.razon_social %></td>
+        		<td><%= service.record.client.try(:razon_social) %></td>
         		<td><%= service.bus.numero %></td>
         		<td><%= service.bus.operator.nombre%></td>
         		<td><%= service.record.start_time.strftime(" %b-%d-%Y") %></td>

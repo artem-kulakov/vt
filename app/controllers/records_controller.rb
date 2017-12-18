@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
   end
 
   def registro
-    @services = Service.all.paginate(:page => params[:page], :per_page => 30)
+    @services = Service.all.order("created_at asc").paginate(:page => params[:page], :per_page => 30)
   end
 
   def reportes
