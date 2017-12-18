@@ -48,10 +48,10 @@
         		<td><%= service.km_fin - service.km_inicio %></td>
         		<td><%= service.km_inicio %></td>
         		<td><%= service.km_fin %></td>
-        		<td><%= service.record.sum_total %>%</td>
+        		<td><%= service.record.try(:sum_total)%>%</td>
         		<td><%= service.record.status_op %></td>
         		<td><%= service.record.status_admin %></td>
-        		<td><%= service.sum_gastos %></td>
+        		<td><%= service.try(:sum_gastos) %></td>
         		<td><%= link_to 'Ver más', record_path(service.record_id) %></td>
         	</tr>
         <% end %>
