@@ -29,10 +29,10 @@
 						<th colspan="1"></th>
         </thead>
         <tbody>
-        <% @services.each do |service| %>
+        <% @services.each_with_index do |service, i| %>
         	<tr>
         		<td><%= service.record.id %></td>
-        		<td><%= service.id %></td>
+        		<td><%= service.record.id %>- <%=i+1 %></td>
         		<td><%= service.record.title%></td>
         		<td><%= service.record.client.try(:razon_social) %></td>
         		<td><%= service.bus.numero %></td>

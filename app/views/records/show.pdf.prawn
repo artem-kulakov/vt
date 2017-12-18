@@ -1,7 +1,7 @@
 @services.each_with_index do |service, index| 
 
 #PRimera página
-text "#{index} - 1/7", size: 8, style: :bold
+text "#{index + 1} - 1/8", size: 8, style: :bold
 
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
@@ -9,9 +9,7 @@ text "CONTRATO-ORDEN DE SERVICIO", :align => :center, size: 10, style: :bold
 move_down 20
 stroke_horizontal_rule
 move_down 10 
-text "Folio:  00#{service.id}", align: :right
-text "Precio sin I.V.A:    #{service.record.precio}", align: :left
-text "Precio con I.V.A:    #{service.record.precio_final}", align: :left, style: :bold
+text "Folio:  00#{service.record.id} - #{index + 1}", align: :right
 text "Precio Unitario:    #{service.precio_unidad}", align: :left
 move_down 3
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
@@ -22,7 +20,6 @@ text "Cliente:    #{service.record.client.razon_social}", align: :left
 move_down 10
 stroke_horizontal_rule
 move_down 10 
-text "Referencia:    #{service.record.title}", align: :left
 text "Nombre de contacto:    #{service.record.nombre_referencia}", align: :left
 text "Teléfono de contacto:    #{service.record.telefono_referencia}", align: :left
 move_down 10
@@ -67,6 +64,7 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
 
     start_new_page
 
+text "#{index + 1} - 2/8", size: 8, style: :bold
 
 move_down 20
 stroke_horizontal_rule
@@ -92,7 +90,7 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
     start_new_page
 
 # Segunda pagina 
-text "#{index} - 2/7", size: 8, style: :bold
+text "#{index + 1} - 3/8", size: 8, style: :bold
 
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
@@ -106,12 +104,9 @@ move_down 20
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
 move_down 15
 
-text "Kilometraje inicial:    #{service.km_inicio}", align: :left
-text "Kilometraje final:    #{service.km_fin}", align: :left
-move_down 15
-
 stroke_horizontal_rule
-move_down 10 
+move_down 10
+text "Cliente:     #{service.record.client.razon_social}" 
 text "Contacto:    #{service.record.nombre_referencia}", align: :left
 text "Teléfono de contacto:    #{service.record.telefono_referencia}", align: :left
 move_down 30
@@ -140,7 +135,8 @@ move_down 10
 text "Itinerario:"
 @a= service.record.routes.map(&:place)
 text "#{@a.join ', '}"
-
+move_down 5
+text "Fecha de Regreso:    #{service.record.end_time.strftime(" %b-%d-%Y")}", align: :left
 move_down 30
 stroke_horizontal_rule
 move_down 10 
@@ -157,7 +153,7 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
 start_new_page
 
 #tercera página
-text "#{index} - 3/7", size: 8, style: :bold
+text "#{index + 1} - 4/8", size: 8, style: :bold
 
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
@@ -192,12 +188,12 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
 start_new_page
 
 #cuarta página
-text "#{index} - 4/7", size: 8, style: :bold
+text "#{index + 1} - 5/8", size: 8, style: :bold
 
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
 text "CONTRATO DE PRESTACIÓN DE SERVICIO DE TRANSPORTE", :align => :center, size: 10, style: :bold
-text "Tutto il mondo, S. A. de C. V. Av. Las Americas 506-C, Col. La Fuente, Aguascalientes, Ags., C P 20230", :align => :center, size: 8
+text "Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239", :align => :center, size: 8
 text "RFC: TIM 000215 TQ1", :align => :center, size: 8
 move_down 20
 stroke_horizontal_rule
@@ -209,23 +205,23 @@ stroke_horizontal_rule
 move_down 5
 text "Información del cliente", align: :center, style: :bold, size: 10
 stroke_horizontal_rule
-move_down 20
+move_down 8
 text "Cliente:    #{service.record.client.razon_social}", align: :left
 text "Contacto:    #{service.record.title}", align: :left
 text "Nombre de contacto:    #{service.record.nombre_referencia}", align: :left
 text "Teléfono de contacto:    #{service.record.telefono_referencia}", align: :left
-move_down 20
+move_down 8
 stroke_horizontal_rule
 move_down 5
 text "Descripción del Servicio", align: :center, style: :bold, size: 10
 stroke_horizontal_rule
-move_down 20
+move_down 8
 
 
 text "Dirección de la Cita:    #{service.record.lugar_salida}", align: :left
 text "Referencia de la Cita:    #{service.record.referencia_salida}", align: :left
 
-move_down 20
+move_down 8
 text "Itinerario:"
 @a= service.record.routes.map(&:place)
 text "#{@a.join ', '}"
@@ -233,25 +229,25 @@ text "#{@a.join ', '}"
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
 text "Fecha de Regreso:    #{service.record.end_time.strftime(" %b-%d-%Y")}", align: :left
 text "Hora de Cita:    #{service.record.initial_time}", align: :left
-move_down  20
+move_down  8
 
 stroke_horizontal_rule
 move_down 5
 text "Información de la unidad", align: :center, style: :bold, size: 10
 stroke_horizontal_rule
-move_down 20
+move_down 8
 
 text "Autobús:    #{service.bus.numero} #{service.bus.marca}", align: :left
 text "Pasajeros:    #{service.record.numero_pasajeros}", align: :left
 
 
-move_down  20
+move_down  8
 
 stroke_horizontal_rule
 move_down 5
 text "Características del Contrato", align: :center, style: :bold, size: 10
 stroke_horizontal_rule
-move_down 20
+move_down 8
 
 text "Tarifa por unidad:    #{service.precio_unidad}", align: :left
 text "Tarifa adicional por día:    #{service.dia_extra}", align: :left
@@ -260,10 +256,15 @@ text "Precio con I.V.A:    #{service.record.precio_final}", align: :left, style:
 
 move_down 30
 stroke_horizontal_rule
-move_down 10 
+move_down 4
+text "SELLOS DIGITALES: 9Mx5o8pDH3FbiYK++IJZwCddlyvnjM7iRtE7a7bdT8P1QHoZoIDqZj3ETqEC4kkBAjj--", align: :center, size: 8
+stroke_horizontal_rule
+move_down 10
+
 text "Observaciones: ", :align => :left, :style => :bold 
 text"#{service.record.observaciones}", :size => 10
-
+move_down 30
+text "Tutto il Mondo S.A. de C.V.                                                                    Acepto Términos y Condiciones"
 bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
         font "Helvetica"
         stroke_horizontal_rule
@@ -275,7 +276,7 @@ start_new_page
 
 
 #5a página
-text "#{index} - 5/7", size: 8, style: :bold
+text "#{index+1} - 6/8", size: 8, style: :bold
 
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
@@ -296,13 +297,15 @@ text "Vigencia de licencia: #{service.bus.operator.validez}", align: :left, styl
 move_down 10
 
 text "Autobús:    #{service.bus.numero} #{service.bus.marca}", align: :left
-text "Modelo:    #{service.bus.modelo},     Placas:    #{service.bus.placa}", align: :left
+text "Modelo:    #{service.bus.modelo},     Placas:    #{service.bus.placa},     Marca:    #{service.bus.marca},     Modelo:    #{service.bus.modelo}", align: :left
 
 move_down 10
 text "Cliente:   #{service.record.client.razon_social}", align: :left
 move_down 10
 stroke_horizontal_rule
-move_down 20 
+move_down 10
+text "Origen: #{service.record.routes[0].place}              Destino: #{service.record.routes.last.place}"
+move_down 10 
 text "Itinerario:", style: :bold
 @a= service.record.routes.map(&:place)
 text "#{@a.join ', '}"
@@ -345,7 +348,7 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
 start_new_page
 
 #inicio 6a
-text "#{index} - 6/7", size: 8, style: :bold
+text "#{index+1} - 7/8", size: 8, style: :bold
 
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
@@ -462,7 +465,7 @@ bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
 
 start_new_page
 #7a página
-text "#{index} - 7/7", size: 8, style: :bold
+text "#{index+1} - 8/8", size: 8, style: :bold
 text "TUTTO IL MONDO, S.A. de C.V", :align => :center, size: 12, style: :bold
 move_down 10
 text "ENCUESTA DE SATIFACCION DEL CLIENTE", :align => :center, size: 10, style: :bold
