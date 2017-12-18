@@ -4,11 +4,11 @@ class Service < ActiveRecord::Base
   belongs_to :user
 
   def sum_gastos
-    (self.hotel+self.caseta+self.viaticos+self.estacionamientos+self.lavadas+self.aeropuerto+self.diesel+self.otros).round(2)
+    (self.try(:hotel)+self.try(:caseta)+self.try(:viaticos)+self.try(:estacionamientos)+self.try(:lavadas)+self.try(:aeropuerto)+self.try(:diesel)+self.try(:otros)).round(2)
   end
 
   def resourceId
-      @resourceId = self.bus_id
+      @resourceId = self.try(:bus_id)
   end	
 
 end
