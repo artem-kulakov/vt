@@ -22,7 +22,7 @@
         <td><%= record.start_time.strftime(" %b-%d-%Y") %></td>
         <td><%= record.end_time.strftime(" %b-%d-%Y") %></td>
         <td><%= record.title %></td>
-        <td><%= record.client.razon_social %></td>
+        <td><%= record.client.try(:razon_social) %></td>
         <td><%= record.numero_pasajeros %></td>
         <td><%= record.numero_de_camiones %></td>
         <td><%= record.lugar_salida %></td>
