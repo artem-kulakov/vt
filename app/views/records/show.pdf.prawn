@@ -9,7 +9,7 @@ text "CONTRATO-ORDEN DE SERVICIO", :align => :center, size: 10, style: :bold
 move_down 20
 stroke_horizontal_rule
 move_down 10 
-text "Folio:  00#{service.record.id} - #{index + 1}", align: :right
+text "Folio:  00#{service.id}", align: :right
 text "Precio Unitario:    #{service.precio_unidad}", align: :left
 move_down 3
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
