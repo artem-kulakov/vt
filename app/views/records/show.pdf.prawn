@@ -102,7 +102,9 @@ move_down 20
 text "Folio:  00#{service.id}", align: :right
 move_down 10
 text "Km inicial___________", align: :left
+move_down 5
 text "Km final_____________", align: :left
+move_down 5
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
 move_down 15
 
