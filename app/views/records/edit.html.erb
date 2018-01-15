@@ -4,7 +4,73 @@
 
 <h2>Editar Registro</h2>
 
-			<%=render 'form' %>
+<%= form_for(@record) do |f| %>
+			<% if @record.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+				<ul>
+					<% @record.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+			<div class="field">
+				<%= f.label :Status_de_servicio %><br>
+				<%= f.select :status_op, [["Prob Baja"], ["Prob Media"], ["Prob Alta"], ["Venta"]], {:prompt => 'Cuál es el Status?'}, {:required => true}%>
+			</div>
+
+
+			<div class="field">
+				<%= f.label :referencia %><br>
+				<%= f.text_field :title, required:true %>
+			</div>
+			
+			<div class="row">
+			<div class="col-md-6">
+			<div class="field">
+				<%= f.label :Fecha_de_inicio %><br>
+				<%= f.date_field :start_time, required:true %>
+			</div>
+			</div>
+			<div class="col-md-6">
+			<div class="field">
+				<%= f.label :Fecha_de_fin %><br>
+				<%= f.date_field :end_time, required:true %>
+			</div>
+			</div>
+			</div>
+
+
+
+
+			<div class="field">
+				<%= f.label :Razon_social %><br>
+				<%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq} %>
+			</div>
+
+			<div class="row">
+
+			<div class="col-md-6">
+			<div class="field">
+				<%= f.label :numero_pasajeros %><br>
+				<%= f.number_field :numero_pasajeros %>
+			</div>
+			</div>
+
+			<div class="col-md-6">
+			<div class="field">
+				<%= f.label :numero_de_camiones %><br>
+				<%= f.number_field :numero_de_camiones, required:true %>
+			</div>
+			</div>
+			</div>
+
+			<div class="actions">
+				<%= f.submit class: "button button_red" %>
+			</div>
+			<% end %>
 
 <br>
 
