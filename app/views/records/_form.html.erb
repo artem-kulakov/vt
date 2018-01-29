@@ -41,7 +41,7 @@
 
 			<div class="field">
 				<%= f.label :Razon_social %><br>
-				<%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq}, placeholder: "PROSPECTO", :value => "PROSPECTO" %>
+				<%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq}, placeholder: "PROSPECTO", :value => "PROSPECTO", required:true %>
 			</div>
 
 			<div class="row">
