@@ -71,3 +71,11 @@
 </div>
 </div>
 </div>
+
+<div class="row">
+<div class="center">
+<% unless @quotations.blank? %>
+  <%= will_paginate @quotations %>
+<% end %>
+</div>
+</div>
