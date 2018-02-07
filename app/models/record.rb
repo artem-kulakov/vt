@@ -10,6 +10,10 @@ class Record < ActiveRecord::Base
     payments.count == 0 ? 0 : payments.sum(:cantidad).round(2)
   end
 
+  def sum_deuda
+    self.precio_final == 0 ? 0 : precio_final - sum_payments.round(2)
+  end
+
   def sum_1
   	self.start_time.present? ? 5.8 : 0
   end

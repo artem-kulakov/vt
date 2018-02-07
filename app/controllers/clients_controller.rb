@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
+    @records = @client.records.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /clients/new

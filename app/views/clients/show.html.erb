@@ -1,79 +1,177 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-6">
+    <div id="formario">
+      <h2><%= @client.razon_social %></h2>
+<h4>Rfc:</h4>
+  <p><%= @client.rfc %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @client.user %>
-</p>
 
-<p>
-  <strong>Alias:</strong>
-  <%= @client.alias %>
-</p>
 
-<p>
-  <strong>Razon social:</strong>
-  <%= @client.razon_social %>
-</p>
+  <h4>Calle y numero:</h4>
+  <p><%= @client.calle_y_numero %></p>
 
-<p>
-  <strong>Rfc:</strong>
-  <%= @client.rfc %>
-</p>
 
-<p>
-  <strong>Calle y numero:</strong>
-  <%= @client.calle_y_numero %>
-</p>
+<div class="row">
+  <div class="col-md-6">
+  <h4>Colonia:</h4>
+  <p><%= @client.colonia %></p>
+  </div>
 
-<p>
-  <strong>Colonia:</strong>
-  <%= @client.colonia %>
-</p>
 
-<p>
-  <strong>Municipio:</strong>
-  <%= @client.municipio %>
-</p>
+  <div class="col-md-6">
+  <h4>Municipio:</h4>
+  <p><%= @client.municipio %></p>
+</div>  
+</div>
 
-<p>
-  <strong>Estado:</strong>
-  <%= @client.estado %>
-</p>
 
-<p>
-  <strong>Cp:</strong>
-  <%= @client.cp %>
-</p>
+  <div class="row">
+  <div class="col-md-6">
+  <h4>Estado:</h4>
+  <p><%= @client.estado %></p>
+  </div>
 
-<p>
-  <strong>Pais:</strong>
-  <%= @client.pais %>
-</p>
+<div class="col-md-6">
+  <h4>Cp:</h4>
+  <p><%= @client.cp %></p>
+  </div>
+</div>
 
-<p>
-  <strong>Telefono:</strong>
-  <%= @client.telefono %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
+  <h4>Pais:</h4>
+  <p><%= @client.pais %></p>
 
-<p>
-  <strong>Nombre cobro:</strong>
-  <%= @client.nombre_cobro %>
-</p>
 
-<p>
-  <strong>Telefono cobro:</strong>
-  <%= @client.telefono_cobro %>
-</p>
+<div class="row">
+  <div class="col-md-6">
+  <h4>Telefono:</h4>
+  <p><%= @client.telefono %></p>
+</div>
 
-<p>
-  <strong>Email cobro:</strong>
-  <%= @client.email_cobro %>
-</p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+  <div class="col-md-6">
+  <h4>Email:</h4>
+  <p><%= @client.email %></p>
+</div>
+</div>
+
+
+  <h4>Nombre cobro:</h4>
+  <p><%= @client.nombre_cobro %></p>
+
+
+<div class="row">
+  <div class="col-md-6">
+  <h4>Telefono cobro:</h4>
+  <p><%= @client.telefono_cobro %></p>
+  </div>
+
+
+
+  <div class="col-md-6">
+  <h4>Email cobro:</h4>
+  <p><%= @client.email_cobro %></p> 
+  </div>
+</div>
+<%= link_to 'Editar Cliente', edit_client_path(@client), class: "button button_red button_block" %> <br><br>
+
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="formario">
+      <h2>Información</h2>
+  <h4>Cliente desde: </h4>
+  <p><%= @client.created_at.strftime(" %b-%d-%Y") %></p>
+
+  <h4>Servicios realizados:</h4>
+  <p><%=@client.records.count %></p>
+
+  <h4>Último servicio:</h4>
+  <%= link_to @client.records.last do %>
+  <p><%= @client.records.last.title %></p>
+  <% end %>
+
+  <br>  
+    </div>
+
+    <div id="formario">
+      <h2>Finanzas</h2>
+
+    <h4>Pagos hechos:</h4>
+    <p><%=@client.sum_clients %></p>
+
+    <h4>Debe:</h4>
+    <p><%=@client.sum_clients_deu %></p>
+
+    <br>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div id="formario">
+    <h2>Servicios de <%=@client.razon_social %></h2>
+
+<div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th>I.D</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Regreso</th>
+            <th>Referencia</th>
+            <th>Cliente</th>
+            <th>R.F.C</th>
+            <th>Numero pasajeros</th>
+            <th>Numero de camiones</th>
+            <th>Luagr de Salida</th>
+            <th>Precio</th>
+            <th>Pagos</th>
+            <th>Status op</th>
+            <th>Status admin</th>
+            <th>% Completo</th>
+            <th colspan="2"></th>
+        </thead>
+        <tbody>
+          <% @records.each do |record| %>
+          <tr>
+            <td><%= record.try(:id)%></td>
+            <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
+            <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
+            <td><%= record.try(:title) %></td>
+            <td><%= record.client.try(:razon_social) %></td>
+            <td><%= record.client.try(:rfc) %></td>
+            <td><%= record.try(:numero_pasajeros) %></td>
+            <td><%= record.try(:numero_de_camiones) %></td>
+            <td><%= record.try(:lugar_salida) %></td>
+            <td><%= record.try(:precio_final) %></td>
+            <td><%= record.try(:sum_payments) %></td>
+            <td><%= record.try(:status_op) %></td>
+            <% if record.try(:status_admin) == true %>
+            <td>Cobrado</td>
+            <% else %>
+            <td>Por Cobrar</td>
+            <% end %>
+            <td><%= record.sum_total %> % </td>
+            <td><%= link_to 'Ver más', record %></td>
+            <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>
+
+<div class="row">
+<div class="center">
+<% unless @records.blank? %>
+  <%= will_paginate @records %>
+<% end %>
+</div>
+</div>
+
+  </div>
+</div>
+
+
+
+
+  

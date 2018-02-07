@@ -227,7 +227,7 @@
               <tr>
               <td><%= payment.metodo %></td>
               <td><%= payment.num_recibo %></td>
-              <td><%= payment.fecha.strftime(" %b-%d-%Y") %></td>
+              <td><%= payment.try(:fecha).strftime(" %b-%d-%Y") %></td>
               <td><%= payment.cantidad %></td>
               <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
@@ -265,7 +265,7 @@
 
         <div class="col-sm-3">
           <h4><%= f.label :fecha %></h4>
-          <p><%= f.date_field :fecha %></p>
+          <p><%= f.date_field :fecha, required: true %></p>
         </div>
 
         <div class="col-sm-3">
@@ -294,7 +294,7 @@
         </div>
         <div class="col-sm-4">
           <h4>Debe:</h4>
-          <p><%=@totis = @record.try(:precio_final) - @record.try(:sum_payments) %></p>
+          <p><%=@totis = @record.try(:sum_deuda) %></p>
         </div>
       </div>
       <% if  @totis < 1 && @totis > -1%>
