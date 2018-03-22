@@ -13,7 +13,7 @@
             <th>Status op</th>
             <th>Status admin</th>
             <th>% Completo</th>
-            <th colspan="2"></th>
+            <th colspan="3"></th>
           </thead>
           <tbody>
       <% @records.each do |record| %>
@@ -29,12 +29,13 @@
         <td><%= record.precio_final %></td>
         <td><%= record.status_op %></td>
         <% if record.status_admin == true %>
-        <td>Cobrado</td>
+        <td class="green">Cobrado</td>
         <% else %>
-        <td>Por Cobrar</td>
+        <td class="red">Por Cobrar</td>
         <% end %>
         <td><%= record.sum_total %> % </td>
         <td><%= link_to 'Ver más', record %></td>
+        <td><%= link_to 'Editar', edit_record(record) %></td>
         <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
      <% end %>

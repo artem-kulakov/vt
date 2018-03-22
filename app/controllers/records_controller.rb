@@ -14,7 +14,9 @@ class RecordsController < ApplicationController
   end
 
   def cobranza
-    @records = Record.order('id ASC').where(status_admin: "false").paginate(:page => params[:page], :per_page => 30)
+    @q = Client.ransack(params[:q])
+    @clients = @q.result.uniq
+    @clients = Client.joins(:records).where({ "records.status_admin" => false }).uniq.paginate(:page => params[:page], :per_page => 30)
   end
 
   def pizarron
