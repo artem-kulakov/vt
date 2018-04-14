@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102164817) do
+ActiveRecord::Schema.define(version: 20180414152035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,9 +180,11 @@ ActiveRecord::Schema.define(version: 20171102164817) do
     t.float    "dia_extra",        default: 0.0
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "operator_id"
   end
 
   add_index "services", ["bus_id"], name: "index_services_on_bus_id", using: :btree
+  add_index "services", ["operator_id"], name: "index_services_on_operator_id", using: :btree
   add_index "services", ["record_id"], name: "index_services_on_record_id", using: :btree
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
@@ -222,6 +224,7 @@ ActiveRecord::Schema.define(version: 20171102164817) do
   add_foreign_key "routes", "records"
   add_foreign_key "routes", "users"
   add_foreign_key "services", "buses"
+  add_foreign_key "services", "operators"
   add_foreign_key "services", "records"
   add_foreign_key "services", "users"
 end

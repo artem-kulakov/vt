@@ -29,6 +29,7 @@ class ServicesController < ApplicationController
     @service = Service.new(service_params)
     @service.user_id = current_user.id
     @service.record_id = @record.id
+    
 
     respond_to do |format|
       if @service.save
@@ -78,6 +79,6 @@ class ServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
-      params.require(:service).permit(:bus_id, :record_id, :user_id, :caseta, :hotel, :viaticos, :estacionamientos, :lavadas, :aeropuerto, :diesel, :otros, :km_inicio, :km_fin, :precio_unidad, :dia_extra)
+      params.require(:service).permit(:bus_id, :operator_id, :record_id, :user_id, :caseta, :hotel, :viaticos, :estacionamientos, :lavadas, :aeropuerto, :diesel, :otros, :km_inicio, :km_fin, :precio_unidad, :dia_extra)
     end
 end
