@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
-  before_action :set_record
+  before_action :set_record, except: [:index]
   before_action :authenticate_user!
 
   # GET /services
@@ -79,6 +79,6 @@ class ServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
-      params.require(:service).permit(:bus_id, :operator_id, :record_id, :user_id, :caseta, :hotel, :viaticos, :estacionamientos, :lavadas, :aeropuerto, :diesel, :otros, :km_inicio, :km_fin, :precio_unidad, :dia_extra)
+      params.require(:service).permit(:bus_id, :operator_id, :record_id, :user_id, :caseta, :hotel, :viaticos, :estacionamientos, :lavadas, :aeropuerto, :diesel, :otros, :km_inicio, :km_fin, :precio_unidad, :dia_extra, :suma)
     end
 end
