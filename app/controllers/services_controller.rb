@@ -6,7 +6,9 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all
+    @q = Service.ransack(params[:q])
+    @services = @q.result.uniq
+    @services = @services.order('id ASC')
   end
 
   # GET /services/1

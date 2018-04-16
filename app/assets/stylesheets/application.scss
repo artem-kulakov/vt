@@ -11,13 +11,14 @@
  * file per style scope.
  *
  *= require fullcalendar
+ *= require jquery-ui
  *= require_tree .
  *= require_self
- *= require jquery-ui
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 
 $grey: #F3F3F2;
 $red: #9763d9;
@@ -108,6 +109,16 @@ input[type="search"],input[type="date"],input[type="name"], input[type="email"],
   color: $red;
 }
 }
+
+
+input .form-control {
+  width: 100%;
+  height: 3.5rem;
+  border:none;
+  border-bottom:2px solid #dadada;
+  margin-bottom: 1.5rem;
+  background-color: white !important;
+  }
 
 
 .button {
@@ -390,4 +401,32 @@ ul.ui-autocomplete {
 
 .red {
   color: red;
+}
+
+
+
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
 }
