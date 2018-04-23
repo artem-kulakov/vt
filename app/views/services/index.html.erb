@@ -5,20 +5,20 @@
 			<h6>Operador:</h6>
 			<%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq) %>
 		</div>
-		</div>
+	</div>
 
-		<div class="row">
-			<div class="input-daterange" id="datepicker">
+	<div class="row">
+		<div class="input-daterange" id="datepicker">
 			<div class="col-md-6">
 				<h6>Fecha Inicio:</h6>
-				<%= f.text_field :record_start_time_gteq, class: "form-control", placeholder: "Date >= to" %>
+				<%= f.text_field :record_start_time_gteq, class: "form-control2", placeholder: "Date >= to" %>
 			</div>
 			<div class="col-md-6">
 				<h6>Fecha Final:</h6>
-				<%= f.text_field :record_start_time_lteq, class: "form-control", placeholder: "Date <= to" %>
+				<%= f.text_field :record_start_time_lteq, class: "form-control2", placeholder: "Date <= to" %>
 			</div>
 		</div>
-		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-md-4">
@@ -72,10 +72,13 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('.form-control').datepicker({
-    	todayHighlight: true,
-    	toggleActive: true
-    });
-  });
+	$(document).ready(function(){
+		$('.form-control2').datepicker({
+			todayHighlight: true,
+			toggleActive: true,
+			format: "mm-yyyy",
+			viewMode: "months", 
+			minViewMode: "months"
+		});
+	});
 </script>
