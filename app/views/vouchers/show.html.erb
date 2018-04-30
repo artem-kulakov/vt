@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @voucher.operator.nombre %>
+</p>
+
+<p>
+  <strong>Operacion:</strong>
+  <%= @voucher.operacion %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @voucher.cantidad %>
+</p>
+
+<p>
+  <strong>Nota:</strong>
+  <%= @voucher.nota %>
+</p>
+
+<p>
+  <strong>Mes:</strong>
+  <%= @voucher.mes %>
+</p>
+
+<p>
+  <strong>Año:</strong>
+  <%= @voucher.ano %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @voucher.fecha.to_date.strftime(" %b-%Y") %>
+</p>
+
+<%= link_to 'Edit', edit_voucher_path(@voucher) %> |
+<%= link_to 'Back', vouchers_path %>

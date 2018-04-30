@@ -1,0 +1,56 @@
+<%= form_for(@voucher) do |f| %>
+  <% if @voucher.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@voucher.errors.count, "error") %> prohibited this voucher from being saved:</h2>
+
+      <ul>
+      <% @voucher.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Operador %><br>
+    <%= f.select :operator_id, options_from_collection_for_select(Operator.all, "id", "nombre"), {:prompt => 'Elige Operador'}, {:required => true} %>
+  </div>
+
+
+  <div class="row">
+  <div class="col-md-6">
+    <%= f.label :operacion %><br>
+    <%= f.select :operacion, [["Gastos del mes"], ["Comprobantes"], ["Penalizaciones"], ["Saldo a favor"]], {:prompt => 'Elige Operación'}, {:required => true}%>
+  </div>
+  <div class="col-md-6">
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad, required:true %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col-md-6">
+  <div class="field">
+    <%= f.label :mes %><br>
+    <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
+      Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true}%>
+  </div>
+</div>
+  <div class="col-md-6">
+  <div class="field">
+    <%= f.label :año %><br>
+    <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true}%>
+  </div>
+</div>
+  </div>
+
+  <div class="field">
+    <%= f.label :nota %><br>
+    <%= f.text_area :nota %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit class: "button button_red"%>
+  </div> <br><br>
+<% end %>

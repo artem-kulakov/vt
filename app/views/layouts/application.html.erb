@@ -96,6 +96,27 @@
                     </a>
                 </li>
 
+                <li class="<%= 'active' if current_page?(services_path) %>">
+                    <a href="<%= services_path %>">
+                        <i class="material-icons">dns</i>
+                        <p>Servicios</p>
+                    </a>
+                </li>
+
+                <li class="<%= 'active' if current_page?(vouchers_path) %>">
+                    <a href="<%= vouchers_path %>">
+                        <i class="material-icons">description</i>
+                        <p>Comprobantes</p>
+                    </a>
+                </li>
+
+                <li class="<%= 'active' if current_page?(new_voucher_path) %>">
+                    <a href="<%= new_voucher_path %>">
+                        <i class="material-icons">add</i>
+                        <p>Nuevo comprobante</p>
+                    </a>
+                </li>
+
                 <li class="<%= 'active' if current_page?(clients_path) %>">
                     <a href="<%= clients_path %>">
                         <i class="material-icons">group</i>

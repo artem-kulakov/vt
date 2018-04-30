@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   
+  resources :vouchers
   resources :quotations do
     resources :places
   end

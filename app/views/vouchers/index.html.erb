@@ -1,28 +1,24 @@
 <div id="formario">
+  <%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <h6>Operador:</h6>
+      <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq) %>
+    </div>
+  </div>
 
-<h2>
-  <strong>Nombre:</strong>
-  <%= @operator.nombre %>
-</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.submit "Buscar", class: "button button_red button_block" %>
+    </div>
+  </div>
+  <hr>
 
-<p>
-  <strong>Telefono:</strong>
-  <%= @operator.telefono %>
-</p>
-
-<p>
-  <strong>Papeles:</strong>
-  <%= @operator.papeles %>
-</p>
-
-<p>
-  <strong>Observaciones:</strong>
-  <%= @operator.observaciones %>
-</p>
-
-<%= link_to 'Editar Operador', edit_operator_path(@operator) %>
-<br><br>
+  <% end %>
 </div>
+
+
+
 
 
 <div class="row">
@@ -47,7 +43,11 @@
         <tbody>
           <% vouchers.each do |voucher| %>
           <tr>
-            <td><%= voucher.operator.nombre %></td>
+            <td>
+            <%= link_to operator_path(voucher.operator.id) do %>
+            <%= voucher.operator.nombre %>
+            <% end %>
+            </td>
             <td><%= voucher.operacion %></td>
             <td><%= voucher.nota %></td>
             <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
@@ -74,25 +74,6 @@
             <td></td>
             <td></td>
           </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td>Gastos totales: <%= number_to_currency @a= vouchers.select{|c| c.operacion == 'Gastos del mes'}.map(&:cantidad).sum%></td>
-             <% number_to_currency @c= vouchers.select{|c| c.operacion == 'Comprobantes'}.map(&:cantidad).sum%>
-             <% number_to_currency @d= vouchers.select{|c| c.operacion == 'Saldo a favor'}.map(&:cantidad).sum%>
-            <td>Compr. y saldo a favor:  <%= number_to_currency @b= (@c + @d) %></td>
-            <% if @b < @a*0.5 %>
-            <td class="red">Penalización</td>
-            <% elsif @b > @a+500 %>
-            <td class="green">Bono del mes</td>
-            <% else %>
-            <td></td>
-            <% end %>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         </tbody>
       </table>
 </div>
@@ -100,3 +81,7 @@
   </div>
   <% end %>
 </div>
+
+
+
+<br>
