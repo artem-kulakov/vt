@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :Operador %><br>
-    <%= f.select :operator_id, options_from_collection_for_select(Operator.all, "id", "nombre"), {:prompt => 'Elige Operador'}, {:required => true} %>
+    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true} %>
   </div>
 
 

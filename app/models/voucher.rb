@@ -1,5 +1,6 @@
 class Voucher < ActiveRecord::Base
 	belongs_to :operator
+	belongs_to :bus
 
 	before_save :fecha
 

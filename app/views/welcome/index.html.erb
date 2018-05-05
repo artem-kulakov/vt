@@ -1,0 +1,74 @@
+
+<% @costs.group_by(&:month).each do |month, costs| %>
+	<h2><%= month %></h2>
+		<% costs.group_by(&:bus).each do |bus,cost| %>
+			<td><%= bus.numero %></td> <br>
+			<td><%= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
+		<% end %>
+<% end %>
+
+
+
+
+
+
+
+
+<div class="row">
+	<% @costs.group_by(&:month).sort.each do |month, costs| %>
+	<div class="col-md-12">
+		<div id="formario">
+			<h2><%= month %></h2>
+			<div class="content table-responsive table-full-width">
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+						<th>Autobús</th>
+						<th>Litros Diesel</th>
+						<th>Total Diesel ($)</th>
+						<th>Km Recorridos</th>
+						<th>Factor</th>
+						<th>Ingresos por unidad</th>
+						<th>Ingresos por día</th>
+						<th>Gastos de Operación</th>
+						<th>Gastos de Mantenimiento</th>
+						<th>Gastos Fijos</th>
+						<th>Nómina</th>
+						<th>Gastos Varios</th>
+						<th>Internet/Mkt</th>
+						<th>Utilidad Operativa</th>
+						<th>Utilidad o Pérdida</th>
+						<th>Ocupación</th>
+						<th>Autobús</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% costs.group_by(&:bus).each do |bus,cost| %>
+							<tr>
+								<td><%= bus.numero %></td>
+								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
+								<td></td>
+								<td><%= @b= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
+								<td><%= "#{@b.to_f + @a.to_f}" %></td>
+								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
+								<% @x = month.to_date.end_of_month.day %>
+								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum + @x%></td>
+								<td><%=number_to_currency cost.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><%= bus.numero %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>

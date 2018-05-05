@@ -30,6 +30,8 @@
           <h4>Fecha de Regreso: <a href="#" id="2"> <span class="grande fa fa-pencil"></span></a></h4>
           <p><%= best_in_place @record, :end_time ,:type => :date, :activator => "#2", :display_with => Proc.new { |f| f.strftime(" %b-%d-%Y") } %></p>
         </div>
+
+        <%= (@record.end_time - @record.start_time)/1.day.to_i+1%>
       </div>
 
       <div class="row">
@@ -385,14 +387,9 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
-          <h4>X unidad <a href="#" id="27-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
+        <div class="col-sm-12">
+          <h4>Precio X unidad <a href="#" id="27-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
           <p><%= best_in_place [@record, service], :precio_unidad, :activator => "#27-#{i}"%></p>
-        </div>
-
-        <div class="col-sm-6">
-          <h4>Día extra <a href="#" id="28-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record, service], :dia_extra, :activator => "#28-#{i}"%></p>
         </div>
       </div>
 
@@ -433,10 +430,6 @@
               <td><%=best_in_place [@record, service], :aeropuerto, :activator => "#21-#{i}"%></td>
             </tr>
             <tr>
-              <td>Diesel: <a href="#" id="22-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :diesel, :activator => "#22-#{i}"%></td>
-            </tr>
-            <tr>
               <td>Otros: <a href="#" id="23-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
               <td><%=best_in_place [@record, service], :otros, :activator => "#23-#{i}"%></td>
             </tr>
@@ -454,7 +447,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <h4 class="upper center grey">KILOMETRAJE</h4>
+          <h4 class="upper center grey">KILOMETRAJE y DIESEL</h4>
         </div>
       </div>
 
@@ -467,6 +460,15 @@
           <tr>
             <td><%= best_in_place [@record, service], :km_inicio, :activator => "#24-#{i}"%></td>
             <td><%= best_in_place [@record, service], :km_fin, :activator => "#25-#{i}"%></td>
+          </tr>
+
+          <thead>
+            <th>Litros Diesel <a href="#" id="26-<%=i%>"> <span class="grande fa fa-pencil"></span></a></th>
+          </thead>
+          <tr>
+            <td>
+              <%= best_in_place [@record, service], :litros, :activator => "#26-#{i}"%>
+            </td>
           </tr>
         </table>
       </div>

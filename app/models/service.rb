@@ -6,6 +6,9 @@ class Service < ActiveRecord::Base
 
   before_save :set_op
   before_save :suma
+  before_save :days
+  before_save :km_finales
+  before_save :rendimiento
 
   def set_op
     self.operator_id = self.bus.operator_id
@@ -21,6 +24,22 @@ class Service < ActiveRecord::Base
 
   def resourceId
       @resourceId = self.bus_id
-  end	
+  end
+
+  def days
+      self.days = (self.record.end_time - self.record.start_time)/1.day.to_i+1
+  end
+
+  def km_finales
+      self.km_finales = self.km_fin - self.km_inicio
+  end
+
+  def rendimiento
+      self.rendimiento = self.km_finales/self.litros
+  end
+
+def month
+  self.record.start_time.to_date.strftime('%G-%B')
+end
 
 end

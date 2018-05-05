@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423224059) do
+ActiveRecord::Schema.define(version: 20180504041521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,10 @@ ActiveRecord::Schema.define(version: 20180423224059) do
     t.datetime "updated_at",                     null: false
     t.integer  "operator_id"
     t.integer  "suma",             default: 0
+    t.integer  "days",             default: 0
+    t.float    "litros",           default: 0.0
+    t.float    "km_finales",       default: 0.0
+    t.float    "rendimiento",      default: 0.0
   end
 
   add_index "services", ["bus_id"], name: "index_services_on_bus_id", using: :btree
@@ -221,8 +225,10 @@ ActiveRecord::Schema.define(version: 20180423224059) do
     t.date     "fecha"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "bus_id"
   end
 
+  add_index "vouchers", ["bus_id"], name: "index_vouchers_on_bus_id", using: :btree
   add_index "vouchers", ["operator_id"], name: "index_vouchers_on_operator_id", using: :btree
 
   add_foreign_key "buses", "operators"
@@ -242,5 +248,6 @@ ActiveRecord::Schema.define(version: 20180423224059) do
   add_foreign_key "services", "operators"
   add_foreign_key "services", "records"
   add_foreign_key "services", "users"
+  add_foreign_key "vouchers", "buses"
   add_foreign_key "vouchers", "operators"
 end
