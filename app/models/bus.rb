@@ -4,5 +4,6 @@ class Bus < ActiveRecord::Base
   has_many :services
   has_many :vouchers
   has_many :records, through: :services
+  has_many :receipts
 
 end

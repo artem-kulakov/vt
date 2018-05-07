@@ -38,6 +38,7 @@ gem 'prawn-table'
 gem 'best_in_place', '~> 3.0.1'
 gem 'ransack'
 gem 'will_paginate', '~> 3.1.0'
+gem "cocoon"
 gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password

@@ -2,11 +2,10 @@
     <div class="col-md-8 col-md-offset-2">
   <div id="formario">
 
-<% @expense.buses.each_with_index do |bus, i| %>
+<% @expense.receipts.each_with_index do |receipt, i| %>
   
   <p>
   <strong>Autobús:</strong>
-  <%= bus.numero %>
   <%= @expense.categoria%>
   <%= @expense.cantidad %>
 <%= @expense.nota %>

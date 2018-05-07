@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180506161014) do
+ActiveRecord::Schema.define(version: 20180507041339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,20 @@ ActiveRecord::Schema.define(version: 20180506161014) do
 
   add_index "quotations", ["user_id"], name: "index_quotations_on_user_id", using: :btree
 
+  create_table "receipts", force: :cascade do |t|
+    t.string   "categoria"
+    t.float    "cantidad"
+    t.string   "nota"
+    t.date     "fecha"
+    t.integer  "bus_id"
+    t.integer  "expense_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "receipts", ["bus_id"], name: "index_receipts_on_bus_id", using: :btree
+  add_index "receipts", ["expense_id"], name: "index_receipts_on_expense_id", using: :btree
+
   create_table "records", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
@@ -256,6 +270,8 @@ ActiveRecord::Schema.define(version: 20180506161014) do
   add_foreign_key "places", "quotations"
   add_foreign_key "places", "users"
   add_foreign_key "quotations", "users"
+  add_foreign_key "receipts", "buses"
+  add_foreign_key "receipts", "expenses"
   add_foreign_key "records", "clients"
   add_foreign_key "records", "users"
   add_foreign_key "routes", "records"

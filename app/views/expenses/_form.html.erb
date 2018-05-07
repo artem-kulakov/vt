@@ -11,18 +11,16 @@
     </div>
   <% end %>
 
-<div class="row">
-<div class="field">
-  <%= f.label "Autobuses" %><br />
-  <%= f.collection_check_boxes :bus_ids, Bus.all, :id, :numero do |b| %>
-  <div class="col-md-3">
-    <div class="collection-check-box">
-      <%= b.check_box %>
-      <%= b.label %>
-    </div>
-  </div>
+<div id="contact2">
+  <%= f.fields_for :receipts do |receipt| %>
+
+  <%= render "receipt_fields", f: receipt %>
   <% end %>
-</div>
+      <br>
+      <div class="links">
+        <%= link_to_add_association 'Añadir Autobús', f, :receipts, class: "button button_blue" %>
+      </div>
+      <br>
 </div>
 
   <div class="field">

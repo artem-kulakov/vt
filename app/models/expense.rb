@@ -1,4 +1,6 @@
 class Expense < ActiveRecord::Base
+has_many :receipts, dependent: :destroy
+accepts_nested_attributes_for :receipts, :reject_if => lambda { |a| a[:bus_id].blank? }, :allow_destroy => true
 before_save :fecha
 
 	def fecha

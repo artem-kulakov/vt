@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  categoria: MyString
+  cantidad: 1.5
+  nota: MyString
+  fecha: 2018-05-06
+  bus_id: 
+  expense_id: 
+
+two:
+  categoria: MyString
+  cantidad: 1.5
+  nota: MyString
+  fecha: 2018-05-06
+  bus_id: 
+  expense_id: 
