@@ -33,10 +33,10 @@
 								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
 								<td></td>
 								<td><%= @b= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
-								<td><%= "#{@b.to_f + @a.to_f}" %></td>
+								<td><%= "#{(@b.to_f / @a.to_f).round(2)}" %></td>
 								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
 								<% @x = month.to_date.end_of_month.day %>
-								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum + @x%></td>
+								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
 								<td><%=number_to_currency @y = cost.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
 								<td><%=number_to_currency @w= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos de mantenimiento'}.map(&:cantidad).sum%></td>
 								<td><%=number_to_currency @o= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos fijos'}.map(&:cantidad).sum%></td>
@@ -45,7 +45,7 @@
 								<td><%=number_to_currency @r= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Internet / Mkt'}.map(&:cantidad).sum%></td>
 								<td><%= number_to_currency @b - @y - @w %></td>
 								<td><%= number_to_currency @b - @y - @w - @o - @p - @q - @r %></td>
-								<td><%= number_to_percentage @a= cost.select{|c| c.is_a?(Service)}.map(&:days).sum / @x * 100%></td>
+								<td><%= number_to_percentage @po= cost.select{|c| c.is_a?(Service)}.map(&:days).sum / @x * 100%></td>
 								<td><%= bus.numero %></td>
 							</tr>
 						<% end %>
@@ -117,10 +117,10 @@
 								<td><%= @f= costs.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
 								<td></td>
 								<td><%= @g= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
-								<td><%= "#{@g.to_f + @f.to_f}" %></td>
+								<td><%= "#{(@g.to_f / @f.to_f).round(2)}" %></td>
 								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
-								<% @x = month.to_date.end_of_month.day %>
-								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum + @x%></td>
+								<% @xo = month.to_date.end_of_month.day %>
+								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
 								<td><%=number_to_currency @h = costs.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
 								<td><%=number_to_currency @i= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos de mantenimiento'}.map(&:cantidad).sum%></td>
 								<td><%=number_to_currency @j= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos fijos'}.map(&:cantidad).sum%></td>
@@ -129,8 +129,8 @@
 								<td><%=number_to_currency @m= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Internet / Mkt'}.map(&:cantidad).sum%></td>
 								<td><%= number_to_currency @g - @h - @i %></td>
 								<td><%= number_to_currency @g - @h - @i - @j - @k - @l - @m %></td>
-								<td></td>
-								<td>Total:</td>
+								<td><%= number_to_percentage @por= (costs.select{|c| c.is_a?(Service)}.map(&:days).sum / costs.group_by(&:bus).size) / @xo * 100  %></td>
+								<td>Total</td>
 							</tr>
 					</tbody>
 				</table>
