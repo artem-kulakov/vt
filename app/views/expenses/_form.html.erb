@@ -1,0 +1,55 @@
+<%= form_for(@expense) do |f| %>
+  <% if @expense.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+
+      <ul>
+      <% @expense.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+<div class="field">
+  <%= f.label "Autobuses" %><br />
+  <%= f.collection_check_boxes :bus_ids, Bus.all, :id, :numero do |b| %>
+  <div class="col-md-3">
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
+
+  <div class="field">
+    <%= f.label :categoria %><br>
+    <%= f.select :categoria, [["Gastos de mantenimiento"], ["Gastos fijos"], ["Nómina"], ["Gastos varios"], ["Internet / Mkt"]], {:prompt => 'Elige la Categoría'}, {:required => true}%>
+  </div>
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad, required:true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mes %><br>
+    <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
+      Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true}%>
+  </div>
+  <div class="field">
+    <%= f.label :ano %><br>
+    <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true}%>
+  </div>
+
+  <div class="field">
+    <%= f.label :nota %><br>
+    <%= f.text_area :nota %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+  <div id="formario">
+
+<% @expense.buses.each_with_index do |bus, i| %>
+  
+  <p>
+  <strong>Autobús:</strong>
+  <%= bus.numero %>
+  <%= @expense.categoria%>
+  <%= @expense.cantidad %>
+<%= @expense.nota %>
+<%= @expense.fecha %>
+</p>
+<% end %>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @expense.categoria %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @expense.cantidad %>
+</p>
+
+<p>
+  <strong>Nota:</strong>
+  <%= @expense.nota %>
+</p>
+
+<p>
+  <strong>Mes:</strong>
+  <%= @expense.mes %>
+</p>
+
+<p>
+  <strong>Ano:</strong>
+  <%= @expense.ano %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @expense.fecha %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>
+
+
+</div>
+</div>
+</div>

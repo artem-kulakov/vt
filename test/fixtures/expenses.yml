@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_id: 
+  categoria: MyString
+  cantidad: 1.5
+  nota: MyString
+  mes: 1
+  ano: 1
+  fecha: 2018-05-05
+
+two:
+  bus_id: 
+  categoria: MyString
+  cantidad: 1.5
+  nota: MyString
+  mes: 1
+  ano: 1
+  fecha: 2018-05-05

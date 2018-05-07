@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504041521) do
+ActiveRecord::Schema.define(version: 20180506161014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 20180504041521) do
 
   add_index "buses", ["operator_id"], name: "index_buses_on_operator_id", using: :btree
   add_index "buses", ["user_id"], name: "index_buses_on_user_id", using: :btree
+
+  create_table "buses_expenses", id: false, force: :cascade do |t|
+    t.integer "bus_id",     null: false
+    t.integer "expense_id", null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,6 +58,17 @@ ActiveRecord::Schema.define(version: 20180504041521) do
   end
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
+
+  create_table "expenses", force: :cascade do |t|
+    t.string   "categoria"
+    t.float    "cantidad",   default: 0.0
+    t.string   "nota"
+    t.integer  "mes"
+    t.integer  "ano"
+    t.date     "fecha"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "operators", force: :cascade do |t|
     t.string   "nombre"
