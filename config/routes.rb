@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   
+  resources :gas
   resources :receipts
   resources :expenses
   resources :vouchers

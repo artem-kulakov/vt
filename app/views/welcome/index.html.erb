@@ -2,7 +2,7 @@
 	<% @costs.group_by(&:month).sort.each do |month, costs| %>
 	<div class="col-md-12">
 		<div id="formario">
-			<h2><%= month %></h2>
+			<h2><%= month %>, Diesel ( <%= number_to_currency @gas.select{|c| c.month == month }.map(&:cantidad).sum %> )</h2>
 			<div class="content table-responsive table-full-width">
 				<table class="table table-hover table-striped">
 					<thead>
@@ -31,7 +31,9 @@
 							<tr>
 								<td><%= bus.numero %></td>
 								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
-								<td></td>
+
+								<td><%= number_to_currency @qo= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @a%></td>
+								
 								<td><%= @b= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
 								<td><%= "#{(@b.to_f / @a.to_f).round(2)}" %></td>
 								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
@@ -115,7 +117,9 @@
 <tr>
 								<td>Total</td>
 								<td><%= @f= costs.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
-								<td></td>
+								
+								<td> <%= number_to_currency @qor= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @f%></td> 
+
 								<td><%= @g= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
 								<td><%= "#{(@g.to_f / @f.to_f).round(2)}" %></td>
 								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>

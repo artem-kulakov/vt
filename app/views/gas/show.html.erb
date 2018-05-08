@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @ga.cantidad %>
+</p>
+
+<p>
+  <strong>Mes:</strong>
+  <%= @ga.mes %>
+</p>
+
+<p>
+  <strong>Ano:</strong>
+  <%= @ga.ano %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @ga.fecha %>
+</p>
+
+<%= link_to 'Edit', edit_ga_path(@ga) %> |
+<%= link_to 'Back', gas_path %>

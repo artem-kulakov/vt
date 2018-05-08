@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   	@services = Service.all
   	@buses = Bus.all
   	@receipts = Receipt.all
+  	@gas = Ga.all
   	@costs = @services + @receipts
   end
 end

@@ -1,0 +1,32 @@
+<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+	<div id="formario">
+<h1>Editar Diesel <%=@ga.month %></h1>
+
+<%= form_for(@ga) do |f| %>
+  <% if @ga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ga.errors.count, "error") %> prohibited this ga from being saved:</h2>
+
+      <ul>
+      <% @ga.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.text_field :cantidad %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Atrás', gas_path %> <br>
+<br>
+</div>
+</div>
+</div>

@@ -1,0 +1,30 @@
+<%= form_for(@ga) do |f| %>
+  <% if @ga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ga.errors.count, "error") %> prohibited this ga from being saved:</h2>
+
+      <ul>
+      <% @ga.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.text_field :cantidad %>
+  </div>
+  <div class="field">
+    <%= f.label :mes %><br>
+    <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
+      Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true}%>
+  </div>
+  <div class="field">
+    <%= f.label :ano %><br>
+    <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true}%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

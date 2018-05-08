@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507041339) do
+ActiveRecord::Schema.define(version: 20180508030810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 20180507041339) do
     t.string   "categoria"
     t.float    "cantidad",   default: 0.0
     t.string   "nota"
+    t.integer  "mes"
+    t.integer  "ano"
+    t.date     "fecha"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "gas", force: :cascade do |t|
+    t.float    "cantidad",   default: 0.0
     t.integer  "mes"
     t.integer  "ano"
     t.date     "fecha"
