@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :Operador %><br>
-    <%= f.select :operator_id, Operator.all.collect { |p| [ p.nombre, p.id ] } %>
+    <%= f.select :operator_id, Operator.all.collect { |p| [ p.nombre, p.id ] }, {:prompt => 'Elige operador'}, {:required => true} %>
   </div>
 
   <div class="field">
@@ -41,9 +41,10 @@
     <%= f.label :version %><br>
     <%= f.text_field :version %>
   </div>
-
+  
+  <br>
   <div class="actions">
-    <%= f.submit "Actualizar Autobús", class: "button button_red" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
 

@@ -179,7 +179,7 @@ ul {
     display: inline;
     float: left;
     margin-left: 30px;
-    background-color: $red;
+    background-color: #00a0f0;
     border: solid 2px transparent;
     border-radius: 5px;
     padding: 5px 20px;
@@ -191,11 +191,11 @@ ul {
     display: inline;
     float: left;
     margin-left: 30px;
-    background-color: $grey;
-    border: solid 2px $red;
+    background-color: transparent;
+    border: solid 2px #00a0f0;
     border-radius: 5px;
     padding: 5px 20px;
-    color: $red;
+    color: #00a0f0;
     cursor: pointer;
   }
 

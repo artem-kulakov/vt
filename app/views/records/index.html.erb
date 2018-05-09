@@ -1,122 +1,140 @@
 <div class="row">
-	<div class="col-md-12">
-		<div id="formario">
-		<h1>Histórico</h1>
-			<%= search_form_for @q do |f| %>
-
-			
-			<div class="row">
-      <div class="col-md-6">
-      <h6>Registro:</h6>
-      <%= f.search_field :id_eq, placeholder: "Buscar número de registro"  %>
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Búsqueda general</h3>
+        <hr>
+        <hr>
       </div>
+      <div class="panel-body">
+        <%= search_form_for @q do |f| %>
 
-			<div class="col-md-6">
-			<h6>Cliente:</h6>
-      <%= f.search_field :client_razon_social_or_client_rfc_or_client_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias"  %>
-      </div>
 
-      </div>
-			
-			<div class="row">
-			<div class="col-md-4">
-			<h6>Autobús:</h6>
-      <%= f.search_field :buses_numero_or_buses_capacidad_eq, placeholder: "Buscar número de autubús o capacidad"  %>
-      </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Registro:</label>
+            <%= f.search_field :id_eq, placeholder: "Buscar número de registro"  %>
+          </div>
 
-			<div class="col-md-4">
-			<h6>Marca:</h6>
-      <%= f.search_field :buses_marca_cont, placeholder: "Buscar marca de autubús"  %>
-      </div>
+          <div class="col-md-6">
+            <label>Cliente:</label>
+            <%= f.search_field :client_razon_social_or_client_rfc_or_client_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias"  %>
+          </div>
 
-			<div class="col-md-4">
-			<h6>Operador:</h6>
-      <%= f.search_field :buses_operator_nombre_cont, placeholder: "Buscar nombre de operador"  %>
-      </div>
+        </div>
 
-      </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label>Autobús:</label>
+            <%= f.search_field :buses_numero_or_buses_capacidad_eq, placeholder: "Buscar número de autubús o capacidad"  %>
+          </div>
 
-      <%= f.submit "Buscar", class: "button button_red button_block" %>
-      <% end %>
-      <br><br>
-		</div>
-	</div>
+          <div class="col-md-4">
+            <label>Marca:</label>
+            <%= f.search_field :buses_marca_cont, placeholder: "Buscar marca de autubús"  %>
+          </div>
+
+          <div class="col-md-4">
+            <label>Operador:</label>
+            <%= f.search_field :buses_operator_nombre_cont, placeholder: "Buscar nombre de operador"  %>
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
+          </div>
+        </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
 </div>
-
 
 
 <div class="row">
   <div class="col-md-12">
-    <div id="formario">
-<h6>Ordenar por:</h6>
-<div id="filtro">
-<%= sort_link(@q, :id, 'Folio', default_order: :desc) %>
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Registro Histórico</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <label>Ordenar por:</label>
+        <div id="filtro">
+          <%= sort_link(@q, :id, 'Folio', default_order: :desc) %>
 
-<%= sort_link(@q, :start_time, 'Fechas', default_order: :desc) %>
+          <%= sort_link(@q, :start_time, 'Fechas', default_order: :desc) %>
 
-<%= sort_link(@q, :numero_pasajeros, 'Número Pasajeros', default_order: :desc) %>
+          <%= sort_link(@q, :numero_pasajeros, 'Número Pasajeros', default_order: :desc) %>
 
-<%= sort_link(@q, :sum_total, '% Completo', default_order: :desc) %>
-</div> <br><br>
+          <%= sort_link(@q, :sum_total, '% Completo', default_order: :desc) %>
+        </div> <br>
 
 
 
-      <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>I.D</th>
-            <th>Fecha de Inicio</th>
-            <th>Fecha de Regreso</th>
-            <th>Referencia</th>
-            <th>Cliente</th>
-            <th>R.F.C</th>
-            <th>Numero pasajeros</th>
-            <th>Numero de camiones</th>
-            <th>Luagr de Salida</th>
-            <th>Precio</th>
-            <th>Pagos</th>
-            <th>Status op</th>
-            <th>Status admin</th>
-            <th>% Completo</th>
-            <th colspan="3"></th>
-        </thead>
-        <tbody>
-          <% @records.each do |record| %>
-          <tr>
-            <td><%= record.try(:id)%></td>
-            <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
-            <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
-            <td><%= record.try(:title) %></td>
-            <td><%= record.client.try(:razon_social) %></td>
-            <td><%= record.client.try(:rfc) %></td>
-            <td><%= record.try(:numero_pasajeros) %></td>
-            <td><%= record.try(:numero_de_camiones) %></td>
-            <td><%= record.try(:lugar_salida) %></td>
-            <td><%= record.try(:precio_final) %></td>
-            <td><%= record.try(:sum_payments) %></td>
-            <td><%= record.try(:status_op) %></td>
-            <% if record.try(:status_admin) == true %>
-            <td class="green">Cobrado</td>
-            <% else %>
-            <td class="red">Por Cobrar</td>
-            <% end %>
-            <td><%= record.sum_total %> % </td>
-            <td><%= link_to 'Ver más', record %></td>
-            <td><%= link_to 'Editar', edit_record_path(record) %></td>
-            <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <th>I.D</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Regreso</th>
+              <th>Referencia</th>
+              <th>Cliente</th>
+              <th>R.F.C</th>
+              <th>Numero pasajeros</th>
+              <th>Numero de camiones</th>
+              <th>Luagr de Salida</th>
+              <th>Precio</th>
+              <th>Pagos</th>
+              <th>Status op</th>
+              <th>Status admin</th>
+              <th>% Completo</th>
+              <th colspan="3"></th>
+            </thead>
+            <tbody>
+              <% @records.each do |record| %>
+              <tr>
+                <td><%= record.try(:id)%></td>
+                <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
+                <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
+                <td><%= record.try(:title) %></td>
+                <td><%= record.client.try(:razon_social) %></td>
+                <td><%= record.client.try(:rfc) %></td>
+                <td><%= record.try(:numero_pasajeros) %></td>
+                <td><%= record.try(:numero_de_camiones) %></td>
+                <td><%= record.try(:lugar_salida) %></td>
+                <td><%= record.try(:precio_final) %></td>
+                <td><%= record.try(:sum_payments) %></td>
+                <td><%= record.try(:status_op) %></td>
+                <% if record.try(:status_admin) == true %>
+                <td class="green">Cobrado</td>
+                <% else %>
+                <td class="red">Por Cobrar</td>
+                <% end %>
+                <td><%= record.sum_total %> % </td>
+                <td><%= link_to 'Ver más', record %></td>
+                <td><%= link_to 'Editar', edit_record_path(record) %></td>
+                <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>     
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
+
+
+
+
 
 <div class="row">
-<div class="center">
-<% unless @records.blank? %>
-  <%= will_paginate @records %>
-<% end %>
-</div>
+  <div class="center">
+    <% unless @records.blank? %>
+    <%= will_paginate @records %>
+    <% end %>
+  </div>
 </div>
