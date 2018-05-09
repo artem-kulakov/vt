@@ -1,8 +1,16 @@
-<div id="formario">
-	<%= search_form_for @q do |f| %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Filtrar por operador y fecha</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+<%= search_form_for @q do |f| %>
 	<div class="row">
 		<div class="col-md-12">
-			<h6>Operador:</h6>
+			<label>Operador:</label>
 			<%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq) %>
 		</div>
 	</div>
@@ -10,38 +18,45 @@
 	<div class="row">
 		<div class="input-daterange" id="datepicker">
 			<div class="col-md-6">
-				<h6>Fecha Inicio:</h6>
+				<label>Fecha Inicio:</label>
 				<%= f.text_field :record_start_time_gteq, class: "form-control2", placeholder: "Date >= to" %>
 			</div>
 			<div class="col-md-6">
-				<h6>Fecha Final:</h6>
+				<label>Fecha Final:</label>
 				<%= f.text_field :record_start_time_lteq, class: "form-control2", placeholder: "Date <= to" %>
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-md-4">
-			<%= f.submit "Buscar", class: "button button_red button_block" %>
-		</div>
-	</div>
+<br>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
+      </div>
+      </div>
 	<hr>
 
 	<% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-
-<div id="tablon">
-	<div class="container">
-		<div class="content table-responsive table-full-width">
-			<table class="table table-hover table-striped">
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Servicios</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+ <div class="content table-responsive table-full-width">
+			<table class="table table-striped">
 				<thead>
 					<th>ID</th>
 					<th>Operador</th>
 					<th>Fecha de Servicio</th>
 					<th>Gastos</th>
-					<th colspan="3"></th>
 				</thead>
 				<tbody>
 					<% @services.each do |service| %>
@@ -66,9 +81,14 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-	</div>
-</div>
+		</div>       
+      </div>
+    </div>
+  </div>
+</div>	
+
+
+		
 
 
 <script type="text/javascript">

@@ -1,10 +1,16 @@
 <div class="row">
 	<% @costs.group_by(&:month).sort.each do |month, costs| %>
 	<div class="col-md-12">
-		<div id="formario">
-			<h2><%= month %>, Diesel ( <%= number_to_currency @gas.select{|c| c.month == month }.map(&:cantidad).sum %> )</h2>
+		<div class="panel panel-headline">
+
+			<div class="panel-heading">
+			<h3><%= month %></h3>
+			<h5 class="heading">Diesel ( <%= number_to_currency @gas.select{|c| c.month == month }.map(&:cantidad).sum %> )</h5>
+		</div>
+
+		<div class="panel-body">
 			<div class="content table-responsive table-full-width">
-				<table class="table table-hover table-striped">
+				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
 						<th>Autobús</th>
@@ -138,6 +144,7 @@
 							</tr>
 					</tbody>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>

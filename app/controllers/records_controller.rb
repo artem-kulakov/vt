@@ -23,7 +23,6 @@ class RecordsController < ApplicationController
     @buses = Bus.all.order("created_at asc")
     @records = Record.all
     @services = Service.all
-    render layout: "other"
   end
 
   def operaciones

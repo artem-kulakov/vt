@@ -1,22 +1,37 @@
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div id="formario">
-      <h1>Lista de Clientes que Deben</h1>
-
-      <%= search_form_for @q do |f| %>
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Buscar Clientes</h3>
+      </div>
+      <div class="panel-body">
+              <%= search_form_for @q do |f| %>
       <div class="row">
-      <div class="col-md-8">
-        <h6>Cliente deudor:</h6>
+      <div class="col-md-12">
+        <label>Cliente deudor:</label>
         <%= f.search_field :razon_social_or_rfc_or_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias"  %>
       </div>
-      <div class="col-md-4">
-        <%= f.submit "Buscar", class: "button button_red button_block" %>
+      <div class="col-md-3">
+        <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
       </div>
       </div>
 <hr>
     
     <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+
+      <div class="panel-heading">
+      <h3>Lista de Clientes que Deben</h3>
+      </div>
+
+<div class="panel-body">
 <br>
     <div class="content table-responsive table-full-width">
       <table class="table table-hover table-striped">
@@ -53,6 +68,7 @@
         </tbody>
       </table>
     </div>
+  </div>
   </div>
 </div>
 </div>

@@ -1,20 +1,29 @@
-<div id="formario">
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Filtrar comprobantes por operador</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
   <%= search_form_for @q do |f| %>
   <div class="row">
     <div class="col-md-12">
-      <h6>Operador:</h6>
-      <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq) %>
+      <label>Operador:</label>
+      <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {:required => true} %>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.submit "Buscar", class: "button button_red button_block" %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
+      </div>
+      </div>
+
+  <% end %>        
+      </div>
     </div>
   </div>
-  <hr>
-
-  <% end %>
 </div>
 
 
@@ -24,11 +33,15 @@
 <div class="row">
   <% @vouchers.group_by(&:month).sort.each do |month, vouchers| %>
   <div class="col-md-6">
-    <div id="formario">
+    <div class="panel panel-headline">
 
-      <h2><%= month %></h2>
+      <div class="panel-heading">
+      <h3><%= month %></h3>
+      <hr>
+      </div>
+<div class="panel-body">
 <div class="content table-responsive table-full-width">
-      <table class="table table-hover table-striped">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Operador</th>
@@ -52,8 +65,8 @@
             <td><%= voucher.nota %></td>
             <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
             <td><%= voucher.cantidad %></td>
-            <td><%= link_to 'Edit', edit_voucher_path(voucher) %></td>
-            <td><%= link_to 'Destroy', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Editar', edit_voucher_path(voucher) %></td>
+            <td><%= link_to 'Eliminar', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
           <% end %>
           <tr>
@@ -77,6 +90,7 @@
         </tbody>
       </table>
 </div>
+    </div>
     </div>
   </div>
   <% end %>

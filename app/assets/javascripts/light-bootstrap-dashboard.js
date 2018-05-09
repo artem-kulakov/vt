@@ -1,175 +1,225 @@
-/*!
-    
- =========================================================
- * Light Bootstrap Dashboard - v1.3.1.0
- =========================================================
- 
- * Product Page: http://www.creative-tim.com/product/light-bootstrap-dashboard
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE.md)
- 
- =========================================================
- 
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
- */
+$(document).ready(function() {
 
-var searchVisible = 0;
-var transparent = true;
+    /*-----------------------------------/
+    /*  TOP NAVIGATION AND LAYOUT
+    /*----------------------------------*/
 
-var transparentDemo = true;
-var fixedTop = false;
+    $('.btn-toggle-fullwidth').on('click', function() {
+        if(!$('body').hasClass('layout-fullwidth')) {
+            $('body').addClass('layout-fullwidth');
 
-var navbar_initialized = false;
-
-$(document).ready(function(){
-    window_width = $(window).width();
-    
-    // check if there is an image set for the sidebar's background
-    lbd.checkSidebarImage();
-    
-    // Init navigation toggle for small screens   
-    if(window_width <= 991){
-        lbd.initRightMenu();   
-    }
-     
-    //  Activate the tooltips   
-    $('[rel="tooltip"]').tooltip();
-
-    //      Activate the switches with icons 
-    if($('.switch').length != 0){
-        $('.switch')['bootstrapSwitch']();
-    }  
-    //      Activate regular switches
-    if($("[data-toggle='switch']").length != 0){
-         $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();     
-    }
-     
-    $('.form-control').on("focus", function(){
-        $(this).parent('.input-group').addClass("input-group-focus");
-    }).on("blur", function(){
-        $(this).parent(".input-group").removeClass("input-group-focus");
-    });
-      
-});
-
-// activate collapse right menu when the windows is resized 
-$(window).resize(function(){
-    if($(window).width() <= 991){
-        lbd.initRightMenu();   
-    }
-});
-    
-lbd = {
-    misc:{
-        navbar_menu_visible: 0
-    },
-    
-    checkSidebarImage: function(){
-        $sidebar = $('.sidebar');
-        image_src = $sidebar.data('image');
-        
-        if(image_src !== undefined){
-            sidebar_container = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>'
-            $sidebar.append(sidebar_container);
-        }  
-    },
-    initRightMenu: function(){  
-         if(!navbar_initialized){
-            $navbar = $('nav').find('.navbar-collapse').first().clone(true);
-            
-            $sidebar = $('.sidebar');
-            sidebar_color = $sidebar.data('color');
-            
-            $logo = $sidebar.find('.logo').first();
-            logo_content = $logo[0].outerHTML;
-                    
-            ul_content = '';
-             
-            $navbar.attr('data-color',sidebar_color);
-             
-            // add the content from the sidebar to the right menu
-            content_buff = $sidebar.find('.nav').html();
-            ul_content = ul_content + content_buff;
-            
-            //add the content from the regular header to the right menu
-            $navbar.children('ul').each(function(){
-                content_buff = $(this).html();
-                ul_content = ul_content + content_buff;   
-            });
-             
-            ul_content = '<ul class="nav navbar-nav">' + ul_content + '</ul>';
-            
-            navbar_content = logo_content + ul_content;
-            
-            $navbar.html(navbar_content);
-             
-            $('body').append($navbar);
-             
-            background_image = $sidebar.data('image');
-            if(background_image != undefined){
-                $navbar.css('background',"url('" + background_image + "')")
-                       .removeAttr('data-nav-image')
-                       .addClass('has-image');                
-            }
-             
-             
-             $toggle = $('.navbar-toggle');
-             
-             $navbar.find('a').removeClass('btn btn-round btn-default');
-             $navbar.find('button').removeClass('btn-round btn-fill btn-info btn-primary btn-success btn-danger btn-warning btn-neutral');
-             $navbar.find('button').addClass('btn-simple btn-block');
-            
-             $toggle.click(function (){    
-                if(lbd.misc.navbar_menu_visible == 1) {
-                    $('html').removeClass('nav-open'); 
-                    lbd.misc.navbar_menu_visible = 0;
-                    $('#bodyClick').remove();
-                     setTimeout(function(){
-                        $toggle.removeClass('toggled');
-                     }, 400);
-                
-                } else {
-                    setTimeout(function(){
-                        $toggle.addClass('toggled');
-                    }, 430);
-                    
-                    div = '<div id="bodyClick"></div>';
-                    $(div).appendTo("body").click(function() {
-                        $('html').removeClass('nav-open');
-                        lbd.misc.navbar_menu_visible = 0;
-                        $('#bodyClick').remove();
-                         setTimeout(function(){
-                            $toggle.removeClass('toggled');
-                         }, 400);
-                    });
-                   
-                    $('html').addClass('nav-open');
-                    lbd.misc.navbar_menu_visible = 1;
-                    
-                }
-            });
-            navbar_initialized = true;
+        } else {
+            $('body').removeClass('layout-fullwidth');
+            $('body').removeClass('layout-default'); // also remove default behaviour if set
         }
-   
+
+        $(this).find('.lnr').toggleClass('lnr-arrow-left-circle lnr-arrow-right-circle');
+
+        if($(window).innerWidth() < 1025) {
+            if(!$('body').hasClass('offcanvas-active')) {
+                $('body').addClass('offcanvas-active');
+            } else {
+                $('body').removeClass('offcanvas-active');
+            }
+        }
+    });
+
+    $(window).on('load', function() {
+        if($(window).innerWidth() < 1025) {
+            $('.btn-toggle-fullwidth').find('.icon-arrows')
+            .removeClass('icon-arrows-move-left')
+            .addClass('icon-arrows-move-right');
+        }
+
+        // adjust right sidebar top position
+        $('.right-sidebar').css('top', $('.navbar').innerHeight());
+
+        // if page has content-menu, set top padding of main-content
+        if($('.has-content-menu').length > 0) {
+            $('.navbar + .main-content').css('padding-top', $('.navbar').innerHeight());
+        }
+
+        // for shorter main content
+        if($('.main').height() < $('#sidebar-nav').height()) {
+            $('.main').css('min-height', $('#sidebar-nav').height());
+        }
+    });
+
+
+    /*-----------------------------------/
+    /*  SIDEBAR NAVIGATION
+    /*----------------------------------*/
+
+    $('.sidebar a[data-toggle="collapse"]').on('click', function() {
+        if($(this).hasClass('collapsed')) {
+            $(this).addClass('active');
+        } else {
+            $(this).removeClass('active');
+        }
+    });
+
+    if( $('.sidebar-scroll').length > 0 ) {
+        $('.sidebar-scroll').slimScroll({
+            height: '95%',
+            wheelStep: 2,
+        });
     }
+
+
+    /*-----------------------------------/
+    /*  PANEL FUNCTIONS
+    /*----------------------------------*/
+
+    // panel remove
+    $('.panel .btn-remove').click(function(e){
+
+        e.preventDefault();
+        $(this).parents('.panel').fadeOut(300, function(){
+            $(this).remove();
+        });
+    });
+
+    // panel collapse/expand
+    var affectedElement = $('.panel-body');
+
+    $('.panel .btn-toggle-collapse').clickToggle(
+        function(e) {
+            e.preventDefault();
+
+            // if has scroll
+            if( $(this).parents('.panel').find('.slimScrollDiv').length > 0 ) {
+                affectedElement = $('.slimScrollDiv');
+            }
+
+            $(this).parents('.panel').find(affectedElement).slideUp(300);
+            $(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');
+        },
+        function(e) {
+            e.preventDefault();
+
+            // if has scroll
+            if( $(this).parents('.panel').find('.slimScrollDiv').length > 0 ) {
+                affectedElement = $('.slimScrollDiv');
+            }
+
+            $(this).parents('.panel').find(affectedElement).slideDown(300);
+            $(this).find('i.lnr-chevron-up').toggleClass('lnr-chevron-down');
+        }
+    );
+
+
+    /*-----------------------------------/
+    /*  PANEL SCROLLING
+    /*----------------------------------*/
+
+    if( $('.panel-scrolling').length > 0) {
+        $('.panel-scrolling .panel-body').slimScroll({
+            height: '430px',
+            wheelStep: 2,
+        });
+    }
+
+    if( $('#panel-scrolling-demo').length > 0) {
+        $('#panel-scrolling-demo .panel-body').slimScroll({
+            height: '175px',
+            wheelStep: 2,
+        });
+    }
+
+    /*-----------------------------------/
+    /*  TODO LIST
+    /*----------------------------------*/
+
+    $('.todo-list input').change( function() {
+        if( $(this).prop('checked') ) {
+            $(this).parents('li').addClass('completed');
+        }else {
+            $(this).parents('li').removeClass('completed');
+        }
+    });
+
+
+    /*-----------------------------------/
+    /* TOASTR NOTIFICATION
+    /*----------------------------------*/
+
+    if($('#toastr-demo').length > 0) {
+        toastr.options.timeOut = "false";
+        toastr.options.closeButton = true;
+        toastr['info']('Hi there, this is notification demo with HTML support. So, you can add HTML elements like <a href="#">this link</a>');
+
+        $('.btn-toastr').on('click', function() {
+            $context = $(this).data('context');
+            $message = $(this).data('message');
+            $position = $(this).data('position');
+
+            if($context == '') {
+                $context = 'info';
+            }
+
+            if($position == '') {
+                $positionClass = 'toast-left-top';
+            } else {
+                $positionClass = 'toast-' + $position;
+            }
+
+            toastr.remove();
+            toastr[$context]($message, '' , { positionClass: $positionClass });
+        });
+
+        $('#toastr-callback1').on('click', function() {
+            $message = $(this).data('message');
+
+            toastr.options = {
+                "timeOut": "300",
+                "onShown": function() { alert('onShown callback'); },
+                "onHidden": function() { alert('onHidden callback'); }
+            }
+
+            toastr['info']($message);
+        });
+
+        $('#toastr-callback2').on('click', function() {
+            $message = $(this).data('message');
+
+            toastr.options = {
+                "timeOut": "10000",
+                "onclick": function() { alert('onclick callback'); },
+            }
+
+            toastr['info']($message);
+
+        });
+
+        $('#toastr-callback3').on('click', function() {
+            $message = $(this).data('message');
+
+            toastr.options = {
+                "timeOut": "10000",
+                "closeButton": true,
+                "onCloseClick": function() { alert('onCloseClick callback'); }
+            }
+
+            toastr['info']($message);
+        });
+    }
+});
+
+// toggle function
+$.fn.clickToggle = function( f1, f2 ) {
+    return this.each( function() {
+        var clicked = false;
+        $(this).bind('click', function() {
+            if(clicked) {
+                clicked = false;
+                return f2.apply(this, arguments);
+            }
+
+            clicked = true;
+            return f1.apply(this, arguments);
+        });
+    });
+
 }
 
 
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
-};

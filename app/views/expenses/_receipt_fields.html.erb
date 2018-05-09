@@ -1,6 +1,6 @@
 <div class="nested-fields">
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-6">
   <div class="field">
     <%= f.label :autobus %><br>
     <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }, {:prompt => 'Elige autobús'}, {:required => true} %>
@@ -10,6 +10,5 @@
 </div>
 
 <%= link_to_remove_association "Quitar Autobús", f %>
-<hr>
 <hr>
 </div>

@@ -1,9 +1,12 @@
 <div class="row">
 		<div class="col-md-8 col-md-offset-2">
-	<div id="formario">
+	<div class="panel panel-headline">
 
+<div class="panel-heading">
 <h2>Editar Registro</h2>
+</div>
 
+<div class="panel-body">
 <%= form_for(@record) do |f| %>
 			<% if @record.errors.any? %>
 			<div id="error_explanation">
@@ -68,10 +71,10 @@
 			</div>
 
 			<div class="actions">
-				<%= f.submit class: "button button_red" %>
+				<%= f.submit class: "btn btn-primary" %>
 			</div>
 			<% end %>
-
+</div>
 <br>
 
 		</div>		

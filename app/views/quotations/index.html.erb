@@ -1,34 +1,48 @@
 <div class="row">
   <div class="col-md-12">
-    <div id="formario">
-
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Quotations</h1>
-
-<%= search_form_for @q do |f| %>
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Busqueda de Cotizaciones:</h3>
+      </div>
+      <div class="panel-body">
+        <%= search_form_for @q do |f| %>
 
       
       <div class="row">
       <div class="col-md-6">
-      <h6>Registro:</h6>
-      <%= f.search_field :id_eq, placeholder: "Buscar número de cotización"  %>
+      <label>Registro:</label>
+      <%= f.search_field :id_eq, placeholder: "Buscar por número de cotización"  %>
       </div>
 
       <div class="col-md-6">
-      <h6>Cliente:</h6>
-      <%= f.search_field :email_or_nombre_cont, placeholder: "Buscar Cotización"  %>
+      <label>Cliente:</label>
+      <%= f.search_field :email_or_nombre_cont, placeholder: "Buscar por Cliente"  %>
       </div>
 
       </div>
       
-
-      <%= f.submit "Buscar", class: "button button_red button_block" %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
+      </div>
+      </div>
       <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Nueva Cotización', new_quotation_path, class: "button button_red" %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+
+<div class="panel-heading">
+<h3>Cotizaciones</h3>
+</div>
+
+<div class="panel-body">
 <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
+        <table class="table table-striped">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -65,6 +79,7 @@
 </table>
 </div>
 
+</div>
 <br>
 
 

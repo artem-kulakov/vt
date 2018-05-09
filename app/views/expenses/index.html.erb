@@ -1,8 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Expenses</h1>
-
-<table>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Gastos</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <div class="content table-responsive table-full-width">
+          <table class="table table-striped">
   <thead>
     <tr>
       <th>Categoria</th>
@@ -24,14 +29,17 @@
         <td><%= expense.mes %></td>
         <td><%= expense.ano %></td>
         <td><%= expense.fecha %></td>
-        <td><%= link_to 'Show', expense %></td>
-        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver más', expense %></td>
+        <td><%= link_to 'Editar', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Eliminar', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <br>
-
-<%= link_to 'New Expense', new_expense_path %>

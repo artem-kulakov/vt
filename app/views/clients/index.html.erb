@@ -1,26 +1,39 @@
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div id="formario">
-      <h1>Lista de Clientes</h1>
-
-      <%= search_form_for @q do |f| %>
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Busca clientes</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+ <%= search_form_for @q do |f| %>
       <div class="row">
-      <div class="col-md-6">
-        <h6>Cliente:</h6>
+      <div class="col-md-12">
+        <label>Cliente:</label>
         <%= f.search_field :razon_social_or_rfc_or_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias"  %>
       </div>
-      <div class="col-md-4">
-        <%= f.submit "Buscar", class: "button button_red button_block" %>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.submit "Buscar", class: "btn btn-primary" %>
       </div>
+      </div>    
+    <% end %>       
       </div>
-<hr>
-    
-    <% end %>
+    </div>
+  </div>
+</div>
 
-<br>
-    <%= link_to 'Nuevo Cliente', new_client_path, class: "button button_red" %>
-    <div class="content table-responsive table-full-width">
-      <table class="table table-hover table-striped">
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Clientes</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+<div class="content table-responsive table-full-width">
+      <table class="table table-striped">
         <thead>
           <th>ID</th>
           <th>Status</th>
@@ -57,9 +70,10 @@
           <% end %>
         </tbody>
       </table>
+    </div>        
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="row">
