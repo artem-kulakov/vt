@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   
-  
+get '/reporte' => 'welcome#reporte'
+
   resources :gas
   resources :receipts
   resources :expenses

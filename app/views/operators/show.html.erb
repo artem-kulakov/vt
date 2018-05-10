@@ -1,101 +1,111 @@
-<div id="formario">
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3><%= @operator.nombre %></h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <p>
+          <strong>Telefono:</strong>
+          <%= @operator.telefono %>
+        </p>
 
-<h2>
-  <strong>Nombre:</strong>
-  <%= @operator.nombre %>
-</h2>
+        <p>
+          <strong>Papeles:</strong>
+          <%= @operator.papeles %>
+        </p>
 
-<p>
-  <strong>Telefono:</strong>
-  <%= @operator.telefono %>
-</p>
+        <p>
+          <strong>Observaciones:</strong>
+          <%= @operator.observaciones %>
+        </p>
 
-<p>
-  <strong>Papeles:</strong>
-  <%= @operator.papeles %>
-</p>
+        <%= link_to 'Editar Operador', edit_operator_path(@operator), class: "btn btn-primary btn btn-block" %>
 
-<p>
-  <strong>Observaciones:</strong>
-  <%= @operator.observaciones %>
-</p>
-
-<%= link_to 'Editar Operador', edit_operator_path(@operator) %>
-<br><br>
+      </div>
+    </div>
+  </div>
 </div>
 
-
+<hr>
 <div class="row">
   <% @vouchers.group_by(&:month).sort.each do |month, vouchers| %>
   <div class="col-md-6">
-    <div id="formario">
+    <div class="panel panel-headline">
+      
+      <div class="panel-heading">
+        <h3><%= month %></h3>
+        <hr>
+      </div>
 
-      <h2><%= month %></h2>
-<div class="content table-responsive table-full-width">
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Operador</th>
-            <th>Operación</th>
-            <th>Notas</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th colspan="2"></th>
-          </tr>
-        </thead>
+      <div class="panel-body">
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Operador</th>
+                <th>Operación</th>
+                <th>Notas</th>
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
 
-        <tbody>
-          <% vouchers.each do |voucher| %>
-          <tr>
-            <td><%= voucher.operator.nombre %></td>
-            <td><%= voucher.operacion %></td>
-            <td><%= voucher.nota %></td>
-            <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
-            <td><%= voucher.cantidad %></td>
-            <td><%= link_to 'Edit', edit_voucher_path(voucher) %></td>
-            <td><%= link_to 'Destroy', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>            
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+            <tbody>
+              <% vouchers.each do |voucher| %>
+              <tr>
+                <td><%= voucher.operator.nombre %></td>
+                <td><%= voucher.operacion %></td>
+                <td><%= voucher.nota %></td>
+                <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
+                <td><%= voucher.cantidad %></td>
+                <td><%= link_to 'Edit', edit_voucher_path(voucher) %></td>
+                <td><%= link_to 'Destroy', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>            
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
-          <tr>
-            <td></td>
-            <td></td>
-            <td>Gastos totales: <%= number_to_currency @a= vouchers.select{|c| c.operacion == 'Gastos del mes'}.map(&:cantidad).sum%></td>
-             <% number_to_currency @c= vouchers.select{|c| c.operacion == 'Comprobantes'}.map(&:cantidad).sum%>
-             <% number_to_currency @d= vouchers.select{|c| c.operacion == 'Saldo a favor'}.map(&:cantidad).sum%>
-            <td>Compr. y saldo a favor:  <%= number_to_currency @b= (@c + @d) %></td>
-            <% if @b < @a*0.5 %>
-            <td class="red">Penalización</td>
-            <% elsif @b > @a+500 %>
-            <td class="green">Bono del mes</td>
-            <% else %>
-            <td></td>
-            <% end %>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-</div>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Gastos totales: <%= number_to_currency @a= vouchers.select{|c| c.operacion == 'Gastos del mes'}.map(&:cantidad).sum%></td>
+                <% number_to_currency @c= vouchers.select{|c| c.operacion == 'Comprobantes'}.map(&:cantidad).sum%>
+                <% number_to_currency @d= vouchers.select{|c| c.operacion == 'Saldo a favor'}.map(&:cantidad).sum%>
+                <td>Compr. y saldo a favor:  <%= number_to_currency @b= (@c + @d) %></td>
+                <% if @b < @a*0.5 %>
+                <td class="red">Penalización</td>
+                <% elsif @b > @a+500 %>
+                <td class="green">Bono del mes</td>
+                <% else %>
+                <td></td>
+                <% end %>
+                
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
   <% end %>

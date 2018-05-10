@@ -9,6 +9,7 @@ class Service < ActiveRecord::Base
   before_save :days
   before_save :km_finales
   before_save :rendimiento
+  before_save :fecha
 
   def set_op
     self.operator_id = self.bus.operator_id
@@ -36,6 +37,10 @@ class Service < ActiveRecord::Base
 
   def rendimiento
       self.rendimiento = self.km_finales/self.litros
+  end
+
+  def fecha
+    self.fecha = record.start_time.to_date
   end
 
 def month

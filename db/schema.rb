@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508030810) do
+ActiveRecord::Schema.define(version: 20180510154839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,6 +225,7 @@ ActiveRecord::Schema.define(version: 20180508030810) do
     t.float    "litros",           default: 0.0
     t.float    "km_finales",       default: 0.0
     t.float    "rendimiento",      default: 0.0
+    t.date     "fecha"
   end
 
   add_index "services", ["bus_id"], name: "index_services_on_bus_id", using: :btree

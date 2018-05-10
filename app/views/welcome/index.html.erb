@@ -1,152 +1,129 @@
 <div class="row">
-	<% @costs.group_by(&:month).sort.each do |month, costs| %>
-	<div class="col-md-12">
-		<div class="panel panel-headline">
+  <div class="col-md-6">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Cotizaciones</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <%= column_chart Quotation.group_by_month(:created_at, format: "%G-%B").count,
+    title: 'Cotizaciones Mensuales',
+    colors: ['#F9A972'],
+    library: {
+      yAxis: {
+           labels: {
+               format: '${value}'
+           }
+       },
+          tooltip: {
+            pointFormat: 'Total Spent: <b>{point.y}</b>',
+            xDateFormat: '%B',
+            valuePrefix: '$'
+          }
+        }
+%>
+      </div>
+    </div>
+  </div>
 
-			<div class="panel-heading">
-			<h3><%= month %></h3>
-			<h5 class="heading">Diesel ( <%= number_to_currency @gas.select{|c| c.month == month }.map(&:cantidad).sum %> )</h5>
-		</div>
-
-		<div class="panel-body">
-			<div class="content table-responsive table-full-width">
-				<table class="table table-hover table-bordered">
-					<thead>
-						<tr>
-						<th>Autobús</th>
-						<th>Litros Diesel</th>
-						<th>Total Diesel ($)</th>
-						<th>Km Recorridos</th>
-						<th>Factor</th>
-						<th>Ingresos por unidad</th>
-						<th>Ingresos por día</th>
-						<th>Gastos de Operación</th>
-						<th>Gastos de Mantenimiento</th>
-						<th>Gastos Fijos</th>
-						<th>Nómina</th>
-						<th>Gastos Varios</th>
-						<th>Internet/Mkt</th>
-						<th>Utilidad Operativa</th>
-						<th>Utilidad o Pérdida</th>
-						<th>Ocupación</th>
-						<th>Autobús</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% costs.group_by(&:bus).each do |bus,cost| %>
-							<tr>
-								<td><%= bus.numero %></td>
-								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
-
-								<td><%= number_to_currency @qo= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @a%></td>
-								
-								<td><%= @b= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
-								<td><%= "#{(@b.to_f / @a.to_f).round(2)}" %></td>
-								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
-								<% @x = month.to_date.end_of_month.day %>
-								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
-								<td><%=number_to_currency @y = cost.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
-								<td><%=number_to_currency @w= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos de mantenimiento'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @o= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos fijos'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @p= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Nómina'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @q= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos varios'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @r= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Internet / Mkt'}.map(&:cantidad).sum%></td>
-								<td><%= number_to_currency @b - @y - @w %></td>
-								<td><%= number_to_currency @b - @y - @w - @o - @p - @q - @r %></td>
-								<td><%= number_to_percentage @po= cost.select{|c| c.is_a?(Service)}.map(&:days).sum / @x * 100%></td>
-								<td><%= bus.numero %></td>
-							</tr>
-						<% end %>
-
-
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-
-
-<tr>
-								<td>Total</td>
-								<td><%= @f= costs.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
-								
-								<td> <%= number_to_currency @qor= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @f%></td> 
-
-								<td><%= @g= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
-								<td><%= "#{(@g.to_f / @f.to_f).round(2)}" %></td>
-								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
-								<% @xo = month.to_date.end_of_month.day %>
-								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
-								<td><%=number_to_currency @h = costs.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
-								<td><%=number_to_currency @i= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos de mantenimiento'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @j= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos fijos'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @k= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Nómina'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @l= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos varios'}.map(&:cantidad).sum%></td>
-								<td><%=number_to_currency @m= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Internet / Mkt'}.map(&:cantidad).sum%></td>
-								<td><%= number_to_currency @g - @h - @i %></td>
-								<td><%= number_to_currency @g - @h - @i - @j - @k - @l - @m %></td>
-								<td><%= number_to_percentage @por= (costs.select{|c| c.is_a?(Service)}.map(&:days).sum / costs.group_by(&:bus).size) / @xo * 100  %></td>
-								<td>Total</td>
-							</tr>
-					</tbody>
-				</table>
-			</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
+  <div class="col-md-6">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Registros</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <%= line_chart Record.group_by_month(:created_at, format: "%G-%B").count,
+    title: 'Registros Mensuales',
+    colors: ['#C87DB5'],
+    library: {
+      yAxis: {
+           labels: {
+               format: '${value}'
+           }
+       },
+          tooltip: {
+            pointFormat: 'Total Spent: <b>{point.y}</b>',
+            xDateFormat: '%B',
+            valuePrefix: '$'
+          }
+        }
+%>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Servicios</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <%= area_chart Service.group_by_month(:created_at, format: "%G-%B").count %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Gastos</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <%= line_chart Receipt.all.group_by_month(:fecha, last: 12, current: false).sum('cantidad'),
+    title: 'Gastos Mensuales',
+    colors: ['green'],
+    library: {
+      yAxis: {
+           labels: {
+               format: '${value}'
+           }
+       },
+          tooltip: {
+            pointFormat: 'Total Spent: <b>{point.y}</b>',
+            xDateFormat: '%B',
+            valuePrefix: '$'
+          }
+        }
+%>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Ingresos</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+        <%= line_chart Service.all.group_by_month(:fecha, last: 12, current: false).sum('precio_unidad'),
+    title: 'Gastos Mensuales',
+    colors: ['#F26D6B'],
+    library: {
+      yAxis: {
+           labels: {
+               format: '${value}'
+           }
+       },
+          tooltip: {
+            pointFormat: 'Total Spent: <b>{point.y}</b>',
+            xDateFormat: '%B',
+            valuePrefix: '$'
+          }
+        }
+%>     
+      </div>
+    </div>
+  </div>
+
+
+<%= javascript_include_tag "https://www.google.com/jsapi" %>

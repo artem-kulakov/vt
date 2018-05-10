@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-md-6">
-    <div id="formario">
-      <h2><%= @client.razon_social %></h2>
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3><%= @client.razon_social %></h3>
+        <hr>
+      </div>
+      <div class="panel-body">
 <h4>Rfc:</h4>
   <p><%= @client.rfc %></p>
 
@@ -73,14 +77,23 @@
   <p><%= @client.email_cobro %></p> 
   </div>
 </div>
-<%= link_to 'Editar Cliente', edit_client_path(@client), class: "button button_red button_block" %> <br><br>
 
+<br>
+<%= link_to 'Editar Cliente', edit_client_path(@client), class: "btn btn-primary btn-block" %>
+<br>
+
+      </div>
     </div>
   </div>
+
   <div class="col-md-6">
-    <div id="formario">
-      <h2>Información</h2>
-  <h4>Cliente desde: </h4>
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Información</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+<h4>Cliente desde: </h4>
   <p><%= @client.created_at.strftime(" %b-%d-%Y") %></p>
 
   <h4>Servicios realizados:</h4>
@@ -89,31 +102,36 @@
   <h4>Último servicio:</h4>
   <%= link_to @client.records.last do %>
   <p><%= @client.records.last.try(:title) %></p>
-  <% end %>
-
-  <br>  
+  <% end %>        
+      </div>
     </div>
 
-    <div id="formario">
-      <h2>Finanzas</h2>
-
-    <h4>Pagos hechos:</h4>
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Finanzas</h3>
+        <hr>
+      </div>
+      <div class="panel-body">
+<h4>Pagos hechos:</h4>
     <p><%=@client.sum_clients %></p>
 
     <h4>Debe:</h4>
-    <p><%=@client.sum_clients_deu %></p>
-
-    <br>
+    <p><%=@client.sum_clients_deu %></p>     
+      </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div id="formario">
-    <h2>Servicios de <%=@client.razon_social %></h2>
-
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3>Servicios de <%=@client.razon_social %></h3>
+        <hr>
+      </div>
+      <div class="panel-body">
 <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
+        <table class="table table-striped">
           <thead>
             <th>I.D</th>
             <th>Fecha de Inicio</th>
@@ -159,6 +177,12 @@
     </tbody>
 </table>
 </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="row">
 <div class="center">
@@ -166,9 +190,6 @@
   <%= will_paginate @records %>
 <% end %>
 </div>
-</div>
-
-  </div>
 </div>
 
 
