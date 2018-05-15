@@ -341,8 +341,7 @@
               </div>
             </div>
           </div>
-          <%@new = @record.updated_at-21500%>
-          <h6>Actualizado: <%= @new.strftime(" %b-%d-%Y, %H:%M") %></h6>
+          <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
         </div>
 
         <br><br>
@@ -421,7 +420,9 @@
 <hr>
 
 <h4>Precio total: <%= number_to_currency @record.try(:precio_final) %></h4>
+<h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
 <h4>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h4>
+
 <div class="row">
   <% @services.each_with_index do |service, i| %>
   <div class="col-sm-4">
