@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<label>Operador:</label>
-			<%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq) %>
+			<%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'} %>
 		</div>
 	</div>
 

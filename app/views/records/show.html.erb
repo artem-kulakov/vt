@@ -419,6 +419,9 @@
 </div>
 
 <hr>
+
+<h4>Precio total: <%= number_to_currency @record.try(:precio_final) %></h4>
+<h4>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h4>
 <div class="row">
   <% @services.each_with_index do |service, i| %>
   <div class="col-sm-4">

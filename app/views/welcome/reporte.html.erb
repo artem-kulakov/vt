@@ -19,7 +19,7 @@
 						<th>Km Recorridos</th>
 						<th>Factor</th>
 						<th>Ingresos por unidad</th>
-						<th>Ingresos por día</th>
+						<th>Ingresos por día (<%= month.to_date.end_of_month.day %>)</th>
 						<th>Gastos de Operación</th>
 						<th>Gastos de Mantenimiento</th>
 						<th>Gastos Fijos</th>
@@ -35,25 +35,58 @@
 					<tbody>
 						<% costs.group_by(&:bus).each do |bus,cost| %>
 							<tr>
+								<!-- autobus -->
 								<td><%= bus.numero %></td>
-								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
 
+								<!-- litros diesel -->
+								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
+								
+								<!-- total diesel en pesos -->
 								<td><%= number_to_currency @qo= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @a%></td>
 								
-								<td><%= @b= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
-								<td><%= "#{(@b.to_f / @a.to_f).round(2)}" %></td>
+								<!-- km recorridos -->
+								<td><%= @bo= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
+
+								<!-- factor -->
+								<td><%= "#{(@bo.to_f / @a.to_f).round(2)}" %></td>
+
+								<!-- ingreso total por unidad -->
 								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
+
+								<!-- días en el mes -->
 								<% @x = month.to_date.end_of_month.day %>
-								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
+
+								<!-- precio entre días -->
+								<td><%=number_to_currency @b_unid= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
+
+								<!-- gastos de operacion -->
 								<td><%=number_to_currency @y = cost.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
+
+								<!-- gastos de mantenimiento -->
 								<td><%=number_to_currency @w= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos de mantenimiento'}.map(&:cantidad).sum%></td>
+
+								<!-- gastos fijos -->
 								<td><%=number_to_currency @o= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos fijos'}.map(&:cantidad).sum%></td>
+
+								<!-- nómina -->
 								<td><%=number_to_currency @p= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Nómina'}.map(&:cantidad).sum%></td>
+
+								<!-- gastos varios -->
 								<td><%=number_to_currency @q= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos varios'}.map(&:cantidad).sum%></td>
+
+								<!-- internet -->
 								<td><%=number_to_currency @r= cost.select{|c| c.is_a?(Receipt) && c.categoria == 'Internet / Mkt'}.map(&:cantidad).sum%></td>
-								<td><%= number_to_currency @b - @y - @w %></td>
-								<td><%= number_to_currency @b - @y - @w - @o - @p - @q - @r %></td>
+
+								<!-- utilidad operativa -->
+								<td><%= number_to_currency @utilidad_op= @b - @qo - @y - @w %></td>
+
+								<!-- utilidad o pérdida -->
+								<td><%= number_to_currency @ut_o_per = @utilidad_op - @o - @p - @q - @r %></td>
+
+								<!-- Ocupación -->
 								<td><%= number_to_percentage @po= cost.select{|c| c.is_a?(Service)}.map(&:days).sum / @x * 100%></td>
+
+								<!-- autobús -->
 								<td><%= bus.numero %></td>
 							</tr>
 						<% end %>
@@ -121,25 +154,57 @@
 
 
 <tr>
+								<!-- autobús -->
 								<td>Total</td>
+
+								<!-- litros diesel -->
 								<td><%= @f= costs.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
 								
+								<!-- diesel en pesos -->
 								<td> <%= number_to_currency @qor= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @f%></td> 
+								
+								<!-- km recorridos -->
+								<td><%= @ger= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
 
-								<td><%= @g= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
-								<td><%= "#{(@g.to_f / @f.to_f).round(2)}" %></td>
+								<!-- factor -->
+								<td><%= "#{(@ger.to_f / @f.to_f).round(2)}" %></td>
+
+								<!-- ingreso total -->
 								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
+
+								<!-- días del mes -->
 								<% @xo = month.to_date.end_of_month.day %>
-								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
+
+								<!-- ingreso entre días del mes -->
+								<td><%=number_to_currency @goz= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum / @x%></td>
+
+								<!-- gastos de operación -->
 								<td><%=number_to_currency @h = costs.select{|c| c.is_a?(Service)}.map(&:suma).sum%></td>
+
+								<!-- gastos de mantenimiento -->
 								<td><%=number_to_currency @i= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos de mantenimiento'}.map(&:cantidad).sum%></td>
+
+								<!-- gastos fijos -->
 								<td><%=number_to_currency @j= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos fijos'}.map(&:cantidad).sum%></td>
+
+								<!-- nomina -->
 								<td><%=number_to_currency @k= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Nómina'}.map(&:cantidad).sum%></td>
+
+								<!-- gastos varios -->
 								<td><%=number_to_currency @l= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Gastos varios'}.map(&:cantidad).sum%></td>
+
+								<!-- internet y mkt -->
 								<td><%=number_to_currency @m= costs.select{|c| c.is_a?(Receipt) && c.categoria == 'Internet / Mkt'}.map(&:cantidad).sum%></td>
-								<td><%= number_to_currency @g - @h - @i %></td>
-								<td><%= number_to_currency @g - @h - @i - @j - @k - @l - @m %></td>
+
+								<!-- utilidad operativa -->
+								<td><%= number_to_currency @out_total = @g - @qor - @h - @i %></td>
+
+								<!-- utilidad o pérdida -->
+								<td><%= number_to_currency @utper = @out_total - @j - @k - @l - @m %></td>
+
+								<!-- ocupación total -->
 								<td><%= number_to_percentage @por= (costs.select{|c| c.is_a?(Service)}.map(&:days).sum / costs.group_by(&:bus).size) / @xo * 100  %></td>
+								<!-- autobús -->
 								<td>Total</td>
 							</tr>
 					</tbody>

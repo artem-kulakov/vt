@@ -78,7 +78,7 @@
                             <!--  -->
 
                             <li><a href="<%= services_path %>" class="<%= 'active' if current_page?(services_path) %>"><i class="lnr lnr-paperclip"></i> <span>Servicios</span></a></li>
-                            <li>
+                        
                                 <!--  -->
                                 
                             <li>
@@ -116,17 +116,6 @@
                                 <!--  -->
 
                                 <li>
-                                    <a href="#subPages07" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>"><i class="lnr lnr-bus"></i> <span>Autobuses</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                                    <div id="subPages07" class="<%= 'collapse' unless current_page?(buses_path) or current_page?(new_bus_path)  %> <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>">
-                                        <ul class="nav">
-                                            <li><a href="<%= new_bus_path %>" class="<%= 'active' if current_page?(new_bus_path) %>">Nuevo Autobús</a></li>
-                                            <li><a href="<%= buses_path %>" class="<%= 'active' if current_page?(buses_path) %>">Todos los autobuses</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <!--  -->
-
-                                <li>
                                     <a href="#subPages08" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>"><i class="lnr lnr-cog"></i> <span>Operadores</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                     <div id="subPages08" class="<%= 'collapse' unless current_page?(operators_path) or current_page?(new_operator_path)  %> <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>">
                                         <ul class="nav">
@@ -137,22 +126,33 @@
                                 </li>
                                 <!--  -->
 
+                                <li>
+                                    <a href="#subPages07" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>"><i class="lnr lnr-bus"></i> <span>Autobuses</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                    <div id="subPages07" class="<%= 'collapse' unless current_page?(buses_path) or current_page?(new_bus_path)  %> <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>">
+                                        <ul class="nav">
+                                            <li><a href="<%= new_bus_path %>" class="<%= 'active' if current_page?(new_bus_path) %>">Nuevo Autobús</a></li>
+                                            <li><a href="<%= buses_path %>" class="<%= 'active' if current_page?(buses_path) %>">Todos los autobuses</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <!--  -->
+
+                                
+
 
                                 <!--  -->
 
                                 <li><a href="<%= users_path %>" class="<%= 'active' if current_page?(users_path) %>"><i class="lnr lnr-user"></i> <span>Usuarios</span></a></li>
-                                <li>
+                                
 
                                     <li><a href="<%= gas_path %>" class="<%= 'active' if current_page?(gas_path) %>"><i class="lnr lnr-drop"></i> <span>Diesel</span></a></li>
-                                    <li>
+                                    
 
                                         <li><a href="<%= records_path %>" class="<%= 'active' if current_page?(records_path) %>"><i class="lnr lnr-layers"></i> <span>Histórico</span></a></li>
-                                        <li>
-                                            <li><a href="<%= registro_records_path %>" class="<%= 'active' if current_page?(registro_records_path) %>"><i class="lnr lnr-database"></i> <span>Registros</span></a></li>
-                                            <li>
+                                            
 
                                             <li><a href="<%= reporte_path %>" class="<%= 'active' if current_page?(reporte_path) %>"><i class="lnr lnr-pie-chart"></i> <span>Reporte</span></a></li>
-                                            <li>
+                                            
 
                                             </ul>
                                         </nav>
