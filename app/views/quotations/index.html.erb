@@ -68,8 +68,8 @@
         <td><%= quotation.email %></td>
         <td><%= quotation.origen %></td>
         <td><%= quotation.num_dias %></td>
-        <td><%= quotation.fecha_inicio.strftime(" %b-%d-%Y") %></td>
-        <td><%= quotation.fecha_fin.strftime(" %b-%d-%Y") %></td>
+        <td><%= quotation.try(:fecha_inicio).strftime(" %b-%d-%Y") %></td>
+        <td><%= quotation.try(:fecha_fin).strftime(" %b-%d-%Y") %></td>
         <td><%= quotation.pasajeros %></td>
         <td><%= quotation.user.name %></td>
         <td><%= link_to 'Ver más', quotation %></td>
