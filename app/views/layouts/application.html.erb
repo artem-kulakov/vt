@@ -66,7 +66,7 @@
                             </li>
                             <!--  -->
                             <li>
-                                <a href="#subPages01" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path) %>"><i class="lnr lnr-location"></i> <span>Registros</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                <a href="#subPages01" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path) %>"><i class="lnr lnr-location"></i> <span>Órdenes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                 <div id="subPages01" class="<%= 'collapse' unless current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path)  %> <%= 'active' if current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path) %>">
                                     <ul class="nav">
                                         <li><a href="<%= new_record_path %>" class="<%= 'active' if current_page?(new_record_path) %>">Nuevo Bloqueo</a></li>
@@ -77,7 +77,7 @@
                             </li>
                             <!--  -->
 
-                            <li><a href="<%= services_path %>" class="<%= 'active' if current_page?(services_path) %>"><i class="lnr lnr-paperclip"></i> <span>Servicios</span></a></li>
+                            <li><a href="<%= services_path %>" class="<%= 'active' if current_page?(services_path) %>"><i class="lnr lnr-paperclip"></i> <span>Gastos Operadores</span></a></li>
                         
                                 <!--  -->
                                 
