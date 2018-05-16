@@ -105,7 +105,7 @@
         <hr>
       </div>
       <div class="panel-body">
-        <%= line_chart Service.all.group_by_month(:fecha, last: 12, current: false).sum('precio_unidad'),
+        <%= line_chart Record.all.group_by_month(:start_time, last: 12, current: false).sum('precio_final'),
     title: 'Gastos Mensuales',
     colors: ['#F26D6B'],
     library: {
