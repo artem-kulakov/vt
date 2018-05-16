@@ -29,7 +29,7 @@
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
-                    <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+                    <button type="button" class="btn-toggle-fullwidth"><i class="material-icons">arrow_back</i></i></button>
                 </div>
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
@@ -52,11 +52,11 @@
             <div class="sidebar-scroll">
                 <nav>
                     <ul class="nav">
-                        <li><a href="<%= root_path %>" class="<%= 'active' if current_page?(root_path) %>"><i class="lnr lnr-home"></i> <span>Inicio</span></a></li>
+                        <li><a href="<%= root_path %>" class="<%= 'active' if current_page?(root_path) %>"><i class="material-icons">dashboard</i> <span>Inicio</span></a></li>
                         <li>
-                            <li><a href="<%= pizarron_records_path %>" class="<%= 'active' if current_page?(pizarron_records_path) %>"><i class="lnr lnr-layers"></i> <span>Pizarrón</span></a></li>
+                            <li><a href="<%= pizarron_records_path %>" class="<%= 'active' if current_page?(pizarron_records_path) %>"><i class="material-icons">view_module</i> <span>Pizarrón</span></a></li>
                             <li>
-                                <a href="#subPages" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(quotations_path) or current_page?(new_quotation_path) %>"><i class="lnr lnr-file-empty"></i> <span>Cotización</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                <a href="#subPages" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(quotations_path) or current_page?(new_quotation_path) %>"><i class="material-icons">content_paste</i> <span>Cotización</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                 <div id="subPages" class="<%= 'collapse' unless current_page?(quotations_path) or current_page?(new_quotation_path)  %> <%= 'active' if current_page?(quotations_path) or current_page?(new_quotation_path) %>">
                                     <ul class="nav">
                                         <li><a href="<%= new_quotation_path %>" class="<%= 'active' if current_page?(new_quotation_path) %>">Nueva Cotización</a></li>
@@ -66,7 +66,7 @@
                             </li>
                             <!--  -->
                             <li>
-                                <a href="#subPages01" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path) %>"><i class="lnr lnr-location"></i> <span>Órdenes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                <a href="#subPages01" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path) %>"><i class="material-icons">library_books</i> <span>Órdenes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                 <div id="subPages01" class="<%= 'collapse' unless current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path)  %> <%= 'active' if current_page?(operaciones_records_path) or current_page?(new_record_path) or current_page?(cobranza_records_path) %>">
                                     <ul class="nav">
                                         <li><a href="<%= new_record_path %>" class="<%= 'active' if current_page?(new_record_path) %>">Nuevo Bloqueo</a></li>
@@ -77,12 +77,12 @@
                             </li>
                             <!--  -->
 
-                            <li><a href="<%= services_path %>" class="<%= 'active' if current_page?(services_path) %>"><i class="lnr lnr-paperclip"></i> <span>Gastos Operadores</span></a></li>
+                            <li><a href="<%= services_path %>" class="<%= 'active' if current_page?(services_path) %>"><i class="material-icons">build</i> <span>Gastos Operadores</span></a></li>
                         
                                 <!--  -->
                                 
                             <li>
-                                <a href="#subPages02" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(vouchers_path) or current_page?(new_voucher_path) %>"><i class="lnr lnr-envelope"></i> <span>Comprobantes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                <a href="#subPages02" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(vouchers_path) or current_page?(new_voucher_path) %>"><i class="material-icons">dns</i> <span>Comprobantes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                 <div id="subPages02" class="<%= 'collapse' unless current_page?(vouchers_path) or current_page?(new_voucher_path)  %> <%= 'active' if current_page?(vouchers_path) or current_page?(new_voucher_path) %>">
                                     <ul class="nav">
                                         <li><a href="<%= new_voucher_path %>" class="<%= 'active' if current_page?(new_voucher_path) %>">Nuevo Comprobante</a></li>
@@ -94,7 +94,7 @@
 
 
                                 <li>
-                                    <a href="#subPages05" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(expenses_path) or current_page?(new_expense_path) %>"><i class="lnr lnr-tag"></i> <span>Gastos</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                    <a href="#subPages05" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(expenses_path) or current_page?(new_expense_path) %>"><i class="material-icons">assignment</i> <span>Gastos</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                     <div id="subPages05" class="<%= 'collapse' unless current_page?(expenses_path) or current_page?(new_expense_path)  %> <%= 'active' if current_page?(expenses_path) or current_page?(new_expense_path) %>">
                                         <ul class="nav">
                                             <li><a href="<%= new_expense_path %>" class="<%= 'active' if current_page?(new_expense_path) %>">Nuevo Gasto</a></li>
@@ -105,7 +105,7 @@
                                 <!--  -->
 
                                 <li>
-                                    <a href="#subPages06" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(clients_path) or current_page?(new_client_path) %>"><i class="lnr lnr-users"></i> <span>Clientes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                    <a href="#subPages06" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(clients_path) or current_page?(new_client_path) %>"><i class="material-icons">group</i> <span>Clientes</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                     <div id="subPages06" class="<%= 'collapse' unless current_page?(clients_path) or current_page?(new_client_path)  %> <%= 'active' if current_page?(clients_path) or current_page?(new_client_path) %>">
                                         <ul class="nav">
                                             <li><a href="<%= new_client_path %>" class="<%= 'active' if current_page?(new_client_path) %>">Nuevo Cliente</a></li>
@@ -116,7 +116,7 @@
                                 <!--  -->
 
                                 <li>
-                                    <a href="#subPages08" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>"><i class="lnr lnr-cog"></i> <span>Operadores</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                    <a href="#subPages08" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>"><i class="material-icons">face</i> <span>Operadores</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                     <div id="subPages08" class="<%= 'collapse' unless current_page?(operators_path) or current_page?(new_operator_path)  %> <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>">
                                         <ul class="nav">
                                             <li><a href="<%= new_operator_path %>" class="<%= 'active' if current_page?(new_operator_path) %>">Nuevo Operador</a></li>
@@ -127,7 +127,7 @@
                                 <!--  -->
 
                                 <li>
-                                    <a href="#subPages07" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>"><i class="lnr lnr-bus"></i> <span>Autobuses</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                    <a href="#subPages07" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>"><i class="material-icons">directions_bus</i> <span>Autobuses</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                     <div id="subPages07" class="<%= 'collapse' unless current_page?(buses_path) or current_page?(new_bus_path)  %> <%= 'active' if current_page?(buses_path) or current_page?(new_bus_path) %>">
                                         <ul class="nav">
                                             <li><a href="<%= new_bus_path %>" class="<%= 'active' if current_page?(new_bus_path) %>">Nuevo Autobús</a></li>
@@ -142,16 +142,16 @@
 
                                 <!--  -->
 
-                                <li><a href="<%= users_path %>" class="<%= 'active' if current_page?(users_path) %>"><i class="lnr lnr-user"></i> <span>Usuarios</span></a></li>
+                                <li><a href="<%= users_path %>" class="<%= 'active' if current_page?(users_path) %>"><i class="material-icons">account_circle</i> <span>Usuarios</span></a></li>
                                 
 
-                                    <li><a href="<%= gas_path %>" class="<%= 'active' if current_page?(gas_path) %>"><i class="lnr lnr-drop"></i> <span>Diesel</span></a></li>
+                                    <li><a href="<%= gas_path %>" class="<%= 'active' if current_page?(gas_path) %>"><i class="material-icons">waves</i> <span>Diesel</span></a></li>
                                     
 
-                                        <li><a href="<%= records_path %>" class="<%= 'active' if current_page?(records_path) %>"><i class="lnr lnr-layers"></i> <span>Histórico</span></a></li>
+                                        <li><a href="<%= records_path %>" class="<%= 'active' if current_page?(records_path) %>"><i class="material-icons">hourglass_empty</i> <span>Histórico</span></a></li>
                                             
 
-                                            <li><a href="<%= reporte_path %>" class="<%= 'active' if current_page?(reporte_path) %>"><i class="lnr lnr-pie-chart"></i> <span>Reporte</span></a></li>
+                                            <li><a href="<%= reporte_path %>" class="<%= 'active' if current_page?(reporte_path) %>"><i class="material-icons">description</i> <span>Reporte</span></a></li>
                                             
 
                                             </ul>
