@@ -498,33 +498,7 @@
         </table>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="upper center grey">KILOMETRAJE y DIESEL</h4>
-        </div>
-      </div>
 
-      <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>Km Inicial <a href="#" id="24-<%=i%>"> <span class="grande fa fa-pencil"></span></a></th>
-            <th>Km Final <a href="#" id="25-<%=i%>"> <span class="grande fa fa-pencil"></span></a></th>
-          </thead>
-          <tr>
-            <td><%= best_in_place [@record, service], :km_inicio, :activator => "#24-#{i}"%></td>
-            <td><%= best_in_place [@record, service], :km_fin, :activator => "#25-#{i}"%></td>
-          </tr>
-
-          <thead>
-            <th>Litros Diesel <a href="#" id="26-<%=i%>"> <span class="grande fa fa-pencil"></span></a></th>
-          </thead>
-          <tr>
-            <td>
-              <%= best_in_place [@record, service], :litros, :activator => "#26-#{i}"%>
-            </td>
-          </tr>
-        </table>
-      </div>
 
       <div class="row">
         <%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-block" %> <br><br>

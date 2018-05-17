@@ -9,9 +9,13 @@
       <div class="panel-body">
 <%= search_form_for @q do |f| %>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-6">
 			<label>Operador:</label>
 			<%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'} %>
+		</div>
+		<div class="col-md-6">
+			<label>Autobús:</label>
+			<%= f.select :bus_id_eq, options_from_collection_for_select(Bus.all, "id", "numero", @q.bus_id_eq), {:prompt => 'Elige autobús'} %>
 		</div>
 	</div>
 
@@ -51,19 +55,27 @@
       </div>
       <div class="panel-body">
  <div class="content table-responsive table-full-width">
-			<table class="table table-striped">
+			<table class="table table-hover table-striped">
 				<thead>
 					<th>ID</th>
+					<th>Autobús</th>
 					<th>Operador</th>
 					<th>Fecha de Servicio</th>
+					<th>Km incial</th>
+					<th>Km Final</th>
+					<th>Factor</th>
 					<th>Gastos</th>
 				</thead>
 				<tbody>
 					<% @services.each do |service| %>
 					<tr>
 						<td><%= service.id%></td>
+						<td><%= service.bus.numero%></td>
 						<td><%= service.operator.nombre %></td>
 						<td><%= service.record.start_time.strftime(" %b-%d-%Y") %> - <%= service.record.end_time.strftime(" %b-%d-%Y") %></td>
+						<td><%= best_in_place service, :km_inicio, :path => record_service_path(service.record, service), :place_holder => "km iniciales" %></td>
+						<td><%= best_in_place service, :km_fin, :path => record_service_path(service.record, service), :place_holder => "km finales" %></td>
+						<td><%= best_in_place service, :factor, :path => record_service_path(service.record, service), :place_holder => "factor" %></td>
 						<td><%= number_to_currency service.sum_gastos %></td> 
 					</tr>
 					<% end %>
@@ -72,8 +84,16 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>            
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -88,7 +108,12 @@
 </div>	
 
 
-		
+<script>
+  $(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+  });
+</script>	
 
 
 <script type="text/javascript">

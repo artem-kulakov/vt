@@ -38,17 +38,21 @@
 								<!-- autobus -->
 								<td><%= bus.numero %></td>
 
+							<% @terminado= cost.select{|c| c.is_a?(Service) && c.factor > 0}.map(&:factor).size %>
+							<% @bobo= cost.select{|c| c.is_a?(Service)}.map(&:factor).sum.to_f / @terminado.to_f%>
+							<% @bo= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%>
+
 								<!-- litros diesel -->
-								<td><%= @a= cost.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
+								<td><%= @a= (@bo / @bobo).round(2)%></td>
 								
 								<!-- total diesel en pesos -->
 								<td><%= number_to_currency @qo= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @a%></td>
 								
 								<!-- km recorridos -->
-								<td><%= @bo= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
+								<td><%=@bo%></td>
 
 								<!-- factor -->
-								<td><%= "#{(@bo.to_f / @a.to_f).round(2)}" %></td>
+								<td><%=@bobo%></td>
 
 								<!-- ingreso total por unidad -->
 								<td><%=number_to_currency @b= cost.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
@@ -157,17 +161,23 @@
 								<!-- autobús -->
 								<td>Total</td>
 
+							<!-- facotir -->
+
+							<% @termina= costs.select{|c| c.is_a?(Service) && c.factor > 0}.map(&:factor).size %>
+							<% @gero= costs.select{|c| c.is_a?(Service)}.map(&:factor).sum.to_f / @termina.to_f%>
+							<%= @ger= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%>
+
 								<!-- litros diesel -->
-								<td><%= @f= costs.select{|c| c.is_a?(Service)}.map(&:litros).sum%></td>
+								<td><%= @f= (@ger / @gero).round(2)%></td>
 								
 								<!-- diesel en pesos -->
 								<td> <%= number_to_currency @qor= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @f%></td> 
 								
 								<!-- km recorridos -->
-								<td><%= @ger= costs.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%></td>
+								<td><%= @ger%></td>
 
 								<!-- factor -->
-								<td><%= "#{(@ger.to_f / @f.to_f).round(2)}" %></td>
+								<td><%= @gero%></td>
 
 								<!-- ingreso total -->
 								<td><%=number_to_currency @g= costs.select{|c| c.is_a?(Service)}.map(&:precio_unidad).sum%></td>
