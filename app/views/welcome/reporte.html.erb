@@ -1,5 +1,5 @@
 <div class="row">
-	<% @costs.group_by(&:month).sort.each do |month, costs| %>
+	<% @costs.group_by(&:month).each do |month, costs| %>
 	<div class="col-md-12">
 		<div class="panel panel-headline">
 
@@ -33,7 +33,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<% costs.group_by(&:bus).each do |bus,cost| %>
+						<% costs.group_by(&:bus).sort.each do |bus,cost| %>
 							<tr>
 								<!-- autobus -->
 								<td><%= bus.numero %></td>
