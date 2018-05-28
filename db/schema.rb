@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517170505) do
+ActiveRecord::Schema.define(version: 20180528030824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,16 @@ ActiveRecord::Schema.define(version: 20180517170505) do
   add_index "records", ["client_id"], name: "index_records_on_client_id", using: :btree
   add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "operator_id"
+    t.string   "categoria"
+    t.integer  "cantidad",    default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "reviews", ["operator_id"], name: "index_reviews_on_operator_id", using: :btree
+
   create_table "routes", force: :cascade do |t|
     t.string   "place"
     t.integer  "record_id"
@@ -285,6 +295,7 @@ ActiveRecord::Schema.define(version: 20180517170505) do
   add_foreign_key "receipts", "expenses"
   add_foreign_key "records", "clients"
   add_foreign_key "records", "users"
+  add_foreign_key "reviews", "operators"
   add_foreign_key "routes", "records"
   add_foreign_key "routes", "users"
   add_foreign_key "services", "buses"

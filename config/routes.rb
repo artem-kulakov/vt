@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :reviews
 get '/reporte' => 'welcome#reporte'
 
   resources :gas

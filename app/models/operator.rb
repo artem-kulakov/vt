@@ -3,4 +3,5 @@ class Operator < ActiveRecord::Base
   has_many :buses
   has_many :services
   has_many :vouchers
+  has_many :reviews
 end

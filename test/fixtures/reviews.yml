@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  operator_id: 
+  categoria: MyString
+  cantidad: 1
+
+two:
+  operator_id: 
+  categoria: MyString
+  cantidad: 1

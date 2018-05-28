@@ -1,0 +1,39 @@
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :operator_id %><br>
+    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true} %>
+  </div>
+  <div class="field">
+    <%= f.label :categoria %><br>
+    <%= f.select :categoria, [["Encuesta de satisfacción"], ["Estado de la unidad"], ["Penalizaciones"]], {:prompt => 'Elige Operación'}, {:required => true}%>
+  </div>
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <div id="star-rating1"></div><br>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+
+<script>
+  $('#star-rating1').raty({
+    path: '/images/raty',
+    socore: 3,
+    scoreName: 'review[cantidad]'
+  });
+</script>

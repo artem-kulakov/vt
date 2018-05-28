@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @review.operator %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @review.categoria %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @review.cantidad %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

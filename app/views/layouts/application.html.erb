@@ -116,11 +116,13 @@
                                 <!--  -->
 
                                 <li>
-                                    <a href="#subPages08" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>"><i class="material-icons">face</i> <span>Operadores</span> <i class="icon-submenu material-icons">keyboard_arrow_left</i></a>
+                                    <a href="#subPages08" data-toggle="collapse" class="collapsed <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) or current_page?(new_review_path) %>"><i class="material-icons">face</i> <span>Operadores</span> <i class="icon-submenu material-icons">keyboard_arrow_left</i></a>
                                     <div id="subPages08" class="<%= 'collapse' unless current_page?(operators_path) or current_page?(new_operator_path)  %> <%= 'active' if current_page?(operators_path) or current_page?(new_operator_path) %>">
                                         <ul class="nav">
                                             <li><a href="<%= new_operator_path %>" class="<%= 'active' if current_page?(new_operator_path) %>">Nuevo Operador</a></li>
                                             <li><a href="<%= operators_path %>" class="<%= 'active' if current_page?(operators_path) %>">Todos los operadores</a></li>
+                                            <li><a href="<%= new_review_path %>" class="<%= 'active' if current_page?(new_review_path) %>">Nueva calificación a operador</a></li>
+                                            <li><a href="<%= reviews_path %>" class="<%= 'active' if current_page?(reviews_path) %>">Todas las calificaciones</a></li>
                                         </ul>
                                     </div>
                                 </li>
