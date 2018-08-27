@@ -73,7 +73,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.25)
-    fullcalendar-rails (3.9.0.0)
+    fullcalendar-rails (3.0.0.0)
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
       momentjs-rails (>= 2.9.0)
@@ -237,7 +237,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   devise
-  fullcalendar-rails
+  fullcalendar-rails (~> 3.0.0)
   geocoder
   groupdate
   highcharts-rails
