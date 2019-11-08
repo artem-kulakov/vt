@@ -36,7 +36,10 @@
         { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
       <% end %>
       ],
-      events: '/records/pizarron.json'
+      events: '/records/pizarron.json',
+      success: function(calevents){
+    $('#calendar').fullCalendar('addEventSource', calevents); 
+}
     });
   
   });
