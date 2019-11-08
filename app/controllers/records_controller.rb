@@ -22,7 +22,7 @@ class RecordsController < ApplicationController
   def pizarron
     @buses = Bus.all.order("created_at asc")
     @records = Record.all
-    @services = Service.all
+    @services = Service.last(1000)
   end
 
   def operaciones
