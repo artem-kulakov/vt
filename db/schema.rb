@@ -269,13 +269,13 @@ ActiveRecord::Schema.define(version: 20180528030824) do
   create_table "vouchers", force: :cascade do |t|
     t.integer  "operator_id"
     t.string   "operacion"
-    t.float    "cantidad"
+    t.float    "cantidad",    default: 0.0
     t.string   "nota"
     t.integer  "mes"
     t.integer  "ano"
     t.date     "fecha"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "bus_id"
   end
 
