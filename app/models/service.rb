@@ -44,7 +44,11 @@ class Service < ActiveRecord::Base
   end
 
 def month
-  self.record.start_time.to_date.strftime('%G-%B')
+  self.record.start_time.to_date.strftime('%B')
+end
+
+def year
+  self.record.start_time.to_date.strftime('%G')
 end
 
 end
