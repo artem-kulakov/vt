@@ -10,6 +10,7 @@ move_down 20
 stroke_horizontal_rule
 move_down 10 
 text "Folio:  00#{service.id}", align: :right
+text "Creado por:  #{service.record.user.name}", align: :right, size: 9
 text "Precio Unitario:    #{service.precio_unidad}", align: :left
 move_down 3
 text "Fecha de Salida:    #{service.record.start_time.strftime(" %b-%d-%Y")}", align: :left
@@ -34,6 +35,7 @@ text "Operador:   #{service.bus.operator.nombre}", align: :left
 
 move_down 20
 text "Hora de Cita:    #{service.record.initial_time}", align: :left
+text "Hora de Regreso:    #{service.record.finish_time}", align: :left
 
 
 move_down 10
@@ -100,6 +102,7 @@ stroke_horizontal_rule
 move_down 20 
 
 text "Folio:  00#{service.id}", align: :right
+text "Creado por:  #{service.record.user.name}", align: :right, size: 9
 move_down 10
 text "Km inicial___________", align: :left
 move_down 5
@@ -480,7 +483,7 @@ move_down 20
 stroke_horizontal_rule
 move_down 20 
 
-text "Fecha: #{service.created_at.strftime(" %d-%b-%Y")}", :align => :right, :style => :italic, size: 10
+text "Fecha: #{service.record.end_time.strftime(" %d-%b-%Y")}", :align => :right, :style => :italic, size: 10
 move_down 10
 text "Cliente:   #{service.record.client.razon_social}", align: :left
 # text "Segmento de Cliente:   #{service.try(:segment)}", align: :left
