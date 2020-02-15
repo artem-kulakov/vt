@@ -8,7 +8,7 @@ class QuotationsController < ApplicationController
     @q = Quotation.ransack(params[:q])
     @quotations = @q.result.uniq
 
-    @quotations = @quotations.order('fecha_inicio ASC').paginate(:page => params[:page], :per_page => 30)
+    @quotations = @quotations.order('fecha_inicio DESC').paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /quotations/1
