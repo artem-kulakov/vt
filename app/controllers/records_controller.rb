@@ -25,7 +25,7 @@ class RecordsController < ApplicationController
     @buses = Bus.all.order("created_at asc")
     @records = Record.all
     @services = Service.all
-    @services = @services.where("created_at > ?", 10.days.ago)
+    @records = @records.where("created_at > ?", 10.days.ago)
   end
 
   def operaciones
