@@ -10,7 +10,7 @@ class QuotationsController < ApplicationController
 
     @quotations = @quotations.where("created_at < ?", 1.year.ago)
 
-    @quotations = @quotations.order('fecha_inicio ASC').paginate(:page => params[:page], :per_page => 30)
+    @quotations = @quotations.order('created_at ASC').paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /quotations/1
