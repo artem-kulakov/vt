@@ -24,7 +24,8 @@ class RecordsController < ApplicationController
   def pizarron
     @buses = Bus.all.order("created_at asc")
     @records = Record.all
-    @services = Service.all.where(created_at: 1.year.ago.beginning_of_year..Time.now.beginning_of_year)
+    @services = Service.all
+    @services = @services.where("created_at > ?", 10.days.ago)
   end
 
   def operaciones
