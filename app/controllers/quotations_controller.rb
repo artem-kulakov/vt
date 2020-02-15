@@ -8,9 +8,8 @@ class QuotationsController < ApplicationController
     @q = Quotation.ransack(params[:q])
     @quotations = @q.result.uniq
 
-    @quotations = @quotations.where("created_at < ?", 1.year.ago)
-
     @quotations = @quotations.order('fecha_inicio DESC').paginate(:page => params[:page], :per_page => 30)
+    @quotations = @quotations.where("created_at < ?", 1.year.ago)
   end
 
   # GET /quotations/1
