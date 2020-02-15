@@ -8,6 +8,8 @@ class RecordsController < ApplicationController
     @q = Record.ransack(params[:q])
     @records = @q.result.includes(:services, :buses, :client).uniq
 
+    @records = @records.where("created_at < ?", 1.year.ago)
+
     @records = @records.order('id ASC').paginate(:page => params[:page], :per_page => 30)
 
     @buses = Bus.all
@@ -22,15 +24,18 @@ class RecordsController < ApplicationController
   def pizarron
     @buses = Bus.all.order("created_at asc")
     @records = Record.all
+    @records = @records.where("created_at < ?", 1.year.ago)
     @services = Service.last(600)
   end
 
   def operaciones
     @records = Record.where("start_time >= ?", Time.zone.now.beginning_of_day).order('id ASC').paginate(:page => params[:page], :per_page => 30)
+    @records = @records.where("created_at < ?", 1.year.ago)
   end
 
   def registro
     @services = Service.all.order("created_at asc").paginate(:page => params[:page], :per_page => 30)
+    @services = @services.where("created_at < ?", 1.year.ago)
   end
 
   def reportes

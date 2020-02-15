@@ -9,6 +9,7 @@ class ServicesController < ApplicationController
     @q = Service.ransack(params[:q])
     @services = @q.result.uniq
     @services = @services.order('id ASC')
+    @services = @services.where("created_at < ?", 1.year.ago)
   end
 
   # GET /services/1
