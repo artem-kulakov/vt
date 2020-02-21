@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   belongs_to :user
-  has_many :records
+  has_many :records, dependent: :destroy
 
   def sum_clients
     self.records.map(&:sum_payments).sum.blank? == 0 ? 0 : self.records.map(&:sum_payments).sum
