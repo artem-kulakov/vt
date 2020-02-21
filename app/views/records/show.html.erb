@@ -514,6 +514,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= link_to 'Ver Reporte', record_path(@record, :format => 'pdf'), class: "btn btn-primary btn-block", :target => "_blank" %>
+    <%= link_to 'Create PDF document', record_path(@record, :format => :pdf) %>
   </div>
 </div>
 <% end %>

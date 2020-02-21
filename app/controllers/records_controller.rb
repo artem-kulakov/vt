@@ -50,6 +50,14 @@ class RecordsController < ApplicationController
     
     @routes = @record.routes
     @route = Route.new
+
+    respond_to do |format|
+     format.html
+     format.pdf do
+       render pdf: "foo",
+       template: "records/bar.html.erb"
+     end
+    end
   end
 
   # GET /records/new
