@@ -21,9 +21,8 @@ class RecordsController < ApplicationController
 
   def pizarron
     @buses = Bus.all.order("created_at asc")
-    @records = Record.all
     @services = Service.all
-    @records = @records.where("created_at > ?", 6.months.ago)
+    @records = Record.where("((start_time > :start AND start_time < :end) OR (end_time > :start AND end_time < :end)) OR (start_time < :start AND end_time > :end)", {start: Time.now.beginning_of_month, end: Time.now.end_of_month})
   end
 
   def operaciones
