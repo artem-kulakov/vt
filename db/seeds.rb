@@ -101,8 +101,8 @@
 # Record.delete_all
 # Service.delete_all
 
-# Array(2020).each do |year|
-#   Array(1..3).each do |month|
+# Array(2019).each do |year|
+#   Array(10..12).each do |month|
 #     Array(1..28).each do |day|
 #       Bus.all.each do |bus|
 #         record = Record.create(
@@ -155,24 +155,43 @@
 
 ### Seed clients
 
-Client.delete_all
+# Client.delete_all
 
-1000.times do
-  Client.create(
-    user_id: 1,
-    alias: "Mike",
-    razon_social: "Foo",
-    rfc: "foo",
-    calle_y_numero: "White Street",
-    colonia: "Mexico",
-    municipio: "Mexico",
-    estado: "Mexico",
-    cp: "bar",
-    pais: "Mexico",
-    telefono: "123456",
-    email: "foo@foo.com",
-    nombre_cobro: "foo-bar-baz",
-    telefono_cobro: "473829",
-    email_cobro: "foo-charge@foo.com"
-  )
+# id = 1767
+
+# 1764.times do
+#   Client.create(
+#     user_id: 1,
+#     alias: "Mike",
+#     razon_social: id,
+#     rfc: "foo",
+#     calle_y_numero: "White Street",
+#     colonia: "Mexico",
+#     municipio: "Mexico",
+#     estado: "Mexico",
+#     cp: "bar",
+#     pais: "Mexico",
+#     telefono: "123456",
+#     email: "foo@foo.com",
+#     nombre_cobro: "foo-bar-baz",
+#     telefono_cobro: "473829",
+#     email_cobro: "foo-charge@foo.com"
+#   )
+
+#   id += 1
+# end
+
+
+
+Record.all.each do |record|
+  # if record.client_id == nil
+    # record.update(client_id: record.id-12822+3)
+  # end
+
+  record.update(created_at: record.start_time)
 end
+
+
+# Client.all.each do |client|
+#   client.update(razon_social: client.id)
+# end

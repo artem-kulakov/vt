@@ -14,9 +14,16 @@ class RecordsController < ApplicationController
   end
 
   def cobranza
+    date = DateTime.new(2020, 6, 30)
+
     @q = Client.ransack(params[:q])
     @clients = @q.result.uniq
-    @clients = Client.joins(:records).where({ "records.status_admin" => false }).uniq.paginate(:page => params[:page], :per_page => 30)
+    @clients = Client
+      .joins(:records)
+      .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
+      .where({ "records.status_admin" => false })
+      .uniq
+      .paginate(:page => params[:page], :per_page => 30)
   end
 
   def pizarron
