@@ -14,13 +14,13 @@ class RecordsController < ApplicationController
   end
 
   def cobranza
-    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq
+    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
     @q = Client.ransack(params[:q])
-    @clients = @q.result.uniq
+    @clients = @q.result.distinct
     @clients = Client
       .joins(:records)
       .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
