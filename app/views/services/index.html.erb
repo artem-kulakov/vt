@@ -114,8 +114,15 @@
       </div>
     </div>
   </div>
-</div>	
+</div>
 
+<div class="row">
+  <div class="center">
+    <% unless @services.blank? %>
+      <%= will_paginate @services %>
+    <% end %>
+  </div>
+</div>
 
 <script>
   $(document).ready(function() {

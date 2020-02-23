@@ -15,7 +15,7 @@ class ServicesController < ApplicationController
       .where("created_at > :start AND created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
       .ransack(params[:q])
     @services = @q.result.distinct
-    @services = @services.order('id ASC')
+    @services = @services.order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /services/1
