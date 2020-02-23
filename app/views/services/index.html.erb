@@ -73,9 +73,9 @@
 						<td><%= service.bus.numero%></td>
 						<td><%= service.operator.nombre %></td>
 						<td><%= service.record.start_time.strftime(" %b-%d-%Y") %> - <%= service.record.end_time.strftime(" %b-%d-%Y") %></td>
-						<td><%= best_in_place service, :km_inicio, :path => record_service_path(service.record, service), :place_holder => "km iniciales" %></td>
-						<td><%= best_in_place service, :km_fin, :path => record_service_path(service.record, service), :place_holder => "km finales" %></td>
-						<td><%= best_in_place service, :factor, :path => record_service_path(service.record, service), :place_holder => "factor" %></td>
+						<td><%= best_in_place service, :km_inicio, :url => record_service_path(service.record, service), :place_holder => "km iniciales" %></td>
+						<td><%= best_in_place service, :km_fin, :url => record_service_path(service.record, service), :place_holder => "km finales" %></td>
+						<td><%= best_in_place service, :factor, :url => record_service_path(service.record, service), :place_holder => "factor" %></td>
 						<td><%= number_to_currency service.sum_gastos %></td> 
 					</tr>
 					<% end %>

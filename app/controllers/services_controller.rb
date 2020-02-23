@@ -7,9 +7,8 @@ class ServicesController < ApplicationController
   # GET /services.json
   def index
     @q = Service.ransack(params[:q])
-    @services = @q.result.uniq
+    @services = @q.result.distinct
     @services = @services.order('id ASC')
-    @services = @services.where("created_at > ?", 1.year.ago)
   end
 
   # GET /services/1
