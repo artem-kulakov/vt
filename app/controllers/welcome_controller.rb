@@ -15,6 +15,6 @@ class WelcomeController < ApplicationController
   	@receipts = Receipt.all
   	@gas = Ga.all
   	@costs = @services + @receipts
-    @costs = @costs.paginate(:page => params[:page], :per_page => 12)
+    @costs = @costs.paginate(:page => params[:page], :per_page => 20)
   end
 end
