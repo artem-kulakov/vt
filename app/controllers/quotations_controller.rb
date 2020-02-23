@@ -5,10 +5,9 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
-    @q = Quotation.ransack(params[:q])
+    @q = Quotation.where("created_at > :start AND created_at < :end", {start: Time.now.beginning_of_year, end: Time.now.end_of_year}).ransack(params[:q])
     @quotations = @q.result.uniq
     @quotations = @quotations.reverse.paginate(:page => params[:page], :per_page => 30)
-    # @quotations = @quotations.where("created_at > ?", 1.year.ago)
   end
 
   # GET /quotations/1
