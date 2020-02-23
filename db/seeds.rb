@@ -131,22 +131,48 @@
 
 ### Seed quotations
 
-Quotation.delete_all
+# Quotation.delete_all
 
-Array(2018..2020).each do |year|
-  Array(1..12).each do |month|
-    Array(1..28).each do |day|
-      Quotation.create(
-        nombre: "Artem Kulakov",
-        telefono: "12345",
-        email: "a@a.com",
-        origen: "Facebook",
-        num_dias: 3,
-        fecha_inicio: DateTime.new(year, month, day),
-        fecha_fin: DateTime.new(year, month, day),
-        user_id: 1,
-        created_at: DateTime.new(year, month, day)
-      )
-    end
-  end
+# Array(2018..2020).each do |year|
+#   Array(1..12).each do |month|
+#     Array(1..28).each do |day|
+#       Quotation.create(
+#         nombre: "Artem Kulakov",
+#         telefono: "12345",
+#         email: "a@a.com",
+#         origen: "Facebook",
+#         num_dias: 3,
+#         fecha_inicio: DateTime.new(year, month, day),
+#         fecha_fin: DateTime.new(year, month, day),
+#         user_id: 1,
+#         created_at: DateTime.new(year, month, day)
+#       )
+#     end
+#   end
+# end
+
+
+
+### Seed clients
+
+Client.delete_all
+
+1000.times do
+  Client.create(
+    user_id: 1,
+    alias: "Mike",
+    razon_social: "Foo",
+    rfc: "foo",
+    calle_y_numero: "White Street",
+    colonia: "Mexico",
+    municipio: "Mexico",
+    estado: "Mexico",
+    cp: "bar",
+    pais: "Mexico",
+    telefono: "123456",
+    email: "foo@foo.com",
+    nombre_cobro: "foo-bar-baz",
+    telefono_cobro: "473829",
+    email_cobro: "foo-charge@foo.com"
+  )
 end
