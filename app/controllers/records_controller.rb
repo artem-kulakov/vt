@@ -14,7 +14,10 @@ class RecordsController < ApplicationController
   end
 
   def cobranza
-    date = DateTime.new(2020, 6, 30)
+    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq
+
+    @year = params[:year] || Date.current.year
+    date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
     @q = Client.ransack(params[:q])
     @clients = @q.result.uniq
