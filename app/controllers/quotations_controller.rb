@@ -7,8 +7,8 @@ class QuotationsController < ApplicationController
   def index
     @q = Quotation.ransack(params[:q])
     @quotations = @q.result.uniq
-    @quotations = @quotations.order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
-    @quotations = @quotations.where("created_at > ?", 1.year.ago)
+    @quotations = @quotations.reverse.paginate(:page => params[:page], :per_page => 30)
+    # @quotations = @quotations.where("created_at > ?", 1.year.ago)
   end
 
   # GET /quotations/1
