@@ -5,11 +5,16 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
+    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @year = params[:year] || Date.current.year
+    date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
+
     @q = Record.ransack(params[:q])
-    @records = @q.result.includes(:services, :buses, :client).uniq
-
-    @records = @records.order('id ASC').paginate(:page => params[:page], :per_page => 30)
-
+    @records = @q.result.includes(:services, :buses, :client).distinct
+    @records = @records
+      .order('id ASC')
+      .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
+      .paginate(:page => params[:page], :per_page => 30)
     @buses = Bus.all
   end
 
