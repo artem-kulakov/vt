@@ -6,7 +6,14 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @q = Service.ransack(params[:q])
+    @years = Service.select("created_at").map{ |i| i.created_at.year }.uniq
+
+    @year = params[:year] || Date.current.year
+    date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
+
+    @q = Service
+      .where("created_at > :start AND created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
+      .ransack(params[:q])
     @services = @q.result.distinct
     @services = @services.order('id ASC')
   end

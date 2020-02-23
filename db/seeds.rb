@@ -183,15 +183,21 @@
 
 
 
-Record.all.each do |record|
+# Record.all.each do |record|
   # if record.client_id == nil
     # record.update(client_id: record.id-12822+3)
   # end
 
-  record.update(created_at: record.start_time)
-end
+#   record.update(created_at: record.start_time)
+# end
 
 
 # Client.all.each do |client|
 #   client.update(razon_social: client.id)
 # end
+
+
+
+Service.all.each do |service|
+  service.update(created_at: service.fecha)
+end
