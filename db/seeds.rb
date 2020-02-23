@@ -95,32 +95,58 @@
 # c03= Ga.create!({:cantidad => 10, :mes => 12, :ano => 2020})
 
 
-Record.delete_all
-Service.delete_all
+
+### Seed records and services
+
+# Record.delete_all
+# Service.delete_all
+
+# Array(2020).each do |year|
+#   Array(1..3).each do |month|
+#     Array(1..28).each do |day|
+#       Bus.all.each do |bus|
+#         record = Record.create(
+#           start_time: DateTime.new(year, month, day),
+#           end_time: DateTime.new(year, month, day),
+#           title: ('a'..'z').to_a.shuffle[0,8].join,
+#           client_id: 1,
+#           user_id: 1,
+#           numero_pasajeros: 5,
+#           numero_de_camiones: 2,
+#           precio: 0,
+#           precio_final: 0,
+#           factura: false,
+#           status_op: "Venta",
+#           status_admin: false,
+#           distancia: 0
+#         )
+
+#         Service.create(bus_id: bus.id, record_id: record.id, user_id: 1, operator_id: 1)
+#       end
+#     end
+#   end
+# end
 
 
-Array(2020).each do |year|
-  Array(1..3).each do |month|
+
+### Seed quotations
+
+Quotation.delete_all
+
+Array(2018..2020).each do |year|
+  Array(1..12).each do |month|
     Array(1..28).each do |day|
-      Bus.all.each do |bus|
-        record = Record.create(
-          start_time: DateTime.new(year, month, day),
-          end_time: DateTime.new(year, month, day),
-          title: ('a'..'z').to_a.shuffle[0,8].join,
-          client_id: 1,
-          user_id: 1,
-          numero_pasajeros: 5,
-          numero_de_camiones: 2,
-          precio: 0,
-          precio_final: 0,
-          factura: false,
-          status_op: "Venta",
-          status_admin: false,
-          distancia: 0
-        )
-
-        Service.create(bus_id: bus.id, record_id: record.id, user_id: 1, operator_id: 1)
-      end
+      Quotation.create(
+        nombre: "Artem Kulakov",
+        telefono: "12345",
+        email: "a@a.com",
+        origen: "Facebook",
+        num_dias: 3,
+        fecha_inicio: DateTime.new(year, month, day),
+        fecha_fin: DateTime.new(year, month, day),
+        user_id: 1,
+        created_at: DateTime.new(year, month, day)
+      )
     end
   end
 end
