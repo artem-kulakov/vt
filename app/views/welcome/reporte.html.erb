@@ -1,8 +1,20 @@
+<span>Ano:&nbsp</span>
 <% @years.reverse.each do |year| %>
   <% if year.to_s == @year.to_s %>
     <span class="mr-5"><%= year %></span>
   <% else %>
     <%= link_to year, reporte_path(year: year), class: "mr-5" %>
+  <% end %>
+<% end %>
+
+<br>
+
+<span>Mes:&nbsp</span>
+<% @months.each do |month| %>
+  <% if month.to_s == @month.to_s %>
+    <span class="mr-5"><%= month %></span>
+  <% else %>
+    <%= link_to month, reporte_path(year: @year, month: month), class: "mr-5" %>
   <% end %>
 <% end %>
 
