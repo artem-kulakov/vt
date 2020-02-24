@@ -198,6 +198,32 @@
 
 
 
-Service.all.each do |service|
-  service.update(created_at: service.fecha)
+# Service.all.each do |service|
+#   service.update(created_at: service.fecha)
+# end
+
+
+Array(2020).each do |year|
+  Array(1..3).each do |month|
+    Array(1..28).each do |day|
+      Bus.all.each do |bus|
+        expense = Expense.create(
+          categoria: 'foo',
+          cantidad: 1.0,
+          nota: 'bar',
+          mes: month,
+          ano: year
+        )
+
+        Receipt.create(
+          categoria: 'foo',
+          cantidad: 1.0,
+          nota: 'bar',
+          fecha: DateTime.new(year, month, day),
+          bus_id: bus.id,
+          expense_id: expense.id
+        )
+      end
+    end
+  end
 end
