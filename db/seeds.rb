@@ -101,27 +101,36 @@
 # Record.delete_all
 # Service.delete_all
 
-# Array(2019).each do |year|
-#   Array(10..12).each do |month|
+# record_id = 12822
+
+# Array(2020).each do |year|
+#   Array(1..3).each do |month|
 #     Array(1..28).each do |day|
 #       Bus.all.each do |bus|
-#         record = Record.create(
-#           start_time: DateTime.new(year, month, day),
-#           end_time: DateTime.new(year, month, day),
-#           title: ('a'..'z').to_a.shuffle[0,8].join,
-#           client_id: 1,
+#         # record = Record.create(
+#         #   start_time: DateTime.new(year, month, day),
+#         #   end_time: DateTime.new(year, month, day),
+#         #   title: ('a'..'z').to_a.shuffle[0,8].join,
+#         #   client_id: 1,
+#         #   user_id: 1,
+#         #   numero_pasajeros: 5,
+#         #   numero_de_camiones: 2,
+#         #   precio: 0,
+#         #   precio_final: 0,
+#         #   factura: false,
+#         #   status_op: "Venta",
+#         #   status_admin: false,
+#         #   distancia: 0
+#         # )
+
+#         Service.create(
+#           bus_id: bus.id,
+#           record_id: record_id,
 #           user_id: 1,
-#           numero_pasajeros: 5,
-#           numero_de_camiones: 2,
-#           precio: 0,
-#           precio_final: 0,
-#           factura: false,
-#           status_op: "Venta",
-#           status_admin: false,
-#           distancia: 0
+#           operator_id: 1
 #         )
 
-#         Service.create(bus_id: bus.id, record_id: record.id, user_id: 1, operator_id: 1)
+#         record_id += 1
 #       end
 #     end
 #   end
@@ -203,6 +212,10 @@
 # end
 
 
+
+Receipt.delete_all
+Expense.delete_all
+
 Array(2020).each do |year|
   Array(1..3).each do |month|
     Array(1..28).each do |day|
@@ -212,7 +225,8 @@ Array(2020).each do |year|
           cantidad: 1.0,
           nota: 'bar',
           mes: month,
-          ano: year
+          ano: year,
+          created_at: DateTime.new(year, month, day)
         )
 
         Receipt.create(
@@ -221,7 +235,8 @@ Array(2020).each do |year|
           nota: 'bar',
           fecha: DateTime.new(year, month, day),
           bus_id: bus.id,
-          expense_id: expense.id
+          expense_id: expense.id,
+          created_at: DateTime.new(year, month, day)
         )
       end
     end

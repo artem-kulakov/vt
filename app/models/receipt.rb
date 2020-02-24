@@ -24,7 +24,7 @@ before_save :fecha
 	end
 
 def month
-  self.fecha.to_date.strftime('%G-%B')
+  self.fecha.to_date.strftime('%B')
 end
 
   def year
