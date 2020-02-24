@@ -101,7 +101,7 @@
 
         <div class="field">
           <%= f.label :Nuevo_lugar %><br>
-          <%= f.text_field :address %>
+          <%= f.text_field :address, id: 'searchTextField' %>
         </div>
 
 
@@ -325,18 +325,33 @@
 
 
 
-    </script>
+</script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&callback=initMap"
-    async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&callback=initMap&libraries=places"></script>
 
 
-    <script>
-      $(document).ready(function() {
-        /* Activating Best In Place */
-        jQuery(".best_in_place").best_in_place();
-      });
-    </script>
+
+<script>
+  function initialize() {
+    var options = {
+      types: ['(cities)'],
+    };
+
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+
+<script>
+  $(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+  });
+</script>
 
 <!-- <script>
   $('.best_in_place').bind("ajax:success", function(){
