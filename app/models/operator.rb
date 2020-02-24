@@ -1,7 +1,7 @@
 class Operator < ActiveRecord::Base
   belongs_to :user
-  has_many :buses
-  has_many :services
-  has_many :vouchers
-  has_many :reviews
+  has_many :buses, dependent: :destroy
+  has_many :services, dependent: :destroy
+  has_many :vouchers, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end

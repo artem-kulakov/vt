@@ -51,6 +51,15 @@
     <div class="panel panel-headline">
       <div class="panel-heading">
         <h3>Servicios</h3>
+
+        <% @years.reverse.each do |year| %>
+          <% if year.to_s == @year.to_s %>
+            <span class="mr-5"><%= year %></span>
+          <% else %>
+            <%= link_to year, services_path(year: year), class: "mr-5" %>
+          <% end %>
+        <% end %>
+
         <hr>
       </div>
       <div class="panel-body">
@@ -73,9 +82,9 @@
 						<td><%= service.bus.numero%></td>
 						<td><%= service.operator.nombre %></td>
 						<td><%= service.record.start_time.strftime(" %b-%d-%Y") %> - <%= service.record.end_time.strftime(" %b-%d-%Y") %></td>
-						<td><%= best_in_place service, :km_inicio, :path => record_service_path(service.record, service), :place_holder => "km iniciales" %></td>
-						<td><%= best_in_place service, :km_fin, :path => record_service_path(service.record, service), :place_holder => "km finales" %></td>
-						<td><%= best_in_place service, :factor, :path => record_service_path(service.record, service), :place_holder => "factor" %></td>
+						<td><%= best_in_place service, :km_inicio, :url => record_service_path(service.record, service), :place_holder => "km iniciales" %></td>
+						<td><%= best_in_place service, :km_fin, :url => record_service_path(service.record, service), :place_holder => "km finales" %></td>
+						<td><%= best_in_place service, :factor, :url => record_service_path(service.record, service), :place_holder => "factor" %></td>
 						<td><%= number_to_currency service.sum_gastos %></td> 
 					</tr>
 					<% end %>
@@ -105,8 +114,15 @@
       </div>
     </div>
   </div>
-</div>	
+</div>
 
+<div class="row">
+  <div class="center">
+    <% unless @services.blank? %>
+      <%= will_paginate @services %>
+    <% end %>
+  </div>
+</div>
 
 <script>
   $(document).ready(function() {

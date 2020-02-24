@@ -19,6 +19,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "main";
+@import '/packages/core/main.min';
+@import '/packages-premium/timeline/main.min';
+@import '/packages-premium/resource-timeline/main.min';
 
 
 $grey: #F3F3F2;

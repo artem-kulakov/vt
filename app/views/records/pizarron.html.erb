@@ -1,8 +1,15 @@
+<script src='/packages/core/main.js'></script>
+<script src='/packages/interaction/main.js'></script>
+<script src='/packages-premium/timeline/main.js'></script>
+<script src='/packages-premium/resource-common/main.js'></script>
+<script src='/packages-premium/resource-timeline/main.js'></script>
+
 <div class="row">
   <div class="col-md-12">
 <div class="panel panel-headline">
   <div class="panel-body">
-<div id="calendar"></div>
+<!-- <div id="calendar"></div> -->
+<div id='calendar'></div>
 </div>
 </div>
 </div>
@@ -14,31 +21,51 @@
 
 <script>
 
-  $(function() { // document ready
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
 
-    $('#calendar').fullCalendar({
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'resourceTimeline' ],
+      now: Date.now(),
+      editable: true,
       aspectRatio: 1.8,
       scrollTime: '00:00',
       header: {
         left: 'today prev,next',
         center: 'title',
-        right: 'timelineMonth,timelineYear'
+        right: 'resourceTimelineMonth,resourceTimelineYear'
       },
-      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-      monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-      dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-      dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-      defaultView: 'timelineMonth',
+      buttonText: {
+        today:    'hoy',
+        month:    'mes',
+        year:     'año'
+      },
+      defaultView: 'resourceTimelineMonth',
+      views: {
+        resourceTimelineDay: {
+          buttonText: ':15 slots',
+          slotDuration: '00:15'
+        },
+        resourceTimelineTenDay: {
+          type: 'resourceTimeline',
+          duration: { days: 10 },
+          buttonText: '10 days'
+        }
+      },
+      navLinks: true,
       resourceAreaWidth: '10%',
       resourceLabelText: 'Autobuses',
       resources: [
-      <% @buses.each do |bus| %>
-        { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
-      <% end %>
+        <% @buses.each do |bus| %>
+          { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
+        <% end %>
       ],
       events: '/records/pizarron.json'
     });
-  
+
+    calendar.setOption('locale', 'es');
+
+    calendar.render();
   });
 
 </script>

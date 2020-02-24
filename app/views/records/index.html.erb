@@ -58,6 +58,15 @@
     <div class="panel panel-headline">
       <div class="panel-heading">
         <h3>Registro Histórico</h3>
+
+        <% @years.reverse.each do |year| %>
+          <% if year.to_s == @year.to_s %>
+            <span class="mr-5"><%= year %></span>
+          <% else %>
+            <%= link_to year, records_path(year: year), class: "mr-5" %>
+          <% end %>
+        <% end %>
+
         <hr>
       </div>
       <div class="panel-body">

@@ -5,10 +5,14 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
-    @q = Quotation.ransack(params[:q])
-    @quotations = @q.result.uniq
+    @years = Quotation.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+
+    @year = params[:year] || Date.current.year
+    date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
+
+    @q = Quotation.where("created_at > :start AND created_at < :end", {start: date.beginning_of_year, end: date.end_of_year}).ransack(params[:q])
+    @quotations = @q.result.distinct
     @quotations = @quotations.order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
-    @quotations = @quotations.where("created_at > ?", 1.year.ago)
   end
 
   # GET /quotations/1
