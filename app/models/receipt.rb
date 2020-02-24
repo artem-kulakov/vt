@@ -27,4 +27,9 @@ def month
   self.fecha.to_date.strftime('%G-%B')
 end
 
+  def year
+    self.fecha.to_date.strftime('%G')
+  end
+
+
 end
