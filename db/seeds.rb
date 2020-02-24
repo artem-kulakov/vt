@@ -101,10 +101,10 @@
 # Record.delete_all
 # Service.delete_all
 
-# record_id = 12822
+# record_id = 14586
 
-# Array(2020).each do |year|
-#   Array(1..3).each do |month|
+# Array(2019).each do |year|
+#   Array(10..12).each do |month|
 #     Array(1..28).each do |day|
 #       Bus.all.each do |bus|
 #         # record = Record.create(
@@ -207,38 +207,38 @@
 
 
 
-# Service.all.each do |service|
-#   service.update(created_at: service.fecha)
-# end
-
-
-
-Receipt.delete_all
-Expense.delete_all
-
-Array(2020).each do |year|
-  Array(1..3).each do |month|
-    Array(1..28).each do |day|
-      Bus.all.each do |bus|
-        expense = Expense.create(
-          categoria: 'foo',
-          cantidad: 1.0,
-          nota: 'bar',
-          mes: month,
-          ano: year,
-          created_at: DateTime.new(year, month, day)
-        )
-
-        Receipt.create(
-          categoria: 'foo',
-          cantidad: 1.0,
-          nota: 'bar',
-          fecha: DateTime.new(year, month, day),
-          bus_id: bus.id,
-          expense_id: expense.id,
-          created_at: DateTime.new(year, month, day)
-        )
-      end
-    end
-  end
+Service.all.each do |service|
+  service.update(created_at: service.fecha)
 end
+
+
+
+# Receipt.delete_all
+# Expense.delete_all
+
+# Array(2019).each do |year|
+#   Array(10..12).each do |month|
+#     Array(1..28).each do |day|
+#       Bus.all.each do |bus|
+#         expense = Expense.create(
+#           categoria: 'foo',
+#           cantidad: 1.0,
+#           nota: 'bar',
+#           mes: month,
+#           ano: year,
+#           created_at: DateTime.new(year, month, day)
+#         )
+
+#         Receipt.create(
+#           categoria: 'foo',
+#           cantidad: 1.0,
+#           nota: 'bar',
+#           fecha: DateTime.new(year, month, day),
+#           bus_id: bus.id,
+#           expense_id: expense.id,
+#           created_at: DateTime.new(year, month, day)
+#         )
+#       end
+#     end
+#   end
+# end

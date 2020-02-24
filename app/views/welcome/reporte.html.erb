@@ -1,3 +1,11 @@
+<% @years.reverse.each do |year| %>
+  <% if year.to_s == @year.to_s %>
+    <span class="mr-5"><%= year %></span>
+  <% else %>
+    <%= link_to year, reporte_path(year: year), class: "mr-5" %>
+  <% end %>
+<% end %>
+
 <div class="row">
 	<% @costs.group_by(&:year).each do |year, costis| %>
 		<h2><%= year %></h2>

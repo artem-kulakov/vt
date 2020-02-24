@@ -11,8 +11,10 @@ class WelcomeController < ApplicationController
 
   def reporte
     @years = Service.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+
     @year = params[:year] || Date.current.year
-    date = DateTime.new(@year.to_i, 2, 15) # just a date in the middle of the month
+    @month = params[:month] || Date.current.month
+    date = DateTime.new(@year.to_i, @month.to_i, 15) # just a date in the middle of the month
 
   	@services = Service
       .where("fecha > :start AND fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
