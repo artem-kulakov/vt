@@ -1,544 +1,995 @@
-<h2>Servicio: <%= @record.id %></h2>
+<style type="text/css">
+  .invoice-box {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .10);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+}
 
-<h5>Registro creado por: <%= @record.user.name %> </h5>
+.invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+}
 
-<div class="row">
-  <div id="status">
-    <ul>
-      <li class="strike"><h5>Status Op: <%= best_in_place [@record], :status_op, :as => :select, :collection => {"Prob Baja" => "Prob Baja", "Prob Media" => "Prob Media", "Prob Alta" => "Prob Alta", "Venta" => "Venta"} %></h5></li>
+.invoice-box table td {
+    padding: 5px;
+    vertical-align: middle;
+}
 
-      
+.invoice-box table tr td:nth-child(2) {
+    text-align: right;
+}
 
-    </ul>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3><%= @record.title %></h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Fecha de Salida: <a href="#" id="1"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :start_time ,:type => :date, :activator => "#1", :display_with => Proc.new { |f| f.strftime(" %b-%d-%Y") }%></p>
-          </div>
+.invoice-box table tr.top table td {
+    padding-bottom: 20px;
+}
 
-          <div class="col-sm-6">
-            <h4>Fecha de Regreso: <a href="#" id="2"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :end_time ,:type => :date, :activator => "#2", :display_with => Proc.new { |f| f.strftime(" %b-%d-%Y") } %></p>
-          </div>
+.invoice-box table tr.top table td.title {
+    font-size: 45px;
+    line-height: 45px;
+    color: #333;
+}
 
-          <% (@record.end_time - @record.start_time)/1.day.to_i+1%>
-        </div>
+.invoice-box table tr.information table td {
+    padding-bottom: 40px;
+}
 
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Hora de Salida: <a href="#" id="3"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :initial_time, :type => :input, :activator => "#3", :place_holder => "00:00"%></p>
-          </div>
+.invoice-box table tr.heading td {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
 
-          <div class="col-sm-6">
-            <h4>Hora de Regreso: <a href="#" id="4"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :finish_time, :type => :input, :activator => "#4", :place_holder => "00:00" %></p>
-          </div>
-        </div>
+.invoice-box table tr.details td {
+    padding-bottom: 20px;
+}
 
+.invoice-box table tr.item td{
+    border-bottom: 1px solid #eee;
+}
 
-        <br><br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Número de Pasajeros: <a href="#" id="5"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :numero_pasajeros, :place_holder => "Añadir número de pasajeros", :activator => "#5" %></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Número de Camiones: <a href="#" id="6"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :numero_de_camiones, :place_holder => "Añande # camiones", :activator => "#6"%></p>
-          </div>
-        </div>
-
-        <br><br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Lugar de Salida: <a href="#" id="7"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :lugar_salida, :place_holder => "Añande lugar de salida", :activator => "#7"%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Referencia de Salida: <a href="#" id="8"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :referencia_salida, :place_holder => "Añande referencia de salida", :activator => "#8"%></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Persona de Referencia: <a href="#" id="9"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :nombre_referencia, :place_holder => "Añande nombre referencia", :activator => "#9", :classes => 'highlight_on_success'%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Teléfono de Referencia: <a href="#" id="10"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :telefono_referencia, :place_holder => "Añande teléfono referencia", :activator => "#10"%></p>
-          </div>
-        </div>
+.invoice-box table tr.item.last td {
+    border-bottom: none;
+}
 
 
-        <br><br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>¿Requiere Factura? <a href="#" id="11"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :factura, as: :checkbox, collection: {false: "Sin factura", true: "Con Factura"}, :activator => "#11"%></p>
-          </div>
+.invoice-box table tr.total td:nth-child(2) {
+    border-top: 2px solid #eee;
+    font-weight: bold;
+}
 
-          <div class="col-sm-6">
-            <h4># de Factura o Recibo <a href="#" id="12"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :num_factura, :place_holder => "Añande # factura o recibo", :activator => "#12"%></p>
-          </div>
-        </div>
+// @media only screen and (max-width: 600px) {
+//     .invoice-box table tr.top table td {
+//         width: 100%;
+//         display: block;
+//         text-align: center;
+//     }
+//
+//     .invoice-box table tr.information table td {
+//         width: 100%;
+//         display: block;
+//         text-align: center;
+//     }
+// }
 
+/** RTL **/
+.rtl {
+    direction: rtl;
+    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
 
-        <br><br>
-        <div class="row">
-          <div class="col-sm-12">
-            <h4>Observaciones: <a href="#" id="13"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :observaciones, :as => :textarea, :place_holder => "Añande observaciones", :activator => "#13"%></p>
-            <br>
-          </div>
-        </div>
+.rtl table {
+    text-align: right;
+}
 
-        <div class="row">
-          <div class="col-sm-12">
-            <h4>Condiciones: <a href="#" id="130"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :condiciones, :as => :textarea, :place_holder => "Añande condiciones", :activator => "#130"%></p>
-            <br>
-          </div>
-        </div>
+.rtl table tr td:nth-child(2) {
+    text-align: left;
+}
 
-      </div>
-    </div>
-  </div>
+.material-icons {
+  font-size: 14px;
+}
 
-  <div class="col-md-6">
-<% if @record.services.count < @record.numero_de_camiones %>
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        
-        <h3>Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-        <%= form_for [@record, @service], :html => {:id => 'service_form'} do |f| %>
+.headsup {
+  margin-top: 100px;
+}
 
-        <div class="field">
-          <%= f.label :Autobús %><br>
-          <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] } %>
-        </div>
+.right {
+  text-align: right;
+}
 
+.info {
+  margin-top: 50px;
+}
 
-        <div class="actions">
-          <%= f.submit "Añadir Autobús", class: "btn btn-primary" %> <br><br>
-        </div>
-        <% end %>
-              
-      </div>
-    </div>
-    <% end %>  
+.info2{
+  margin-top: 25px;
+}
 
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Itinerario</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-      <div class="row">
-        <% @routes.order('id ASC').each_with_index do |route, i| %>
-        <div class="col-sm-6">
-          <h4><%= i+1 %>.- <%= route.place %>    | <span><%= link_to 'Eliminar', record_route_path(@record, route), method: :delete, data: { confirm: 'Are you sure?' } %></span> |</h4>
+.info3{
+  margin-bottom: 120px;
+}
 
-        </div>
-        <% end %>
-      </div>
+table {
+  width:100%;
+}
+table, th, td {
+  border: 1px solid #555;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+table#t01 tr:nth-child(odd) {
+  background-color: #eee;
+}
+table#t01 tr:nth-child(even) {
+ background-color: #fff;
+}
+table#t01 th {
+  background-color: #a7a7a7;
+  color: white;
+}
 
-      <%= form_for [@record, @route], :html => {:id => 'route_form'} do |f| %>
-
-      <div class="field">
-        <%= f.label :Nuevo_lugar %><br>
-        <%= f.text_field :place %>
-      </div>
-
-
-      <div class="actions">
-        <%= f.submit "Añadir Lugar", class: "btn btn-primary" %> <br><br>
-      </div>
-      <% end %>
-      </div>
-    </div>
-
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Pagos</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>Método</th>
-            <th>Núm Recibo</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th>  </th>
-          </thead>
-          <tbody>
-
-
-            <% @payments.each do |payment| %>
-            <tr>
-              <td><%= payment.metodo %></td>
-              <td><%= payment.num_recibo %></td>
-              <td><%= payment.try(:fecha).strftime(" %b-%d-%Y") %></td>
-              <td><%= payment.cantidad %></td>
-              <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-            <% end %>
-            
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Total:</td>
-              <td><%= @record.sum_payments %></td>
-              <td></td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-
-      <%= form_for [@record, @payment], :html => {:id => 'payment_form'} do |f| %>
-
-      <div class="row">
-        <div class="col-sm-3">
-          <h4><%= f.label :metodo %></h4>
-          <p> <%= f.select :metodo, [["Efectivo"], ["Cheque"], ["Tranferencia"], ["Tarjeta"]], {:prompt => 'Método de pago'}%></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4><%= f.label :num_recibo %></h4>
-          <p><%= f.text_field :num_recibo, required: true %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4><%= f.label :fecha %></h4>
-          <p><%= f.date_field :fecha, required: true %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4><%= f.label :cantidad %></h4>
-          <p><%= f.number_field :cantidad, step: :any, required: true %></p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Añadir Pago", class: "btn btn-primary" %> <br><br>
-      </div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Precios</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="row">
-        <div class="col-sm-6">
-          <h4>Precio: <a href="#" id="14"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record], :precio, :place_holder => "Añande precio", :activator => "#14"%></p>
-        </div>
-        <div class="col-sm-6">
-          <h4>Precio Final: <a href="#" id="35"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record], :precio_final, :place_holder => "Añande precio final", :activator => "#35"%></p>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Cobranza</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="row">
-        <div class="col-sm-4">
-          <h4>Precio Final:</h4>
-          <p><%=@record.try(:precio_final) %></p>
-        </div>
-        <div class="col-sm-4">
-          <h4>Cobrado:</h4>
-          <p><%=@record.try(:sum_payments) %></p>
-        </div>
-        <div class="col-sm-4">
-          <h4>Debe:</h4>
-          <p><%=@totis = @record.try(:sum_deuda) %></p>
-        </div>
-      </div>
-      <% if  @totis < 1%>
-      <div id="status">
-        <div class="row">
-          <ul>
-            <%= best_in_place [@record], :status_admin, as: :checkbox, collection: {true: "#{'<li class = "strike"><h5>Cobrado</h5></li>'}".html_safe, false: "#{'<li class = "strikero"><h5>Por Cobrar</h5></li>'}".html_safe}%> 
-          </ul>
-        </div>
-      </div>
-      <% end %>
-      </div>
-    </div>
-  </div>
   
-</div>
+</style>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Avance</h3>
-        <hr>
+<% @services.each_with_index do |service, index| %>
+
+  <!-- uno -->
+
+  <div class="invoice-box">
+    <h6><%= index + 1 %>, 1-8</h6>
+
+    <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+    </div>
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Contrato - Orden de servicio <br>
+        Creado por: <%= @record.user.name %><br>
+        Folio #: <%= service.id %>
+      </p>
+    </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="info">
+        <p>
+          <b>Información general</b><br><br>
+        Precio unitario: <%= service.precio_unidad %><br>
+        Fecha de salida: <%= service.record.start_time.strftime(" %b-%d-%Y") %><br>
+        Fecha de regreso: <%= service.record.end_time.strftime(" %b-%d-%Y") %>
+        </p>
+  <br>
+        <p>
+          <b>Información del cliente</b><br><br>
+        Nombre cliente: <%= service.record.nombre_referencia %><br>
+        Teléfono de contacto: <%= service.record.telefono_referencia %><br>
+        Correo de contacto: <%=  %>
+        </p>
+
+  <br>
+        <p>
+          <b>Información del servicio</b><br><br>
+        Número del autobús: <%= service.bus.numero %><br>
+        Pasajeros: <%= service.record.numero_pasajeros %> <br>
+        Operador: <%= service.bus.operator.nombre %> <br>
+        Hora de cita de salida: <%= service.record.initial_time %> <br>
+        Hora de regreso: <%= service.record.finish_time %> <br>
+        Dirección de cita: <%= service.record.lugar_salida %> <br>
+        Referencia de cita: <%= service.record.referencia_salida %> <br> 
+        </p>
+  </div>
+
+  <div class="info2">
+    <p>Itinerario: <%= service.record.routes.map(&:place).join ', ' %></p>
+  </div>
+
+  <div class="info2">
+    <p>Observaciones: <%= service.record.observaciones %></p>
+  </div>
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
+
+  <!-- dos -->
+
+  <div class="invoice-box">
+    <h6>1, 2-8</h6>
+
+    <div class="info2">
+  <div class="row">
+     <table id="t01">
+    <tr>
+      <th class="right"></th>
+      <th class="right">Entregado</th>
+      <th class="right">Comprobado</th>
+    </tr>
+    <tr>
+      <td class="right">Casetas en efectivo</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Hotel</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Viáticos</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Estacionamiento</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Lavadas</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Aeropuerto</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Otros</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Diesel</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right"></td>
+      <td class="right"></td>
+      <td class="right"></td>
+    </tr>
+
+    <tr>
+      <td class="right">Total:</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+  </table>
+    
+    </div>
+  </div>
+
+
+
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
+
+  <!-- tres -->
+
+  <div class="invoice-box">
+    <h6>1, 3-8</h6>
+
+    <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+    </div>
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Contrato - Orden de servicio <br>
+        Creado por: service.user.name<br>
+        Folio #: 0980 service.id
+      </p>
+    </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="info">
+        <p>
+          <b>Información básica</b><br><br>
+        Kilometraje inicial: _______________<br>
+        Kilometraje final: _______________<br>
+        Fecha de salida: <br>
+        Fecha de regreso:
+        </p>
+  <br>
+        <p>
+          <b>Información del cliente</b><br><br>
+        Nombre cliente:<br>
+        Teléfono de contacto: <br>
+        Correo de contacto: 
+        </p>
+
+  <br>
+        <p>
+          <b>Información del servicio</b><br><br>
+        Número del autobús:<br>
+        Pasajeros: <br>
+        Operador: <br>
+        Hora de cita de salida: <br>
+        Hora de regreso: <br>
+        Dirección de cita: <br>
+        Referencia de cita: <br> 
+        </p>
+  </div>
+
+  <div class="info2">
+    <p>Itinerario:</p>
+  </div>
+
+  <div class="info2">
+    <p>Observaciones:</p>
+  </div>
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
+
+
+
+
+  <!-- cuatro -->
+
+  <div class="invoice-box">
+    <h6>1, 4-8</h6>
+
+
+     <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+    </div>
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Relación de gastos por comprobar <br>
+        Creado por: service.user.name<br>
+        Folio #: 0980 service.id
+      </p>
+    </div>
+    </div>
+  </div>
+  <hr> 
+
+    <div class="info2">
+  <div class="row">
+     <table id="t01">
+    <tr>
+      <th class="right"></th>
+      <th class="right">Entregado</th>
+      <th class="right">Comprobado</th>
+    </tr>
+    <tr>
+      <td class="right">Casetas en efectivo</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Hotel</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Viáticos</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Estacionamiento</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Lavadas</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Aeropuerto</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Otros</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right">Diesel</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+    <tr>
+      <td class="right"></td>
+      <td class="right"></td>
+      <td class="right"></td>
+    </tr>
+
+    <tr>
+      <td class="right">Total:</td>
+      <td class="right">100.00</td>
+      <td class="right">00.00</td>
+    </tr>
+
+  </table>
+    
+    </div>
+  </div>
+
+
+
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
+
+
+
+
+  <!-- cinco -->
+
+  <div class="invoice-box">
+    <h6>1, 5-8</h6>
+
+    <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+    </div>
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
+        Contrato de prestación de servicio de transporte <br>
+        Creado por: service.user.name<br>
+        Folio #: 0980 service.id <br>
+        Fecha: 
+      </p>
+    </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="info">
+        <p>
+        <b>Información del cliente</b><br><br>
+        Nombre cliente:<br>
+        Teléfono de contacto: <br>
+        Correo de contacto: 
+        </p>
+
+  <br>
+        <p>
+          <b>Descripción del servicio</b><br><br>
+        Fecha de salida: 
+        Fecha de regreso: <br>
+        Hora de cita de salida: <br>
+        Hora de regreso: <br>
+        Dirección de cita: <br>
+        Referencia de cita: <br> 
+        Itinerario: 
+        </p>
+
+        <p>
+          <b>Información de la unidad</b><br><br>
+          Autobús: <br>
+          Pasajeros: 
+        </p>
+
+        <p>
+          <b>Características del contrato</b><br><br>
+          Tarifa por unidad: <br>
+          Tarifa adicional por día: <br>
+          Precio sin IVA: <br>
+          Precio más IVA:  
+        </p>
+
+        <p>Sellos digitales:  9Mx5o8pDH3FbiYK++IJZwCddlyvnjM7iRtE7a7bdT8P1QHoZoIDqZj3ETqEC4kkBAjj--</p>
+  </div>
+
+
+  <div class="info2">
+    <p>Observaciones:</p>
+  </div>
+
+  <div class="info">
+    <div class="row">
+      <div class="col-md-6">
+        <p>Tutto il Mondo S.A. de C.V. </p>
       </div>
-      <div class="panel-body">
-        <div class="center">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <div class="progress blue">
-                <span class="progress-left">
-                  <span class="progress-bar"></span>
-                </span>
-                <span class="progress-right">
-                  <span class="progress-bar"></span>
-                </span>
-                <div id="results">
-                  <%= render 'results' %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
-        </div>
-
-        <br><br>
-
+      <div class="col-md-6 right">
+        <p>Acepto Términos y Condiciones</p>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
 
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Cliente</h3>
-        <h4>| <%= link_to "Cambiar Cliente", edit_record_path(@record) %> |</h4>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="row">
 
-        <div class="col-sm-3">
-          <h4>Alias:</h4>
-          <p><%= @record.client.try(:alias) %></p>
-        </div>
+  <!-- seis -->
 
-        <div class="col-sm-3">
-          <h4>Razón Social:</h4>
-          <p><%= @record.client.try(:razon_social) %></p>
-        </div>
+  <div class="invoice-box">
+    <h6>1, 6-8</h6>
 
-        <div class="col-sm-2">
-          <h4>R.F.C.:</h4>
-          <p><%= @record.client.try(:rfc) %></p>
-        </div>
-
-        <div class="col-sm-2">
-          <h4>Email:</h4>
-          <p><%= @record.client.try(:email) %></p>
-        </div>
-
-        <div class="col-sm-2">
-          <h4>Teléfono:</h4>
-          <p><%= @record.client.try(:telefono) %></p>
-        </div>
-
-      </div>
-
-<div class="row">
-
-        <div class="col-sm-3">
-          <h4>Nombre Cobro:</h4>
-          <p><%= @record.client.try(:nombre_cobro) %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4>Teléfono Cobro:</h4>
-          <p><%= @record.client.try(:telefono_cobro) %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4>Email Cobro:</h4>
-          <p><%= @record.client.try(:email_cobro) %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <%= link_to "Editar datos de Cliente", edit_client_path(@record.client), class: "btn btn-primary" %>
-        </div>
-      </div>
-
-      </div>
+    <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
     </div>
-  </div>  
-</div>
-
-<hr>
-
-<h4>Precio total: <%= number_to_currency @record.try(:precio_final) %></h4>
-<h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
-<h4>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h4>
-
-<div class="row">
-  <% @services.each_with_index do |service, i| %>
-  <div class="col-sm-4">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-      <h3><%= service.bus.numero %></h3>
-      <hr>
-      </div>
-
-      <div class="panel-body">
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="upper center grey">PRECIOS</h4>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <h4>Precio X unidad <a href="#" id="27-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record, service], :precio_unidad, :activator => "#27-#{i}"%></p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="upper center grey">GASTOS</h4>
-        </div>
-      </div>
-      <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>Gasto</th>
-            <th>Cantidad</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Casetas: <a href="#" id="16-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :caseta, :activator => "#16-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Hotel: <a href="#" id="17-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :hotel, :activator => "#17-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Viáticos: <a href="#" id="18-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :viaticos, :activator => "#18-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Estacionamientos: <a href="#" id="19-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :estacionamientos, :activator => "#19-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Lavadas: <a href="#" id="20-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :lavadas, :activator => "#20-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Aeropuerto: <a href="#" id="21-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :aeropuerto, :activator => "#21-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Otros: <a href="#" id="23-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :otros, :activator => "#23-#{i}"%></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Total:</td>
-              <td><%= service.sum_gastos%></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-
-      <div class="row">
-        <%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-block" %> <br><br>
-      </div>
-      </div>
-
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
+        Bitácora de horas de servicio del conductor <br>
+        Creado por: service.user.name<br>
+        Folio #: 0980 service.id <br>
+        Fecha: 
+      </p>
+    </div>
     </div>
   </div>
-  <% end %>
-</div>
+  <hr>
 
-<% if @record.services.count > 0 %>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= link_to 'Ver Reporte', record_path(@record, :format => 'pdf'), class: "btn btn-primary btn-block", :target => "_blank" %>
-    <%= link_to 'Create PDF document', record_path(@record, :format => :pdf) %>
+  <div class="info">
+        <p>
+        <b>Información del operador y unidad</b><br><br>
+        Nombre:<br>
+        Número de licencia: <br>
+        Vigencia de licencia: <br>
+        Autobús: <br>
+        Modelo: <br>
+        Placas: <br>
+        Marca: <br>
+        Modelo: <br>
+        </p>
   </div>
-</div>
+
+  <div class="info2">
+    <p>Itinerario:</p>
+  </div>
+
+  <hr>
+  <b>CASOS DE EXCEPCIÓN EN LOS QUE EL CONDUCTOR PUEDA EXCEDERSE DE LA JORNADA</b>
+  <p>En cierre de carreteras y vialidad por problemas de tráfico, bloqueos y/o accidentes y hasta que la unidad y pasajeros se encuentren en un lugar seguro para el descanso de los mismo y el operador o fin del servicio. <br> Descomposturas y averias de la unidad y hasta que la unidad y pasajeros se encuentren en un lugar seguro para descanso de los mismos y del operador o fin de servicio.</p> 
+  <hr>
+
+
+  <div class="info2">
+    <p>Bitácora del conductor</p>
+
+  <table id="t01">
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <tr>
+      <td>Fecha:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Inicio:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Llegada:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Conducción:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Paradas NO programadas:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Fuera de servicio:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Descanso:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Total:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    
+
+  </table>
+
+  </div>
+
+
+
+  <div class="info">
+    <div class="row">
+      <div class="col-md-6">
+        <p>Permisionario </p>
+      </div>
+      <div class="col-md-6 right">
+        <p>Conductor</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
+
+
+
+
+
+
+  <!-- siete -->
+
+  <div class="invoice-box">
+    <h6>1, 7-8</h6>
+
+    <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+    </div>
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Reporte de condiciones de operación / solicitu de  mantenimiento <br>
+        Creado por: service.user.name<br>
+        Folio #: 0980 service.id <br>
+        Fecha: 
+      </p>
+    </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="info">
+        <p>
+        <b>Información general</b><br><br>
+        Operador:<br>
+        Autobús: <br>
+        </p>
+  </div>
+
+  <div class="info2">
+    <p>Itinerario:</p>
+  </div>
+
+  <div class="row">
+    <div class="info">
+      <div class="col-md-6">
+        <p>
+        <p>Temperatura: ______________________<br>
+        Carga alternadores:______________________<br>
+        Nivel de aceite:______________________ <br>
+        </p>
+      </div>
+
+      <div class="col-md-6">
+        <p>
+        <p>Presión aceite:______________________<br>
+        Presión de aire:______________________<br>
+        Nivel de anticongelante:______________________<br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+  <div class="info3">
+    <b>Observaciones / Incidencia del servicio:</b>
+  </div>
+
+
+  <div class="info3">
+    <b>Motor:</b>
+  </div>
+
+
+  <div class="info3">
+    <b>Eléctrico:</b>
+  </div>
+
+
+  <div class="info3">
+    <b>Suspensión, Transmisión, Frenos, Dirección:</b>
+  </div>
+
+  <div class="info3">
+    <b>Audio y video:</b>
+  </div>
+
+  <div class="info3">
+    <b>Carrocería / Imagen:</b>
+  </div>
+
+  <div class="info3">
+    <b>Aire acondicionado:</b>
+  </div>
+
+
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
+
+
+
+
+
+  <!-- ocho -->
+
+  <div class="invoice-box">
+    <h6>1, 8-8</h6>
+
+    <div class="info2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+    </div>
+    <div class="col-md-6">
+      <p class="right">
+        <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+        Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
+        Encuesta satisfacción al cliente <br>
+        Creado por: service.user.name<br>
+        Folio #: 0980 service.id <br>
+        Fecha: 
+      </p>
+    </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="info">
+        <p>
+        <b>Información general</b><br><br>
+        Operador:<br>
+        Autobús: <br>
+        </p>
+  </div>
+
+  <div class="info2">
+    <p>Itinerario:</p>
+  </div>
+
+
+  <div class="info2">
+
+  <table id="t01">
+    <tr>
+      <th></th>
+      <th>Satisfecho</th>
+      <th>Insatisfecho</th>
+    </tr>
+
+    <tr>
+      <td>Fechas</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Atención al solicitar el servicio</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Puntualidad de la unidad</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Limpieza de la unidad</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Audio/video y micrófono</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Aire acondicionado/calefacción</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Presentación del Operador</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Actitud del operador</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>Sí</td>
+      <td>No</td>
+    </tr>
+
+    <tr>
+      <td>Volvería a contratar con nosotros</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+  </table>
+  <br>
+  <p>Requiere que nos comuniquemos con usted?. A qué número?</p>
+  <p>Número de teléfono: ___________________</p>
+
+  </div>
+
+  <div class="info">
+    <p>Observaciones:</p>
+  </div>
+
+  <div class="info2">
+    <b>Firma de confirmidad con el servicio. Y QUIEN REVISA QUE NO HAYA NADA OLVIDADO EN LA
+  UNIDAD ______________________________</b>
+  </div>
+
+  <div class="info">
+  <hr>
+  <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+  </div>
+
+  </div>
 <% end %>
-<br><br>
-
-
-
-<script>
-  $(document).ready(function() {
-    /* Activating Best In Place */
-    jQuery(".best_in_place").best_in_place();
-  });
-</script>
-
-<!-- <script>
-  $('.best_in_place').bind("ajax:success", function(){
-    // alert('Name updated');
-    location.reload();
-  });
-
-</script> -->
-
-<script> 
-  $.datepicker.setDefaults({ dateFormat: 'M-dd-yy' });
-</script>
-
-
