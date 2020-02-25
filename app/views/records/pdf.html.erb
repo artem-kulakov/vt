@@ -1,0 +1,1002 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <style type="text/css">
+      .invoice-box {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .10);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+      }
+
+      .invoice-box table {
+          width: 100%;
+          line-height: inherit;
+          text-align: left;
+      }
+
+      .invoice-box table td {
+          padding: 5px;
+          vertical-align: middle;
+      }
+
+      .invoice-box table tr td:nth-child(2) {
+          text-align: right;
+      }
+
+      .invoice-box table tr.top table td {
+          padding-bottom: 20px;
+      }
+
+      .invoice-box table tr.top table td.title {
+          font-size: 45px;
+          line-height: 45px;
+          color: #333;
+      }
+
+      .invoice-box table tr.information table td {
+          padding-bottom: 40px;
+      }
+
+      .invoice-box table tr.heading td {
+          background: #eee;
+          border-bottom: 1px solid #ddd;
+          font-weight: bold;
+      }
+
+      .invoice-box table tr.details td {
+          padding-bottom: 20px;
+      }
+
+      .invoice-box table tr.item td{
+          border-bottom: 1px solid #eee;
+      }
+
+      .invoice-box table tr.item.last td {
+          border-bottom: none;
+      }
+
+
+      .invoice-box table tr.total td:nth-child(2) {
+          border-top: 2px solid #eee;
+          font-weight: bold;
+      }
+
+      // @media only screen and (max-width: 600px) {
+      //     .invoice-box table tr.top table td {
+      //         width: 100%;
+      //         display: block;
+      //         text-align: center;
+      //     }
+      //
+      //     .invoice-box table tr.information table td {
+      //         width: 100%;
+      //         display: block;
+      //         text-align: center;
+      //     }
+      // }
+
+      /** RTL **/
+      .rtl {
+          direction: rtl;
+          font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      }
+
+      .rtl table {
+          text-align: right;
+      }
+
+      .rtl table tr td:nth-child(2) {
+          text-align: left;
+      }
+
+      .material-icons {
+        font-size: 14px;
+      }
+
+      .headsup {
+        margin-top: 100px;
+      }
+
+      .right {
+        text-align: right;
+      }
+
+      .info {
+        margin-top: 50px;
+      }
+
+      .info2{
+        margin-top: 25px;
+      }
+
+      .info3{
+        margin-bottom: 120px;
+      }
+
+      table {
+        width:100%;
+      }
+      table, th, td {
+        border: 1px solid #555;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 15px;
+        text-align: left;
+      }
+      table#t01 tr:nth-child(odd) {
+        background-color: #eee;
+      }
+      table#t01 tr:nth-child(even) {
+       background-color: #fff;
+      }
+      table#t01 th {
+        background-color: #a7a7a7;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <% @services.each_with_index do |service, index| %>
+
+      <!-- uno -->
+
+      <div class="invoice-box">
+        <h6><%= index + 1 %>, 1-8</h6>
+
+        <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo"> -->
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Contrato - Orden de servicio <br>
+            Creado por: <%= @record.user.name %><br>
+            Folio #: <%= service.id %>
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+            <p>
+              <b>Información general</b><br><br>
+            Precio unitario: <%= service.precio_unidad %><br>
+            Fecha de salida: <%= service.record.start_time.strftime(" %b-%d-%Y") %><br>
+            Fecha de regreso: <%= service.record.end_time.strftime(" %b-%d-%Y") %>
+            </p>
+      <br>
+            <p>
+              <b>Información del cliente</b><br><br>
+            Nombre cliente: <%= service.record.nombre_referencia %><br>
+            Teléfono de contacto: <%= service.record.telefono_referencia %><br>
+            Correo de contacto: <%=  %>
+            </p>
+
+      <br>
+            <p>
+              <b>Información del servicio</b><br><br>
+            Número del autobús: <%= service.bus.numero %><br>
+            Pasajeros: <%= service.record.numero_pasajeros %> <br>
+            Operador: <%= service.bus.operator.nombre %> <br>
+            Hora de cita de salida: <%= service.record.initial_time %> <br>
+            Hora de regreso: <%= service.record.finish_time %> <br>
+            Dirección de cita: <%= service.record.lugar_salida %> <br>
+            Referencia de cita: <%= service.record.referencia_salida %> <br> 
+            </p>
+      </div>
+
+      <div class="info2">
+        <p>Itinerario: <%= service.record.routes.map(&:place).join ', ' %></p>
+      </div>
+
+      <div class="info2">
+        <p>Observaciones: <%= service.record.observaciones %></p>
+      </div>
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+      <!-- dos -->
+
+      <div class="invoice-box">
+        <h6>1, 2-8</h6>
+
+        <div class="info2">
+      <div class="row">
+         <table id="t01">
+        <tr>
+          <th class="right"></th>
+          <th class="right">Entregado</th>
+          <th class="right">Comprobado</th>
+        </tr>
+        <tr>
+          <td class="right">Casetas en efectivo</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Hotel</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Viáticos</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Estacionamiento</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Lavadas</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Aeropuerto</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Otros</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Diesel</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+
+        <tr>
+          <td class="right">Total:</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+      </table>
+        
+        </div>
+      </div>
+
+
+
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+      <!-- tres -->
+
+      <div class="invoice-box">
+        <h6>1, 3-8</h6>
+
+        <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Contrato - Orden de servicio <br>
+            Creado por: service.user.name<br>
+            Folio #: 0980 service.id
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+            <p>
+              <b>Información básica</b><br><br>
+            Kilometraje inicial: _______________<br>
+            Kilometraje final: _______________<br>
+            Fecha de salida: <br>
+            Fecha de regreso:
+            </p>
+      <br>
+            <p>
+              <b>Información del cliente</b><br><br>
+            Nombre cliente:<br>
+            Teléfono de contacto: <br>
+            Correo de contacto: 
+            </p>
+
+      <br>
+            <p>
+              <b>Información del servicio</b><br><br>
+            Número del autobús:<br>
+            Pasajeros: <br>
+            Operador: <br>
+            Hora de cita de salida: <br>
+            Hora de regreso: <br>
+            Dirección de cita: <br>
+            Referencia de cita: <br> 
+            </p>
+      </div>
+
+      <div class="info2">
+        <p>Itinerario:</p>
+      </div>
+
+      <div class="info2">
+        <p>Observaciones:</p>
+      </div>
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+
+
+
+      <!-- cuatro -->
+
+      <div class="invoice-box">
+        <h6>1, 4-8</h6>
+
+
+         <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Relación de gastos por comprobar <br>
+            Creado por: service.user.name<br>
+            Folio #: 0980 service.id
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr> 
+
+        <div class="info2">
+      <div class="row">
+         <table id="t01">
+        <tr>
+          <th class="right"></th>
+          <th class="right">Entregado</th>
+          <th class="right">Comprobado</th>
+        </tr>
+        <tr>
+          <td class="right">Casetas en efectivo</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Hotel</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Viáticos</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Estacionamiento</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Lavadas</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Aeropuerto</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Otros</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right">Diesel</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+        <tr>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+
+        <tr>
+          <td class="right">Total:</td>
+          <td class="right">100.00</td>
+          <td class="right">00.00</td>
+        </tr>
+
+      </table>
+        
+        </div>
+      </div>
+
+
+
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+
+
+
+      <!-- cinco -->
+
+      <div class="invoice-box">
+        <h6>1, 5-8</h6>
+
+        <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
+            Contrato de prestación de servicio de transporte <br>
+            Creado por: service.user.name<br>
+            Folio #: 0980 service.id <br>
+            Fecha: 
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+            <p>
+            <b>Información del cliente</b><br><br>
+            Nombre cliente:<br>
+            Teléfono de contacto: <br>
+            Correo de contacto: 
+            </p>
+
+      <br>
+            <p>
+              <b>Descripción del servicio</b><br><br>
+            Fecha de salida: 
+            Fecha de regreso: <br>
+            Hora de cita de salida: <br>
+            Hora de regreso: <br>
+            Dirección de cita: <br>
+            Referencia de cita: <br> 
+            Itinerario: 
+            </p>
+
+            <p>
+              <b>Información de la unidad</b><br><br>
+              Autobús: <br>
+              Pasajeros: 
+            </p>
+
+            <p>
+              <b>Características del contrato</b><br><br>
+              Tarifa por unidad: <br>
+              Tarifa adicional por día: <br>
+              Precio sin IVA: <br>
+              Precio más IVA:  
+            </p>
+
+            <p>Sellos digitales:  9Mx5o8pDH3FbiYK++IJZwCddlyvnjM7iRtE7a7bdT8P1QHoZoIDqZj3ETqEC4kkBAjj--</p>
+      </div>
+
+
+      <div class="info2">
+        <p>Observaciones:</p>
+      </div>
+
+      <div class="info">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Tutto il Mondo S.A. de C.V. </p>
+          </div>
+          <div class="col-md-6 right">
+            <p>Acepto Términos y Condiciones</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+
+
+      <!-- seis -->
+
+      <div class="invoice-box">
+        <h6>1, 6-8</h6>
+
+        <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
+            Bitácora de horas de servicio del conductor <br>
+            Creado por: service.user.name<br>
+            Folio #: 0980 service.id <br>
+            Fecha: 
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+            <p>
+            <b>Información del operador y unidad</b><br><br>
+            Nombre:<br>
+            Número de licencia: <br>
+            Vigencia de licencia: <br>
+            Autobús: <br>
+            Modelo: <br>
+            Placas: <br>
+            Marca: <br>
+            Modelo: <br>
+            </p>
+      </div>
+
+      <div class="info2">
+        <p>Itinerario:</p>
+      </div>
+
+      <hr>
+      <b>CASOS DE EXCEPCIÓN EN LOS QUE EL CONDUCTOR PUEDA EXCEDERSE DE LA JORNADA</b>
+      <p>En cierre de carreteras y vialidad por problemas de tráfico, bloqueos y/o accidentes y hasta que la unidad y pasajeros se encuentren en un lugar seguro para el descanso de los mismo y el operador o fin del servicio. <br> Descomposturas y averias de la unidad y hasta que la unidad y pasajeros se encuentren en un lugar seguro para descanso de los mismos y del operador o fin de servicio.</p> 
+      <hr>
+
+
+      <div class="info2">
+        <p>Bitácora del conductor</p>
+
+      <table id="t01">
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <tr>
+          <td>Fecha:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Inicio:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Llegada:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Conducción:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Paradas NO programadas:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Fuera de servicio:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Descanso:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Total:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        
+
+      </table>
+
+      </div>
+
+
+
+      <div class="info">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Permisionario </p>
+          </div>
+          <div class="col-md-6 right">
+            <p>Conductor</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- siete -->
+
+      <div class="invoice-box">
+        <h6>1, 7-8</h6>
+
+        <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Reporte de condiciones de operación / solicitu de  mantenimiento <br>
+            Creado por: service.user.name<br>
+            Folio #: 0980 service.id <br>
+            Fecha: 
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+            <p>
+            <b>Información general</b><br><br>
+            Operador:<br>
+            Autobús: <br>
+            </p>
+      </div>
+
+      <div class="info2">
+        <p>Itinerario:</p>
+      </div>
+
+      <div class="row">
+        <div class="info">
+          <div class="col-md-6">
+            <p>
+            <p>Temperatura: ______________________<br>
+            Carga alternadores:______________________<br>
+            Nivel de aceite:______________________ <br>
+            </p>
+          </div>
+
+          <div class="col-md-6">
+            <p>
+            <p>Presión aceite:______________________<br>
+            Presión de aire:______________________<br>
+            Nivel de anticongelante:______________________<br>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <hr>
+      <div class="info3">
+        <b>Observaciones / Incidencia del servicio:</b>
+      </div>
+
+
+      <div class="info3">
+        <b>Motor:</b>
+      </div>
+
+
+      <div class="info3">
+        <b>Eléctrico:</b>
+      </div>
+
+
+      <div class="info3">
+        <b>Suspensión, Transmisión, Frenos, Dirección:</b>
+      </div>
+
+      <div class="info3">
+        <b>Audio y video:</b>
+      </div>
+
+      <div class="info3">
+        <b>Carrocería / Imagen:</b>
+      </div>
+
+      <div class="info3">
+        <b>Aire acondicionado:</b>
+      </div>
+
+
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+
+
+
+
+
+      <!-- ocho -->
+
+      <div class="invoice-box">
+        <h6>1, 8-8</h6>
+
+        <div class="info2">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
+            Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
+            Encuesta satisfacción al cliente <br>
+            Creado por: service.user.name<br>
+            Folio #: 0980 service.id <br>
+            Fecha: 
+          </p>
+        </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+            <p>
+            <b>Información general</b><br><br>
+            Operador:<br>
+            Autobús: <br>
+            </p>
+      </div>
+
+      <div class="info2">
+        <p>Itinerario:</p>
+      </div>
+
+
+      <div class="info2">
+
+      <table id="t01">
+        <tr>
+          <th></th>
+          <th>Satisfecho</th>
+          <th>Insatisfecho</th>
+        </tr>
+
+        <tr>
+          <td>Fechas</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Atención al solicitar el servicio</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Puntualidad de la unidad</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Limpieza de la unidad</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Audio/video y micrófono</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Aire acondicionado/calefacción</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Presentación del Operador</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Actitud del operador</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>Sí</td>
+          <td>No</td>
+        </tr>
+
+        <tr>
+          <td>Volvería a contratar con nosotros</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      </table>
+      <br>
+      <p>Requiere que nos comuniquemos con usted?. A qué número?</p>
+      <p>Número de teléfono: ___________________</p>
+
+      </div>
+
+      <div class="info">
+        <p>Observaciones:</p>
+      </div>
+
+      <div class="info2">
+        <b>Firma de confirmidad con el servicio. Y QUIEN REVISA QUE NO HAYA NADA OLVIDADO EN LA
+      UNIDAD ______________________________</b>
+      </div>
+
+      <div class="info">
+      <hr>
+      <p>Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com</p>
+      </div>
+
+      </div>
+    <% end %>
+  </body>
+</html>
