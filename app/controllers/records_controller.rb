@@ -52,11 +52,15 @@ class RecordsController < ApplicationController
     @route = Route.new
 
     respond_to do |format|
-     format.html
-     format.pdf do
-       render pdf: "foo",
-       template: "records/pdf.html.erb"
-     end
+      format.html
+      format.pdf do
+        render pdf: "foo",
+        template: "records/pdf.html.erb",
+        footer: {
+          left:            'Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com',
+          font_size:        10,
+        }
+      end
     end
   end
 
