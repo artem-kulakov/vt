@@ -55,8 +55,7 @@ class RecordsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "foo",
-        template: "records/pdf.html.erb",
-        show_as_html:                   params.key?('debug'),
+        show_as_html: params.key?('debug'),
         footer: { html: { template: "records/footer.pdf.erb" } }
       end
     end
