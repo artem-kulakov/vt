@@ -56,10 +56,8 @@ class RecordsController < ApplicationController
       format.pdf do
         render pdf: "foo",
         template: "records/pdf.html.erb",
-        footer: {
-          left:            'Neptuno 9C, Col. Nueva Industrial Vallejo, Del. Gustavo A. Madero, Cd MX - www.tuttoilmondo.com',
-          font_size:        10,
-        }
+        show_as_html:                   params.key?('debug'),
+        footer: { html: { template: "records/footer.pdf.erb" } }
       end
     end
   end
