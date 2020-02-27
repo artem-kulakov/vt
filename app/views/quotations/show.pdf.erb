@@ -14,15 +14,15 @@
       <div class="info2">
     <div class="row">
       <div class="col-md-6">
-        <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+        <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
       </div>
       <div class="col-md-6">
         <p class="right">
-          Cotización #: 0980 quotation.id
+          Cotización #: 0980 <%= @quotation.id %>
           <br>
-          Fecha de creación: quotation.created_at strftime('%d/%m/%Y')
+          Fecha de creación: <%= @quotation.created_at.strftime('%d/%m/%Y') %>
           <br>
-          Válida hasta: quotation.created_at strftime('%d/%m/%Y') + 1 month
+          Válida hasta: <%= (@quotation.created_at + 1.month).strftime('%d/%m/%Y') %>
         </p>
       </div>
       </div>
