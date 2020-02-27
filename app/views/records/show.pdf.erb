@@ -422,31 +422,31 @@
             <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
             Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
             Bitácora de horas de servicio del conductor <br>
-            Creado por: service.user.name<br>
-            Folio #: 0980 service.id <br>
-            Fecha: 
+            Creado por: <%= @record.user.name %><br>
+            Folio #: 0980 <%= service.id %><br>
+            Fecha: <%= Time.now.strftime(" %b-%d-%Y") %>
           </p>
         </div>
         </div>
       </div>
       <hr>
 
-      <div class="info">
+      <div class="info2">
             <p>
             <b>Información del operador y unidad</b><br><br>
-            Nombre:<br>
-            Número de licencia: <br>
-            Vigencia de licencia: <br>
-            Autobús: <br>
-            Modelo: <br>
-            Placas: <br>
-            Marca: <br>
-            Modelo: <br>
+            Nombre: <%= service.bus.operator.nombre %><br>
+            Número de licencia: <%= service.bus.operator.licencia %><br>
+            Vigencia de licencia: <%= service.bus.operator.validez %><br>
+            Autobús: <%= service.bus.numero %><br>
+            Modelo: <%= service.bus.modelo %><br>
+            Placas: <%= service.bus.placa %><br>
+            Marca: <%= service.bus.marca %><br>
+            Modelo: <%= service.bus.modelo %><br>
             </p>
       </div>
 
       <div class="info2">
-        <p>Itinerario:</p>
+        <p>Itinerario: <%= service.record.routes.map(&:place).join ', ' %></p>
       </div>
 
       <hr>
@@ -586,7 +586,7 @@
 
 
 
-      <div class="info">
+      <div class="info2">
         <div class="row">
           <div class="col-md-6">
             <p>Permisionario </p>
