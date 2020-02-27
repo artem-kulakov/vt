@@ -55,6 +55,7 @@ class RecordsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "foo",
+        viewport_size: '1280x1024',
         show_as_html: params.key?('debug'),
         footer: { html: { template: "records/footer.pdf.erb" } }
       end
