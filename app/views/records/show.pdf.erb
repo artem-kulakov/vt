@@ -336,9 +336,9 @@
             <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
             Tutto il mondo, S. A. de C. V. Av. Las Americas 608 int 105, Col. La Fuente, Aguascalientes, Ags., C P 20239 <br>
             Contrato de prestación de servicio de transporte <br>
-            Creado por: service.user.name<br>
-            Folio #: 0980 service.id <br>
-            Fecha: 
+            Creado por: <%= @record.user.name %><br>
+            Folio #: 0980 <%= service.id %><br>
+            Fecha: <%= Time.now.strftime(" %b-%d-%Y") %>
           </p>
         </div>
         </div>
@@ -348,35 +348,38 @@
       <div class="info">
             <p>
             <b>Información del cliente</b><br><br>
-            Nombre cliente:<br>
-            Teléfono de contacto: <br>
-            Correo de contacto: 
+            Nombre cliente: <%= service.record.nombre_referencia %><br>
+            Teléfono de contacto: <%= service.record.telefono_referencia %><br>
+            Correo de contacto: <%=  %>
             </p>
 
       <br>
             <p>
               <b>Descripción del servicio</b><br><br>
-            Fecha de salida: 
-            Fecha de regreso: <br>
-            Hora de cita de salida: <br>
-            Hora de regreso: <br>
-            Dirección de cita: <br>
-            Referencia de cita: <br> 
-            Itinerario: 
+            Fecha de salida: <%= service.record.start_time.strftime(" %b-%d-%Y") %><br>
+            Fecha de regreso: <%= service.record.end_time.strftime(" %b-%d-%Y") %><br>
+            Hora de cita de salida: <%= service.record.initial_time %> <br>
+            Hora de regreso: <%= service.record.finish_time %> <br>
+            Dirección de cita: <%= service.record.lugar_salida %> <br>
+            Referencia de cita: <%= service.record.referencia_salida %> <br> 
+            Itinerario: <%= service.record.routes.map(&:place).join ', ' %>
             </p>
 
             <p>
               <b>Información de la unidad</b><br><br>
-              Autobús: <br>
-              Pasajeros: 
+                Número del autobús: <%= service.bus.numero %><br>
+                Pasajeros: <%= service.record.numero_pasajeros %>
             </p>
 
             <p>
               <b>Características del contrato</b><br><br>
-              Tarifa por unidad: <br>
-              Tarifa adicional por día: <br>
-              Precio sin IVA: <br>
-              Precio más IVA:  
+              Tarifa por unidad: <%= service.precio_unidad %><br>
+              Tarifa adicional por día: <%= service.dia_extra %><br>
+              Precio sin IVA: <%= service.record.precio %><br>
+              Precio más IVA: <%= service.record.precio_final %>
+
+
+
             </p>
 
             <p>Sellos digitales:  9Mx5o8pDH3FbiYK++IJZwCddlyvnjM7iRtE7a7bdT8P1QHoZoIDqZj3ETqEC4kkBAjj--</p>
@@ -384,7 +387,7 @@
 
 
       <div class="info2">
-        <p>Observaciones:</p>
+        <p>Observaciones: <%= service.record.observaciones %></p>
       </div>
 
       <div class="info">
