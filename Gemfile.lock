@@ -256,7 +256,10 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    wicked_pdf (1.4.0)
+      activesupport
     will_paginate (3.2.1)
+    wkhtmltopdf-binary (0.12.5.4)
     wkhtmltopdf-heroku (2.12.5.0)
     zeitwerk (2.2.2)
 
@@ -297,7 +300,9 @@ DEPENDENCIES
   underscore-rails
   web-console
   webpacker
+  wicked_pdf
   will_paginate
+  wkhtmltopdf-binary
   wkhtmltopdf-heroku
 
 BUNDLED WITH

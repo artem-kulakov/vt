@@ -18,8 +18,20 @@ class QuotationsController < ApplicationController
   # GET /quotations/1
   # GET /quotations/1.json
   def show
+    @company = Company.first
+
     @places = @quotation.places
     @place = Place.new
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "quotation",
+        viewport_size: '1280x1024',
+        show_as_html: params.key?('debug'),
+        footer: { html: { template: "shared/footer.pdf.erb" } }
+      end
+    end
   end
 
   # GET /quotations/new

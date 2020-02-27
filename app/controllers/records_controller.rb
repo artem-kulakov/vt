@@ -58,6 +58,8 @@ class RecordsController < ApplicationController
   # GET /records/1
   # GET /records/1.json
   def show
+    @company = Company.first
+
     @payments = @record.payments
     @payment = Payment.new
 
@@ -66,6 +68,16 @@ class RecordsController < ApplicationController
     
     @routes = @record.routes
     @route = Route.new
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "service",
+        viewport_size: '1280x1024',
+        show_as_html: params.key?('debug'),
+        footer: { html: { template: "shared/footer.pdf.erb" } }
+      end
+    end
   end
 
   # GET /records/new

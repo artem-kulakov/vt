@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <%= wicked_pdf_stylesheet_link_tag "/css/pdf.css" %>
+  </head>
+  <body>
+    <div class="invoice-box">
+      <div class="info2">
+    <div class="row">
+      <div class="col-md-6">
+        <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
+      </div>
+      <div class="col-md-6">
+        <p class="right">
+          Cotización #: 0980 <%= @quotation.id %>
+          <br>
+          Fecha de creación: <%= @quotation.created_at.strftime('%d/%m/%Y') %>
+          <br>
+          Válida hasta: <%= (@quotation.created_at + 1.month).strftime('%d/%m/%Y') %>
+        </p>
+      </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+          <b><%= @company.name %></b><br>
+          <%= @company.address %><br>
+          <i class="material-icons">mail </i><%= @quotation.user.email %><br>
+          <i class="material-icons">smartphone </i><%= @quotation.user.phone %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="right">
+            <b><%= @quotation.nombre %></b><br>
+            <i class="material-icons">mail </i><%= @quotation.email %><br>
+            <i class="material-icons">smartphone </i><%= @quotation.telefono %>
+          </p>
+        </div>
+    </div>
+      </div>
+
+    <hr>
+    <div class="info">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Buenas tardes, en respuesta a su solicitud le envíamos la siguiente cotización:</p> <br>
+            <b>Fechas de servicio: <%= @quotation.fecha_inicio.strftime(" %d-%b-%Y") %> - <%= @quotation.fecha_fin.strftime(" %d-%b-%Y") %></b><br>
+            Número de pasajeros: <%= @quotation.pasajeros %><br>
+            Itinerario: <%= @quotation.places.map(&:address).join ', ' %><br>
+            
+        </div>
+      </div>
+    </div>
+
+    <div class="info2">
+     <table id="t01">
+      <tr>
+        <th class="right"></th>
+        <th class="right">Irizar PB, 47 plazas e Irizar I6, 51-53 plazas</th> 
+        <th class="right">Irizar I6, 47 plazas e Irizar Century, 53 plazas</th>
+        <th class="right">Volvo 9700, 44-47 plazas</th>
+        <th class="right">Sprinter 20 plazas</th>
+      </tr>
+      <tr>
+        <td class="right"></td>
+        <td class="right"><%= @quotation.segmento1.round(2) %> por unidad</td>
+        <td class="right"><%= @quotation.segmento2.round(2) %> por unidad</td>
+        <td class="right"><%= @quotation.segmento3.round(2) %> por unidad</td>
+        <td class="right"><%= @quotation.segmento4.round(2) %> por unidad</td>
+      </tr>
+      <tr>
+        <td>Día extra:</td>
+        <td class="right"><%= @quotation.dia_extra1.round(2) %> por unidad</td>
+        <td class="right"><%= @quotation.dia_extra2.round(2) %> por unidad</td>
+        <td class="right"><%= @quotation.dia_extra3.round(2) %> por unidad</td>
+        <td class="right"><%= @quotation.dia_extra4.round(2) %> por unidad</td>
+      </tr>
+    </table> 
+
+    </div>
+
+    <div class="info2">
+      <p>Condiciones de pago: 30% reservación, 70% dos días antes del servicio <br>
+    Precios más I.V.A</p>
+    </div>
+
+    <div class="info2">
+      <p>Observaciones: <%= @quotation.observaciones %></p>
+    </div>
+
+    <div class="info">
+          <p>
+          <b><%= @quotation.user.name %></b><br>
+          <%= @quotation.user.puesto %><br>
+          <%= @quotation.user.email %><br>
+          <%= @quotation.user.phone %>
+          </p>
+    </div>
+
+    </div>
+  </body>
+</html>
