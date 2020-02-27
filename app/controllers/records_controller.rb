@@ -56,10 +56,10 @@ class RecordsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "foo",
+        render pdf: "service",
         viewport_size: '1280x1024',
         show_as_html: params.key?('debug'),
-        footer: { html: { template: "records/footer.pdf.erb" } }
+        footer: { html: { template: "shared/footer.pdf.erb" } }
       end
     end
   end

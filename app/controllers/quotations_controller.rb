@@ -16,6 +16,16 @@ class QuotationsController < ApplicationController
   def show
     @places = @quotation.places
     @place = Place.new
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "quotation",
+        viewport_size: '1280x1024',
+        show_as_html: params.key?('debug'),
+        footer: { html: { template: "shared/footer.pdf.erb" } }
+      end
+    end
   end
 
   # GET /quotations/new
