@@ -14,6 +14,8 @@ class QuotationsController < ApplicationController
   # GET /quotations/1
   # GET /quotations/1.json
   def show
+    @company = Company.first
+
     @places = @quotation.places
     @place = Place.new
 
