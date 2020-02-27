@@ -16,7 +16,6 @@
         <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <!-- <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo"> -->
           <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
@@ -24,7 +23,7 @@
             <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
             Contrato - Orden de servicio <br>
             Creado por: <%= @record.user.name %><br>
-            Folio #: <%= service.id %>
+            Folio #: 0980 <%= service.id %>
           </p>
         </div>
         </div>
@@ -158,14 +157,14 @@
         <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
           <p class="right">
             <b>TUTTO IL MONDO SA de CV company.razon_social</b> <br>
             Contrato - Orden de servicio <br>
-            Creado por: service.user.name<br>
-            Folio #: 0980 service.id
+            Creado por: <%= @record.user.name %><br>
+            Folio #: 0980 <%= service.id %>
           </p>
         </div>
         </div>
@@ -177,36 +176,36 @@
               <b>Información básica</b><br><br>
             Kilometraje inicial: _______________<br>
             Kilometraje final: _______________<br>
-            Fecha de salida: <br>
-            Fecha de regreso:
+            Fecha de salida: <%= service.record.start_time.strftime(" %b-%d-%Y") %><br>
+            Fecha de regreso: <%= service.record.end_time.strftime(" %b-%d-%Y") %>
             </p>
       <br>
             <p>
               <b>Información del cliente</b><br><br>
-            Nombre cliente:<br>
-            Teléfono de contacto: <br>
-            Correo de contacto: 
+            Nombre cliente: <%= service.record.nombre_referencia %><br>
+            Teléfono de contacto: <%= service.record.telefono_referencia %><br>
+            Correo de contacto: <%=  %>
             </p>
 
       <br>
             <p>
               <b>Información del servicio</b><br><br>
-            Número del autobús:<br>
-            Pasajeros: <br>
-            Operador: <br>
-            Hora de cita de salida: <br>
-            Hora de regreso: <br>
-            Dirección de cita: <br>
-            Referencia de cita: <br> 
+            Número del autobús: <%= service.bus.numero %><br>
+            Pasajeros: <%= service.record.numero_pasajeros %> <br>
+            Operador: <%= service.bus.operator.nombre %> <br>
+            Hora de cita de salida: <%= service.record.initial_time %> <br>
+            Hora de regreso: <%= service.record.finish_time %> <br>
+            Dirección de cita: <%= service.record.lugar_salida %> <br>
+            Referencia de cita: <%= service.record.referencia_salida %> <br> 
             </p>
       </div>
 
       <div class="info2">
-        <p>Itinerario:</p>
+        <p>Itinerario: <%= service.record.routes.map(&:place).join ', ' %></p>
       </div>
 
       <div class="info2">
-        <p>Observaciones:</p>
+        <p>Observaciones: <%= service.record.observaciones %></p>
       </div>
 
 
@@ -225,7 +224,7 @@
          <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
           <p class="right">
@@ -330,7 +329,7 @@
         <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
           <p class="right">
@@ -413,7 +412,7 @@
         <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
           <p class="right">
@@ -612,7 +611,7 @@
         <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
           <p class="right">
@@ -710,7 +709,7 @@
         <div class="info2">
       <div class="row">
         <div class="col-md-6">
-          <img src="/images/tutto-05.png" alt="Tutto il mondo" class="img-responsive logo">
+          <%= wicked_pdf_image_tag '/images/tutto-05.png' %>
         </div>
         <div class="col-md-6">
           <p class="right">
