@@ -53,11 +53,13 @@
             </div>
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Navigation</label>
-                    </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="index.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                        <%= link_to root_path, class: "nav-link" do %>
+                            <span class="pcoded-micon">
+                                <i class="feather icon-home"></i>
+                            </span>
+                            <span class="pcoded-mtext">Inicio</span>
+                        <% end %>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
                         <label>Other</label>
