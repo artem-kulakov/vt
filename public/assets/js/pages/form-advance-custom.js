@@ -5,7 +5,7 @@ $(document).ready(function() {
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: {
-            url: '../assets/plugins/bootstrap-tagsinput-latest/json/citynames.json',
+            url: 'assets/plugins/bootstrap-tagsinput-latest/json/citynames.json',
             filter: function(list) {
                 return $.map(list, function(cityname) {
                     return {
@@ -29,7 +29,7 @@ $(document).ready(function() {
     var cities = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: '../assets/plugins/bootstrap-tagsinput-latest/json/cities.json'
+        prefetch: 'assets/plugins/bootstrap-tagsinput-latest/json/cities.json'
     });
     cities.initialize();
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
     var cities = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: '../assets/plugins/bootstrap-tagsinput-latest/json/cities.json'
+        prefetch: 'assets/plugins/bootstrap-tagsinput-latest/json/cities.json'
     });
     cities.initialize();
 

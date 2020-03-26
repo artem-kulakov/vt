@@ -66,7 +66,7 @@ $(window).on('load', function() {
     $('#ajax').jstree({
         'core': {
             'data': {
-                "url": "../assets/plugins/jstree/json/root.json",
+                "url": "assets/plugins/jstree/json/root.json",
                 "dataType": "json"
             }
         }
@@ -76,7 +76,7 @@ $(window).on('load', function() {
     $('#lazy').jstree({
         'core': {
             'data': {
-                "url": "../assets/plugins/jstree/json/lazy.json",
+                "url": "assets/plugins/jstree/json/lazy.json",
                 "data": function(node) {
                     return {
                         "id": node.id
