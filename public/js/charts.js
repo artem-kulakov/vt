@@ -1,6 +1,30 @@
 $(document).ready(function() {
     var data = $('.chart_data').data('data')
 
+    const line_chart_options = {
+        barValueSpacing: 20,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    autoSkip: false,
+                    maxRotation: 90,
+                    minRotation: 90
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    precision: 0,
+                    suggestedMin: 0
+                }
+            }]
+        },
+        elements: {
+            point:{
+                radius: 0
+            }
+        }
+    }
+
     // Cotizaciones
     var bar = document.getElementById("chart-bar-1").getContext('2d');
     var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);
@@ -48,38 +72,11 @@ $(document).ready(function() {
 
     // Registros
     var bar = document.getElementById("chart-line-1").getContext('2d');
-    var theme_g1 = bar.createLinearGradient(0, 0, 500, 0);
-    theme_g1.addColorStop(0, 'rgba(29, 233, 182, 0.4)');
-    theme_g1.addColorStop(1, 'rgba(29, 196, 233, 0.5)');
-    var theme_g2 = bar.createLinearGradient(0, 0, 500, 0);
-    theme_g2.addColorStop(0, '#899FD4');
-    theme_g2.addColorStop(1, '#A389D4');
     var data1 = {
-        labels: [0, 1, 2, 3, 4, 5, 6],
+        labels: data.records.labels,
         datasets: [{
-            label: "D1",
-            data: [55, 70, 62, 81, 56, 70, 90],
-            fill: false,
-            borderWidth: 4,
-            lineTension: 0,
-            borderDash: [15, 10],
-            borderColor: theme_g2,
-            backgroundColor: theme_g2,
-            hoverborderColor: theme_g2,
-            hoverBackgroundColor: theme_g2,
-        }, {
-            label: "D2",
-            data: [85, 55, 70, 50, 75, 45, 60],
-            fill: true,
-            cubicInterpolationMode: 'monotone',
-            borderWidth: 0,
-            borderColor: theme_g1,
-            backgroundColor: theme_g1,
-            hoverborderColor: theme_g1,
-            hoverBackgroundColor: theme_g1,
-        }, {
-            label: "D3",
-            data: [50, 75, 80, 70, 85, 80, 70],
+            label: "Registros Mensuales",
+            data: data.records.data,
             fill: false,
             borderWidth: 4,
             borderColor: "#04a9f5",
@@ -92,9 +89,6 @@ $(document).ready(function() {
         type: 'line',
         data: data1,
         responsive: true,
-        options: {
-            barValueSpacing: 20,
-            maintainAspectRatio: false,
-        }
+        options: line_chart_options
     });
 });

@@ -8,13 +8,27 @@ class WelcomeController < ApplicationController
     data[:quotations][:labels] = quotations.keys
     data[:quotations][:data] = quotations.values
 
-    @data = data
+    data[:records] = {}
+    records = Record.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    data[:records][:labels] = records.keys
+    data[:records][:data] = records.values
 
-    @services = Service.all
-    @buses = Bus.all
-    @receipts = Receipt.all
-    @gas = Ga.all
-    @costs = @services + @receipts
+    data[:services] = {}
+    services = Service.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    data[:services][:labels] = services.keys
+    data[:services][:data] = services.values
+
+    data[:receipts] = {}
+    receipts = Receipt.group_by_month(:fecha, last: 12, format: "%b'%y").sum('cantidad')
+    data[:receipts][:labels] = receipts.keys
+    data[:receipts][:data] = receipts.values
+
+    data[:income] = {}
+    income = Record.group_by_month(:start_time, last: 12, format: "%b'%y").sum('precio_final')
+    data[:income][:labels] = income.keys
+    data[:income][:data] = income.values
+
+    @data = data
   end
 
 
