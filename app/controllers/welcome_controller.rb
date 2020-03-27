@@ -7,7 +7,18 @@ class WelcomeController < ApplicationController
     @gas = Ga.all
     @costs = @services + @receipts
 
-    @temp = [1,2,3]
+
+
+    data = {}
+
+    data[:quotations] = {}
+    quotations = Quotation.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    data[:quotations][:labels] = quotations.keys
+    data[:quotations][:data] = quotations.values
+
+    $data = data
+
+    @temp = $data
   end
 
 
