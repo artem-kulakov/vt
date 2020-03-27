@@ -40,6 +40,29 @@ class RecordsController < ApplicationController
     @buses = Bus.all.order("created_at asc")
     @services = Service.all
     @records = Record.where("((start_time > :start AND start_time < :end) OR (end_time > :start AND end_time < :end)) OR (start_time < :start AND end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
+
+    @events = []
+    colors = [
+      '#04a9f5',
+      '#f44236',
+      '#f4c22b',
+      '#3ebfea',
+      '#1de9b6',
+      '#a389d4'
+    ]
+    @records.each do |record|
+      color = colors.sample
+
+      @events << {
+          title: record.title,
+          url: record_url(record),
+          start: record.start_time,
+          end: record.end_time,
+          borderColor: color,
+          backgroundColor: color,
+          textColor: '#fff'
+      }
+    end
   end
 
   def operaciones

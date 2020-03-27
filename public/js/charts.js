@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var data = $('.chart_data').data('data')
+    var data = $('.chart_data').data('data');
 
     const line_chart_options = {
         barValueSpacing: 20,
