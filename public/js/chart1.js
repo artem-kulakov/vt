@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var data = $('.temp_information').data('temp')
+    var data = $('.chart_data').data('data')
 
     var bar = document.getElementById("chart-bar-1").getContext('2d');
     var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);

@@ -1,14 +1,6 @@
 class WelcomeController < ApplicationController
 	before_action :authenticate_user!
 	def index
-    @services = Service.all
-    @buses = Bus.all
-    @receipts = Receipt.all
-    @gas = Ga.all
-    @costs = @services + @receipts
-
-
-
     data = {}
 
     data[:quotations] = {}
@@ -16,9 +8,13 @@ class WelcomeController < ApplicationController
     data[:quotations][:labels] = quotations.keys
     data[:quotations][:data] = quotations.values
 
-    $data = data
+    @data = data
 
-    @temp = $data
+    @services = Service.all
+    @buses = Bus.all
+    @receipts = Receipt.all
+    @gas = Ga.all
+    @costs = @services + @receipts
   end
 
 
