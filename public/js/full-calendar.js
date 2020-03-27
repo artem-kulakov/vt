@@ -6,11 +6,11 @@ $(window).on('load', function() {
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            right: 'month,basicWeek,basicDay'
         },
-        defaultDate: '2018-08-12',
-        editable: true,
-        droppable: true,
+        defaultDate: new Date,
+        editable: false,
+        droppable: false,
         events: events,
         drop: function() {
             if ($('#drop-remove').is(':checked')) {
