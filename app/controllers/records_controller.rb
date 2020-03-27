@@ -37,11 +37,8 @@ class RecordsController < ApplicationController
   def pizarron
     start_time = params[:start] ? params[:start].to_time : Time.now
 
-    @buses = Bus.all.order("created_at asc")
-    @services = Service.all
     @records = Record.where("((start_time > :start AND start_time < :end) OR (end_time > :start AND end_time < :end)) OR (start_time < :start AND end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
 
-    @events = []
     colors = [
       '#04a9f5',
       '#f44236',
@@ -50,9 +47,11 @@ class RecordsController < ApplicationController
       '#1de9b6',
       '#a389d4'
     ]
+
+    @events = []
+
     @records.each do |record|
       color = colors.sample
-
       @events << {
           title: record.title,
           url: record_url(record),
