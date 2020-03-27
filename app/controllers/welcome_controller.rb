@@ -6,6 +6,8 @@ class WelcomeController < ApplicationController
     @receipts = Receipt.all
     @gas = Ga.all
     @costs = @services + @receipts
+
+    @temp = [1,2,3]
   end
 
 

@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    var foo = $('.temp_information').data('temp')
+    alert(foo);
+
     var bar = document.getElementById("chart-bar-1").getContext('2d');
     var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);
     theme_g1.addColorStop(0, '#1de9b6');
