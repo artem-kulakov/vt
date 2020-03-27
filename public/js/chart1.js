@@ -5,9 +5,6 @@ $(document).ready(function() {
     var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);
     theme_g1.addColorStop(0, '#1de9b6');
     theme_g1.addColorStop(1, '#1dc4e9');
-    var theme_g2 = bar.createLinearGradient(0, 300, 0, 0);
-    theme_g2.addColorStop(0, '#899FD4');
-    theme_g2.addColorStop(1, '#A389D4');
     var data1 = {
         labels: data.quotations.labels,
         datasets: [{
