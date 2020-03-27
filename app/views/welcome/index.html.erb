@@ -31,4 +31,26 @@
     </div>
 </div>
 
+<div class="col-md-6 col-xl-4">
+    <div class="card">
+        <div class="card-header">
+            <h5>Gastos</h5>
+        </div>
+        <div class="card-block">
+            <canvas id="chart-line-3" style="width: 100%; height: 300px"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-xl-4">
+    <div class="card">
+        <div class="card-header">
+            <h5>Ingresos</h5>
+        </div>
+        <div class="card-block">
+            <canvas id="chart-line-4" style="width: 100%; height: 300px"></canvas>
+        </div>
+    </div>
+</div>
+
 <%= content_tag :div, class: "chart_data", data: {data: @data} do %><% end %>

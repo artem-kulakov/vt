@@ -117,4 +117,53 @@ $(document).ready(function() {
         responsive: true,
         options: line_chart_options
     });
+
+
+    // Gastos
+    var bar = document.getElementById("chart-line-3").getContext('2d');
+    var data1 = {
+        labels: data.receipts.labels,
+        datasets: [{
+            label: "Gastos Mensuales",
+            data: data.receipts.data,
+            fill: false,
+            borderWidth: 4,
+            borderColor: theme_g1,
+            backgroundColor: theme_g1,
+            hoverborderColor: theme_g1,
+            hoverBackgroundColor: theme_g1
+        }]
+    };
+    var myBarChart = new Chart(bar, {
+        type: 'line',
+        data: data1,
+        responsive: true,
+        options: line_chart_options
+    });
+
+
+    // Ingresos
+    var bar = document.getElementById("chart-line-4").getContext('2d');
+    var theme_g2 = bar.createLinearGradient(0, 0, 500, 0);
+    theme_g2.addColorStop(0, '#899FD4');
+    theme_g2.addColorStop(1, '#A389D4');
+    var data1 = {
+        labels: data.income.labels,
+        datasets: [{
+            label: "Ingresos Mensuales",
+            data: data.income.data,
+            fill: false,
+            borderWidth: 4,
+            borderColor: theme_g2,
+            backgroundColor: theme_g2,
+            hoverborderColor: theme_g2,
+            hoverBackgroundColor: theme_g2
+        }]
+    };
+    var myBarChart = new Chart(bar, {
+        type: 'line',
+        data: data1,
+        responsive: true,
+        options: line_chart_options
+    });
 });
