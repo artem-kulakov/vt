@@ -1,77 +1,32 @@
-<script src='/packages/core/main.js'></script>
-<script src='/packages/interaction/main.js'></script>
-<script src='/packages-premium/timeline/main.js'></script>
-<script src='/packages-premium/resource-common/main.js'></script>
-<script src='/packages-premium/resource-timeline/main.js'></script>
+<div class="col-sm-12">
+    <div class="card fullcalendar-card">
+        <div class="card-header">
+            <h5>Full Calendar</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-xl-2 col-md-12">
+                    <div id='external-events' class="external-events">
+                        <h4>Events</h4>
+                        <div class='fc-event'>My Event 1</div>
+                        <div class='fc-event'>My Event 2</div>
+                        <div class='fc-event'>My Event 3</div>
+                        <div class='fc-event'>My Event 4</div>
+                        <div class='fc-event'>My Event 5</div>
 
-<div class="row">
-  <div class="col-md-12">
-<div class="panel panel-headline">
-  <div class="panel-body">
-<!-- <div id="calendar"></div> -->
-<div id='calendar'></div>
+                        <div class="form-group">
+                            <div class="switch switch-primary d-inline m-r-10">
+                                <input type="checkbox" id="drop-remove">
+                                <label for="drop-remove" class="cr"></label>
+                            </div>
+                            <label>Remove Event</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-10 col-md-12">
+                    <div id='calendar' class='calendar'></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
-
-<br>
-
-<%= @buses.count %>
-
-<script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'resourceTimeline' ],
-      now: Date.now(),
-      editable: true,
-      aspectRatio: 1.8,
-      scrollTime: '00:00',
-      header: {
-        left: 'today prev,next',
-        center: 'title',
-        right: 'resourceTimelineMonth,resourceTimelineYear'
-      },
-      buttonText: {
-        today:    'hoy',
-        month:    'mes',
-        year:     'año'
-      },
-      defaultView: 'resourceTimelineMonth',
-      views: {
-        resourceTimelineDay: {
-          buttonText: ':15 slots',
-          slotDuration: '00:15'
-        },
-        resourceTimelineTenDay: {
-          type: 'resourceTimeline',
-          duration: { days: 10 },
-          buttonText: '10 days'
-        }
-      },
-      navLinks: true,
-      resourceAreaWidth: '10%',
-      resourceLabelText: 'Autobuses',
-      resources: [
-        <% @buses.each do |bus| %>
-          { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
-        <% end %>
-      ],
-      events: '/records/pizarron.json'
-    });
-
-    calendar.setOption('locale', 'es');
-
-    calendar.render();
-  });
-
-</script>
-
-<style>
-  #calendar {
-
-  }
-</style>
