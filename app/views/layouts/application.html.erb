@@ -73,6 +73,17 @@
                             <span class="pcoded-mtext">Pizarron</span>
                         <% end %>
                     </li>
+                    <li data-username="Task list board details" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">Cotización</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <%= link_to 'Nueva Cotización', new_quotation_path, class: "" %>
+                            </li>
+                            <li class="">
+                                <%= link_to 'Todas las Cotizaciones', quotations_path, class: "" %>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li class="nav-item pcoded-menu-caption">
                         <label>Navigation</label>
