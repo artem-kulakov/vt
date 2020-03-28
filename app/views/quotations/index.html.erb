@@ -77,9 +77,11 @@
                     </tbody>
                 </table>
             </div>
+            <div style="display:flex; justify-content:center; align-items:center;">
             <% unless @quotations.blank? %>
                 <%= will_paginate @quotations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
             <% end %>
+            </div>
         </div>
     </div>
 </div>
