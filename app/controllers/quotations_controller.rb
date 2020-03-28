@@ -51,9 +51,6 @@ class QuotationsController < ApplicationController
   # GET /quotations/:id/distance
   def distance
     @step_3_active = "active"
-
-    @places = @quotation.places
-    @place = Place.new
   end
 
   # GET /quotations/1/edit
