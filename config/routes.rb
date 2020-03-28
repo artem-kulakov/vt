@@ -14,6 +14,7 @@ get '/reporte' => 'welcome#reporte'
       get 'itinerary'
       get 'distance'
       get 'prices'
+      get 'pdf'
     end
   end
 

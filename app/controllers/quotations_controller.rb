@@ -1,5 +1,5 @@
 class QuotationsController < ApplicationController
-  before_action :set_quotation, only: [:show, :edit, :itinerary, :distance, :prices, :update, :destroy]
+  before_action :set_quotation, only: [:show, :edit, :itinerary, :distance, :prices, :pdf, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /quotations
@@ -56,6 +56,11 @@ class QuotationsController < ApplicationController
   # GET /quotations/:id/prices
   def prices
     @step_4_active = "active"
+  end
+
+  # GET /quotations/:id/pdf
+  def pdf
+    @step_5_active = "active"
   end
 
   # GET /quotations/1/edit
