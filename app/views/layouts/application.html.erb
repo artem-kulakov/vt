@@ -724,7 +724,7 @@
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                             <div class="row">
-                                <%= content_for?(:content) ? yield(:content) : yield %>
+                                <%= (controller_name == 'quotations' && %w(new itinerary distance prices pdf).include?(action_name)) ? yield(:content) : yield %>
                             </div>
                             <!-- [ Main Content ] end -->
                         </div>
