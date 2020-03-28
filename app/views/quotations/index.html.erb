@@ -32,6 +32,13 @@
     <div class="card">
         <div class="card-header">
             <h5>Cotizaciones</h5>
+            <% @years.reverse.each do |year| %>
+              <% if year.to_s == @year.to_s %>
+                <span class="mr-2"><%= year %></span>
+              <% else %>
+                <%= link_to year, quotations_path(year: year), class: "mr-2" %>
+              <% end %>
+            <% end %>
         </div>
         <div class="card-block table-border-style">
             <div class="table-responsive">
