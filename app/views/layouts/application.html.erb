@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="/assets/plugins/fullcalendar/css/fullcalendar.min.css">
     <% end %>
     <!-- Smart Wizard css -->
-    <% if controller_name == 'quotations' && action_name == 'new' %>
+    <% if controller_name == 'quotations' && %w(new itinerary).include?(action_name) %>
         <link rel="stylesheet" href="/assets/plugins/smart-wizard/css/smart_wizard.min.css">
         <link rel="stylesheet" href="/assets/plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
         <link rel="stylesheet" href="/assets/plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
@@ -819,7 +819,7 @@
     <% end %>
 
     <!-- Smart Wizard Js -->
-    <% if controller_name == 'quotations' && action_name == 'new' %>
+    <% if controller_name == 'quotations' && %w(new itinerary).include?(action_name) %>
         <script src="/assets/plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
         <script src="/assets/js/pages/wizard-custom.js"></script>
     <% end %>

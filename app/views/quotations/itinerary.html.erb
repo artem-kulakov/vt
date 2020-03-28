@@ -1,22 +1,17 @@
-<div class="col-md-12">
-    <div class="card">
-        <div class="card-header">
-            <h5>Itinerario</h5>
-        </div>
-        <div class="card-block">
-            <%= form_for [@quotation, @place] do |f| %>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <%= f.label :Nuevo_lugar %>
-                            <%= f.text_field :address, id: 'searchTextField', class: "form-control" %>
-                        </div>
-                    </div>
-                    <div class="col-md-12 text-left">
-                        <%= f.submit "Añadir Lugar", class: "btn btn-primary" %>
-                    </div>
+<div id="step-1">
+    <h5>Itinerario</h5>
+    <hr>
+    <%= form_for [@quotation, @place] do |f| %>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <%= f.label :Nuevo_lugar %>
+                    <%= f.text_field :address, id: 'searchTextField', class: "form-control" %>
                 </div>
-            <% end %>
+            </div>
+            <div class="col-md-12 text-left">
+                <%= f.submit "Añadir Lugar", class: "btn btn-primary" %>
+            </div>
         </div>
-    </div>
+    <% end %>
 </div>

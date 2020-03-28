@@ -1,123 +1,64 @@
-<div class="col-sm-12">
-    <div class="card">
-        <div class="card-header">
-            <h5>Smart Wizard</h5>
-        </div>
-        <div class="card-block">
-            <!-- [ SmartWizard html ] start -->
-            <div id="smartwizard">
-                <ul>
-                    <li><a href="#step-1">
-                            <h6>Step 1</h6>
-                            <p class="m-0">Nueva Cotización</p>
-                        </a></li>
-                    <li><a href="#step-2">
-                            <h6>Step 2</h6>
-                            <p class="m-0">This is step content</p>
-                        </a></li>
-                    <li><a href="#step-3">
-                            <h6>Step 3</h6>
-                            <p class="m-0">This is step text</p>
-                        </a></li>
-                    <li><a href="#step-4">
-                            <h6>Step 4</h6>
-                            <p class="m-0">This is step content</p>
-                        </a></li>
-                </ul>
-                <div>
-                    <div id="step-1">
-                        <h5>Nueva Cotización</h5>
-                        <hr>
-                        <%= form_for(@quotation) do |f| %>
-                          <% if @quotation.errors.any? %>
-                            <div id="error_explanation">
-                              <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
+<div id="step-1">
+    <h5>Nueva Cotización</h5>
+    <hr>
+    <%= form_for(@quotation) do |f| %>
+      <% if @quotation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
 
-                              <ul>
-                              <% @quotation.errors.full_messages.each do |message| %>
-                                <li><%= message %></li>
-                              <% end %>
-                              </ul>
-                            </div>
-                          <% end %>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <%= f.label :origen %>
-                                        <%= f.select :origen, [["Página de internet"], ["Recomendación"], ["cliente habitual"], ["Medios impresos"], ["Facebook"], ["Cotización por correo"]], {:prompt => '¿Cómo se enteró?'}, {:required => true, class: "form-control"} %>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <%= f.label :nombre %>
-                                        <%= f.text_field :nombre, required: true, class: "form-control" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <%= f.label :telefono %>
-                                        <%= f.text_field :telefono, class: "form-control" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <%= f.label :email %>
-                                        <%= f.text_field :email, required: true, class: "form-control" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <%= f.label :num_dias %>
-                                        <%= f.text_field :num_dias, class: "form-control" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <%= f.label :fecha_inicio_tentativa %>
-                                        <%= f.date_field :fecha_inicio, :required => true, class: "form-control" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <%= f.label :fecha_fin_tentativa %><br>
-                                        <%= f.date_field :fecha_fin, :required => true, class: "form-control" %>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                    <%= f.submit 'Next', class: "btn btn-primary" %>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div>
-                    <div id="step-2">
-                        <h5>Title Step 2</h5>
-                        <hr>
-                        <h6>Sub title 1</h6>
-                        <p><strong>@Title content 1!.. </strong> Lorem Ipsum is simply dummy text of the printing <strong>@Content content 1 </strong> and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text.</p>
-                        <h6 class="mt-3">Sub title 2</h6>
-                        <p><strong>@Title content 2!.. </strong> Lorem Ipsum is simply dummy text and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                    <div id="step-3">
-                        <h5>Title Step 3</h5>
-                        <hr>
-                        <h6>Sub title 1</h6>
-                        <p><strong>@Title content 1!.. </strong> Lorem Ipsum is simply dummy text of the printing <strong>@Content content 1 </strong> and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text.</p>
-                        <h6 class="mt-3">Sub title 2</h6>
-                        <p><strong>@Title content 2!.. </strong> Lorem Ipsum is simply dummy text and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                    <div id="step-4">
-                        <h5>Title Step 4</h5>
-                        <hr>
-                        <h6>Sub title 1</h6>
-                        <p><strong>@Title content 1!.. </strong> Lorem Ipsum is simply dummy text of the printing <strong>@Content content 1 </strong> and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text.</p>
-                        <h6 class="mt-3">Sub title 2</h6>
-                        <p><strong>@Title content 2!.. </strong> Lorem Ipsum is simply dummy text and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
+          <ul>
+          <% @quotation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <%= f.label :origen %>
+                    <%= f.select :origen, [["Página de internet"], ["Recomendación"], ["cliente habitual"], ["Medios impresos"], ["Facebook"], ["Cotización por correo"]], {:prompt => '¿Cómo se enteró?'}, {:required => true, class: "form-control"} %>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :nombre %>
+                    <%= f.text_field :nombre, required: true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :telefono %>
+                    <%= f.text_field :telefono, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :email %>
+                    <%= f.text_field :email, required: true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :num_dias %>
+                    <%= f.text_field :num_dias, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :fecha_inicio_tentativa %>
+                    <%= f.date_field :fecha_inicio, :required => true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :fecha_fin_tentativa %><br>
+                    <%= f.date_field :fecha_fin, :required => true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+                <%= f.submit 'Next', class: "btn btn-primary" %>
+            </div>
         </div>
-    </div>
+    <% end %>
 </div>
