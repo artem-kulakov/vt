@@ -13,6 +13,7 @@ get '/reporte' => 'welcome#reporte'
     member do
       get 'itinerary'
       get 'distance'
+      get 'prices'
     end
   end
 
