@@ -6,28 +6,28 @@
             </div>
             <div class="card-block">
                 <!-- [ SmartWizard html ] start -->
-                <div id="smartwizard">
-                    <ul>
-                        <li><a href="#step-1">
+                <div id="smartwizard" class="sw-main sw-theme-default">
+                    <ul class="nav nav-tabs step-anchor">
+                        <li class="nav-item"><a href="#step-1" class="nav-link">
                                 <h6>Step 1</h6>
                                 <p class="m-0">Nueva Cotización</p>
                             </a></li>
-                        <li><a href="#step-2">
+                        <li class="nav-item active"><a href="#step-2" class="nav-link">
                                 <h6>Step 2</h6>
-                                <p class="m-0">This is step content</p>
+                                <p class="m-0">Itinerario</p>
                             </a></li>
-                        <li><a href="#step-3">
+                        <li class="nav-item"><a href="#step-3" class="nav-link">
                                 <h6>Step 3</h6>
                                 <p class="m-0">This is step text</p>
                             </a></li>
-                        <li><a href="#step-4">
+                        <li class="nav-item"><a href="#step-4" class="nav-link">
                                 <h6>Step 4</h6>
                                 <p class="m-0">This is step content</p>
                             </a></li>
                     </ul>
-                    <div>
+                    <div class="sw-container tab-content">
                         <%= yield %>
-                    </div>
+                    </div><div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end"><div class="btn-group mr-2 sw-btn-group" role="group"><button class="btn btn-secondary sw-btn-prev disabled" type="button">Previous</button><button class="btn btn-secondary sw-btn-next" type="button">Next</button></div></div>
                 </div>
             </div>
         </div>
