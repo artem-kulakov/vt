@@ -60,7 +60,7 @@ class QuotationsController < ApplicationController
 
     respond_to do |format|
       if @quotation.save
-        format.html { redirect_to @quotation, notice: 'Quotation was successfully created.' }
+        format.html { redirect_to itinerary_quotation_path(@quotation), notice: 'Quotation was successfully created.' }
         format.json { render :show, status: :created, location: @quotation }
       else
         format.html { render :new }
