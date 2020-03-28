@@ -60,7 +60,7 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to @quotation, notice: 'Place was successfully destroyed.' }
+      format.html { redirect_to itinerary_quotation_path(@quotation), notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

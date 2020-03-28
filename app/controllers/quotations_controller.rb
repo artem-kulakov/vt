@@ -43,6 +43,8 @@ class QuotationsController < ApplicationController
   # GET /quotations/:id/itinerary
   def itinerary
     @step_2_active = "active"
+
+    @places = @quotation.places
     @place = Place.new
   end
 
