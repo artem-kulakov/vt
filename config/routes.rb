@@ -10,7 +10,11 @@ get '/reporte' => 'welcome#reporte'
   resources :vouchers
   resources :quotations do
     resources :places
+    member do
+      get 'itinerary'
+    end
   end
+
   resources :operators
   resources :buses
   resources :clients

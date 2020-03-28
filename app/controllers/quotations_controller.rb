@@ -1,5 +1,5 @@
 class QuotationsController < ApplicationController
-  before_action :set_quotation, only: [:show, :edit, :update, :destroy]
+  before_action :set_quotation, only: [:show, :edit, :itinerary, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /quotations
@@ -32,6 +32,10 @@ class QuotationsController < ApplicationController
         footer: { html: { template: "shared/footer.pdf.erb" } }
       end
     end
+  end
+
+  def itinerary
+    @place = Place.new
   end
 
   # GET /quotations/new
