@@ -38,31 +38,35 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Origen</th>
+                            <th>Num días</th>
+                            <th>Fecha inicio</th>
+                            <th>Fecha fin</th>
+                            <th>Pasajeros</th>
+                            <th>Usuario</th>
+                            <th colspan="3"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        <% @quotations.each do |quotation| %>
+                          <tr>
+                            <td><%= quotation.nombre %></td>
+                            <td><%= quotation.telefono %></td>
+                            <td><%= quotation.email %></td>
+                            <td><%= quotation.origen %></td>
+                            <td><%= quotation.num_dias %></td>
+                            <td><%= quotation.try(:fecha_inicio).strftime(" %b-%d-%Y") %></td>
+                            <td><%= quotation.try(:fecha_fin).strftime(" %b-%d-%Y") %></td>
+                            <td><%= quotation.pasajeros %></td>
+                            <td><%= quotation.user.name %></td>
+                            <td><%= link_to 'Ver más', quotation %></td>
+                            <td><%= link_to 'Editar', edit_quotation_path(quotation) %></td>
+                            <td><%= link_to 'Eliminar', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                          </tr>
+                        <% end %>
                     </tbody>
                 </table>
             </div>
