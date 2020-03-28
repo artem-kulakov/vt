@@ -90,13 +90,18 @@ class QuotationsController < ApplicationController
     respond_to do |format|
       if @quotation.update(quotation_params)
         step = params[:step].to_i
-        
+
         if step == 2
-          format.html { redirect_to distance_quotation_path(@quotation), notice: 'Quotation was successfully updated.' }
+          path = distance_quotation_path(@quotation)
+        elsif step == 3
+          path = prices_quotation_path(@quotation)
+        elsif step == 4
+          path = pdf_quotation_path(@quotation)
         else
-          format.html { redirect_to @quotation, notice: 'Quotation was successfully updated.' }
+          path = @quotation
         end
 
+        format.html { redirect_to path, notice: 'Quotation was successfully updated.' }
         format.json { respond_with_bip(@quotation) }
       else
         format.html { render :edit }
