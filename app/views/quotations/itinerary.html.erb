@@ -66,15 +66,6 @@
         var directionsService = new google.maps.DirectionsService();
         directionsService.route(request, function(response, status) {
           if (status == 'OK') {
-           var total = 0;
-           var myroute = response.routes[0];
-
-           for (var i = 0; i < myroute.legs.length; i++) {
-             total += myroute.legs[i].distance.value;
-           }
-           total = total / 1000;
-           document.getElementById('total').innerHTML = total;
-
             // Display the route on the map.
             directionsDisplay.setDirections(response);
 
