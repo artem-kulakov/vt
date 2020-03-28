@@ -12,6 +12,7 @@ get '/reporte' => 'welcome#reporte'
     resources :places
     member do
       get 'itinerary'
+      get 'distance'
     end
   end
 

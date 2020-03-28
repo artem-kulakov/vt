@@ -1,0 +1,85 @@
+<div id="step-3" class="tab-pane step-content" style="display: block;">
+    <h5>Confirmar Distancia</h5>
+    <hr class="">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <%= form_for [@quotation, @place] do |f| %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <%= f.label :Nuevo_lugar %>
+                            <%= f.text_field :address, id: 'searchTextField', class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-left mb-5">
+                        <%= f.submit "Añadir Lugar", class: "btn btn-primary" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Google map -->
+<script>
+  function initMap() {
+    var inicio = {lat: 19.5054552, lng: -99.1505334};
+        // 
+        <% @places.order('id ASC').each_with_index do |place, i| %>
+        var address<%=i%> = {lat: <%= place.latitude.round(3) %>, lng: <%= place.longitude.round(3) %>};
+        <% end %>
+        // 
+        var final = {lat: 19.5054552, lng: -99.1505334};
+
+        var map = new google.maps.Map(document.getElementById('map4'), {
+          center: inicio,
+          scrollwheel: false,
+          zoom: 7
+        });
+
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+          map: map
+        });
+
+        // Set destination, origin and travel mode.
+        var request = {
+          destination: final,
+          waypoints: [
+          <% @places.order('id ASC').each_with_index do |place, i| %>
+          {location: address<%=i%>},
+          <% end %>
+          ],
+          origin: inicio,
+          travelMode: 'DRIVING'
+        };
+
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+
+          }
+        });
+      }
+</script>
+
+<!-- Autocomplete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&callback=initMap&libraries=places"></script>
+
+<script>
+  function initialize() {
+    var options = {
+      types: ['(cities)'],
+    };
+
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

@@ -1,5 +1,5 @@
 class QuotationsController < ApplicationController
-  before_action :set_quotation, only: [:show, :edit, :itinerary, :update, :destroy]
+  before_action :set_quotation, only: [:show, :edit, :itinerary, :distance, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /quotations
@@ -43,6 +43,14 @@ class QuotationsController < ApplicationController
   # GET /quotations/:id/itinerary
   def itinerary
     @step_2_active = "active"
+
+    @places = @quotation.places
+    @place = Place.new
+  end
+
+  # GET /quotations/:id/distance
+  def distance
+    @step_3_active = "active"
 
     @places = @quotation.places
     @place = Place.new
