@@ -1,4 +1,4 @@
-<div id="step-1" class="tab-pane step-content" style="display: block;">
+<div id="step-4" class="tab-pane step-content" style="display: block;">
     <h5>Información básica</h5>
     <hr>
     <%= form_for(@record) do |f| %>
@@ -17,44 +17,50 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label :Status_de_servicio %><br>
-                    <%= f.select :status_op, [["Prob Baja"], ["Prob Media"], ["Prob Alta"], ["Venta"]], {:prompt => 'Cuál es el Status?'}, {:required => true, class: "form-control"} %>
+                    <%= f.label 'Lugar de Salida' %>
+                    <%= f.text_field :lugar_salida, required:true, placeholder: 'Añande lugar de salida', class: "form-control" %>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label :referencia %>
-                    <%= f.text_field :title, required:true, class: "form-control" %>
+                    <%= f.label 'Referencia de Salida' %>
+                    <%= f.text_field :referencia_salida, required:true, placeholder: 'Añande referencia de salida', class: "form-control" %>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label :Fecha_de_inicio %><br>
-                    <%= f.date_field :start_time, required:true, class: "form-control" %>
+                    <%= f.label 'Persona de Referencia' %>
+                    <%= f.text_field :nombre_referencia, required:true, placeholder: 'Añande nombre referencia', class: "form-control" %>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label :Fecha_de_fin %><br>
-                    <%= f.date_field :end_time, required:true, class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <%= f.label :Razon_social %><br>
-                    <%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq}, placeholder: "PROSPECTO", :value => "PROSPECTO", required:true, class: "form-control" %>
+                    <%= f.label 'Teléfono de Referencia' %>
+                    <%= f.text_field :telefono_referencia, required:true, placeholder: 'Añande teléfono referencia', class: "form-control" %>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label :numero_pasajeros %><br>
-                    <%= f.number_field :numero_pasajeros, class: "form-control" %>
+                    <%= f.label '¿Requiere Factura?' %><br>
+                    <%= f.select :factura, [["Sin factura", false], ["Con Factura", true]], {:prompt => ''}, {:required => true, class: "form-control"} %>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label :numero_de_camiones %><br>
-                    <%= f.number_field :numero_de_camiones, required:true, class: "form-control" %>
+                    <%= f.label '# de Factura o Recibo' %>
+                    <%= f.text_field :num_factura, required:true, placeholder: 'Añande # factura o recibo', class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label 'Observaciones' %>
+                    <%= f.text_area :observaciones, rows: 5, required:true, placeholder: 'Añande observaciones', class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label 'Condiciones' %>
+                    <%= f.text_area :condiciones, rows: 5, required:true, placeholder: 'Añande condiciones', class: "form-control" %>
                 </div>
             </div>
             <div class="col-md-12 text-right">
