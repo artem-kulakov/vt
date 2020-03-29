@@ -104,6 +104,7 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
+    @step_1_active = "active"
     @record = Record.new
   end
 

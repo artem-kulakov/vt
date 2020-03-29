@@ -1,0 +1,41 @@
+<% content_for :content do %>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Servicio</h5>
+            </div>
+            <div class="card-block">
+                <!-- [ SmartWizard html ] start -->
+                <div id="smartwizard" class="sw-main sw-theme-default">
+                    <ul class="nav nav-tabs step-anchor">
+                        <li class="nav-item <%= @step_1_active %>"><a href="#step-1" class="nav-link">
+                                <h6>Step 1</h6>
+                                <p class="m-0">Información básica</p>
+                            </a></li>
+                        <li class="nav-item <%= @step_2_active %>"><a href="#step-2" class="nav-link">
+                                <h6>Step 2</h6>
+                                <p class="m-0">Itinerario</p>
+                            </a></li>
+                        <li class="nav-item <%= @step_3_active %>"><a href="#step-3" class="nav-link">
+                                <h6>Step 3</h6>
+                                <p class="m-0">Confirmar Distancia</p>
+                            </a></li>
+                        <li class="nav-item <%= @step_4_active %>"><a href="#step-4" class="nav-link">
+                                <h6>Step 4</h6>
+                                <p class="m-0">Precios</p>
+                            </a></li>
+                        <li class="nav-item <%= @step_5_active %>"><a href="#step-5" class="nav-link">
+                                <h6>Step 5</h6>
+                                <p class="m-0">PDF</p>
+                            </a></li>
+                    </ul>
+                    <div class="sw-container tab-content">
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<%= render template: "layouts/application" %>
