@@ -60,6 +60,59 @@
                     <h6 class="rojo">No se encontró la dirección</h6>
                 <% end %>
             <% end %>
+
+            <h5 class="mt-5">Precios</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Irizar pb 47 e irizar i6 51-53:</span>
+                        <%= @quotation.segmento1 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Dia extra:</span>
+                        <%= @quotation.dia_extra1 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Irizar i6 47 e irizar century 53:</span>
+                        <%= @quotation.segmento2 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Dia extra:</span>
+                        <%= @quotation.dia_extra2 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Volvo 9700 44 47:</span>
+                        <%= @quotation.segmento3 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Dia extra:</span>
+                        <%= @quotation.dia_extra3 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Sprinter 20:</span>
+                        <%= @quotation.segmento4 %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Dia extra:</span>
+                        <%= @quotation.dia_extra4 %>
+                    </h6>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -71,41 +124,6 @@
   <!-- left -->
 
   <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Itinerario:</h3>
-      </div>
-      
-      <div class="panel-body">
-        <div class="row">
-          <% @places.order('id ASC').each_with_index do |place, i| %>
-          <div class="col-sm-6">
-            <h4><%= i+1 %>.- <%= place.address %>    | <span><%= link_to 'Eliminar', quotation_place_path(@quotation, place), method: :delete, data: { confirm: 'Are you sure?' } %></span> |</h4>
-            <% if place.latitude.present? %>
-
-            <% else %>
-            <h6 class="rojo">No se encontró la dirección</h6>
-            <% end %>
-          </div>
-          <% end %>
-        </div>
-
-        <%= form_for [@quotation, @place], :html => {:id => 'place_form'} do |f| %>
-
-        <div class="field">
-          <%= f.label :Nuevo_lugar %><br>
-          <%= f.text_field :address, id: 'searchTextField' %>
-        </div>
-
-
-        <div class="actions">
-          <%= f.submit "Añadir Lugar", class: "btn btn-primary" %> <br><br>
-        </div>
-        <% end %>
-      </div>
-
-    </div>
-
     <div class="panel panel-headline">
       <div class="panel-heading">
         <h3>Precios:</h3>
