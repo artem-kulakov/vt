@@ -1,0 +1,52 @@
+<div id="step-3" class="tab-pane step-content" style="display: block;">
+    <h5>Itinerario</h5>
+    <hr>
+
+    <div class="row">
+        <div class="col-12">
+            <% @routes.order('id ASC').each_with_index do |route, i| %>
+              <h6><%= i+1 %>. <%= route.place %> <span><%= link_to 'Eliminar', record_route_path(@record, route), method: :delete, data: { confirm: 'Are you sure?' } %></span></h6>
+            <% end %>
+
+
+
+            <%= form_for [@record, @route], :html => {:id => 'route_form'} do |f| %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <%= f.label :Nuevo_lugar %><br>
+                            <%= f.text_field :place, id: 'searchTextField', class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-left">
+                        <%= f.submit "Añadir Lugar", class: "btn btn-primary" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="col text-right">
+            <%= form_for @record do |f| %>
+                <%= hidden_field_tag :step, 3 %>
+                <%= f.submit "Siguiente", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Autocomplete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&callback=initMap&libraries=places"></script>
+
+<script>
+  function initialize() {
+    var options = {
+      types: ['(cities)'],
+    };
+
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

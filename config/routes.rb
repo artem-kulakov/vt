@@ -36,6 +36,7 @@ get '/reporte' => 'welcome#reporte'
     end
     member do
       get 'client'
+      get 'itinerary'
     end
     resources :payments
     resources :routes
