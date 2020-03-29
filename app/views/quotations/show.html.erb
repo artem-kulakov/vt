@@ -257,68 +257,12 @@
         var directionsService = new google.maps.DirectionsService();
         directionsService.route(request, function(response, status) {
           if (status == 'OK') {
-           var total = 0;
-           var myroute = response.routes[0];
-
-           for (var i = 0; i < myroute.legs.length; i++) {
-             total += myroute.legs[i].distance.value;
-           }
-           total = total / 1000;
-           document.getElementById('total').innerHTML = total;
-
-
-
             // Display the route on the map.
             directionsDisplay.setDirections(response);
 
           }
         });
       }
-
-
-
-
-
-
-
-
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&callback=initMap&libraries=places"></script>
-
-
-
-<!-- Autocomplete -->
-<script>
-  function initialize() {
-    var options = {
-      types: ['(cities)'],
-    };
-
-    var input = document.getElementById('searchTextField');
-    var autocomplete = new google.maps.places.Autocomplete(input, options);
-  }
-
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-
-
-
-<script>
-  $(document).ready(function() {
-    /* Activating Best In Place */
-    jQuery(".best_in_place").best_in_place();
-  });
-</script>
-
-<!-- <script>
-  $('.best_in_place').bind("ajax:success", function(){
-    // alert('Name updated');
-    location.reload();
-  });
-
-</script> -->
-
-<script> 
-  $.datepicker.setDefaults({ dateFormat: 'M-dd-yy' });
-</script>
