@@ -89,7 +89,7 @@
                     </li>
 
                     <li data-username="Task list board details" class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">Ordenes</span></a>
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Ordenes</span></a>
                         <ul class="pcoded-submenu">
                             <li class="">
                                 <%= link_to 'Nuevo Bloqueo', new_record_path, class: "" %>
@@ -735,7 +735,7 @@
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                             <div class="row">
-                                <%= ((controller_name == 'quotations' && %w(new edit itinerary distance prices pdf).include?(action_name)) || (controller_name == 'records' && %w(new client itinerary trip).include?(action_name))) ? yield(:content) : yield %>
+                                <%= ((controller_name == 'quotations' && %w(new edit itinerary distance prices pdf).include?(action_name)) || (controller_name == 'records' && %w(new client itinerary trip bus).include?(action_name))) ? yield(:content) : yield %>
                             </div>
                             <!-- [ Main Content ] end -->
                         </div>
