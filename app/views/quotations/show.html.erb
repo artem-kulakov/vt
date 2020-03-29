@@ -4,51 +4,86 @@
             <h5>Cotización #<%= @quotation.id %></h5>
         </div>
         <div class="card-body">
-            <h6 class="">
-                <span class="text-muted m-r-5">Creada por:</span>
-                <%= @quotation.user.name %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Origen:</span>
-                <%= @quotation.origen %>
-            </h6>
+            <div class="row">
+                <div class="col-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Creada por:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Origen:</span>
+                    </h6>
+                </div>
+                <div class="col-4">
+                    <h6 class="">
+                        <%= @quotation.user.name %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.origen %>
+                    </h6>
+                </div>
+            </div>
             <hr>
-            <h6 class="">
-                <span class="text-muted m-r-5">Nombre:</span>
-                <%= @quotation.nombre %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Telefono:</span>
-                <%= @quotation.telefono %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Email:</span>
-                <%= @quotation.email %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Num_dias:</span>
-                <%= @quotation.num_dias %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Fecha_inicio:</span>
-                <%= @quotation.fecha_inicio %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Fecha_fin:</span>
-                <%= @quotation.fecha_fin %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Pasajeros:</span>
-                <%= @quotation.pasajeros %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Observaciones:</span>
-                <%= @quotation.observaciones %>
-            </h6>
-            <h6 class="">
-                <span class="text-muted m-r-5">Distancia:</span>
-                <%= @quotation.distancia %>
-            </h6>
+
+            <div class="row">
+                <div class="col-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Nombre:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Telefono:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Email:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Num dias:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Fecha inicio:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Fecha fin:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Pasajeros:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Observaciones:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Distancia:</span>
+                    </h6>
+                </div>
+                <div class="col-4">
+                    <h6 class="">
+                        <%= @quotation.nombre %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.telefono %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.email %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.num_dias %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.fecha_inicio %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.fecha_fin %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.pasajeros %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.observaciones %>
+                    </h6>
+                    <h6 class="">
+                        <%= @quotation.distancia %>
+                    </h6>
+                </div>
+            </div>
 
             <h5 class="mt-5">Itinerario</h5>
             <hr>
