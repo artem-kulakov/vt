@@ -8670,7 +8670,7 @@ a.btn-theme.active {
 /* Tabbable tabs */
 /* Hide tabbable panes to start, show them when `.active` */
 .tab-content {
-  padding: 35px 30px;
+  /*padding: 35px 30px;*/
   background: #fff;
   -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.05);
@@ -10597,3 +10597,8 @@ div.code-toolbar > .toolbar span:hover {
   }
 }
 /**====== File Upload css end ======**/
+
+
+.nav-item.active {
+    border-bottom: 2px #04a9f5 solid;
+}
