@@ -52,6 +52,14 @@
 
             <h5 class="mt-5">Itinerario</h5>
             <hr>
+            <% @places.order('id ASC').each_with_index do |place, i| %>
+                <h6><%= i+1 %>. <%= place.address %></h6>
+                <% if place.latitude.present? %>
+
+                <% else %>
+                    <h6 class="rojo">No se encontró la dirección</h6>
+                <% end %>
+            <% end %>
         </div>
     </div>
 </div>
@@ -60,74 +68,6 @@
 
 
 <div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-
-
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-4">
-            <h4>Nombre:  <a href="#" id="1"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @quotation, :nombre, :place_holder => "Añadir ", :activator => "#1" %></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Telefono:  <a href="#" id="2"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @quotation, :telefono, :place_holder => "Añadir ", :activator => "#2" %></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-8">
-            <h4>Email:  <a href="#" id="3"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @quotation, :email, :place_holder => "Añadir ", :activator => "#3" %></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Num dias:  <a href="#" id="4"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @quotation, :num_dias, :place_holder => "Añadir ", :activator => "#4" %></p>
-          </div>
-        </div>
-
-        <div class="row">
-
-
-          <div class="col-sm-4">
-            <h4>Fecha inicio:  <a href="<%= edit_quotation_path(@quotation) %>" id="5"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= @quotation.fecha_inicio%></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Fecha fin:  <a href="<%= edit_quotation_path(@quotation) %>" id="6"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= @quotation.fecha_fin%></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <h4>Pasajeros:  <a href="#" id="7"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @quotation, :pasajeros, :place_holder => "Añadir ", :activator => "#7" %></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <h4>Observaciones: <a href="#" id="90"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@quotation], :observaciones, :as => :textarea, :place_holder => "Añande observaciones", :activator => "#90"%></p><br><br>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-8">
-            <h4>Confirmar Distancia:  <a href="#" id="8"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @quotation, :distancia, :place_holder => "Añadir ", :activator => "#8" %></p>
-          </div>
-        </div>
-        <h2 class="btn btn-info btn-block">Distancia: <span id= "total"></span> km</h2>
-      </div>
-    </div>
-
-  </div>
   <!-- left -->
 
   <div class="col-md-6">
