@@ -11,10 +11,10 @@ get '/reporte' => 'welcome#reporte'
   resources :quotations do
     resources :places
     member do
-      get 'itinerary'
-      get 'distance'
-      get 'prices'
-      get 'pdf'
+      get :itinerary
+      get :distance
+      get :prices
+      get :pdf
     end
   end
 
@@ -35,8 +35,9 @@ get '/reporte' => 'welcome#reporte'
       get :operaciones
     end
     member do
-      get 'client'
-      get 'itinerary'
+      get :client
+      get :itinerary
+      get :trip
     end
     resources :payments
     resources :routes

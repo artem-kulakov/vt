@@ -735,7 +735,7 @@
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                             <div class="row">
-                                <%= ((controller_name == 'quotations' && %w(new edit itinerary distance prices pdf).include?(action_name)) || (controller_name == 'records' && %w(new client itinerary).include?(action_name))) ? yield(:content) : yield %>
+                                <%= ((controller_name == 'quotations' && %w(new edit itinerary distance prices pdf).include?(action_name)) || (controller_name == 'records' && %w(new client itinerary trip).include?(action_name))) ? yield(:content) : yield %>
                             </div>
                             <!-- [ Main Content ] end -->
                         </div>
