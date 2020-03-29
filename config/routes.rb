@@ -26,13 +26,16 @@ get '/reporte' => 'welcome#reporte'
   resources :categories
 
   resources :records do
-      collection do
+    collection do
       get :pizarron
       get :reportes
       get :cobranza
       get :historico
       get :registro
       get :operaciones
+    end
+    member do
+      get 'client'
     end
     resources :payments
     resources :routes

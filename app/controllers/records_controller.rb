@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_record, only: [:client, :show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /records
@@ -106,6 +106,10 @@ class RecordsController < ApplicationController
   def new
     @step_1_active = "active"
     @record = Record.new
+  end
+
+  def client
+    @step_2_active = "active"
   end
 
   # GET /records/1/edit

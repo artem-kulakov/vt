@@ -1,0 +1,66 @@
+<div id="step-1" class="tab-pane step-content" style="display: block;">
+    <h5>Información básica</h5>
+    <hr>
+    <%= form_for(@record) do |f| %>
+		<% if @record.errors.any? %>
+    		<div id="error_explanation">
+    			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+    			<ul>
+    				<% @record.errors.full_messages.each do |message| %>
+    				<li><%= message %></li>
+    				<% end %>
+    			</ul>
+    		</div>
+		<% end %>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label :Status_de_servicio %><br>
+                    <%= f.select :status_op, [["Prob Baja"], ["Prob Media"], ["Prob Alta"], ["Venta"]], {:prompt => 'Cuál es el Status?'}, {:required => true, class: "form-control"} %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label :referencia %>
+                    <%= f.text_field :title, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label :Fecha_de_inicio %><br>
+                    <%= f.date_field :start_time, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label :Fecha_de_fin %><br>
+                    <%= f.date_field :end_time, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <%= f.label :Razon_social %><br>
+                    <%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq}, placeholder: "PROSPECTO", :value => "PROSPECTO", required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label :numero_pasajeros %><br>
+                    <%= f.number_field :numero_pasajeros, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label :numero_de_camiones %><br>
+                    <%= f.number_field :numero_de_camiones, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+                <%= hidden_field_tag :step, 1 %>
+                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+            </div>
+        </div>
+	<% end %>
+</div>
