@@ -110,6 +110,8 @@ class RecordsController < ApplicationController
 
   def client
     @step_2_active = "active"
+
+    @clients = Client.all
   end
 
   # GET /records/1/edit
