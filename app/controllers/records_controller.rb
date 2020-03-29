@@ -127,6 +127,8 @@ class RecordsController < ApplicationController
 
   def bus
     @step_5_active = "active"
+
+    @service = Service.new
   end
 
   # GET /records/1/edit

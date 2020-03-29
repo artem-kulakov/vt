@@ -1,7 +1,7 @@
 <div id="step-4" class="tab-pane step-content" style="display: block;">
     <h5>Servicio de autobuses</h5>
     <hr>
-    <%= form_for(@record) do |f| %>
+    <%= form_for [@record, @service] do |f| %>
 		<% if @record.errors.any? %>
     		<div id="error_explanation">
     			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
@@ -17,55 +17,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <%= f.label 'Lugar de Salida' %>
-                    <%= f.text_field :lugar_salida, required:true, placeholder: 'Añande lugar de salida', class: "form-control" %>
+                    <%= f.label :Autobús %><br>
+                    <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }, {:required => true, class: "form-control"} %>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label 'Referencia de Salida' %>
-                    <%= f.text_field :referencia_salida, required:true, placeholder: 'Añande referencia de salida', class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label 'Persona de Referencia' %>
-                    <%= f.text_field :nombre_referencia, required:true, placeholder: 'Añande nombre referencia', class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label 'Teléfono de Referencia' %>
-                    <%= f.text_field :telefono_referencia, required:true, placeholder: 'Añande teléfono referencia', class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label '¿Requiere Factura?' %><br>
-                    <%= f.select :factura, [["Sin factura", false], ["Con Factura", true]], {:prompt => ''}, {:required => true, class: "form-control"} %>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label '# de Factura o Recibo' %>
-                    <%= f.text_field :num_factura, required:true, placeholder: 'Añande # factura o recibo', class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label 'Observaciones' %>
-                    <%= f.text_area :observaciones, rows: 5, required:true, placeholder: 'Añande observaciones', class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label 'Condiciones' %>
-                    <%= f.text_area :condiciones, rows: 5, required:true, placeholder: 'Añande condiciones', class: "form-control" %>
-                </div>
+            <div class="col-md-12">
+                <%= f.submit 'Añadir Autobús', class: "btn btn-primary" %>
             </div>
             <div class="col-md-12 text-right">
-                <%= hidden_field_tag :step, 1 %>
-                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+                <%#= link_to 'Siguiente', class: "btn btn-primary" %>
             </div>
         </div>
 	<% end %>
