@@ -64,49 +64,65 @@
             <h5 class="mt-5">Precios</h5>
             <hr>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Irizar pb 47 e irizar i6 51-53:</span>
+                    </h6>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="">
                         <%= @quotation.segmento1 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Dia extra:</span>
                         <%= @quotation.dia_extra1 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Irizar i6 47 e irizar century 53:</span>
+                    </h6>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="">
                         <%= @quotation.segmento2 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Dia extra:</span>
                         <%= @quotation.dia_extra2 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Volvo 9700 44 47:</span>
+                    </h6>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="">
                         <%= @quotation.segmento3 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Dia extra:</span>
                         <%= @quotation.dia_extra3 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Sprinter 20:</span>
+                    </h6>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="">
                         <%= @quotation.segmento4 %>
                     </h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-4">
                     <h6 class="">
                         <span class="text-muted m-r-5">Dia extra:</span>
                         <%= @quotation.dia_extra4 %>
@@ -195,43 +211,6 @@
 
 
 
-<div class="row">
-  <div class="panel panel-headline">
-    <div class="panel-heading">
-      <h3>Precios sugeridos por número de días (<%= @quotation.num_dias %>)</h3>
-    </div>
-
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-sm-2">
-          <h4>Irizar PB 47:</h4>
-          <p><%= number_to_currency @quotation.num_dias * 9000 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Irizar I6 51-53:</h4>
-          <p><%= number_to_currency @quotation.num_dias * 9000 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Irizar I6 47:</h4>
-          <p><%= number_to_currency @quotation.num_dias * 8500 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Irizar Century 53:</h4>
-          <p><%= number_to_currency @quotation.num_dias * 8500 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Volvo 9700 44-47:</h4>
-          <p><%= number_to_currency @quotation.num_dias * 8000 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Sprinter 20:</h4>
-          <p><%= number_to_currency @quotation.num_dias * 4500 %></p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <div class="row">
   <div class="panel panel-headline">
