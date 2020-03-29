@@ -65,6 +65,7 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/1/edit
   def edit
+    @step_1_active = "active"
   end
 
   # POST /quotations
@@ -91,7 +92,9 @@ class QuotationsController < ApplicationController
       if @quotation.update(quotation_params)
         step = params[:step].to_i
 
-        if step == 2
+        if step == 1
+          path = itinerary_quotation_path(@quotation)
+        elsif step == 2
           path = distance_quotation_path(@quotation)
         elsif step == 3
           path = prices_quotation_path(@quotation)
