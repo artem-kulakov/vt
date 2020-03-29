@@ -113,114 +113,90 @@
                     </h6>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <h5 class="mt-5">Precios sugeridos por</h5>
+                </div>
+                <div class="col-4">
+                    <h5 class="mt-5"><%= @quotation.distancia %> KM</h5>
+                </div>
+                <div class="col-4">
+                    <h5 class="mt-5"><%= @quotation.num_dias %> dias</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Irizar PB 47:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Irizar I6 51-53:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Irizar I6 47:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Irizar Century 53:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Volvo 9700 44-47:</span>
+                    </h6>
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Sprinter 20:</span>
+                    </h6>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="">
+                        <%= number_to_currency @quotation.distancia * 22.5 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.distancia * 22.5 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.distancia * 21.25 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.distancia * 21.25 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.distancia * 20 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.distancia * 11.25 %>
+                    </h6>
+                </div>
+                <div class="col-sm-4">
+                    <h6 class="">
+                        <%= number_to_currency @quotation.num_dias * 9000 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.num_dias * 9000 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.num_dias * 8500 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.num_dias * 8500 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.num_dias * 8000 %>
+                    </h6>
+                    <h6 class="">
+                        <%= number_to_currency @quotation.num_dias * 4500 %>
+                    </h6>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 
-
-
-<div class="row">
-  <!-- left -->
-
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Precios:</h3>
-      </div>
-
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-8">
-            <h4>Irizar pb 47 e irizar i6 51-53:  <a href="#" id="10"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :segmento1, :place_holder => "Añadir ", :activator => "#10" %></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Dia extra <-  <a href="#" id="11"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :dia_extra1, :place_holder => "Añadir ", :activator => "#11" %></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-8">
-            <h4>Irizar i6 47 e irizar century 53:  <a href="#" id="12"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :segmento2, :place_holder => "Añadir ", :activator => "#12" %></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Dia extra <-  <a href="#" id="13"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :dia_extra2, :place_holder => "Añadir ", :activator => "#13" %></p>
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-sm-8">
-            <h4>Volvo 9700 44 47:  <a href="#" id="14"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :segmento3, :place_holder => "Añadir ", :activator => "#14" %></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Dia extra <-  <a href="#" id="15"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :dia_extra3, :place_holder => "Añadir ", :activator => "#15" %></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-8">
-            <h4>Sprinter 20:  <a href="#" id="16"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :segmento4, :place_holder => "Añadir ", :activator => "#16" %></p>
-          </div>
-
-          <div class="col-sm-4">
-            <h4>Dia extra <-  <a href="#" id="17"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= number_to_currency best_in_place @quotation, :dia_extra4, :place_holder => "Añadir ", :activator => "#17" %></p>
-          </div>
-        </div>
-        <br>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 
 <div class="row">
   <div class="panel panel-headline">
-    <div class="panel-heading">
-      <h3>Precios sugeridos por KM (<%= @quotation.distancia %>)</h3>
-    </div>
-
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-sm-2">
-          <h4>Irizar PB 47:</h4>
-          <p><%= number_to_currency @quotation.distancia * 22.5 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Irizar I6 51-53:</h4>
-          <p><%= number_to_currency @quotation.distancia * 22.5 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Irizar I6 47:</h4>
-          <p><%= number_to_currency @quotation.distancia * 21.25 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Irizar Century 53:</h4>
-          <p><%= number_to_currency @quotation.distancia * 21.25 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Volvo 9700 44-47:</h4>
-          <p><%= number_to_currency @quotation.distancia * 20 %></p>
-        </div>
-        <div class="col-sm-2">
-          <h4>Sprinter 20:</h4>
-          <p><%= number_to_currency @quotation.distancia * 11.25 %></p>
-        </div>
-      </div>
-    </div>
-    
     <div class="panel-heading">
       <h3>Precios sugeridos por número de días (<%= @quotation.num_dias %>)</h3>
     </div>
