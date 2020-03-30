@@ -145,6 +145,7 @@ class RecordsController < ApplicationController
     @step_7_active = "active"
 
     @payments = @record.payments
+    @payment = Payment.new
   end
 
   # GET /records/1/edit
