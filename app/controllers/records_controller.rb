@@ -164,7 +164,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
+        format.html { redirect_to client_record_path(@record), notice: 'Record was successfully created.' }
         format.json { respond_with_bip(@record) }
       else
         format.html { render :new }
@@ -178,7 +178,17 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        step = params[:step].to_i
+
+        if step == 2
+          path = itinerary_record_path(@record)
+        elsif step == 4
+          path = bus_record_path(@record)
+        elsif step == 6
+          path = payments_record_path(@record)
+        end
+
+        format.html { redirect_to path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }

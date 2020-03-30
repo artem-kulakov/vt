@@ -25,10 +25,7 @@
             <% end %>
         </div>
         <div class="col text-right">
-            <%= form_for @record do |f| %>
-                <%= hidden_field_tag :step, 3 %>
-                <%= f.submit "Siguiente", class: "btn btn-primary" %>
-            <% end %>
+            <%= link_to "Siguiente", trip_record_path(@record), class: "btn btn-primary" %>
         </div>
     </div>
 
