@@ -39,6 +39,7 @@ get '/reporte' => 'welcome#reporte'
       get :itinerary
       get :trip
       get :bus
+      get :price
     end
     resources :payments
     resources :routes
