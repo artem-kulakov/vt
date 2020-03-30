@@ -1,36 +1,37 @@
 <div id="step-4" class="tab-pane step-content" style="display: block;">
-    <h5>Servicio de autobuses</h5>
+    <h5>Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h5>
     <hr>
-    <%= form_for [@record, @service] do |f| %>
-		<% if @record.errors.any? %>
-    		<div id="error_explanation">
-    			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+    <% if @record.services.count < @record.numero_de_camiones %>
+        <%= form_for [@record, @service] do |f| %>
+    		<% if @record.errors.any? %>
+        		<div id="error_explanation">
+        			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
 
-    			<ul>
-    				<% @record.errors.full_messages.each do |message| %>
-    				<li><%= message %></li>
-    				<% end %>
-    			</ul>
-    		</div>
-		<% end %>
+        			<ul>
+        				<% @record.errors.full_messages.each do |message| %>
+        				<li><%= message %></li>
+        				<% end %>
+        			</ul>
+        		</div>
+    		<% end %>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <%= f.label :Autobús %><br>
-                    <%= f.select :bus_id, @free_buses, {prompt: 'Elegir autobús'}, {:required => true, class: "form-control"} %>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <%= f.label :Autobús %><br>
+                        <%= f.select :bus_id, @free_buses, {prompt: 'Elegir autobús'}, {:required => true, class: "form-control"} %>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <%= f.submit 'Añadir Autobús', class: "btn btn-primary" %>
+                </div>
+                <div class="col-md-12 text-right">
+                    <%#= link_to 'Siguiente', class: "btn btn-primary" %>
                 </div>
             </div>
-            <div class="col-md-12">
-                <%= f.submit 'Añadir Autobús', class: "btn btn-primary" %>
-            </div>
-            <div class="col-md-12 text-right">
-                <%#= link_to 'Siguiente', class: "btn btn-primary" %>
-            </div>
-        </div>
-	<% end %>
-    <hr>
-    <div class="table-responsive">
+    	<% end %>
+    <% end %>
+    <div class="table-responsive mt-5">
         <table class="table">
             <thead>
                 <tr>
