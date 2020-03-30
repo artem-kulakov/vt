@@ -34,31 +34,34 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Autobus</th>
+                    <th>Precio X unidad</th>
+                    <th>Casetas</th>
+                    <th>Hotel</th>
+                    <th>Viáticos</th>
+                    <th>Estacionamientos</th>
+                    <th>Lavadas</th>
+                    <th>Aeropuerto</th>
+                    <th>Otros</th>
+                    <th>Total</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <% @services.each do |service| %>
+                    <tr class="text-center">
+                        <td><%= service.bus.numero %></td>
+                        <td><%= service.precio_unidad %></td>
+                        <td><%= service.caseta %></td>
+                        <td><%= service.hotel %></td>
+                        <td><%= service.viaticos %></td>
+                        <td><%= service.estacionamientos %></td>
+                        <td><%= service.lavadas %></td>
+                        <td><%= service.aeropuerto %></td>
+                        <td><%= service.otros %></td>
+                        <td><%= service.sum_gastos %></td>
+                    </tr>
+                <% end %>
             </tbody>
         </table>
     </div>
