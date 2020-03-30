@@ -134,6 +134,7 @@ class RecordsController < ApplicationController
     @free_buses = Bus.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
 
     @service = Service.new
+    @services = @record.services
   end
 
   # GET /records/1/edit
