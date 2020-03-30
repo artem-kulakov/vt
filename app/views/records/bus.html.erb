@@ -25,9 +25,6 @@
                 <div class="col-md-12">
                     <%= f.submit 'Añadir Autobús', class: "btn btn-primary" %>
                 </div>
-                <div class="col-md-12 text-right">
-                    <%#= link_to 'Siguiente', class: "btn btn-primary" %>
-                </div>
             </div>
     	<% end %>
     <% end %>
@@ -71,5 +68,10 @@
                 <% end %>
             </tbody>
         </table>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <%= link_to 'Siguiente', root_path, class: "btn btn-primary" %>
+        </div>
     </div>
 </div>
