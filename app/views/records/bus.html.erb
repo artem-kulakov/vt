@@ -60,6 +60,7 @@
                         <td><%= service.aeropuerto %></td>
                         <td><%= service.otros %></td>
                         <td><%= service.sum_gastos %></td>
+                        <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>
                 <% end %>
             </tbody>
