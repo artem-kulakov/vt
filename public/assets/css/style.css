@@ -10599,6 +10599,6 @@ div.code-toolbar > .toolbar span:hover {
 /**====== File Upload css end ======**/
 
 
-.nav-item.active {
+.wizard-item.active {
     border-bottom: 2px #04a9f5 solid;
 }
