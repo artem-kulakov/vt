@@ -31,6 +31,11 @@
             </div>
     	<% end %>
     <% end %>
+
+    <h6 class="mt-5">Precio total: <%= number_to_currency @record.try(:precio_final) %></h6>
+    <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
+    <h6>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h6>
+
     <div class="table-responsive mt-5">
         <table class="table">
             <thead>
