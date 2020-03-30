@@ -143,6 +143,8 @@ class RecordsController < ApplicationController
 
   def payments
     @step_7_active = "active"
+
+    @payments = @record.payments
   end
 
   # GET /records/1/edit

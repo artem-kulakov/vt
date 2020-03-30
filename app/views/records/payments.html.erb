@@ -1,6 +1,40 @@
 <div id="step-1" class="tab-pane step-content" style="display: block;">
-    <h5>Información básica</h5>
+    <h5>Pagos</h5>
     <hr>
+
+
+    <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>Método</th>
+            <th>Núm Recibo</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th>  </th>
+          </thead>
+          <tbody>
+            <% @payments.each do |payment| %>
+            <tr>
+              <td><%= payment.metodo %></td>
+              <td><%= payment.num_recibo %></td>
+              <td><%= payment.try(:fecha).strftime(" %b-%d-%Y") %></td>
+              <td><%= payment.cantidad %></td>
+              <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+            <tr>
+              <td></td>
+              <td></td>
+              <th>Total:</th>
+              <th><%= @record.sum_payments %></th>
+              <td></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
     <%= form_for(@record) do |f| %>
 		<% if @record.errors.any? %>
     		<div id="error_explanation">
