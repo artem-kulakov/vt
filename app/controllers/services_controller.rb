@@ -42,7 +42,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @record, notice: 'Service was successfully created.' }
+        format.html { redirect_to bus_record_path(@record), notice: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -70,7 +70,7 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to @record, notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to bus_record_path(@record), notice: 'Service was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
