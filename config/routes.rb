@@ -41,6 +41,7 @@ get '/reporte' => 'welcome#reporte'
       get :bus
       get :price
       get :payments
+      get :pdf
     end
     resources :payments
     resources :routes
