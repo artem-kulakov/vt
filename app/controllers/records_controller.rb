@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:client, :itinerary, :trip, :bus, :price, :show, :edit, :update, :destroy]
+  before_action :set_record, only: [:client, :itinerary, :trip, :bus, :price, :payments, :show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /records
@@ -139,6 +139,10 @@ class RecordsController < ApplicationController
 
   def price
     @step_6_active = "active"
+  end
+
+  def payments
+    @step_7_active = "active"
   end
 
   # GET /records/1/edit
