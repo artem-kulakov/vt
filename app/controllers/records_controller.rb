@@ -128,6 +128,11 @@ class RecordsController < ApplicationController
   def bus
     @step_5_active = "active"
 
+    buses = Bus.all.pluck(:id)
+    booked_buses = Bus.joins(:records).where("records.start_time >= ? AND records.end_time <= ?", '2020-04-01T0:00:00', '2020-04-02T0:00:00').pluck(:id)
+    free_buses = buses - booked_buses
+    @free_buses = Bus.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
+
     @service = Service.new
   end
 

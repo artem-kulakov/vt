@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <%= f.label :Autobús %><br>
-                    <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }, {:required => true, class: "form-control"} %>
+                    <%= f.select :bus_id, @free_buses, {:required => true, class: "form-control"} %>
                 </div>
             </div>
             <div class="col-md-12">
