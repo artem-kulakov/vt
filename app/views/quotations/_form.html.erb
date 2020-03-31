@@ -1,70 +1,65 @@
-<%= form_for(@quotation) do |f| %>
-  <% if @quotation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
+<div id="step-1" class="tab-pane step-content" style="display: block;">
+    <h5>Información básica</h5>
+    <hr>
+    <%= form_for(@quotation) do |f| %>
+      <% if @quotation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
 
-      <ul>
-      <% @quotation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @quotation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :origen %><br>
-    <%= f.select :origen, [["Página de internet"], ["Recomendación"], ["cliente habitual"], ["Medios impresos"], ["Facebook"], ["Cotización por correo"]], {:prompt => '¿Cómo se enteró?'}, {:required => true}%>
-  </div>
-<div class="row">
-  <div class="col-sm-4">
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre, required: true %>
-  </div>
-  </div>
-
-  <div class="col-sm-4">
-  <div class="field">
-    <%= f.label :telefono %><br>
-    <%= f.text_field :telefono %>
-  </div>
-  </div>
-
-  <div class="col-sm-4">
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, required: true %>
-  </div>
-  </div>
-
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <%= f.label :origen %>
+                    <%= f.select :origen, [["Página de internet"], ["Recomendación"], ["cliente habitual"], ["Medios impresos"], ["Facebook"], ["Cotización por correo"]], {:prompt => '¿Cómo se enteró?'}, {:required => true, class: "form-control"} %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :nombre %>
+                    <%= f.text_field :nombre, required: true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :telefono %>
+                    <%= f.text_field :telefono, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :email %>
+                    <%= f.text_field :email, required: true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :num_dias %>
+                    <%= f.text_field :num_dias, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :fecha_inicio_tentativa %>
+                    <%= f.date_field :fecha_inicio, :required => true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <%= f.label :fecha_fin_tentativa %><br>
+                    <%= f.date_field :fecha_fin, :required => true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+                <%= hidden_field_tag :step, 1 %>
+                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+            </div>
+        </div>
+    <% end %>
 </div>
-
-<div class="row">
-  <div class="col-sm-4">
-  <div class="field">
-    <%= f.label :num_dias %><br>
-    <%= f.text_field :num_dias %>
-  </div>
-  </div>
-
-  <div class="col-sm-4">
-  <div class="field">
-    <%= f.label :fecha_inicio_tentativa %><br>
-    <%= f.date_field :fecha_inicio, :required => true %>
-  </div>
-  </div>
-
-  <div class="col-sm-4">
-  <div class="field">
-    <%= f.label :fecha_fin_tentativa %><br>
-    <%= f.date_field :fecha_fin, :required => true %>
-  </div>
-  </div>
-
-</div>
-
-<br>
-  <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
-<% end %>

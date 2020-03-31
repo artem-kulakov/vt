@@ -1,0 +1,76 @@
+<div id="step-1" class="tab-pane step-content" style="display: block;">
+    <h5>Pagos</h5>
+    <hr>
+
+
+    <div class="table-responsive mb-4">
+        <table class="table">
+          <thead>
+            <th>Método</th>
+            <th>Núm Recibo</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th>  </th>
+          </thead>
+          <tbody>
+            <% @payments.each do |payment| %>
+            <tr>
+              <td><%= payment.metodo %></td>
+              <td><%= payment.num_recibo %></td>
+              <td><%= payment.try(:fecha).strftime(" %b-%d-%Y") %></td>
+              <td><%= payment.cantidad %></td>
+              <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+            <tr>
+              <td></td>
+              <td></td>
+              <th>Total:</th>
+              <th><%= @record.sum_payments %></th>
+              <td></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+    <%= form_for [@record, @payment], :html => {:id => 'payment_form'} do |f| %>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :metodo %><br>
+                    <%= f.select :metodo, [["Prob Baja"], ["Prob Media"], ["Prob Alta"], ["Venta"]], {:prompt => 'Cuál es el Status?'}, {:required => true, class: "form-control"} %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :num_recibo %>
+                    <%= f.text_field :num_recibo, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :fecha %><br>
+                    <%= f.date_field :fecha, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :cantidad %>
+                    <%= f.text_field :cantidad, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.submit "Añadir Pago", class: "btn btn-primary" %> <br><br>
+                </div>
+            </div>
+        </div>
+	<% end %>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <%= link_to 'Siguiente', pdf_record_path(@record), class: "btn btn-primary" %>
+        </div>
+    </div>
+</div>

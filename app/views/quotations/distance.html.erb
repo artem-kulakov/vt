@@ -1,0 +1,23 @@
+<div id="step-3" class="tab-pane step-content" style="display: block;">
+    <h5>Confirmar Distancia</h5>
+    <hr class="">
+
+    <div class="row">
+        <div class="col">
+            <%= form_for @quotation do |f| %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <%= f.label :Distancia %>
+                            <%= f.text_field :distancia, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <%= hidden_field_tag :step, 3 %>
+                        <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

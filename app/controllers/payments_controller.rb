@@ -32,7 +32,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @record, notice: 'Payment was successfully created.' }
+        format.html { redirect_to payments_record_path(@record), notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class PaymentsController < ApplicationController
   def destroy
     @payment.destroy
     respond_to do |format|
-      format.html { redirect_to @record, notice: 'Payment was successfully destroyed.' }
+      format.html { redirect_to payments_record_path(@record), notice: 'Payment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

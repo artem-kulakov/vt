@@ -1,0 +1,36 @@
+<div id="step-1" class="tab-pane step-content" style="display: block;">
+    <h5>Precio</h5>
+    <hr>
+    <%= form_for(@record) do |f| %>
+		<% if @record.errors.any? %>
+    		<div id="error_explanation">
+    			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+    			<ul>
+    				<% @record.errors.full_messages.each do |message| %>
+    				<li><%= message %></li>
+    				<% end %>
+    			</ul>
+    		</div>
+		<% end %>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label 'Precio' %>
+                    <%= f.text_field :precio, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <%= f.label 'Precio Final' %>
+                    <%= f.text_field :precio_final, required:true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+                <%= hidden_field_tag :step, 6 %>
+                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+            </div>
+        </div>
+	<% end %>
+</div>

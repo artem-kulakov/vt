@@ -32,7 +32,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
-        format.html { redirect_to @quotation, notice: 'Place was successfully created.' }
+        format.html { redirect_to itinerary_quotation_path(@quotation), notice: 'Place was successfully created.' }
         format.json { render :show, status: :created, location: @place }
       else
         format.html { redirect_to @quotation }
@@ -60,7 +60,7 @@ class PlacesController < ApplicationController
   def destroy
     @place.destroy
     respond_to do |format|
-      format.html { redirect_to @quotation, notice: 'Place was successfully destroyed.' }
+      format.html { redirect_to itinerary_quotation_path(@quotation), notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

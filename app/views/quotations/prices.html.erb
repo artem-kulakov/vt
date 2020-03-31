@@ -1,0 +1,65 @@
+<div id="step-3" class="tab-pane step-content" style="display: block;">
+    <h5>Precios ($)</h5>
+    <hr class="">
+
+    <div class="row">
+        <div class="col">
+            <%= form_for @quotation do |f| %>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Irizar pb 47 e irizar i6 51-53' %>
+                            <%= f.text_field :segmento1, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Dia extra' %>
+                            <%= f.text_field :dia_extra1, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Irizar i6 47 e irizar century 53' %>
+                            <%= f.text_field :segmento2, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Dia extra' %>
+                            <%= f.text_field :dia_extra2, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Volvo 9700 44 47' %>
+                            <%= f.text_field :segmento3, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Dia extra' %>
+                            <%= f.text_field :dia_extra3, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Sprinter 20' %>
+                            <%= f.text_field :segmento4, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <%= f.label 'Dia extra' %>
+                            <%= f.text_field :dia_extra4, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <%= hidden_field_tag :step, 4 %>
+                        <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 class QuotationsController < ApplicationController
-  before_action :set_quotation, only: [:show, :edit, :update, :destroy]
+  before_action :set_quotation, only: [:show, :edit, :itinerary, :distance, :prices, :pdf, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /quotations
@@ -36,11 +36,36 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/new
   def new
+    @step_1_active = "active"
     @quotation = Quotation.new
+  end
+
+  # GET /quotations/:id/itinerary
+  def itinerary
+    @step_2_active = "active"
+
+    @places = @quotation.places
+    @place = Place.new
+  end
+
+  # GET /quotations/:id/distance
+  def distance
+    @step_3_active = "active"
+  end
+
+  # GET /quotations/:id/prices
+  def prices
+    @step_4_active = "active"
+  end
+
+  # GET /quotations/:id/pdf
+  def pdf
+    @step_5_active = "active"
   end
 
   # GET /quotations/1/edit
   def edit
+    @step_1_active = "active"
   end
 
   # POST /quotations
@@ -51,7 +76,7 @@ class QuotationsController < ApplicationController
 
     respond_to do |format|
       if @quotation.save
-        format.html { redirect_to @quotation, notice: 'Quotation was successfully created.' }
+        format.html { redirect_to itinerary_quotation_path(@quotation), notice: 'Quotation was successfully created.' }
         format.json { render :show, status: :created, location: @quotation }
       else
         format.html { render :new }
@@ -65,7 +90,21 @@ class QuotationsController < ApplicationController
   def update
     respond_to do |format|
       if @quotation.update(quotation_params)
-        format.html { redirect_to @quotation, notice: 'Quotation was successfully updated.' }
+        step = params[:step].to_i
+
+        if step == 1
+          path = itinerary_quotation_path(@quotation)
+        elsif step == 2
+          path = distance_quotation_path(@quotation)
+        elsif step == 3
+          path = prices_quotation_path(@quotation)
+        elsif step == 4
+          path = pdf_quotation_path(@quotation)
+        else
+          path = @quotation
+        end
+
+        format.html { redirect_to path, notice: 'Quotation was successfully updated.' }
         format.json { respond_with_bip(@quotation) }
       else
         format.html { render :edit }

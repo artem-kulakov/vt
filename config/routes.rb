@@ -10,7 +10,14 @@ get '/reporte' => 'welcome#reporte'
   resources :vouchers
   resources :quotations do
     resources :places
+    member do
+      get :itinerary
+      get :distance
+      get :prices
+      get :pdf
+    end
   end
+
   resources :operators
   resources :buses
   resources :clients
@@ -19,13 +26,22 @@ get '/reporte' => 'welcome#reporte'
   resources :categories
 
   resources :records do
-      collection do
+    collection do
       get :pizarron
       get :reportes
       get :cobranza
       get :historico
       get :registro
       get :operaciones
+    end
+    member do
+      get :client
+      get :itinerary
+      get :trip
+      get :bus
+      get :price
+      get :payments
+      get :pdf
     end
     resources :payments
     resources :routes

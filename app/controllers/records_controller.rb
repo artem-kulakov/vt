@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_record, only: [:client, :itinerary, :trip, :bus, :price, :payments, :pdf, :show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /records
@@ -37,9 +37,31 @@ class RecordsController < ApplicationController
   def pizarron
     start_time = params[:start] ? params[:start].to_time : Time.now
 
-    @buses = Bus.all.order("created_at asc")
-    @services = Service.all
     @records = Record.where("((start_time > :start AND start_time < :end) OR (end_time > :start AND end_time < :end)) OR (start_time < :start AND end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
+
+    colors = [
+      '#04a9f5',
+      '#f44236',
+      '#f4c22b',
+      '#3ebfea',
+      '#1de9b6',
+      '#a389d4'
+    ]
+
+    @events = []
+
+    @records.each do |record|
+      color = colors.sample
+      @events << {
+          title: record.title,
+          url: record_url(record),
+          start: record.start_time,
+          end: record.end_time,
+          borderColor: color,
+          backgroundColor: color,
+          textColor: '#fff'
+      }
+    end
   end
 
   def operaciones
@@ -82,7 +104,54 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
+    @step_1_active = "active"
     @record = Record.new
+  end
+
+  def client
+    @step_2_active = "active"
+
+    @q = Client.ransack(params[:q])
+    @clients = @q.result.distinct
+    @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def itinerary
+    @step_3_active = "active"
+
+    @routes = @record.routes
+    @route = Route.new
+  end
+
+  def trip
+    @step_4_active = "active"
+  end
+
+  def bus
+    @step_5_active = "active"
+
+    buses = Bus.all.pluck(:id)
+    booked_buses = Bus.joins(:records).where("records.start_time >= ? AND records.end_time <= ?", @record.start_time, @record.end_time).pluck(:id)
+    free_buses = buses - booked_buses
+    @free_buses = Bus.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
+
+    @service = Service.new
+    @services = @record.services
+  end
+
+  def price
+    @step_6_active = "active"
+  end
+
+  def payments
+    @step_7_active = "active"
+
+    @payments = @record.payments
+    @payment = Payment.new
+  end
+
+  def pdf
+    @step_8_active = "active"
   end
 
   # GET /records/1/edit
@@ -97,7 +166,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
+        format.html { redirect_to client_record_path(@record), notice: 'Record was successfully created.' }
         format.json { respond_with_bip(@record) }
       else
         format.html { render :new }
@@ -111,7 +180,19 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        step = params[:step].to_i
+
+        if step == 1
+          path = client_record_path(@record)
+        elsif step == 2
+          path = itinerary_record_path(@record)
+        elsif step == 4
+          path = bus_record_path(@record)
+        elsif step == 6
+          path = payments_record_path(@record)
+        end
+
+        format.html { redirect_to path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }
@@ -138,6 +219,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:start_time, :end_time, :initial_time, :finish_time, :title, :client_id, :user_id, :numero_pasajeros, :numero_de_camiones, :lugar_salida, :referencia_salida, :nombre_referencia, :telefono_referencia, :precio, :precio_final, :factura, :num_factura, :status_op, :status_admin, :observaciones, :distancia)
+      params.require(:record).permit(:start_time, :end_time, :initial_time, :finish_time, :title, :client_id, :user_id, :numero_pasajeros, :numero_de_camiones, :lugar_salida, :referencia_salida, :nombre_referencia, :telefono_referencia, :precio, :precio_final, :factura, :num_factura, :status_op, :status_admin, :observaciones, :condiciones, :distancia)
     end
 end

@@ -1,0 +1,77 @@
+<div id="step-4" class="tab-pane step-content" style="display: block;">
+    <h5>Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h5>
+    <hr>
+    <% if @record.services.count < @record.numero_de_camiones %>
+        <%= form_for [@record, @service] do |f| %>
+    		<% if @record.errors.any? %>
+        		<div id="error_explanation">
+        			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+        			<ul>
+        				<% @record.errors.full_messages.each do |message| %>
+        				<li><%= message %></li>
+        				<% end %>
+        			</ul>
+        		</div>
+    		<% end %>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <%= f.label :Autobús %><br>
+                        <%= f.select :bus_id, @free_buses, {prompt: 'Elegir autobús'}, {:required => true, class: "form-control"} %>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <%= f.submit 'Añadir Autobús', class: "btn btn-primary" %>
+                </div>
+            </div>
+    	<% end %>
+    <% end %>
+
+    <h6 class="mt-5">Precio total: <%= number_to_currency @record.try(:precio_final) %></h6>
+    <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
+    <h6>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h6>
+
+    <div class="table-responsive mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Autobus</th>
+                    <th>Precio X unidad</th>
+                    <th>Casetas</th>
+                    <th>Hotel</th>
+                    <th>Viáticos</th>
+                    <th>Estacionamientos</th>
+                    <th>Lavadas</th>
+                    <th>Aeropuerto</th>
+                    <th>Otros</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @services.each do |service| %>
+                    <tr class="text-center">
+                        <td><%= service.bus.numero %></td>
+                        <td><%= service.precio_unidad %></td>
+                        <td><%= service.caseta %></td>
+                        <td><%= service.hotel %></td>
+                        <td><%= service.viaticos %></td>
+                        <td><%= service.estacionamientos %></td>
+                        <td><%= service.lavadas %></td>
+                        <td><%= service.aeropuerto %></td>
+                        <td><%= service.otros %></td>
+                        <td><%= service.sum_gastos %></td>
+                        <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <%= link_to 'Siguiente', price_record_path(@record), class: "btn btn-primary" %>
+        </div>
+    </div>
+</div>

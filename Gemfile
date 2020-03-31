@@ -44,6 +44,7 @@ gem 'rails_12factor', group: :production
 gem 'rails-timeago'
 gem 'bootsnap', require: false
 gem 'webpacker'
+gem 'will_paginate-bootstrap4'
 
 # Wicked PDF
 gem 'wicked_pdf'
