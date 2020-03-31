@@ -182,7 +182,9 @@ class RecordsController < ApplicationController
       if @record.update(record_params)
         step = params[:step].to_i
 
-        if step == 2
+        if step == 1
+          path = client_record_path(@record)
+        elsif step == 2
           path = itinerary_record_path(@record)
         elsif step == 4
           path = bus_record_path(@record)
