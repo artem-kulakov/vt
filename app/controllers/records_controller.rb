@@ -66,7 +66,7 @@ class RecordsController < ApplicationController
 
   def operaciones
     @records = Record.where("start_time >= ?", Time.zone.now.beginning_of_day).order('id ASC').paginate(:page => params[:page], :per_page => 30)
-    @records = @records.where("created_at < ?", 1.year.ago)
+    # @records = @records.where("created_at < ?", 1.year.ago)
   end
 
   def registro
