@@ -16,4 +16,50 @@
             </div>
         </div>
 	<% end %>
+    <hr>
+    <h5 class="mt-5">Clientes</h5>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <th>ID</th>
+          <th>Status</th>
+          <th>Servicios<br>que debe</th>
+          <th>Razon<br>Social</th>
+          <th>R.F.C</th>
+          <th>Dirección</th>
+          <th>Colonia</th>
+          <th>Estado</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+        </thead>
+        <tbody>
+          <% @clients.each do |client| %>
+          <tr>
+            <td><%= client.id%></td>
+            <% if client.records.where({ "records.status_admin" => false }).count > 0%>
+            <td class="red">Deudor</td>
+            <% else %>
+            <td class="green">No debe</td>
+            <% end %>
+            <td class="green"><%= client.records.where({ "records.status_admin" => false }).count%></td>
+            <td><%= client.razon_social %></td>
+            <td><%= client.rfc %></td>
+            <td><%= client.calle_y_numero %></td>
+            <td><%= client.colonia %></td>
+            <td><%= client.estado %></td>
+            <td><%= client.email %></td>
+            <td><%= client.telefono %></td>
+            <td><%= link_to 'Ver más', client %></td>
+            <td><%= link_to 'Editar', edit_client_path(client) %></td>
+
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <% unless @clients.blank? %>
+            <%= will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+        <% end %>
+    </div>
 </div>
