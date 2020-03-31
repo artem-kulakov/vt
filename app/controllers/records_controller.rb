@@ -156,6 +156,7 @@ class RecordsController < ApplicationController
 
   # GET /records/1/edit
   def edit
+    @step_1_active = "active"
   end
 
   # POST /records
