@@ -1,29 +1,18 @@
 <div id="step-1" class="tab-pane step-content" style="display: block;">
-    <h5>Cliente</h5>
+    <h5>Busca clientes</h5>
     <hr>
-    <%= form_for(@record) do |f| %>
-		<% if @record.errors.any? %>
-    		<div id="error_explanation">
-    			<h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
-
-    			<ul>
-    				<% @record.errors.full_messages.each do |message| %>
-    				<li><%= message %></li>
-    				<% end %>
-    			</ul>
-    		</div>
-		<% end %>
-
+    <%= search_form_for @q do |f| %>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <%= f.label :Cliente %>
-                    <%= f.select :client_id, Client.all.collect {|p| [ p.alias, p.id ] }, {:prompt => 'Elige un cliente'}, {:required => true, class: "form-control"} %>
+                    <%= f.search_field :razon_social_or_rfc_or_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias", class: 'form-control' %>
                 </div>
             </div>
-            <div class="col-md-12 text-right">
-                <%= hidden_field_tag :step, 2 %>
-                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+            <div class="col-md-12 text">
+                <%= f.submit "Buscar", class: "btn btn-primary" %>
+                <%#= hidden_field_tag :step, 2 %>
+                <%#= f.submit 'Siguiente', class: "btn btn-primary" %>
             </div>
         </div>
 	<% end %>

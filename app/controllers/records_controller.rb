@@ -111,7 +111,9 @@ class RecordsController < ApplicationController
   def client
     @step_2_active = "active"
 
-    @clients = Client.all
+    @q = Client.ransack(params[:q])
+    @clients = @q.result.distinct
+    @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end
 
   def itinerary
