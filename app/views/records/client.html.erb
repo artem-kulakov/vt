@@ -9,57 +9,60 @@
                     <%= f.search_field :razon_social_or_rfc_or_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias", class: 'form-control' %>
                 </div>
             </div>
-            <div class="col-md-12 text">
+            <div class="col-md-12">
                 <%= f.submit "Buscar", class: "btn btn-primary" %>
-                <%#= hidden_field_tag :step, 2 %>
-                <%#= f.submit 'Siguiente', class: "btn btn-primary" %>
             </div>
         </div>
 	<% end %>
     <hr>
-    <h5 class="mt-5">Clientes</h5>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <th>ID</th>
-          <th>Status</th>
-          <th>Servicios<br>que debe</th>
-          <th>Razon<br>Social</th>
-          <th>R.F.C</th>
-          <th>Dirección</th>
-          <th>Colonia</th>
-          <th>Estado</th>
-          <th>Email</th>
-          <th>Teléfono</th>
-        </thead>
-        <tbody>
-          <% @clients.each do |client| %>
-          <tr>
-            <td><%= client.id%></td>
-            <% if client.records.where({ "records.status_admin" => false }).count > 0%>
-            <td class="red">Deudor</td>
-            <% else %>
-            <td class="green">No debe</td>
+    <h5 class="mt-5">Elegir cliente</h5>
+    <%= form_for @record do |f| %>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <th></th>
+              <th>ID</th>
+              <th>Status</th>
+              <th>Servicios<br>que debe</th>
+              <th>Razon<br>Social</th>
+              <th>R.F.C</th>
+              <th>Dirección</th>
+              <th>Colonia</th>
+              <th>Estado</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+            </thead>
+            <tbody>
+              <% @clients.each do |client| %>
+                  <tr>
+                    <td><%= f.radio_button :client_id, client.id %></td>
+                    <td><%= client.id %></td>
+                    <% if client.records.where({ "records.status_admin" => false }).count > 0%>
+                    <td class="red">Deudor</td>
+                    <% else %>
+                    <td class="green">No debe</td>
+                    <% end %>
+                    <td class="green"><%= client.records.where({ "records.status_admin" => false }).count%></td>
+                    <td><%= client.razon_social %></td>
+                    <td><%= client.rfc %></td>
+                    <td><%= client.calle_y_numero %></td>
+                    <td><%= client.colonia %></td>
+                    <td><%= client.estado %></td>
+                    <td><%= client.email %></td>
+                    <td><%= client.telefono %></td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div style="display:flex; justify-content:center; align-items:center;">
+            <% unless @clients.blank? %>
+                <%= will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
             <% end %>
-            <td class="green"><%= client.records.where({ "records.status_admin" => false }).count%></td>
-            <td><%= client.razon_social %></td>
-            <td><%= client.rfc %></td>
-            <td><%= client.calle_y_numero %></td>
-            <td><%= client.colonia %></td>
-            <td><%= client.estado %></td>
-            <td><%= client.email %></td>
-            <td><%= client.telefono %></td>
-            <td><%= link_to 'Ver más', client %></td>
-            <td><%= link_to 'Editar', edit_client_path(client) %></td>
-
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:flex; justify-content:center; align-items:center;">
-        <% unless @clients.blank? %>
-            <%= will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-        <% end %>
-    </div>
+        </div>
+        <div class="col-md-12 text-right">
+            <%= hidden_field_tag :step, 2 %>
+            <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+        </div>
+    <% end %>
 </div>
