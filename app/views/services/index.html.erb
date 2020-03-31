@@ -1,48 +1,46 @@
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Filtrar por operador y fecha</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<%= search_form_for @q do |f| %>
-	<div class="row">
-		<div class="col-md-6">
-			<label>Operador:</label>
-			<%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'} %>
-		</div>
-		<div class="col-md-6">
-			<label>Autobús:</label>
-			<%= f.select :bus_id_eq, options_from_collection_for_select(Bus.all, "id", "numero", @q.bus_id_eq), {:prompt => 'Elige autobús'} %>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="input-daterange" id="datepicker">
-			<div class="col-md-6">
-				<label>Fecha Inicio:</label>
-				<%= f.text_field :record_start_time_gteq, class: "form-control2", placeholder: "Date >= to" %>
-			</div>
-			<div class="col-md-6">
-				<label>Fecha Final:</label>
-				<%= f.text_field :record_start_time_lteq, class: "form-control2", placeholder: "Date <= to" %>
-			</div>
-		</div>
-	</div>
-<br>
-    <div class="row">
-      <div class="col-md-3">
-        <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
-      </div>
-      </div>
-	<hr>
-
-	<% end %>
-      </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Filtrar por operador y fecha</h5>
+        </div>
+        <div class="card-block">
+            <%= search_form_for @q do |f| %>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Operador:</label>
+                            <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {class: "form-control"} %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Autobús:</label>
+                            <%= f.select :bus_id_eq, options_from_collection_for_select(Bus.all, "id", "numero", @q.bus_id_eq), {:prompt => 'Elige autobús'}, {class: "form-control"} %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Fecha Inicio:</label>
+                            <%= f.date_field :record_start_time_gteq, class: "form-control", placeholder: "Date >= to" %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Fecha Final:</label>
+                            <%= f.date_field :record_start_time_lteq, class: "form-control", placeholder: "Date <= to" %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= f.submit "Buscar", class: "btn btn-primary" %>
+                  </div>
+                  </div>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>
 
 
