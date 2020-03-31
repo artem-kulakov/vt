@@ -1,7 +1,7 @@
 <div id="step-1" class="tab-pane step-content" style="display: block;">
-    <h5>Busca clientes</h5>
+    <h5>Busca cliente</h5>
     <hr>
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, url: client_record_path(@record) do |f| %>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
