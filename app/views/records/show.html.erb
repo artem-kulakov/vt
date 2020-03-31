@@ -151,6 +151,49 @@
                     </h6>
                 </div>
             </div>
+
+            <h5 class="mt-5">Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h5>
+            <hr>
+            <h6 class="">Precio total: <%= number_to_currency @record.try(:precio_final) %></h6>
+            <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
+            <h6>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h6>
+
+            <div class="table-responsive mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Autobus</th>
+                            <th>Precio X unidad</th>
+                            <th>Casetas</th>
+                            <th>Hotel</th>
+                            <th>Viáticos</th>
+                            <th>Estacionamientos</th>
+                            <th>Lavadas</th>
+                            <th>Aeropuerto</th>
+                            <th>Otros</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @services.each do |service| %>
+                            <tr class="text-center">
+                                <td><%= service.bus.numero %></td>
+                                <td><%= service.precio_unidad %></td>
+                                <td><%= service.caseta %></td>
+                                <td><%= service.hotel %></td>
+                                <td><%= service.viaticos %></td>
+                                <td><%= service.estacionamientos %></td>
+                                <td><%= service.lavadas %></td>
+                                <td><%= service.aeropuerto %></td>
+                                <td><%= service.otros %></td>
+                                <td><%= service.sum_gastos %></td>
+                                <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
