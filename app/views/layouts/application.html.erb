@@ -110,6 +110,18 @@
                         <% end %>
                     </li>
 
+                    <li data-username="Task list board details" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Comprobantes</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <%= link_to 'Nuevo Comprobante', new_voucher_path, class: "" %>
+                            </li>
+                            <li class="">
+                                <%= link_to 'Todas los Comprobantes', vouchers_path, class: "" %>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item pcoded-menu-caption">
                         <label>Navigation</label>
                     </li>
