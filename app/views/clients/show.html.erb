@@ -87,94 +87,42 @@
     </div>
 </div>
 
-
-
-
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-body">
-<h4>Rfc:</h4>
-  <p><%= @client.rfc %></p>
-
-
-
-  <h4>Calle y numero:</h4>
-  <p><%= @client.calle_y_numero %></p>
-
-
-<div class="row">
-  <div class="col-md-6">
-  <h4>Colonia:</h4>
-  <p><%= @client.colonia %></p>
-  </div>
-
-
-  <div class="col-md-6">
-  <h4>Municipio:</h4>
-  <p><%= @client.municipio %></p>
-</div>  
-</div>
-
-
-  <div class="row">
-  <div class="col-md-6">
-  <h4>Estado:</h4>
-  <p><%= @client.estado %></p>
-  </div>
-
-<div class="col-md-6">
-  <h4>Cp:</h4>
-  <p><%= @client.cp %></p>
-  </div>
-</div>
-
-
-  <h4>Pais:</h4>
-  <p><%= @client.pais %></p>
-
-
-<div class="row">
-  <div class="col-md-6">
-  <h4>Telefono:</h4>
-  <p><%= @client.telefono %></p>
-</div>
-
-
-  <div class="col-md-6">
-  <h4>Email:</h4>
-  <p><%= @client.email %></p>
-</div>
-</div>
-
-
-  <h4>Nombre cobro:</h4>
-  <p><%= @client.nombre_cobro %></p>
-
-
-<div class="row">
-  <div class="col-md-6">
-  <h4>Telefono cobro:</h4>
-  <p><%= @client.telefono_cobro %></p>
-  </div>
-
-
-
-  <div class="col-md-6">
-  <h4>Email cobro:</h4>
-  <p><%= @client.email_cobro %></p> 
-  </div>
-</div>
-
-<br>
-<%= link_to 'Editar Cliente', edit_client_path(@client), class: "btn btn-primary btn-block" %>
-<br>
-
-      </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Información</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Cliente desde:</span>
+                        <%= @client.created_at.strftime(" %b-%d-%Y") %>
+                    </h6>
+                </div>
+                <div class="col-12 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Servicios realizados:</span>
+                        <%=@client.records.count %>
+                    </h6>
+                </div>
+                <div class="col-12 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Último servicio:</span>
+                        <%= link_to @client.records.last do %>
+                            <%= @client.records.last.try(:title) %>
+                        <% end %>        
+                    </h6>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
+
+
+
+<div class="row">
   <div class="col-md-6">
     <div class="panel panel-headline">
       <div class="panel-heading">
@@ -182,16 +130,6 @@
         <hr>
       </div>
       <div class="panel-body">
-<h4>Cliente desde: </h4>
-  <p><%= @client.created_at.strftime(" %b-%d-%Y") %></p>
-
-  <h4>Servicios realizados:</h4>
-  <p><%=@client.records.count %></p>
-
-  <h4>Último servicio:</h4>
-  <%= link_to @client.records.last do %>
-  <p><%= @client.records.last.try(:title) %></p>
-  <% end %>        
       </div>
     </div>
 
