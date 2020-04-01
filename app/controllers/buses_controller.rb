@@ -45,7 +45,7 @@ class BusesController < ApplicationController
     @bus.user_id = current_user.id
     respond_to do |format|
       if @bus.update(bus_params)
-        format.html { redirect_to @bus, notice: 'Bus was successfully updated.' }
+        format.html { redirect_to buses_path, notice: 'Bus was successfully updated.' }
         format.json { render :show, status: :ok, location: @bus }
       else
         format.html { render :edit }
