@@ -134,6 +134,18 @@
                         </ul>
                     </li>
 
+                    <li data-username="Task list board details" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Clientes</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <%= link_to 'Nuevo Cliente', new_client_path, class: "" %>
+                            </li>
+                            <li class="">
+                                <%= link_to 'Todos los Clientes', clients_path, class: "" %>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item pcoded-menu-caption">
                         <label>Navigation</label>
                     </li>
