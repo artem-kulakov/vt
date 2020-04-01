@@ -1,43 +1,38 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Lista de Autobuses</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>Número</th>
-            <th>Marca</th>
-            <th>Capacidad</th>
-            <th>Modelo</th>
-            <th>Placa</th>
-            <th>Versión</th>
-            <th>Operador</th>
-            <th colspan="2"></th>
-          </thead>
-          <tbody>
-            <% @buses.each do |bus| %>
-            <tr>
-              <td><%= bus.numero %></td>
-              <td><%= bus.marca %></td>
-              <td><%= bus.capacidad %></td>
-              <td><%= bus.modelo %></td>
-              <td><%= bus.placa %></td>
-              <td><%= bus.version %></td>
-              <td><%= bus.operator.try(:nombre) %></td>
-              <td><%= link_to 'Editar', edit_bus_path(bus) %></td>
-              <td><%= link_to 'Eliminar', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>        
-      </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Lista de Autobuses</h5>
+        </div>
+        <div class="card-block">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <th>Número</th>
+                <th>Marca</th>
+                <th>Capacidad</th>
+                <th>Modelo</th>
+                <th>Placa</th>
+                <th>Versión</th>
+                <th>Operador</th>
+                <th colspan="2"></th>
+              </thead>
+              <tbody>
+                <% @buses.each do |bus| %>
+                <tr>
+                  <td><%= bus.numero %></td>
+                  <td><%= bus.marca %></td>
+                  <td><%= bus.capacidad %></td>
+                  <td><%= bus.modelo %></td>
+                  <td><%= bus.placa %></td>
+                  <td><%= bus.version %></td>
+                  <td><%= bus.operator.try(:nombre) %></td>
+                  <td><%= link_to 'Editar', edit_bus_path(bus) %></td>
+                  <td><%= link_to 'Eliminar', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>        
+        </div>
     </div>
-  </div>
 </div>
-<br>
-
