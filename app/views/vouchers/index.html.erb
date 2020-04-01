@@ -23,76 +23,46 @@
     </div>
 </div>
 
+<% @vouchers.group_by(&:month).sort.each do |month, vouchers| %>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><%= month %></h5>
+            </div>
+            <div class="card-block">
+              <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Operador</th>
+                        <th>Operación</th>
+                        <th>Notas</th>
+                        <th>Fecha</th>
+                        <th>Cantidad</th>
+                        <th colspan="2"></th>
+                      </tr>
+                    </thead>
 
-
-
-
-<div class="row">
-  <% @vouchers.group_by(&:month).sort.each do |month, vouchers| %>
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-
-      <div class="panel-heading">
-      <h3><%= month %></h3>
-      <hr>
-      </div>
-<div class="panel-body">
-<div class="content table-responsive table-full-width">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Operador</th>
-            <th>Operación</th>
-            <th>Notas</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th colspan="2"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% vouchers.each do |voucher| %>
-          <tr>
-            <td>
-            <%= link_to operator_path(voucher.operator.id) do %>
-            <%= voucher.operator.nombre %>
-            <% end %>
-            </td>
-            <td><%= voucher.operacion %></td>
-            <td><%= voucher.nota %></td>
-            <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
-            <td><%= voucher.cantidad %></td>
-            <td><%= link_to 'Editar', edit_voucher_path(voucher) %></td>
-            <td><%= link_to 'Eliminar', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>            
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-</div>
+                    <tbody>
+                      <% vouchers.each do |voucher| %>
+                      <tr>
+                        <td>
+                        <%= link_to operator_path(voucher.operator.id) do %>
+                        <%= voucher.operator.nombre %>
+                        <% end %>
+                        </td>
+                        <td><%= voucher.operacion %></td>
+                        <td><%= voucher.nota %></td>
+                        <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
+                        <td><%= voucher.cantidad %></td>
+                        <td><%= link_to 'Editar', edit_voucher_path(voucher) %></td>
+                        <td><%= link_to 'Eliminar', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+        </div>
     </div>
-    </div>
-  </div>
-  <% end %>
-</div>
-
-
-
-<br>
+<% end %>
