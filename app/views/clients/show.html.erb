@@ -1,10 +1,99 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5><%= @client.razon_social %></h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Rfc:</span>
+                        <%= @client.rfc %>
+                    </h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Calle y numero:</span>
+                        <%= @client.calle_y_numero %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Colonia:</span>
+                        <%= @client.colonia %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Municipio:</span>
+                        <%= @client.municipio %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Estado:</span>
+                        <%= @client.estado %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Cp:</span>
+                        <%= @client.cp %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Pais:</span>
+                        <%= @client.pais %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Telefono:</span>
+                        <%= @client.telefono %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Email:</span>
+                        <%= @client.email %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Nombre cobro:</span>
+                        <%= @client.nombre_cobro %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Telefono cobro:</span>
+                        <%= @client.telefono_cobro %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Email cobro:</span>
+                        <%= @client.email_cobro %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <%= link_to 'Editar Cliente', edit_client_path(@client), class: "btn btn-primary" %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3><%= @client.razon_social %></h3>
-        <hr>
-      </div>
       <div class="panel-body">
 <h4>Rfc:</h4>
   <p><%= @client.rfc %></p>
