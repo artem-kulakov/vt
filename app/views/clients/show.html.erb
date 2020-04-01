@@ -184,9 +184,9 @@
                     <td><%= record.try(:sum_payments) %></td>
                     <td><%= record.try(:status_op) %></td>
                     <% if record.try(:status_admin) == true %>
-                    <td class="green">Cobrado</td>
+                    <td class="text-success">Cobrado</td>
                     <% else %>
-                    <td class="red">Por Cobrar</td>
+                    <td class="text-danger">Por Cobrar</td>
                     <% end %>
                     <td><%= record.sum_total %> % </td>
                     <td><%= link_to 'Ver más', record %></td>
