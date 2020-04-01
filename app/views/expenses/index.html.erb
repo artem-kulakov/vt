@@ -14,7 +14,7 @@
                       <th>Mes</th>
                       <th>Ano</th>
                       <th>Fecha</th>
-                      <th colspan="3"></th>
+                      <th colspan="2"></th>
                     </tr>
                   </thead>
 
@@ -27,7 +27,6 @@
                         <td><%= expense.mes %></td>
                         <td><%= expense.ano %></td>
                         <td><%= expense.fecha %></td>
-                        <td><%= link_to 'Ver más', expense %></td>
                         <td><%= link_to 'Editar', edit_expense_path(expense) %></td>
                         <td><%= link_to 'Eliminar', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       </tr>
