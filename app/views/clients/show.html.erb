@@ -119,107 +119,88 @@
     </div>
 </div>
 
-
-
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Información</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-      </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Finanzas</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Pagos hechos:</span>
+                        <%=@client.sum_clients %>
+                    </h6>
+                </div>
+                <div class="col-12 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Debe:</span>
+                        <%=@client.sum_clients_deu %>
+                    </h6>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Finanzas</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<h4>Pagos hechos:</h4>
-    <p><%=@client.sum_clients %></p>
-
-    <h4>Debe:</h4>
-    <p><%=@client.sum_clients_deu %></p>     
-      </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Servicios de <%=@client.razon_social %></h5>
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <th>I.D</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Regreso</th>
+                    <th>Referencia</th>
+                    <th>Cliente</th>
+                    <th>R.F.C</th>
+                    <th>Numero pasajeros</th>
+                    <th>Numero de camiones</th>
+                    <th>Luagr de Salida</th>
+                    <th>Precio</th>
+                    <th>Pagos</th>
+                    <th>Status op</th>
+                    <th>Status admin</th>
+                    <th>% Completo</th>
+                    <th colspan="2"></th>
+                  </thead>
+                <tbody>
+                  <% @records.each do |record| %>
+                  <tr>
+                    <td><%= record.try(:id)%></td>
+                    <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
+                    <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
+                    <td><%= record.try(:title) %></td>
+                    <td><%= record.client.try(:razon_social) %></td>
+                    <td><%= record.client.try(:rfc) %></td>
+                    <td><%= record.try(:numero_pasajeros) %></td>
+                    <td><%= record.try(:numero_de_camiones) %></td>
+                    <td><%= record.try(:lugar_salida) %></td>
+                    <td><%= record.try(:precio_final) %></td>
+                    <td><%= record.try(:sum_payments) %></td>
+                    <td><%= record.try(:status_op) %></td>
+                    <% if record.try(:status_admin) == true %>
+                    <td class="green">Cobrado</td>
+                    <% else %>
+                    <td class="red">Por Cobrar</td>
+                    <% end %>
+                    <td><%= record.sum_total %> % </td>
+                    <td><%= link_to 'Ver más', record %></td>
+                    <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+                </table>
+                <div style="display:flex; justify-content:center; align-items:center;">
+                    <% unless @records.blank? %>
+                        <%= will_paginate @records, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Servicios de <%=@client.razon_social %></h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="content table-responsive table-full-width">
-        <table class="table table-striped">
-          <thead>
-            <th>I.D</th>
-            <th>Fecha de Inicio</th>
-            <th>Fecha de Regreso</th>
-            <th>Referencia</th>
-            <th>Cliente</th>
-            <th>R.F.C</th>
-            <th>Numero pasajeros</th>
-            <th>Numero de camiones</th>
-            <th>Luagr de Salida</th>
-            <th>Precio</th>
-            <th>Pagos</th>
-            <th>Status op</th>
-            <th>Status admin</th>
-            <th>% Completo</th>
-            <th colspan="2"></th>
-        </thead>
-        <tbody>
-          <% @records.each do |record| %>
-          <tr>
-            <td><%= record.try(:id)%></td>
-            <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
-            <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
-            <td><%= record.try(:title) %></td>
-            <td><%= record.client.try(:razon_social) %></td>
-            <td><%= record.client.try(:rfc) %></td>
-            <td><%= record.try(:numero_pasajeros) %></td>
-            <td><%= record.try(:numero_de_camiones) %></td>
-            <td><%= record.try(:lugar_salida) %></td>
-            <td><%= record.try(:precio_final) %></td>
-            <td><%= record.try(:sum_payments) %></td>
-            <td><%= record.try(:status_op) %></td>
-            <% if record.try(:status_admin) == true %>
-            <td class="green">Cobrado</td>
-            <% else %>
-            <td class="red">Por Cobrar</td>
-            <% end %>
-            <td><%= record.sum_total %> % </td>
-            <td><%= link_to 'Ver más', record %></td>
-            <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<div class="row">
-<div class="center">
-<% unless @records.blank? %>
-  <%= will_paginate @records %>
-<% end %>
-</div>
-</div>
-
-
-
-
-  
