@@ -1,4 +1,3 @@
-
 <%= form_for(@bus) do |f| %>
   <% if @bus.errors.any? %>
     <div id="error_explanation">
@@ -12,34 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :Operador %><br>
-    <%= f.select :operator_id, Operator.all.collect { |p| [ p.nombre, p.id ] }, {:prompt => 'Elige operador'}, {:required => true} %>
+    <%= f.select :operator_id, Operator.all.collect { |p| [ p.nombre, p.id ] }, {:prompt => 'Elige operador'}, {:required => true, class: "form-control"} %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :numero %><br>
-    <%= f.text_field :numero %>
+    <%= f.text_field :numero, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :marca %><br>
-    <%= f.text_field :marca %>
+    <%= f.text_field :marca, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :capacidad %><br>
-    <%= f.number_field :capacidad %>
+    <%= f.number_field :capacidad, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :modelo %><br>
-    <%= f.text_field :modelo %>
+    <%= f.text_field :modelo, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :placa %><br>
-    <%= f.text_field :placa %>
+    <%= f.text_field :placa, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :version %><br>
-    <%= f.text_field :version %>
+    <%= f.text_field :version, class: "form-control" %>
   </div>
   
   <br>
