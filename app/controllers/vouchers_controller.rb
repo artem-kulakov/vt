@@ -7,7 +7,7 @@ class VouchersController < ApplicationController
   def index
     @q = Voucher.ransack(params[:q])
     @vouchers = @q.result.uniq
-    @vouchers = @vouchers.order('id ASC')
+    @vouchers = @vouchers.sort_by(&:'id')
   end
 
   # GET /vouchers/1
