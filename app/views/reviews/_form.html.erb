@@ -11,15 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :operator_id %><br>
-    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true} %>
+    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true, class: "form-control"} %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :categoria %><br>
-    <%= f.select :categoria, [["Encuesta de satisfacción"], ["Estado de la unidad"], ["Penalizaciones"]], {:prompt => 'Elige Operación'}, {:required => true}%>
+    <%= f.select :categoria, [["Encuesta de satisfacción"], ["Estado de la unidad"], ["Penalizaciones"]], {:prompt => 'Elige Operación'}, {:required => true, class: "form-control"}%>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :cantidad %><br>
     <div id="star-rating1"></div><br>
   </div>
