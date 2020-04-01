@@ -1,38 +1,34 @@
-<div class="row">
   <% @reviews.group_by(&:year).each do |year, reviews| %>
-  <div class="col-md-12">
-    <div class="panel panel-headline">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Nueva Calificación</h5>
+            </div>
+            <div class="card-block">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Operador</th>
+                    <th>Puntos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% reviews.group_by(&:operator).sort.each do |operator,review| %>
+                      <tr>
+                        <td></td>
+                        <!-- operador -->
+                        <td><%= operator.nombre %></td>
 
-      <div class="panel-heading">
-      <h3><%= year %></h3>
+                        <!-- total diesel en pesos -->
+                        <td><%=  @qo= (review.map(&:cantidad).sum.to_f / review.map(&:cantidad).size.to_f) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
     </div>
-
-    <div class="panel-body">
-      <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-bordered">
-          <thead>
-            <tr>
-            <th>#</th>
-            <th>Operador</th>
-            <th>Puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% reviews.group_by(&:operator).sort.each do |operator,review| %>
-              <tr>
-                <td></td>
-                <!-- operador -->
-                <td><%= operator.nombre %></td>
-
-                <!-- total diesel en pesos -->
-                <td><%=  @qo= (review.map(&:cantidad).sum.to_f / review.map(&:cantidad).size.to_f) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      </div>
-    </div>
-  </div>
   <% end %>
-</div>
