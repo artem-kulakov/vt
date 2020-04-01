@@ -1,29 +1,26 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Filtrar comprobantes por operador</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-  <%= search_form_for @q do |f| %>
-  <div class="row">
-    <div class="col-md-12">
-      <label>Operador:</label>
-      <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {:required => true} %>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Filtrar comprobantes por operador</h5>
+        </div>
+        <div class="card-block">
+          <%= search_form_for @q do |f| %>
+          <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                  <label>Operador:</label>
+                  <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {:required => true, class: "form-control"} %>
+                </div>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-md-12">
+                <%= f.submit "Buscar", class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
     </div>
-  </div>
-
-    <div class="row">
-      <div class="col-md-3">
-        <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
-      </div>
-      </div>
-
-  <% end %>        
-      </div>
-    </div>
-  </div>
 </div>
 
 
