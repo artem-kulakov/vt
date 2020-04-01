@@ -8,7 +8,6 @@
               <% if @expense.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
-
                   <ul>
                   <% @expense.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
@@ -17,39 +16,36 @@
                 </div>
               <% end %>
 
-
-
-              <div class="field">
+              <div class="form-group">
                 <%= f.label :categoria %><br>
-                <%= f.select :categoria, [["Gastos de mantenimiento"], ["Gastos fijos"], ["Nómina"], ["Gastos varios"], ["Internet / Mkt"]], {:prompt => 'Elige la Categoría'}, {:required => true}%>
+                <%= f.select :categoria, [["Gastos de mantenimiento"], ["Gastos fijos"], ["Nómina"], ["Gastos varios"], ["Internet / Mkt"]], {:prompt => 'Elige la Categoría'}, {:required => true, class: "form-control"}%>
               </div>
-              <div class="field">
+              <div class="form-group">
                 <%= f.label :cantidad %><br>
-                <%= f.number_field :cantidad, required:true %>
+                <%= f.number_field :cantidad, required:true, class: "form-control" %>
               </div>
 
             <div class="row">
               <div class="col-md-6">
-              <div class="field">
+              <div class="form-group">
                 <%= f.label :mes %><br>
                 <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
-                  Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true}%>
+                  Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true, class: "form-control"}%>
               </div>
             </div>
 
               <div class="col-md-6">
-              <div class="field">
+              <div class="form-group">
                 <%= f.label :año %><br>
-                <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true}%>
+                <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true, class: "form-control"}%>
               </div>
             </div>
             </div>
 
-              <div class="field">
+              <div class="form-group">
                 <%= f.label :nota %><br>
-                <%= f.text_area :nota %>
+                <%= f.text_area :nota, class: "form-control" %>
               </div>
-
 
               <div class="actions">
                 <%= f.submit class: "btn btn-primary" %>
