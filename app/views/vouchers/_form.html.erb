@@ -11,46 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :Operador %><br>
-    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true} %>
+    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true, class: "form-control"} %>
   </div>
 
 
   <div class="row">
-  <div class="col-md-6">
-    <%= f.label :operacion %><br>
-    <%= f.select :operacion, [["Gastos del mes"], ["Comprobantes"], ["Penalizaciones"], ["Saldo a favor"]], {:prompt => 'Elige Operación'}, {:required => true}%>
-  </div>
-  <div class="col-md-6">
-    <%= f.label :cantidad %><br>
-    <%= f.number_field :cantidad, required:true %>
-  </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :operacion %><br>
+            <%= f.select :operacion, [["Gastos del mes"], ["Comprobantes"], ["Penalizaciones"], ["Saldo a favor"]], {:prompt => 'Elige Operación'}, {:required => true, class: "form-control"}%>
+            </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :cantidad %><br>
+            <%= f.number_field :cantidad, required:true, class: "form-control" %>
+          </div>
+      </div>
   </div>
 
   <div class="row">
-  <div class="col-md-6">
-  <div class="field">
-    <%= f.label :mes %><br>
-    <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
-      Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true}%>
-  </div>
-</div>
-  <div class="col-md-6">
-  <div class="field">
-    <%= f.label :año %><br>
-    <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true}%>
-  </div>
-</div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :mes %><br>
+            <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
+              Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true, class: "form-control"}%>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :año %><br>
+            <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true, class: "form-control"}%>
+          </div>
+      </div>
+      <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :nota %><br>
+            <%= f.text_area :nota, class: "form-control" %>
+          </div>
+      </div>
   </div>
 
-  <div class="field">
-    <%= f.label :nota %><br>
-    <%= f.text_area :nota %>
-  </div>
-
-<br>
   <div class="actions">
     <%= f.submit class: "btn btn-primary"%>
-  </div> <br><br>
+  </div>
 <% end %>
