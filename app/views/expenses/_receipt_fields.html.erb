@@ -1,14 +1,5 @@
-<div class="nested-fields">
-<div class="row">
-  <div class="col-md-6">
-  <div class="field">
+<div class="form-group">
     <%= f.label :autobus %><br>
-    <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }, {:prompt => 'Elige autobús'}, {:required => true} %>
-  </div>
-  </div>
-
-</div>
-
-<%= link_to_remove_association "Quitar Autobús", f %>
-<hr>
+    <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }, {:prompt => 'Elige autobús'}, {:required => true, class: "form-control"} %>
+    <%= link_to_remove_association "Quitar Autobús", f %>
 </div>
