@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
 	before_action :authenticate_user!
 	def index
+    @active1 = "active"
+
     data = {}
 
     data[:quotations] = {}
@@ -33,6 +35,8 @@ class WelcomeController < ApplicationController
 
 
   def reporte
+    @active14 = "active pcoded-trigger"
+
     @years = Service.select("created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year
 

@@ -5,6 +5,8 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
+    @active13 = "active pcoded-trigger"
+
     @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
@@ -19,6 +21,8 @@ class RecordsController < ApplicationController
   end
 
   def cobranza
+    @active4 = "active pcoded-trigger"
+
     @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
@@ -35,6 +39,7 @@ class RecordsController < ApplicationController
   end
 
   def pizarron
+    @active2 = "active"
     start_time = params[:start] ? params[:start].to_time : Time.now
 
     @records = Record.where("((start_time > :start AND start_time < :end) OR (end_time > :start AND end_time < :end)) OR (start_time < :start AND end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
@@ -65,6 +70,8 @@ class RecordsController < ApplicationController
   end
 
   def operaciones
+    @active4 = "active pcoded-trigger"
+
     @records = Record.where("start_time >= ?", Time.zone.now.beginning_of_day).order('id ASC').paginate(:page => params[:page], :per_page => 30)
     # @records = @records.where("created_at < ?", 1.year.ago)
   end
@@ -104,11 +111,15 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
+    @active4 = "active pcoded-trigger"
+
     @step_1_active = "active"
     @record = Record.new
   end
 
   def client
+    @active4 = "active pcoded-trigger"
+
     @step_2_active = "active"
 
     @q = Client.ransack(params[:q])
@@ -117,6 +128,8 @@ class RecordsController < ApplicationController
   end
 
   def itinerary
+    @active4 = "active pcoded-trigger"
+
     @step_3_active = "active"
 
     @routes = @record.routes
@@ -124,10 +137,14 @@ class RecordsController < ApplicationController
   end
 
   def trip
+    @active4 = "active pcoded-trigger"
+
     @step_4_active = "active"
   end
 
   def bus
+    @active4 = "active pcoded-trigger"
+
     @step_5_active = "active"
 
     buses = Bus.all.pluck(:id)
@@ -140,10 +157,14 @@ class RecordsController < ApplicationController
   end
 
   def price
+    @active4 = "active pcoded-trigger"
+
     @step_6_active = "active"
   end
 
   def payments
+    @active4 = "active pcoded-trigger"
+
     @step_7_active = "active"
 
     @payments = @record.payments
@@ -151,6 +172,8 @@ class RecordsController < ApplicationController
   end
 
   def pdf
+    @active4 = "active pcoded-trigger"
+
     @step_8_active = "active"
   end
 

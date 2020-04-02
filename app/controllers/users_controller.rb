@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @active11 = "active pcoded-trigger"
+
     @users = User.all
   end
 

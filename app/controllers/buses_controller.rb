@@ -5,6 +5,8 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
+    @active10 = "active pcoded-trigger"
+
     @buses = Bus.all
   end
 
@@ -15,6 +17,8 @@ class BusesController < ApplicationController
 
   # GET /buses/new
   def new
+    @active10 = "active pcoded-trigger"
+
     @bus = Bus.new
   end
 

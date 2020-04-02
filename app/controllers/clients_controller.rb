@@ -5,6 +5,8 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
+    @active8 = "active pcoded-trigger"
+
     @q = Client.ransack(params[:q])
     @clients = @q.result.distinct
     @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
@@ -18,6 +20,8 @@ class ClientsController < ApplicationController
 
   # GET /clients/new
   def new
+    @active8 = "active pcoded-trigger"
+
     @client = Client.new
   end
 
