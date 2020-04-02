@@ -1,3 +1,65 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Búsqueda general</h5>
+        </div>
+        <div class="card-block">
+            <%= search_form_for @q do |f| %>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Registro:</label>
+                    <%= f.search_field :id_eq, placeholder: "Buscar número de registro", class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Cliente:</label>
+                    <%= f.search_field :client_razon_social_or_client_rfc_or_client_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias", class: "form-control"  %>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label>Autobús:</label>
+                    <%= f.search_field :buses_numero_or_buses_capacidad_eq, placeholder: "Buscar número de autubús o capacidad", class: "form-control"  %>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label>Marca:</label>
+                    <%= f.search_field :buses_marca_cont, placeholder: "Buscar marca de autubús", class: "form-control"  %>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label>Operador:</label>
+                    <%= f.search_field :buses_operator_nombre_cont, placeholder: "Buscar nombre de operador", class: "form-control"  %>
+                </div>
+              </div>
+
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.submit "Buscar", class: "btn btn-primary" %>
+              </div>
+            </div>
+            <% end %> 
+        </div>
+    </div>
+</div>
+
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-headline">
@@ -7,46 +69,6 @@
         <hr>
       </div>
       <div class="panel-body">
-        <%= search_form_for @q do |f| %>
-
-
-        <div class="row">
-          <div class="col-md-6">
-            <label>Registro:</label>
-            <%= f.search_field :id_eq, placeholder: "Buscar número de registro"  %>
-          </div>
-
-          <div class="col-md-6">
-            <label>Cliente:</label>
-            <%= f.search_field :client_razon_social_or_client_rfc_or_client_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias"  %>
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <label>Autobús:</label>
-            <%= f.search_field :buses_numero_or_buses_capacidad_eq, placeholder: "Buscar número de autubús o capacidad"  %>
-          </div>
-
-          <div class="col-md-4">
-            <label>Marca:</label>
-            <%= f.search_field :buses_marca_cont, placeholder: "Buscar marca de autubús"  %>
-          </div>
-
-          <div class="col-md-4">
-            <label>Operador:</label>
-            <%= f.search_field :buses_operator_nombre_cont, placeholder: "Buscar nombre de operador"  %>
-          </div>
-
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-md-3">
-            <%= f.submit "Buscar", class: "btn btn-primary btn-block" %>
-          </div>
-        </div>
-        <% end %> 
       </div>
     </div>
   </div>
