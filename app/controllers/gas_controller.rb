@@ -5,6 +5,8 @@ class GasController < ApplicationController
   # GET /gas
   # GET /gas.json
   def index
+    @active12 = "active pcoded-trigger"
+
     @gas = Ga.all.order(:fecha)
   end
 

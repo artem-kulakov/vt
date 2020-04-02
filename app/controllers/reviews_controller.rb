@@ -4,6 +4,8 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
+    @active9 = "active pcoded-trigger"
+
     @reviews = Review.all
   end
 
@@ -14,6 +16,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
+    @active9 = "active pcoded-trigger"
+
     @review = Review.new
   end
 

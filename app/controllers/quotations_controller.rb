@@ -5,6 +5,8 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
+    @active3 = "active pcoded-trigger"
+
     @years = Quotation.select("created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
@@ -36,12 +38,16 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/new
   def new
+    @active3 = "active pcoded-trigger"
+    
     @step_1_active = "active"
     @quotation = Quotation.new
   end
 
   # GET /quotations/:id/itinerary
   def itinerary
+    @active3 = "active pcoded-trigger"
+
     @step_2_active = "active"
 
     @places = @quotation.places
@@ -50,16 +56,22 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/:id/distance
   def distance
+    @active3 = "active pcoded-trigger"
+
     @step_3_active = "active"
   end
 
   # GET /quotations/:id/prices
   def prices
+    @active3 = "active pcoded-trigger"
+
     @step_4_active = "active"
   end
 
   # GET /quotations/:id/pdf
   def pdf
+    @active3 = "active pcoded-trigger"
+
     @step_5_active = "active"
   end
 

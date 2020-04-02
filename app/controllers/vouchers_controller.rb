@@ -5,9 +5,11 @@ class VouchersController < ApplicationController
   # GET /vouchers
   # GET /vouchers.json
   def index
+    @active6 = "active pcoded-trigger"
+
     @q = Voucher.ransack(params[:q])
     @vouchers = @q.result.uniq
-    @vouchers = @vouchers.order('id ASC')
+    @vouchers = @vouchers.sort_by(&:'id')
   end
 
   # GET /vouchers/1
@@ -17,6 +19,8 @@ class VouchersController < ApplicationController
 
   # GET /vouchers/new
   def new
+    @active6 = "active pcoded-trigger"
+
     @voucher = Voucher.new
   end
 

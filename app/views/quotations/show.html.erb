@@ -84,9 +84,13 @@
                     </h6>
                 </div>
             </div>
-
-            <h5 class="mt-5">Itinerario</h5>
-            <hr>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Itinerario</h5>
+        </div>
+        <div class="card-body">
             <% @places.order('id ASC').each_with_index do |place, i| %>
                 <h6><%= i+1 %>. <%= place.address %></h6>
                 <% if place.latitude.present? %>
@@ -95,9 +99,16 @@
                     <h6 class="rojo">No se encontró la dirección</h6>
                 <% end %>
             <% end %>
-
-            <h5 class="mt-5">Precios</h5>
-            <hr>
+            <div class="mt-5">
+                <div id="map4" style="width:100%;height:400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Precios</h5>
+        </div>
+        <div class="card-body">
             <div class="row">
                 <div class="col-sm-4">
                     <h6 class="">
@@ -164,16 +175,19 @@
                     </h6>
                 </div>
             </div>
-
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
             <div class="row">
                 <div class="col-4">
-                    <h5 class="mt-5">Precios sugeridos por</h5>
+                    <h5 class="">Precios sugeridos por</h5>
                 </div>
                 <div class="col-4">
-                    <h5 class="mt-5"><%= @quotation.distancia %> KM</h5>
+                    <h5 class=""><%= @quotation.distancia %> KM</h5>
                 </div>
                 <div class="col-4">
-                    <h5 class="mt-5"><%= @quotation.num_dias %> dias</h5>
+                    <h5 class=""><%= @quotation.num_dias %> dias</h5>
                 </div>
             </div>
             <hr>
@@ -239,13 +253,15 @@
                     </h6>
                 </div>
             </div>
-            <hr>
-            <div class="">
-                <div id="map4" style="width:100%;height:400px;"></div>
-            </div>
-            <hr>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Reporte</h5>
+        </div>
+        <div class="card-body">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12">
                     <%= link_to 'Ver Cotización', quotation_path(@quotation, :format => 'pdf'), class: "btn btn-primary", :target => "_blank" %>
                 </div>
             </div>

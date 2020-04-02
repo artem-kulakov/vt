@@ -6,6 +6,8 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
+    @active5 = "active pcoded-trigger"
+
     @years = Service.select("created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year

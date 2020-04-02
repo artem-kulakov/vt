@@ -5,7 +5,9 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    @active7 = "active pcoded-trigger"
+
+    @expenses = Expense.all.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /expenses/1
@@ -15,6 +17,8 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/new
   def new
+    @active7 = "active pcoded-trigger"
+
     @expense = Expense.new
   end
 

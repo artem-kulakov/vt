@@ -5,6 +5,8 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
+    @active10 = "active pcoded-trigger"
+
     @buses = Bus.all
   end
 
@@ -15,6 +17,8 @@ class BusesController < ApplicationController
 
   # GET /buses/new
   def new
+    @active10 = "active pcoded-trigger"
+
     @bus = Bus.new
   end
 
@@ -30,7 +34,7 @@ class BusesController < ApplicationController
 
     respond_to do |format|
       if @bus.save
-        format.html { redirect_to @bus, notice: 'Bus was successfully created.' }
+        format.html { redirect_to buses_path, notice: 'Bus was successfully created.' }
         format.json { render :show, status: :created, location: @bus }
       else
         format.html { render :new }
@@ -45,7 +49,7 @@ class BusesController < ApplicationController
     @bus.user_id = current_user.id
     respond_to do |format|
       if @bus.update(bus_params)
-        format.html { redirect_to @bus, notice: 'Bus was successfully updated.' }
+        format.html { redirect_to buses_path, notice: 'Bus was successfully updated.' }
         format.json { render :show, status: :ok, location: @bus }
       else
         format.html { render :edit }

@@ -11,65 +11,93 @@
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= f.label :alias %><br>
-    <%= f.text_field :alias %>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :alias %><br>
+        <%= f.text_field :alias, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :razon_social %><br>
+        <%= f.text_field :razon_social, required:true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :rfc %><br>
+        <%= f.text_field :rfc, required:true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :calle_y_numero %><br>
+        <%= f.text_field :calle_y_numero, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :colonia %><br>
+        <%= f.text_field :colonia, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :municipio %><br>
+        <%= f.text_field :municipio, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :estado %><br>
+        <%= f.text_field :estado, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :cp %><br>
+        <%= f.text_field :cp, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :pais %><br>
+        <%= f.text_field :pais, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :telefono %><br>
+        <%= f.text_field :telefono, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, required:true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :nombre_cobro %><br>
+        <%= f.text_field :nombre_cobro, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :telefono_cobro %><br>
+        <%= f.text_field :telefono_cobro, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.label :email_cobro %><br>
+        <%= f.text_field :email_cobro, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-12">
+        <%= f.submit class: "btn btn-primary" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :razon_social %><br>
-    <%= f.text_field :razon_social, required:true %>
-  </div>
-  <div class="field">
-    <%= f.label :rfc %><br>
-    <%= f.text_field :rfc, required:true %>
-  </div>
-  <div class="field">
-    <%= f.label :calle_y_numero %><br>
-    <%= f.text_field :calle_y_numero %>
-  </div>
-  <div class="field">
-    <%= f.label :colonia %><br>
-    <%= f.text_field :colonia %>
-  </div>
-  <div class="field">
-    <%= f.label :municipio %><br>
-    <%= f.text_field :municipio %>
-  </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.text_field :estado %>
-  </div>
-  <div class="field">
-    <%= f.label :cp %><br>
-    <%= f.text_field :cp %>
-  </div>
-  <div class="field">
-    <%= f.label :pais %><br>
-    <%= f.text_field :pais %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono %><br>
-    <%= f.text_field :telefono %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, required:true %>
-  </div>
-  <div class="field">
-    <%= f.label :nombre_cobro %><br>
-    <%= f.text_field :nombre_cobro %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono_cobro %><br>
-    <%= f.text_field :telefono_cobro %>
-  </div>
-  <div class="field">
-    <%= f.label :email_cobro %><br>
-    <%= f.text_field :email_cobro %>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
-  </div> <br>
 <% end %>

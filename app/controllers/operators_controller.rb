@@ -5,6 +5,8 @@ class OperatorsController < ApplicationController
   # GET /operators
   # GET /operators.json
   def index
+    @active9 = "active pcoded-trigger"
+
     @operators = Operator.all
   end
 
@@ -16,6 +18,8 @@ class OperatorsController < ApplicationController
 
   # GET /operators/new
   def new
+    @active9 = "active pcoded-trigger"
+
     @operator = Operator.new
   end
 

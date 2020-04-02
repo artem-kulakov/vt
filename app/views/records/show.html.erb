@@ -1,562 +1,413 @@
-<h2>Servicio: <%= @record.id %></h2>
-
-<h5>Registro creado por: <%= @record.user.name %> </h5>
-
-<div class="row">
-  <div id="status">
-    <ul>
-      <li class="strike"><h5>Status Op: <%= best_in_place [@record], :status_op, :as => :select, :collection => {"Prob Baja" => "Prob Baja", "Prob Media" => "Prob Media", "Prob Alta" => "Prob Alta", "Venta" => "Venta"} %></h5></li>
-
-      
-
-    </ul>
-  </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Servicio: <%= @record.id %></h5>
+        </div>
+        <div class="card-block">
+            <h6>Registro creado por: <%= @record.user.name %> </h6>
+            <h6>Status Op: <%= best_in_place [@record], :status_op, :as => :select, :collection => {"Prob Baja" => "Prob Baja", "Prob Media" => "Prob Media", "Prob Alta" => "Prob Alta", "Venta" => "Venta"} %></h6>
+        </div>
+    </div>
 </div>
-<br>
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3><%= @record.title %></h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Fecha de Salida: <a href="#" id="1"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :start_time ,:type => :date, :activator => "#1", :display_with => Proc.new { |f| f.strftime(" %b-%d-%Y") }%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Fecha de Regreso: <a href="#" id="2"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :end_time ,:type => :date, :activator => "#2", :display_with => Proc.new { |f| f.strftime(" %b-%d-%Y") } %></p>
-          </div>
-
-          <% (@record.end_time - @record.start_time)/1.day.to_i+1%>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class=""><%= @record.title %></h5>
         </div>
-
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Hora de Salida: <a href="#" id="3"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :initial_time, :type => :input, :activator => "#3", :place_holder => "00:00"%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Hora de Regreso: <a href="#" id="4"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place @record, :finish_time, :type => :input, :activator => "#4", :place_holder => "00:00" %></p>
-          </div>
-        </div>
-
-
-        <br><br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Número de Pasajeros: <a href="#" id="5"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :numero_pasajeros, :place_holder => "Añadir número de pasajeros", :activator => "#5" %></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Número de Camiones: <a href="#" id="6"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :numero_de_camiones, :place_holder => "Añande # camiones", :activator => "#6"%></p>
-          </div>
-        </div>
-
-        <br><br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Lugar de Salida: <a href="#" id="7"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :lugar_salida, :place_holder => "Añande lugar de salida", :activator => "#7"%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Referencia de Salida: <a href="#" id="8"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :referencia_salida, :place_holder => "Añande referencia de salida", :activator => "#8"%></p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Persona de Referencia: <a href="#" id="9"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :nombre_referencia, :place_holder => "Añande nombre referencia", :activator => "#9", :classes => 'highlight_on_success'%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4>Teléfono de Referencia: <a href="#" id="10"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :telefono_referencia, :place_holder => "Añande teléfono referencia", :activator => "#10"%></p>
-          </div>
-        </div>
-
-
-        <br><br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>¿Requiere Factura? <a href="#" id="11"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :factura, as: :checkbox, collection: {false: "Sin factura", true: "Con Factura"}, :activator => "#11"%></p>
-          </div>
-
-          <div class="col-sm-6">
-            <h4># de Factura o Recibo <a href="#" id="12"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :num_factura, :place_holder => "Añande # factura o recibo", :activator => "#12"%></p>
-          </div>
-        </div>
-
-
-        <br><br>
-        <div class="row">
-          <div class="col-sm-12">
-            <h4>Observaciones: <a href="#" id="13"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :observaciones, :as => :textarea, :place_holder => "Añande observaciones", :activator => "#13"%></p>
-            <br>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <h4>Condiciones: <a href="#" id="130"> <span class="grande fa fa-pencil"></span></a></h4>
-            <p><%= best_in_place [@record], :condiciones, :as => :textarea, :place_holder => "Añande condiciones", :activator => "#130"%></p>
-            <br>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-<% if @record.services.count < @record.numero_de_camiones %>
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        
-        <h3>Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-        <%= form_for [@record, @service], :html => {:id => 'service_form'} do |f| %>
-
-        <div class="field">
-          <%= f.label :Autobús %><br>
-          <%= f.select :bus_id, Bus.all.collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] } %>
-        </div>
-
-
-        <div class="actions">
-          <%= f.submit "Añadir Autobús", class: "btn btn-primary" %> <br><br>
-        </div>
-        <% end %>
-              
-      </div>
-    </div>
-    <% end %>  
-
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Itinerario</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-      <div class="row">
-        <% @routes.order('id ASC').each_with_index do |route, i| %>
-        <div class="col-sm-6">
-          <h4><%= i+1 %>.- <%= route.place %>    | <span><%= link_to 'Eliminar', record_route_path(@record, route), method: :delete, data: { confirm: 'Are you sure?' } %></span> |</h4>
-
-        </div>
-        <% end %>
-      </div>
-
-      <%= form_for [@record, @route], :html => {:id => 'route_form'} do |f| %>
-
-      <div class="field">
-        <%= f.label :Nuevo_lugar %><br>
-        <%= f.text_field :place, id: 'searchTextField' %>
-      </div>
-
-
-      <div class="actions">
-        <%= f.submit "Añadir Lugar", class: "btn btn-primary" %> <br><br>
-      </div>
-      <% end %>
-      </div>
-    </div>
-
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Pagos</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>Método</th>
-            <th>Núm Recibo</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th>  </th>
-          </thead>
-          <tbody>
-
-
-            <% @payments.each do |payment| %>
-            <tr>
-              <td><%= payment.metodo %></td>
-              <td><%= payment.num_recibo %></td>
-              <td><%= payment.try(:fecha).strftime(" %b-%d-%Y") %></td>
-              <td><%= payment.cantidad %></td>
-              <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-            <% end %>
-            
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Total:</td>
-              <td><%= @record.sum_payments %></td>
-              <td></td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-
-      <%= form_for [@record, @payment], :html => {:id => 'payment_form'} do |f| %>
-
-      <div class="row">
-        <div class="col-sm-3">
-          <h4><%= f.label :metodo %></h4>
-          <p> <%= f.select :metodo, [["Efectivo"], ["Cheque"], ["Tranferencia"], ["Tarjeta"]], {:prompt => 'Método de pago'}%></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4><%= f.label :num_recibo %></h4>
-          <p><%= f.text_field :num_recibo, required: true %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4><%= f.label :fecha %></h4>
-          <p><%= f.date_field :fecha, required: true %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4><%= f.label :cantidad %></h4>
-          <p><%= f.number_field :cantidad, step: :any, required: true %></p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Añadir Pago", class: "btn btn-primary" %> <br><br>
-      </div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Precios</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="row">
-        <div class="col-sm-6">
-          <h4>Precio: <a href="#" id="14"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record], :precio, :place_holder => "Añande precio", :activator => "#14"%></p>
-        </div>
-        <div class="col-sm-6">
-          <h4>Precio Final: <a href="#" id="35"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record], :precio_final, :place_holder => "Añande precio final", :activator => "#35"%></p>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Cobranza</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="row">
-        <div class="col-sm-4">
-          <h4>Precio Final:</h4>
-          <p><%=@record.try(:precio_final) %></p>
-        </div>
-        <div class="col-sm-4">
-          <h4>Cobrado:</h4>
-          <p><%=@record.try(:sum_payments) %></p>
-        </div>
-        <div class="col-sm-4">
-          <h4>Debe:</h4>
-          <p><%=@totis = @record.try(:sum_deuda) %></p>
-        </div>
-      </div>
-      <% if  @totis < 1%>
-      <div id="status">
-        <div class="row">
-          <ul>
-            <%= best_in_place [@record], :status_admin, as: :checkbox, collection: {true: "#{'<li class = "strike"><h5>Cobrado</h5></li>'}".html_safe, false: "#{'<li class = "strikero"><h5>Por Cobrar</h5></li>'}".html_safe}%> 
-          </ul>
-        </div>
-      </div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Avance</h3>
-        <hr>
-      </div>
-      <div class="panel-body">
-        <div class="center">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <div class="progress blue">
-                <span class="progress-left">
-                  <span class="progress-bar"></span>
-                </span>
-                <span class="progress-right">
-                  <span class="progress-bar"></span>
-                </span>
-                <div id="results">
-                  <%= render 'results' %>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Fecha de Salida:</span>
+                    </h6>
                 </div>
-              </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.start_time.strftime(" %b-%d-%Y") %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Fecha de Regreso:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.end_time.strftime(" %b-%d-%Y") %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Hora de Salida:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.initial_time %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Hora de Regreso:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.finish_time %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Número de Pasajeros:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.numero_pasajeros %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Número de Camiones:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.numero_de_camiones %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Lugar de Salida:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.lugar_salida %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Referencia de Salida:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.referencia_salida %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Persona de Referencia:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.nombre_referencia %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Teléfono de Referencia:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.telefono_referencia %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">¿Requiere Factura?:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.factura %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5"># de Factura o Recibo:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.num_factura %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Observaciones:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.observaciones %>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Condiciones:</span>
+                    </h6>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h6 class="">
+                        <%= @record.condiciones %>
+                    </h6>
+                </div>
             </div>
-          </div>
-          <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
         </div>
-
-        <br><br>
-
-      </div>
     </div>
-  </div>
 </div>
-
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <h3>Cliente</h3>
-        <h4>| <%= link_to "Cambiar Cliente", edit_record_path(@record) %> |</h4>
-        <hr>
-      </div>
-      <div class="panel-body">
-<div class="row">
-
-        <div class="col-sm-3">
-          <h4>Alias:</h4>
-          <p><%= @record.client.try(:alias) %></p>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Autobuses: <%=@record.services.count%>/<%= @record.numero_de_camiones %></h5>
         </div>
-
-        <div class="col-sm-3">
-          <h4>Razón Social:</h4>
-          <p><%= @record.client.try(:razon_social) %></p>
+        <div class="card-block">
+            <h6 class="">Precio total: <%= number_to_currency @record.try(:precio_final) %></h6>
+            <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
+            <h6>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h6>
+            <div class="table-responsive mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Autobus</th>
+                            <th>Precio X unidad</th>
+                            <th>Casetas</th>
+                            <th>Hotel</th>
+                            <th>Viáticos</th>
+                            <th>Estacionamientos</th>
+                            <th>Lavadas</th>
+                            <th>Aeropuerto</th>
+                            <th>Otros</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @services.each do |service| %>
+                            <tr class="text-center">
+                                <td><%= service.bus.numero %></td>
+                                <td><%= service.precio_unidad %></td>
+                                <td><%= service.caseta %></td>
+                                <td><%= service.hotel %></td>
+                                <td><%= service.viaticos %></td>
+                                <td><%= service.estacionamientos %></td>
+                                <td><%= service.lavadas %></td>
+                                <td><%= service.aeropuerto %></td>
+                                <td><%= service.otros %></td>
+                                <td><%= service.sum_gastos %></td>
+                                <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <div class="col-sm-2">
-          <h4>R.F.C.:</h4>
-          <p><%= @record.client.try(:rfc) %></p>
-        </div>
-
-        <div class="col-sm-2">
-          <h4>Email:</h4>
-          <p><%= @record.client.try(:email) %></p>
-        </div>
-
-        <div class="col-sm-2">
-          <h4>Teléfono:</h4>
-          <p><%= @record.client.try(:telefono) %></p>
-        </div>
-
-      </div>
-
-<div class="row">
-
-        <div class="col-sm-3">
-          <h4>Nombre Cobro:</h4>
-          <p><%= @record.client.try(:nombre_cobro) %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4>Teléfono Cobro:</h4>
-          <p><%= @record.client.try(:telefono_cobro) %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <h4>Email Cobro:</h4>
-          <p><%= @record.client.try(:email_cobro) %></p>
-        </div>
-
-        <div class="col-sm-3">
-          <%#= link_to "Editar datos de Cliente", edit_client_path(@record.client), class: "btn btn-primary" %>
-        </div>
-      </div>
-
-      </div>
     </div>
-  </div>  
 </div>
-
-<hr>
-
-<h4>Precio total: <%= number_to_currency @record.try(:precio_final) %></h4>
-<h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
-<h4>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h4>
-
-<div class="row">
-  <% @services.each_with_index do |service, i| %>
-  <div class="col-sm-4">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-      <h3><%= service.bus.numero %></h3>
-      <hr>
-      </div>
-
-      <div class="panel-body">
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="upper center grey">PRECIOS</h4>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Itinerario</h5>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <h4>Precio X unidad <a href="#" id="27-<%=i%>"> <span class="grande fa fa-pencil"></span></a></h4>
-          <p><%= best_in_place [@record, service], :precio_unidad, :activator => "#27-#{i}"%></p>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-12">
+                    <% @routes.order('id ASC').each_with_index do |route, i| %>
+                      <h6><%= i+1 %>. <%= route.place %> <span><%= link_to 'Eliminar', record_route_path(@record, route), method: :delete, data: { confirm: 'Are you sure?' } %></span></h6>
+                    <% end %>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="upper center grey">GASTOS</h4>
-        </div>
-      </div>
-      <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th>Gasto</th>
-            <th>Cantidad</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Casetas: <a href="#" id="16-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :caseta, :activator => "#16-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Hotel: <a href="#" id="17-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :hotel, :activator => "#17-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Viáticos: <a href="#" id="18-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :viaticos, :activator => "#18-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Estacionamientos: <a href="#" id="19-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :estacionamientos, :activator => "#19-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Lavadas: <a href="#" id="20-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :lavadas, :activator => "#20-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Aeropuerto: <a href="#" id="21-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :aeropuerto, :activator => "#21-#{i}"%></td>
-            </tr>
-            <tr>
-              <td>Otros: <a href="#" id="23-<%=i%>"> <span class="grande fa fa-pencil"></span></a></td>
-              <td><%=best_in_place [@record, service], :otros, :activator => "#23-#{i}"%></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Total:</td>
-              <td><%= service.sum_gastos%></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-
-      <div class="row">
-        <%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-block" %> <br><br>
-      </div>
-      </div>
-
     </div>
-  </div>
-  <% end %>
 </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Pagos</h5>
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <th>Método</th>
+                    <th>Núm Recibo</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>  </th>
+                  </thead>
+                  <tbody>
+                    <% @payments.each do |payment| %>
+                    <tr>
+                      <td><%= payment.metodo %></td>
+                      <td><%= payment.num_recibo %></td>
+                      <td><%= payment.try(:fecha).strftime(" %b-%d-%Y") %></td>
+                      <td><%= payment.cantidad %></td>
+                      <td><%= link_to 'Eliminar', record_payment_path(@record, payment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                    <% end %>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <th>Total:</th>
+                      <th><%= @record.sum_payments %></th>
+                      <td></td>
+                    </tr>
 
-<% if @record.services.count > 0 %>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= link_to 'Ver Reporte', record_path(@record, :format => 'pdf'), class: "btn btn-primary btn-block", :target => "_blank" %>
-    <!-- For pdf debugging -->
-    <%#= link_to 'Ver Reporte - HTML', record_path(@record, :format => 'pdf', debug: true), class: "btn btn-primary btn-block", :target => "_blank" %>
-  </div>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-<% end %>
-<br><br>
-
-
-
-<!-- Autocomplete -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXph4Sx9MklyoSlZ4JH-FCryYgRRgWi4&libraries=places"></script>
-<script>
-  function initialize() {
-    var options = {
-      types: ['(cities)'],
-    };
-
-    var input = document.getElementById('searchTextField');
-    var autocomplete = new google.maps.places.Autocomplete(input, options);
-  }
-
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-
-
-
-<script>
-  $(document).ready(function() {
-    /* Activating Best In Place */
-    jQuery(".best_in_place").best_in_place();
-  });
-</script>
-
-<!-- <script>
-  $('.best_in_place').bind("ajax:success", function(){
-    // alert('Name updated');
-    location.reload();
-  });
-
-</script> -->
-
-<script> 
-  $.datepicker.setDefaults({ dateFormat: 'M-dd-yy' });
-</script>
-
-
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Precios</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Precio:</span>
+                        <%= @record.precio %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Precio Final:</span>
+                        <%= @record.precio_final %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Cobranza</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Precio Final:</span>
+                        <%= @record.precio_final %>
+                    </h6>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Cobrado:</span>
+                        <%= @record.sum_payments %>
+                    </h6>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Debe:</span>
+                        <%= @record.sum_deuda %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Avance</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Precio Final:</span>
+                        <%= @record.sum_total %>%
+                    </h6>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Actualizado hace:</span>
+                        <%= time_ago_in_words(@record.updated_at) %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Cliente &nbsp;&nbsp;<small><%= link_to "Cambiar Cliente", edit_record_path(@record) %></small></h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Alias:</span>
+                        <%= @record.client.try(:alias) %>
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Razón Social:</span>
+                        <%= @record.client.try(:razon_social) %>
+                    </h6>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">R.F.C.:</span>
+                        <%= @record.client.try(:rfc) %>
+                    </h6>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Email:</span>
+                        <%= @record.client.try(:email) %>
+                    </h6>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Teléfono:</span>
+                        <%= @record.client.try(:telefono) %>
+                    </h6>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Nombre Cobro:</span>
+                        <%= @record.client.try(:nombre_cobro) %>
+                    </h6>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Teléfono Cobro:</span>
+                        <%= @record.client.try(:telefono_cobro) %>
+                    </h6>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Email Cobro:</span>
+                        <%= @record.client.try(:email_cobro) %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="">Reporte</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <%= link_to 'Ver Reporte', record_path(@record, :format => 'pdf'), class: "btn btn-primary", :target => "_blank" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
