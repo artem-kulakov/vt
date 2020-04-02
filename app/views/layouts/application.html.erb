@@ -20,7 +20,7 @@
     <meta name="author" content="Codedthemes" />
 
     <!-- Favicon icon -->
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/onxico-favicon.svg" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="/assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -48,12 +48,11 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
-                    <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
+                <%= link_to root_path, class: "b-brand" do %>
+                    <div class="" style="height: 35px; width: 163px;">
+                        <img src="/onxico-logo.svg" class="img-fluid" alt="Responsive image">
                     </div>
-                    <span class="b-title">Datta Able</span>
-                </a>
+                <% end %>
                 <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
             </div>
             <div class="navbar-content scroll-div">
