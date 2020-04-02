@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index
     @active11 = "active pcoded-trigger"
 
-    @users = User.all
+    @users = User.where(company_id: current_user.company_id)
   end
 
   # GET /users/1
