@@ -7,7 +7,7 @@ class OperatorsController < ApplicationController
   def index
     @active9 = "active pcoded-trigger"
 
-    @operators = Operator.all
+    @operators = current_user.company.operators
   end
 
   # GET /operators/1
