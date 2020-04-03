@@ -41,4 +41,9 @@
      <% end %>
           </tbody>
         </table>
+          <div style="display:flex; justify-content:center; align-items:center;">
+              <% unless @records.blank? %>
+                  <%= will_paginate @records, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+              <% end %>
+          </div>
       </div>

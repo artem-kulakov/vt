@@ -275,6 +275,13 @@
 #   service.update(user_id: [1,3,4,6].sample)
 # end
 
-Bus.all.each do |bus|
-  bus.update(user_id: [1,3,4,6].sample)
+# Bus.all.each do |bus|
+#   bus.update(user_id: [1,3,4,6].sample)
+# end
+
+Record.first(100).each do |record|
+  record.update(
+    start_time: '2020-04-03 01:00:00',
+    end_time: '2020-04-03 21:00:00'
+  )
 end

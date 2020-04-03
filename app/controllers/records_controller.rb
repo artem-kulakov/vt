@@ -72,7 +72,7 @@ class RecordsController < ApplicationController
   def operaciones
     @active4 = "active pcoded-trigger"
 
-    @records = Record.where("start_time >= ?", Time.zone.now.beginning_of_day).order('id ASC').paginate(:page => params[:page], :per_page => 30)
+    @records = current_user.company.records.where("records.start_time >= ?", Time.zone.now.beginning_of_day).order('records.id ASC').paginate(:page => params[:page], :per_page => 30)
     # @records = @records.where("created_at < ?", 1.year.ago)
   end
 
