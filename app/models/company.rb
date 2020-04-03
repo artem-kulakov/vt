@@ -5,4 +5,5 @@ class Company < ApplicationRecord
   has_many :buses, through: :users
   has_many :quotations, through: :users
   has_many :records, through: :users
+  has_many :services, through: :users
 end
