@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  has_one_attached :logo
+
   has_many :users
   has_many :operators, through: :users
   has_many :reviews, through: :operators

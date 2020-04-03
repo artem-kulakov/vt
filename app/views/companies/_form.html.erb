@@ -60,8 +60,15 @@
         <%= form.text_field :cadena_verificacion, class: "form-control" %>
         </div>
     </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label>Logo</label>
+            <%= form.file_field :logo, class: "form-control-file" %>
+        </div>
+            <%= image_tag(url_for(company.logo)) %>
+    </div>
 </div>
-<hr>
+<hr class="my-4">
 <div class="row">
     <div class="col-4">
         <div class="form-group">
