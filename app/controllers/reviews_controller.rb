@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   def index
     @active9 = "active pcoded-trigger"
 
-    @reviews = Review.all
+    @reviews = current_user.company.reviews
   end
 
   # GET /reviews/1
