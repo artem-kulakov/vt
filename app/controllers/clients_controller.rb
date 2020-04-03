@@ -7,7 +7,7 @@ class ClientsController < ApplicationController
   def index
     @active8 = "active pcoded-trigger"
 
-    @q = Client.ransack(params[:q])
+    @q = current_user.company.clients.ransack(params[:q])
     @clients = @q.result.distinct
     @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end

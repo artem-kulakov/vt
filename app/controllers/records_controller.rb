@@ -7,30 +7,30 @@ class RecordsController < ApplicationController
   def index
     @active13 = "active pcoded-trigger"
 
-    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.records.select("records.created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
-    @q = Record.ransack(params[:q])
+    @q = current_user.company.records.ransack(params[:q])
     @records = @q.result.includes(:services, :buses, :client).distinct
     @records = @records
-      .order('id ASC')
+      .order('records.id ASC')
       .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
       .paginate(:page => params[:page], :per_page => 30)
-    @buses = Bus.all
+    @buses = current_user.company.buses
   end
 
   def cobranza
     @active4 = "active pcoded-trigger"
 
-    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.records.select("records.created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
-    @q = Client.ransack(params[:q])
+    @q = current_user.company.clients.ransack(params[:q])
     @clients = @q.result.distinct
-    @clients = Client
+    @clients = current_user.company.clients
       .joins(:records)
       .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
       .where({ "records.status_admin" => false })
@@ -42,7 +42,7 @@ class RecordsController < ApplicationController
     @active2 = "active"
     start_time = params[:start] ? params[:start].to_time : Time.now
 
-    @records = Record.where("((start_time > :start AND start_time < :end) OR (end_time > :start AND end_time < :end)) OR (start_time < :start AND end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
+    @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
 
     colors = [
       '#04a9f5',
@@ -72,7 +72,7 @@ class RecordsController < ApplicationController
   def operaciones
     @active4 = "active pcoded-trigger"
 
-    @records = Record.where("start_time >= ?", Time.zone.now.beginning_of_day).order('id ASC').paginate(:page => params[:page], :per_page => 30)
+    @records = current_user.company.records.where("records.start_time >= ?", Time.zone.now.beginning_of_day).order('records.id ASC').paginate(:page => params[:page], :per_page => 30)
     # @records = @records.where("created_at < ?", 1.year.ago)
   end
 
@@ -122,7 +122,7 @@ class RecordsController < ApplicationController
 
     @step_2_active = "active"
 
-    @q = Client.ransack(params[:q])
+    @q = current_user.company.clients.ransack(params[:q])
     @clients = @q.result.distinct
     @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end
@@ -147,10 +147,10 @@ class RecordsController < ApplicationController
 
     @step_5_active = "active"
 
-    buses = Bus.all.pluck(:id)
-    booked_buses = Bus.joins(:records).where("records.start_time >= ? AND records.end_time <= ?", @record.start_time, @record.end_time).pluck(:id)
+    buses = current_user.company.buses.pluck(:id)
+    booked_buses = current_user.company.buses.joins(:records).where("records.start_time >= ? AND records.end_time <= ?", @record.start_time, @record.end_time).pluck(:id)
     free_buses = buses - booked_buses
-    @free_buses = Bus.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
+    @free_buses = current_user.company.buses.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
 
     @service = Service.new
     @services = @record.services

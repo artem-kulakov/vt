@@ -6,27 +6,27 @@ class WelcomeController < ApplicationController
     data = {}
 
     data[:quotations] = {}
-    quotations = Quotation.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    quotations = current_user.company.quotations.group_by_month('quotations.created_at', last: 12, format: "%b'%y").count
     data[:quotations][:labels] = quotations.keys
     data[:quotations][:data] = quotations.values
 
     data[:records] = {}
-    records = Record.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    records = current_user.company.records.group_by_month('records.created_at', last: 12, format: "%b'%y").count
     data[:records][:labels] = records.keys
     data[:records][:data] = records.values
 
     data[:services] = {}
-    services = Service.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    services = current_user.company.services.group_by_month('services.created_at', last: 12, format: "%b'%y").count
     data[:services][:labels] = services.keys
     data[:services][:data] = services.values
 
     data[:receipts] = {}
-    receipts = Receipt.group_by_month(:fecha, last: 12, format: "%b'%y").sum('cantidad')
+    receipts = current_user.company.receipts.group_by_month('receipts.fecha', last: 12, format: "%b'%y").sum('receipts.cantidad')
     data[:receipts][:labels] = receipts.keys
     data[:receipts][:data] = receipts.values
 
     data[:income] = {}
-    income = Record.group_by_month(:start_time, last: 12, format: "%b'%y").sum('precio_final')
+    income = current_user.company.records.group_by_month('records.start_time', last: 12, format: "%b'%y").sum('records.precio_final')
     data[:income][:labels] = income.keys
     data[:income][:data] = income.values
 
@@ -37,7 +37,7 @@ class WelcomeController < ApplicationController
   def reporte
     @active14 = "active pcoded-trigger"
 
-    @years = Service.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.services.select("created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year
 
     @months = Array(1..12)
@@ -49,11 +49,11 @@ class WelcomeController < ApplicationController
 
     date = DateTime.new(@year.to_i, @month.to_i, 15) # just a date in the middle of the month
 
-  	@services = Service
-      .where("fecha > :start AND fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
+  	@services = current_user.company.services
+      .where("services.fecha > :start AND services.fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
   	@buses = Bus.all
-  	@receipts = Receipt
-      .where("fecha > :start AND fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
+  	@receipts = current_user.company.receipts
+      .where("receipts.fecha > :start AND receipts.fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
   	@gas = Ga.all
   	@costs = @services + @receipts
   end

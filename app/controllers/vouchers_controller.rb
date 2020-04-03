@@ -7,7 +7,7 @@ class VouchersController < ApplicationController
   def index
     @active6 = "active pcoded-trigger"
 
-    @q = Voucher.ransack(params[:q])
+    @q = current_user.company.vouchers.ransack(params[:q])
     @vouchers = @q.result.uniq
     @vouchers = @vouchers.sort_by(&:'id')
   end

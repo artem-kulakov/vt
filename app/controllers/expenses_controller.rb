@@ -7,7 +7,7 @@ class ExpensesController < ApplicationController
   def index
     @active7 = "active pcoded-trigger"
 
-    @expenses = Expense.all.paginate(:page => params[:page], :per_page => 30)
+    @expenses = current_user.company.expenses.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /expenses/1

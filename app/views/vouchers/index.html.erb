@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                   <label>Operador:</label>
-                  <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {:required => true, class: "form-control"} %>
+                  <%= f.select :operator_id_eq, options_from_collection_for_select(current_user.company.operators, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {:required => true, class: "form-control"} %>
                 </div>
             </div>
           </div>
