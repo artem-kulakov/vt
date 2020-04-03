@@ -63,9 +63,11 @@
     <div class="col-4">
         <div class="form-group">
             <label>Logo</label>
-            <%= form.file_field :logo, class: "form-control-file" %>
+            <div class="custom-file">
+                <%= form.file_field :logo, class: "custom-file-input", id: "validatedCustomFile" %>
+                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
         </div>
-            <%= image_tag(url_for(company.logo)) %>
     </div>
 </div>
 <hr class="my-4">
