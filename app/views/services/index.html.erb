@@ -9,13 +9,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Operador:</label>
-                            <%= f.select :operator_id_eq, options_from_collection_for_select(Operator.all, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {class: "form-control"} %>
+                            <%= f.select :operator_id_eq, options_from_collection_for_select(current_user.company.operators, "id", "nombre", @q.operator_id_eq), {:prompt => 'Elige operador'}, {class: "form-control"} %>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Autobús:</label>
-                            <%= f.select :bus_id_eq, options_from_collection_for_select(Bus.all, "id", "numero", @q.bus_id_eq), {:prompt => 'Elige autobús'}, {class: "form-control"} %>
+                            <%= f.select :bus_id_eq, options_from_collection_for_select(current_user.company.buses, "id", "numero", @q.bus_id_eq), {:prompt => 'Elige autobús'}, {class: "form-control"} %>
                         </div>
                     </div>
                 </div>
