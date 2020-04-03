@@ -192,11 +192,23 @@
                         <% end %>
                     </li>
 
-                    <li data-username="Full Calendar" class="nav-item mb-4 <%= @active14 %>">
+                    <li data-username="Full Calendar" class="nav-item <%= @active14 %>">
                         <%= link_to reporte_path, class: "nav-link" do %>
                             <span class="pcoded-micon"><i class="feather icon-list"></i></span>
                             <span class="pcoded-mtext">Reporte</span>
                         <% end %>
+                    </li>
+
+                    <li data-username="Task list board details" class="nav-item pcoded-hasmenu mb-4 <%= @active15 %>">
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-copy"></i></span><span class="pcoded-mtext">Compañías</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <%= link_to 'Nuevo Empresa', new_company_path, class: "" %>
+                            </li>
+                            <li class="">
+                                <%= link_to 'Todos los Compañías', companies_path, class: "" %>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

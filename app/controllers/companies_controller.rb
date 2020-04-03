@@ -4,6 +4,8 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
+    @active15 = 'active pcoded-trigger'
+
     @companies = Company.all
   end
 
@@ -14,11 +16,14 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
+    @active15 = 'active pcoded-trigger'
+    
     @company = Company.new
   end
 
   # GET /companies/1/edit
   def edit
+    @active15 = 'active pcoded-trigger'
   end
 
   # POST /companies
