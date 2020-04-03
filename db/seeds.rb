@@ -271,6 +271,10 @@
 #   records.update(user_id: [1,3,4,6].sample)
 # end
 
-Service.all.each do |service|
-  service.update(user_id: [1,3,4,6].sample)
+# Service.all.each do |service|
+#   service.update(user_id: [1,3,4,6].sample)
+# end
+
+Bus.all.each do |bus|
+  bus.update(user_id: [1,3,4,6].sample)
 end

@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
     data[:services][:data] = services.values
 
     data[:receipts] = {}
-    receipts = Receipt.group_by_month(:fecha, last: 12, format: "%b'%y").sum('cantidad')
+    receipts = current_user.company.receipts.group_by_month('receipts.fecha', last: 12, format: "%b'%y").sum('receipts.cantidad')
     data[:receipts][:labels] = receipts.keys
     data[:receipts][:data] = receipts.values
 
