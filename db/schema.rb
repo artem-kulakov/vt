@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_212737) do
+ActiveRecord::Schema.define(version: 2020_04_03_182012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,23 @@ ActiveRecord::Schema.define(version: 2020_04_02_212737) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "address"
+    t.string "industry"
+    t.string "rfc"
+    t.string "alias"
+    t.string "company_type"
+    t.string "cadena_verificacion"
+    t.string "type_a_name"
+    t.integer "type_a_km_cost"
+    t.integer "type_a_day_cost"
+    t.string "type_b_name"
+    t.integer "type_b_km_cost"
+    t.integer "type_b_day_cost"
+    t.string "type_c_name"
+    t.integer "type_c_km_cost"
+    t.integer "type_c_day_cost"
+    t.string "type_d_name"
+    t.integer "type_d_km_cost"
+    t.integer "type_d_day_cost"
   end
 
   create_table "expenses", id: :serial, force: :cascade do |t|
