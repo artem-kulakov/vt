@@ -7,17 +7,17 @@ class RecordsController < ApplicationController
   def index
     @active13 = "active pcoded-trigger"
 
-    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.records.select("records.created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
-    @q = Record.ransack(params[:q])
+    @q = current_user.company.records.ransack(params[:q])
     @records = @q.result.includes(:services, :buses, :client).distinct
     @records = @records
-      .order('id ASC')
+      .order('records.id ASC')
       .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
       .paginate(:page => params[:page], :per_page => 30)
-    @buses = Bus.all
+    @buses = current_user.company.buses
   end
 
   def cobranza
