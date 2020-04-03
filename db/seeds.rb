@@ -13,6 +13,11 @@
 #   address: 'Another Place'
 # )
 
+co3 = Company.create(
+  razon_social: '111',
+  name: 'root'
+)
+
 # a01= User.create!({:email => "gonzalo@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => true, :name => "Gonzalo Jimenez", :puesto => "Director General", :phone => "", company: co1 })
 # a02= User.create!({:email => "comercial@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Iván del Toro", :puesto => "Director Comercial", :phone => "55 2981 3313", company: co1 })
 # a03= User.create!({:email => "operaciones@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Octavio Aridjis", :puesto => "Director de Operaciones", :phone => "", company: co1 })
@@ -26,6 +31,7 @@ a06= User.create!({
   :name => "Pedro",
   :puesto => "Super Administrator",
   :phone => "",
+  company: co3,
   super_admin: true
 })
 

@@ -1,12 +1,14 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :update, :destroy]
 
   # GET /companies
   # GET /companies.json
   def index
     @active15 = 'active pcoded-trigger'
 
-    @companies = Company.all
+    if current_user.super_admin
+      @companies = Company.all
+    end
   end
 
   # GET /companies/1
@@ -16,14 +18,19 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    @active15 = 'active pcoded-trigger'
-    
-    @company = Company.new
+    if current_user.super_admin
+      @active15 = 'active pcoded-trigger'
+      @company = Company.new
+    else
+      redirect_to edit_company_path(current_user.company)
+    end
   end
 
   # GET /companies/1/edit
   def edit
     @active15 = 'active pcoded-trigger'
+
+    @company = Company.find(current_user.company.id)
   end
 
   # POST /companies
@@ -47,7 +54,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to companies_path, notice: 'Company was successfully updated.' }
+        format.html { redirect_to edit_company_path(current_user.company), notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }
