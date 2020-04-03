@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
     data[:quotations][:data] = quotations.values
 
     data[:records] = {}
-    records = Record.group_by_month(:created_at, last: 12, format: "%b'%y").count
+    records = current_user.company.records.group_by_month('records.created_at', last: 12, format: "%b'%y").count
     data[:records][:labels] = records.keys
     data[:records][:data] = records.values
 

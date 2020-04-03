@@ -263,6 +263,10 @@
 # User.last(2).each { |user| user.update(company_id: co2.id) }
 
 
-Quotation.all.each do |quotation|
-  quotation.update(user_id: [1,3,4,6].sample)
+# Quotation.all.each do |quotation|
+#   quotation.update(user_id: [1,3,4,6].sample)
+# end
+
+Record.all.each do |records|
+  records.update(user_id: [1,3,4,6].sample)
 end
