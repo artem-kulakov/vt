@@ -37,7 +37,7 @@ class WelcomeController < ApplicationController
   def reporte
     @active14 = "active pcoded-trigger"
 
-    @years = Service.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.services.select("created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year
 
     @months = Array(1..12)
@@ -49,11 +49,11 @@ class WelcomeController < ApplicationController
 
     date = DateTime.new(@year.to_i, @month.to_i, 15) # just a date in the middle of the month
 
-  	@services = Service
-      .where("fecha > :start AND fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
+  	@services = current_user.company.services
+      .where("services.fecha > :start AND services.fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
   	@buses = Bus.all
-  	@receipts = Receipt
-      .where("fecha > :start AND fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
+  	@receipts = current_user.company.receipts
+      .where("receipts.fecha > :start AND receipts.fecha < :end", {start: date.beginning_of_month, end: date.end_of_month})
   	@gas = Ga.all
   	@costs = @services + @receipts
   end
