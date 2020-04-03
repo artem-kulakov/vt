@@ -122,7 +122,7 @@ class RecordsController < ApplicationController
 
     @step_2_active = "active"
 
-    @q = Client.ransack(params[:q])
+    @q = current_user.company.clients.ransack(params[:q])
     @clients = @q.result.distinct
     @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end
@@ -147,10 +147,10 @@ class RecordsController < ApplicationController
 
     @step_5_active = "active"
 
-    buses = Bus.all.pluck(:id)
-    booked_buses = Bus.joins(:records).where("records.start_time >= ? AND records.end_time <= ?", @record.start_time, @record.end_time).pluck(:id)
+    buses = current_user.company.buses.pluck(:id)
+    booked_buses = current_user.company.buses.joins(:records).where("records.start_time >= ? AND records.end_time <= ?", @record.start_time, @record.end_time).pluck(:id)
     free_buses = buses - booked_buses
-    @free_buses = Bus.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
+    @free_buses = current_user.company.buses.where(id: free_buses).collect { |p| [ "#{p.numero}, #{p.version} - #{p.capacidad} pasajeros", p.id ] }
 
     @service = Service.new
     @services = @record.services
