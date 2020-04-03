@@ -18,6 +18,16 @@
 # a03= User.create!({:email => "operaciones@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Octavio Aridjis", :puesto => "Director de Operaciones", :phone => "", company: co1 })
 # a04= User.create!({:email => "ventas@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => true, :name => "Estefany Rodríguez", :puesto => "Ejecutivo de Venta", :phone => "55 2803 7565", company: co2 })
 # a05= User.create!({:email => "administracion@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Alma", :puesto => "Directora Administrativa", :phone => "", company: co2 })
+a06= User.create!({
+  :email => "superadmin@tuttoilmondo.com",
+  :password => "tuttoilmondo",
+  :password_confirmation => "tuttoilmondo",
+  :admin => false,
+  :name => "Pedro",
+  :puesto => "Super Administrator",
+  :phone => "",
+  super_admin: true
+})
 
 
 # o01= Operator.create!({ :nombre => "Jorge Amador"})
