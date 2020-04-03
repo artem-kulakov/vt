@@ -1,17 +1,17 @@
-Company.delete_all
+# Company.delete_all
 # User.delete_all
 
-co1 = Company.create(
-  razon_social: '12345',
-  name: 'Tutto il Mondo',
-  address: 'Some Place'
-)
+# co1 = Company.create(
+#   razon_social: '12345',
+#   name: 'Tutto il Mondo',
+#   address: 'Some Place'
+# )
 
-co2 = Company.create(
-  razon_social: '54321',
-  name: 'Ajax',
-  address: 'Another Place'
-)
+# co2 = Company.create(
+#   razon_social: '54321',
+#   name: 'Ajax',
+#   address: 'Another Place'
+# )
 
 # a01= User.create!({:email => "gonzalo@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => true, :name => "Gonzalo Jimenez", :puesto => "Director General", :phone => "", company: co1 })
 # a02= User.create!({:email => "comercial@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Iván del Toro", :puesto => "Director Comercial", :phone => "55 2981 3313", company: co1 })
@@ -259,5 +259,10 @@ co2 = Company.create(
 # end
 
 
-User.first(3).each { |user| user.update(company_id: co1.id) }
-User.last(2).each { |user| user.update(company_id: co2.id) }
+# User.first(3).each { |user| user.update(company_id: co1.id) }
+# User.last(2).each { |user| user.update(company_id: co2.id) }
+
+
+Quotation.all.each do |quotation|
+  quotation.update(user_id: [1,3,4,6].sample)
+end
