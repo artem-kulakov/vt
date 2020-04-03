@@ -267,6 +267,10 @@
 #   quotation.update(user_id: [1,3,4,6].sample)
 # end
 
-Record.all.each do |records|
-  records.update(user_id: [1,3,4,6].sample)
+# Record.all.each do |records|
+#   records.update(user_id: [1,3,4,6].sample)
+# end
+
+Service.all.each do |service|
+  service.update(user_id: [1,3,4,6].sample)
 end
