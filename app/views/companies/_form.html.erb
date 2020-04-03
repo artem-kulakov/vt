@@ -11,107 +11,133 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :razon_social %>
-    <%= form.text_field :razon_social %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :industry %>
-    <%= form.text_field :industry %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rfc %>
-    <%= form.text_field :rfc %>
-  </div>
-
-  <div class="field">
-    <%= form.label :alias %>
-    <%= form.text_field :alias %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company_type %>
-    <%= form.text_field :company_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cadena_verificacion %>
-    <%= form.text_field :cadena_verificacion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_a_name %>
-    <%= form.text_field :type_a_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_a_km_cost %>
-    <%= form.text_field :type_a_km_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_a_day_cost %>
-    <%= form.text_field :type_a_day_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_b_name %>
-    <%= form.text_field :type_b_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_b_km_cost %>
-    <%= form.text_field :type_b_km_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_b_day_cost %>
-    <%= form.text_field :type_b_day_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_c_name %>
-    <%= form.text_field :type_c_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_c_km_cost %>
-    <%= form.text_field :type_c_km_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_c_day_cost %>
-    <%= form.text_field :type_c_day_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_d_name %>
-    <%= form.text_field :type_d_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_d_km_cost %>
-    <%= form.text_field :type_d_km_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type_d_day_cost %>
-    <%= form.text_field :type_d_day_cost %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :razon_social %>
+        <%= form.text_field :razon_social, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :address %>
+        <%= form.text_field :address, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :industry %>
+        <%= form.text_field :industry, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :rfc %>
+        <%= form.text_field :rfc, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :alias %>
+        <%= form.text_field :alias, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :company_type %>
+        <%= form.text_field :company_type, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :cadena_verificacion %>
+        <%= form.text_field :cadena_verificacion, class: "form-control" %>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_a_name %>
+        <%= form.text_field :type_a_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_a_km_cost %>
+        <%= form.number_field :type_a_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_a_day_cost %>
+        <%= form.number_field :type_a_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_b_name %>
+        <%= form.text_field :type_b_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_b_km_cost %>
+        <%= form.number_field :type_b_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_b_day_cost %>
+        <%= form.number_field :type_b_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_c_name %>
+        <%= form.text_field :type_c_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_c_km_cost %>
+        <%= form.number_field :type_c_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_c_day_cost %>
+        <%= form.number_field :type_c_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_d_name %>
+        <%= form.text_field :type_d_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_d_km_cost %>
+        <%= form.number_field :type_d_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_d_day_cost %>
+        <%= form.number_field :type_d_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="actions">
+        <%= form.submit "Crear empresa", class: "btn btn-primary" %>
+        </div>
+    </div>
 <% end %>
