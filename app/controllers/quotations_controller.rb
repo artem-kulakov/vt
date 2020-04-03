@@ -7,14 +7,14 @@ class QuotationsController < ApplicationController
   def index
     @active3 = "active pcoded-trigger"
 
-    @years = Quotation.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.quotations.select("quotations.created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
-    @q = Quotation.where("created_at > :start AND created_at < :end", {start: date.beginning_of_year, end: date.end_of_year}).ransack(params[:q])
+    @q = current_user.company.quotations.where("quotations.created_at > :start AND quotations.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year}).ransack(params[:q])
     @quotations = @q.result.distinct
-    @quotations = @quotations.order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
+    @quotations = @quotations.order('quotations.created_at DESC').paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /quotations/1
