@@ -7,7 +7,7 @@ class BusesController < ApplicationController
   def index
     @active10 = "active pcoded-trigger"
 
-    @buses = Bus.all
+    @buses = current_user.company.buses
   end
 
   # GET /buses/1
