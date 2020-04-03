@@ -1,0 +1,152 @@
+<%= form_with(model: company, local: true) do |form| %>
+  <% if company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+        <% company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :razon_social %>
+        <%= form.text_field :razon_social, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :address %>
+        <%= form.text_field :address, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :industry %>
+        <%= form.text_field :industry, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :rfc %>
+        <%= form.text_field :rfc, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :alias %>
+        <%= form.text_field :alias, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :company_type %>
+        <%= form.text_field :company_type, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :cadena_verificacion %>
+        <%= form.text_field :cadena_verificacion, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label>Logo</label>
+            <div class="custom-file">
+                <%= form.file_field :logo, class: "custom-file-input", id: "validatedCustomFile" %>
+                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="my-4">
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_a_name %>
+        <%= form.text_field :type_a_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_a_km_cost %>
+        <%= form.number_field :type_a_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_a_day_cost %>
+        <%= form.number_field :type_a_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_b_name %>
+        <%= form.text_field :type_b_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_b_km_cost %>
+        <%= form.number_field :type_b_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_b_day_cost %>
+        <%= form.number_field :type_b_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_c_name %>
+        <%= form.text_field :type_c_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_c_km_cost %>
+        <%= form.number_field :type_c_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_c_day_cost %>
+        <%= form.number_field :type_c_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_d_name %>
+        <%= form.text_field :type_d_name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_d_km_cost %>
+        <%= form.number_field :type_d_km_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+        <%= form.label :type_d_day_cost %>
+        <%= form.number_field :type_d_day_cost, class: "form-control" %>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="actions">
+        <%= form.submit class: "btn btn-primary" %>
+        </div>
+    </div>
+<% end %>

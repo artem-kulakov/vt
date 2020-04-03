@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :companies
   
   resources :reviews
 get '/reporte' => 'welcome#reporte'
