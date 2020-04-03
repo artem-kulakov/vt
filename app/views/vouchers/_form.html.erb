@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= f.label :Operador %><br>
-    <%= f.select :operator_id, Operator.all.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true, class: "form-control"} %>
+    <%= f.select :operator_id, current_user.company.operators.collect { |p| [ "#{p.nombre}", p.id ] }, {:prompt => 'Elige Operador'}, {:required => true, class: "form-control"} %>
   </div>
 
 

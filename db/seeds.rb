@@ -286,6 +286,6 @@
 #   )
 # end
 
-Client.all.each do |client|
-  client.update(user_id: [1,3,4,6].sample)
-end
+# Client.all.each do |client|
+#   client.update(user_id: [1,3,4,6].sample)
+# end
