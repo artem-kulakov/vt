@@ -23,14 +23,14 @@ class RecordsController < ApplicationController
   def cobranza
     @active4 = "active pcoded-trigger"
 
-    @years = Record.select("created_at").map{ |i| i.created_at.year }.uniq.sort
+    @years = current_user.company.records.select("records.created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
     date = DateTime.new(@year.to_i, 6, 30) # just a date in the middle of the year
 
-    @q = Client.ransack(params[:q])
+    @q = current_user.company.clients.ransack(params[:q])
     @clients = @q.result.distinct
-    @clients = Client
+    @clients = current_user.company.clients
       .joins(:records)
       .where("records.created_at > :start AND records.created_at < :end", {start: date.beginning_of_year, end: date.end_of_year})
       .where({ "records.status_admin" => false })

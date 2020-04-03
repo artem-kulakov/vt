@@ -7,4 +7,5 @@ class Company < ApplicationRecord
   has_many :records, through: :users
   has_many :services, through: :users
   has_many :receipts, through: :buses
+  has_many :clients, through: :users
 end
