@@ -9,4 +9,5 @@ class Company < ApplicationRecord
   has_many :receipts, through: :buses
   has_many :clients, through: :users
   has_many :vouchers, through: :operators
+  has_many :expenses, through: :receipts
 end
