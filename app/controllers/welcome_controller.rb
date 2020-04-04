@@ -46,28 +46,34 @@ class WelcomeController < ApplicationController
     @data = data
 
     # Free buses today
-    all_buses = current_user.company.buses.all.pluck(:numero)
+    all_buses = current_user.company.buses.pluck(:numero)
 
     booked_buses = current_user.company.buses.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_day, end: Date.today.end_of_day}).pluck(:numero).uniq
     @free_buses = (all_buses - booked_buses).first(10)
 
     # Free buses this month
-    records = Bus.first.records.where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_month, end: Date.today.end_of_month}).pluck(:start_time,:end_time)
+    all_buses = current_user.company.buses
 
-    booked_days = 0
-    records.each do |start_time, end_time|
-      if start_time < Date.today.beginning_of_month
-        start_time = Date.today.beginning_of_month
+    free_buses_month = {}
+    all_buses.each do |bus|
+      records = bus.records.where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_month, end: Date.today.end_of_month}).pluck(:start_time,:end_time)
+
+      booked_days = 0
+      records.each do |start_time, end_time|
+        if start_time < Date.today.beginning_of_month
+          start_time = Date.today.beginning_of_month
+        end
+
+        if end_time > Date.today.end_of_month
+          end_time = Date.today.end_of_month
+        end
+
+        booked_days += (end_time.to_date - start_time.to_date + 1).to_i
       end
-
-      if end_time > Date.today.end_of_month
-        end_time = Date.today.end_of_month
-      end
-
-      booked_days += (end_time.to_date - start_time.to_date + 1).to_i
+      free_days = 30 - booked_days
+      free_buses_month[bus.numero] = free_days
     end
-    puts 'trulala'
-    puts booked_days
+    @free_buses_month = free_buses_month.sort_by {|_key, value| value}.reverse.first(10).to_h
   end
 
 

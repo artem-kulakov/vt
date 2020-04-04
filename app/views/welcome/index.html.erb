@@ -84,60 +84,14 @@
             <% end %>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="media friendlist-box align-items-center justify-content-center m-b-20">
-                <div class="m-r-10 photo-table">
-                    <a href="#!"><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></a>
+            <% @free_buses_month.each do |number, days| %>
+                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
+                    <div class="media-body">
+                        <h6 class="m-0 d-inline"><%= number %></h6>
+                        <span class="float-right d-flex align-items-center"><%= days %> dias</span>
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h6 class="m-0 d-inline">Silje Larsen</h6>
-                    <span class="float-right d-flex align-items-center"><i class="fas fa-caret-up f-22 m-r-10 text-c-green"></i>3784</span>
-                </div>
-            </div>
-            <div class="media friendlist-box align-items-center justify-content-center m-b-20">
-                <div class="m-r-10 photo-table">
-                    <a href="#!"><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></a>
-                </div>
-                <div class="media-body">
-                    <h6 class="m-0 d-inline">Julie Vad</h6>
-                    <span class="float-right d-flex align-items-center"><i class="fas fa-caret-up f-22 m-r-10 text-c-green"></i>3544</span>
-                </div>
-            </div>
-            <div class="media friendlist-box align-items-center justify-content-center m-b-20">
-                <div class="m-r-10 photo-table">
-                    <a href="#!"><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user"></a>
-                </div>
-                <div class="media-body">
-                    <h6 class="m-0 d-inline">Storm Hanse</h6>
-                    <span class="float-right d-flex align-items-center"><i class="fas fa-caret-down f-22 m-r-10 text-c-red"></i>2739</span>
-                </div>
-            </div>
-            <div class="media friendlist-box align-items-center justify-content-center m-b-20">
-                <div class="m-r-10 photo-table">
-                    <a href="#!"><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></a>
-                </div>
-                <div class="media-body">
-                    <h6 class="m-0 d-inline">Frida Thomse</h6>
-                    <span class="float-right d-flex align-items-center"><i class="fas fa-caret-down f-22 m-r-10 text-c-red"></i>1032</span>
-                </div>
-            </div>
-            <div class="media friendlist-box align-items-center justify-content-center m-b-20">
-                <div class="m-r-10 photo-table">
-                    <a href="#!"><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></a>
-                </div>
-                <div class="media-body">
-                    <h6 class="m-0 d-inline">Silje Larsen</h6>
-                    <span class="float-right d-flex align-items-center"><i class="fas fa-caret-up f-22 m-r-10 text-c-green"></i>8750</span>
-                </div>
-            </div>
-            <div class="media friendlist-box align-items-center justify-content-center">
-                <div class="m-r-10 photo-table">
-                    <a href="#!"><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user"></a>
-                </div>
-                <div class="media-body">
-                    <h6 class="m-0 d-inline">Storm Hanse</h6>
-                    <span class="float-right d-flex align-items-center"><i class="fas fa-caret-down f-22 m-r-10 text-c-red"></i>8750</span>
-                </div>
-            </div>
+            <% end %>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div class="media friendlist-box align-items-center justify-content-center m-b-20">
