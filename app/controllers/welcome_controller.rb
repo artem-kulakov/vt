@@ -44,6 +44,14 @@ class WelcomeController < ApplicationController
     end
 
     @data = data
+
+    # Free buses
+    all_buses = current_user.company.buses.all.pluck(:numero)
+
+    booked_buses = current_user.company.buses.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_day, end: Date.today.end_of_day}).pluck(:numero).uniq
+    free_buses = all_buses - booked_buses
+    puts "trulala"
+    puts all_buses.count
   end
 
 
