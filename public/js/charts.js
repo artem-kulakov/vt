@@ -401,7 +401,8 @@ $(document).ready(function() {
             "lineColor": "#a389d4",
             "lineThickness": 2,
             "type": "smoothedLine",
-            "valueField": "value"
+            "valueField": "value",
+            "title": "Quotations created"
         }, {
             "id": "g2",
             "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
@@ -416,7 +417,8 @@ $(document).ready(function() {
             "lineColor": "#1ddcc8",
             "lineThickness": 2,
             "type": "smoothedLine",
-            "valueField": "value2"
+            "valueField": "value2",
+            "title": "Quotations closed"
         }],
         "chartCursor": {
             "cursorAlpha": 0,
@@ -435,8 +437,7 @@ $(document).ready(function() {
         },
         "legend": {
             "useGraphSettings": true,
-            "position": "top",
-            'labelText': 'foo'
+            "position": "top"
         },
     });
 });
