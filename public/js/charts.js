@@ -331,4 +331,48 @@ $(document).ready(function() {
         responsive: true,
         options: line_chart_options
     });
+
+
+    // Buses
+    var chart = AmCharts.makeChart("line-area2", {
+        "type": "serial",
+        "theme": "light",
+        "marginTop": 10,
+        "marginRight": 0,
+        "dataProvider": data.buses,
+        "valueAxes": [{
+            "axisAlpha": 0,
+            "position": "left"
+        }],
+        "graphs": [{
+            "id": "g1",
+            "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+            "bullet": "round",
+            "lineColor": "#1de9b6",
+            "lineThickness": 3,
+            "negativeLineColor": "#1de9b6",
+            "valueField": "value"
+        }],
+        "chartCursor": {
+            "cursorAlpha": 0,
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.3,
+            "fullWidth": true
+        },
+        "categoryField": "year",
+        "categoryAxis": {
+            "minorGridAlpha": 0,
+            "minorGridEnabled": true,
+            "gridAlpha": 0,
+            "axisAlpha": 0,
+            "lineAlpha": 0
+        },
+        "legend": {
+            "useGraphSettings": true,
+            "position": "top"
+        },
+    });
+
+
 });

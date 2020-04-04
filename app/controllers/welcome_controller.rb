@@ -33,12 +33,15 @@ class WelcomeController < ApplicationController
     data[:income][:labels] = income.keys
     data[:income][:data] = income.values
 
-    booked_buses = []
+    data[:buses] = []
+    total_buses = current_user.company.buses.count
     (Date.today-30.days..Date.today).each do |date|
-      booked_buses << Bus.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: date.beginning_of_day, end: date.end_of_day}).pluck(:id).uniq.count
+      booked_buses = current_user.company.buses.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: date.beginning_of_day, end: date.end_of_day}).pluck(:id).uniq.count
+      data[:buses] << {
+        year: date.strftime("%e"),
+        value: (booked_buses.to_f / total_buses * 100).to_i
+      }
     end
-    puts 'trulala'
-    puts booked_buses
 
     @data = data
   end
