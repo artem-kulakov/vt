@@ -1,17 +1,9 @@
 $(document).ready(function() {
     var data = $('.chart_data').data('data');
-    console.log(data.foo);
 
 
-
-
-
-
-    // [ call chart ] start
+    // Quotations
     var chartDatac = data.foo;
-
-    console.log(chartDatac);
-
     var chartc = AmCharts.makeChart("call-chart", {
         "type": "serial",
         "addClassNames": true,
@@ -125,11 +117,7 @@ $(document).ready(function() {
     }, 400);
 
 
-
-
-
-
-
+    // Line chart options
     const line_chart_options = {
         barValueSpacing: 20,
         scales: {
@@ -154,53 +142,12 @@ $(document).ready(function() {
         }
     }
 
-    // Cotizaciones
-    var bar = document.getElementById("chart-bar-1").getContext('2d');
-    var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);
-    theme_g1.addColorStop(0, '#1de9b6');
-    theme_g1.addColorStop(1, '#1dc4e9');
-    var data1 = {
-        labels: data.quotations.labels,
-        datasets: [{
-            label: "Cotizaciones Mensuales",
-            data: data.quotations.data,
-            borderColor: theme_g1,
-            backgroundColor: theme_g1,
-            hoverborderColor: theme_g1,
-            hoverBackgroundColor: theme_g1,
-        }]
-    };
-    var myBarChart = new Chart(bar, {
-        type: 'bar',
-        data: data1,
-        options: {
-            barValueSpacing: 20,
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        autoSkip: false,
-                        maxRotation: 90,
-                        minRotation: 90
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        precision: 0,
-                        suggestedMin: 0
-                    }
-                }]
-            },
-            elements: {
-                point:{
-                    radius: 0
-                }
-            }
-        }
-    });
-
 
     // Registros
     var bar = document.getElementById("chart-line-1").getContext('2d');
+    var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);
+    theme_g1.addColorStop(0, '#1de9b6');
+    theme_g1.addColorStop(1, '#1dc4e9');
     var data1 = {
         labels: data.records.labels,
         datasets: [{
