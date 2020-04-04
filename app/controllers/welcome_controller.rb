@@ -110,6 +110,16 @@ class WelcomeController < ApplicationController
       data[:quotations_created] << { year: key, value: value, value2: quotations_closed[key] }
     end
 
+    # Records created vs closed
+    data[:records_created] = []
+
+    records_created = current_user.company.records.group_by_day('records.created_at', last: 30, format: "%e").count
+    records_closed = current_user.company.records.group_by_day('records.end_time', last: 30, format: "%e").count
+
+    records_created.each do |key, value|
+      data[:records_created] << { year: key, value: value, value2: records_closed[key] }
+    end
+
     @data = data
   end
 

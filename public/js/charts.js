@@ -448,7 +448,7 @@ $(document).ready(function() {
         "theme": "light",
         "marginTop": 10,
         "marginRight": 0,
-        "dataProvider": data.quotations_created,
+        "dataProvider": data.records_created,
         "valueAxes": [{
             "axisAlpha": 0,
             "minimum": 0,
@@ -469,7 +469,7 @@ $(document).ready(function() {
             "lineThickness": 2,
             "type": "smoothedLine",
             "valueField": "value",
-            "title": "Quotations created"
+            "title": "Records created"
         }, {
             "id": "g2",
             "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
@@ -485,7 +485,7 @@ $(document).ready(function() {
             "lineThickness": 2,
             "type": "smoothedLine",
             "valueField": "value2",
-            "title": "Quotations closed"
+            "title": "Records closed"
         }],
         "chartCursor": {
             "cursorAlpha": 0,
