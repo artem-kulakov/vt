@@ -11,7 +11,7 @@ $(window).on('load', function() {
         defaultDate: new Date,
         editable: false,
         droppable: false,
-        events: events,
+        events: '/records/pizarron.json',
         drop: function() {
             if ($('#drop-remove').is(':checked')) {
                 $(this).remove();
