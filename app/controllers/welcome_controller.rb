@@ -74,6 +74,30 @@ class WelcomeController < ApplicationController
       free_buses_month[bus.numero] = free_days
     end
     @free_buses_month = free_buses_month.sort_by {|_key, value| value}.reverse.first(10).to_h
+
+    # Free buses this year
+    all_buses = current_user.company.buses
+
+    free_buses_year = {}
+    all_buses.each do |bus|
+      records = bus.records.where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_year, end: Date.today.end_of_year}).pluck(:start_time, :end_time)
+
+      booked_days = 0
+      records.each do |start_time, end_time|
+        if start_time < Date.today.beginning_of_year
+          start_time = Date.today.beginning_of_year
+        end
+
+        if end_time > Date.today.end_of_year
+          end_time = Date.today.end_of_year
+        end
+
+        booked_days += (end_time.to_date - start_time.to_date + 1).to_i
+      end
+      free_days = 365 - booked_days
+      free_buses_year[bus.numero] = free_days
+    end
+    @free_buses_year = free_buses_year.sort_by {|_key, value| value}.reverse.first(10).to_h
   end
 
 
