@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
 	before_action :authenticate_user!
+
 	def index
     @active1 = "active"
 
@@ -31,6 +32,13 @@ class WelcomeController < ApplicationController
     income = current_user.company.records.group_by_month('records.start_time', last: 12, format: "%b'%y").sum('records.precio_final')
     data[:income][:labels] = income.keys
     data[:income][:data] = income.values
+
+    booked_buses = []
+    (Date.today-30.days..Date.today).each do |date|
+      booked_buses << Bus.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: date.beginning_of_day, end: date.end_of_day}).pluck(:id).uniq.count
+    end
+    puts 'trulala'
+    puts booked_buses
 
     @data = data
   end
