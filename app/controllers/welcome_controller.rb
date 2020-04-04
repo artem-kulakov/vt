@@ -6,15 +6,13 @@ class WelcomeController < ApplicationController
     data = {}
 
     data[:quotations] = {}
-    quotations = current_user.company.quotations.group_by_month('quotations.created_at', last: 12, format: "%b'%y").count
+    quotations = current_user.company.quotations.group_by_month('quotations.created_at', last: 13, format: "%b'%y").count
     data[:quotations][:labels] = quotations.keys
     data[:quotations][:data] = quotations.values
 
     data[:foo] = []
-    i = 0
     quotations.each do |key, value|
-      data[:foo] << { year: (2000+i).to_s, value: value }
-      i += 1
+      data[:foo] << { year: key, value: value }
     end
 
     data[:records] = {}

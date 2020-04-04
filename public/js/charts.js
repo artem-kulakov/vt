@@ -69,7 +69,7 @@ $(document).ready(function() {
             "lineAlpha": 0,
             "offset": -20,
             "inside": true,
-            "parseDates": true,
+            "parseDates": false,
             "minPeriod": "YYYY"
         },
         "valueAxes": [{
