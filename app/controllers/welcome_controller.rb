@@ -16,10 +16,11 @@ class WelcomeController < ApplicationController
     data[:records][:labels] = records.keys
     data[:records][:data] = records.values
 
-    data[:services] = {}
-    services = current_user.company.services.group_by_month('services.created_at', last: 12, format: "%b'%y").count
-    data[:services][:labels] = services.keys
-    data[:services][:data] = services.values
+    data[:services] = []
+    services = current_user.company.services.group_by_month('services.created_at', last: 12, format: "%b").count
+    services.each do |key, value|
+      data[:services] << { year: key, value: value }
+    end
 
     data[:receipts] = {}
     receipts = current_user.company.receipts.group_by_month('receipts.fecha', last: 12, format: "%b'%y").sum('receipts.cantidad')

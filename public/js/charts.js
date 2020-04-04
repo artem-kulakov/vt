@@ -170,7 +170,7 @@ $(document).ready(function() {
 
 
     // Services
-    var chartDatad = data.quotations;
+    var chartDatad = data.services;
     var chartd = AmCharts.makeChart("services-chart", {
         "type": "serial",
         "addClassNames": true,
