@@ -57,7 +57,7 @@ $(document).ready(function() {
                 }
             ]
         },
-        "fontSize": 15,
+        "fontSize": 12,
         "dataProvider": chartDatac,
         "autoMarginOffset": 0,
         "marginRight": 0,
@@ -70,6 +70,8 @@ $(document).ready(function() {
             "offset": -20,
             "inside": true,
             "parseDates": false,
+            "autoGridCount": false,
+            "gridCount": 12,
             "minPeriod": "YYYY"
         },
         "valueAxes": [{
@@ -79,7 +81,6 @@ $(document).ready(function() {
             "axisAlpha": 0,
             "lineAlpha": 0,
             "minimum": 0,
-            "maximum": 100,
         }],
         "chartCursor": {
             "valueLineEnabled": false,
