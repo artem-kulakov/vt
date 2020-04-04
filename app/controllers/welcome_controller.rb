@@ -10,6 +10,13 @@ class WelcomeController < ApplicationController
     data[:quotations][:labels] = quotations.keys
     data[:quotations][:data] = quotations.values
 
+    data[:foo] = []
+    i = 0
+    quotations.each do |key, value|
+      data[:foo] << { year: (2000+i).to_s, value: value }
+      i += 1
+    end
+
     data[:records] = {}
     records = current_user.company.records.group_by_month('records.created_at', last: 12, format: "%b'%y").count
     data[:records][:labels] = records.keys

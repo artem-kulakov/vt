@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+    var data = $('.chart_data').data('data');
+    console.log(data.foo);
 
 
 
@@ -7,25 +8,10 @@ $(document).ready(function() {
 
 
     // [ call chart ] start
-    var chartDatac = [{
-        "year": "2000",
-        "value": 55
-    }, {
-        "year": "2001",
-        "value": 45
-    }, {
-        "year": "2002",
-        "value": 60
-    }, {
-        "year": "2003",
-        "value": 80
-    }, {
-        "year": "2004",
-        "value": 70
-    }, {
-        "year": "2005",
-        "value": 55
-    }];
+    var chartDatac = data.foo;
+
+    console.log(chartDatac);
+
     var chartc = AmCharts.makeChart("call-chart", {
         "type": "serial",
         "addClassNames": true,
@@ -142,7 +128,6 @@ $(document).ready(function() {
 
 
 
-    var data = $('.chart_data').data('data');
 
     const line_chart_options = {
         barValueSpacing: 20,
