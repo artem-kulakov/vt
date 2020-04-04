@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 
     // Quotations
-    var chartDatac = data.foo;
+    var chartDatac = data.quotations;
     var chartc = AmCharts.makeChart("call-chart", {
         "type": "serial",
         "addClassNames": true,
