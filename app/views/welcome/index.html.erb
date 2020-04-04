@@ -109,78 +109,31 @@
 <div class="col-xl-8 col-md-12 datta-example">
     <div class="card user-list">
         <div class="card-header">
-            <h5>User Project List</h5>
+            <h5>Last users login</h5>
         </div>
         <div class="card-block pb-0">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>project</th>
-                            <th>Completed</th>
-                            <th>Status</th>
-                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Puesto</th>
+                            <th>Last login</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></td>
-                            <td>
-                                <h6 class="mb-1">Social Media App</h6>
-                                <p class="m-0">Assigned to<span class="text-c-green"> Tristan Madsen</span></p>
-                            </td>
-                            <td><span class="pie_1">326,134</span></td>
-                            <td>
-                                <h6 class="m-0">68%</h6>
-                            </td>
-                            <td>
-                                <h6 class="m-0">October 26, 2017</h6>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></td>
-                            <td>
-                                <h6 class="mb-1">Newspaper Wordpress Web</h6>
-                                <p class="m-0">Assigned to<span class="text-c-green"> Marcus Poulsen</span></p>
-                            </td>
-                            <td><span class="pie_2">110,134</span></td>
-                            <td>
-                                <h6 class="m-0">46%</h6>
-                            </td>
-                            <td>
-                                <h6 class="m-0">September 4, 2017</h6>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user"></td>
-                            <td>
-                                <h6 class="mb-1">Dashboard UI Kit Design</h6>
-                                <p class="m-0">Assigned to<span class="text-c-green"> Felix Johansen</span></p>
-                            </td>
-                            <td><span class="pie_3">226,134</span></td>
-                            <td>
-                                <h6 class="m-0">31%</h6>
-                            </td>
-                            <td>
-                                <h6 class="m-0">November 14, 2017</h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></td>
-                            <td>
-                                <h6 class="mb-1">Social Media App</h6>
-                                <p class="m-0">Assigned to<span class="text-c-green"> Tristan Madsen</span></p>
-                            </td>
-                            <td><span class="pie_4">500,134</span></td>
-                            <td>
-                                <h6 class="m-0">85%</h6>
-                            </td>
-                            <td>
-                                <h6 class="m-0">December 14, 2017</h6>
-                            </td>
-                        </tr>
+                        <% @users.each do |user| %>
+                            <tr>
+                                <td>
+                                    <h6 class="m-0"><%= user.name %></h6>
+                                </td>
+                                <td>
+                                    <h6 class="m-0"><%= user.puesto %></h6>
+                                </td>
+                                <td>
+                                    <h6 class="m-0"><%= user.current_sign_in_at %></h6>
+                                </td>
+                            </tr>
+                        <% end %>
                     </tbody>
                 </table>
             </div>

@@ -98,6 +98,9 @@ class WelcomeController < ApplicationController
       free_buses_year[bus.numero] = free_days
     end
     @free_buses_year = free_buses_year.sort_by {|_key, value| value}.reverse.first(10).to_h
+
+    # Last users login
+    @users = current_user.company.users
   end
 
 
