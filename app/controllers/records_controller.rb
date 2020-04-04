@@ -42,7 +42,7 @@ class RecordsController < ApplicationController
     @active2 = "active"
     start_time = params[:start] ? params[:start].to_time : Time.now
 
-    @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
+    @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time.beginning_of_day, end: start_time.end_of_day})
   end
 
   def operaciones
