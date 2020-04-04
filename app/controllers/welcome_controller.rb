@@ -43,8 +43,6 @@ class WelcomeController < ApplicationController
       }
     end
 
-    @data = data
-
     # Free buses today
     all_buses = current_user.company.buses.pluck(:numero)
 
@@ -103,8 +101,16 @@ class WelcomeController < ApplicationController
     @users = current_user.company.users
 
     # Quotations created vs closed
-    @quotations_created = current_user.company.quotations.group_by_day('quotations.created_at', last: 30, format: "%e").count
-    @quotations_closed = current_user.company.quotations.group_by_day('quotations.fecha_fin', last: 30, format: "%e").count
+    data[:quotations_created] = []
+
+    quotations_created = current_user.company.quotations.group_by_day('quotations.created_at', last: 30, format: "%e").count
+    quotations_closed = current_user.company.quotations.group_by_day('quotations.fecha_fin', last: 30, format: "%e").count
+
+    quotations_created.each do |key, value|
+      data[:quotations_created] << { year: key, value: value, value2: quotations_closed[key] }
+    end
+
+    @data = data
   end
 
 

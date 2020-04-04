@@ -375,4 +375,67 @@ $(document).ready(function() {
     });
 
 
+    // Quotations created
+    var chart = AmCharts.makeChart("line-chart2", {
+        "type": "serial",
+        "theme": "light",
+        "marginTop": 10,
+        "marginRight": 0,
+        "dataProvider": data.quotations_created,
+        "valueAxes": [{
+            "axisAlpha": 0,
+            "minimum": 0,
+            "position": "left"
+        }],
+        "graphs": [{
+            "id": "g1",
+            "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+            "bullet": "round",
+            "bulletBorderAlpha": 2,
+            "bulletAlpha": 1,
+            "bulletSize": 12,
+            "stackable": false,
+            "bulletColor": "#fff",
+            "bulletBorderColor": "#a389d4",
+            "bulletBorderThickness": 3,
+            "lineColor": "#a389d4",
+            "lineThickness": 2,
+            "type": "smoothedLine",
+            "valueField": "value"
+        }, {
+            "id": "g2",
+            "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+            "bullet": "round",
+            "bulletBorderAlpha": 2,
+            "bulletAlpha": 1,
+            "bulletSize": 12,
+            "stackable": false,
+            "bulletColor": "#fff",
+            "bulletBorderColor": "#1ddcc8",
+            "bulletBorderThickness": 3,
+            "lineColor": "#1ddcc8",
+            "lineThickness": 2,
+            "type": "smoothedLine",
+            "valueField": "value2"
+        }],
+        "chartCursor": {
+            "cursorAlpha": 0,
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true
+        },
+        "categoryField": "year",
+        "categoryAxis": {
+            "minorGridAlpha": 0,
+            "minorGridEnabled": true,
+            "gridAlpha": 0,
+            "axisAlpha": 0,
+            "lineAlpha": 0
+        },
+        "legend": {
+            "useGraphSettings": true,
+            "position": "top"
+        },
+    });
 });
