@@ -121,6 +121,11 @@ class WelcomeController < ApplicationController
     end
 
     @data = data
+
+    # Monthly quotations
+    @quotations_last_30_days = current_user.company.quotations.where("((quotations.fecha_inicio >= :start AND quotations.fecha_inicio <= :end) OR (quotations.fecha_fin >= :start AND quotations.fecha_fin <= :end)) OR (quotations.fecha_inicio < :start AND quotations.fecha_fin > :end)", {start: Date.today-1.month, end: Date.today}).count
+    quotations_previous_30_days = current_user.company.quotations.where("((quotations.fecha_inicio >= :start AND quotations.fecha_inicio <= :end) OR (quotations.fecha_fin >= :start AND quotations.fecha_fin <= :end)) OR (quotations.fecha_inicio < :start AND quotations.fecha_fin > :end)", {start: Date.today-2.month, end: Date.today-1.month}).count
+    @quotations_change = ((@quotations_last_30_days.to_f / quotations_previous_30_days - 1) * 100).to_i
   end
 
 

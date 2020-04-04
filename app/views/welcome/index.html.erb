@@ -188,15 +188,15 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Daily Sales</h5>
+            <h5>Last 30 days quotations</h5>
         </div>
         <div class="card-block">
             <div class="row d-flex align-items-center">
                 <div class="col-9">
-                    <h3 class="f-w-300 d-flex align-items-center m-b-0"><i class="feather icon-arrow-up text-c-green f-30 m-r-5"></i>$ 249.95</h3>
+                    <h3 class="f-w-300 d-flex align-items-center m-b-0"><%= @quotations_last_30_days %></h3>
                 </div>
                 <div class="col-3 text-right">
-                    <p class="m-b-0">67%</p>
+                    <p class="m-b-0"><%= @quotations_change %>%</p>
                 </div>
             </div>
             <div class="progress m-t-30" style="height: 7px;">
