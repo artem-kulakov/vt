@@ -435,7 +435,8 @@ $(document).ready(function() {
         },
         "legend": {
             "useGraphSettings": true,
-            "position": "top"
+            "position": "top",
+            'labelText': 'foo'
         },
     });
 });
