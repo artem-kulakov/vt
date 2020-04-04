@@ -45,13 +45,29 @@ class WelcomeController < ApplicationController
 
     @data = data
 
-    # Free buses
+    # Free buses today
     all_buses = current_user.company.buses.all.pluck(:numero)
 
     booked_buses = current_user.company.buses.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_day, end: Date.today.end_of_day}).pluck(:numero).uniq
     @free_buses = (all_buses - booked_buses).first(10)
-    puts "trulala"
-    puts @free_buses
+
+    # Free buses this month
+    records = Bus.first.records.where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: Date.today.beginning_of_month, end: Date.today.end_of_month}).pluck(:start_time,:end_time)
+
+    booked_days = 0
+    records.each do |start_time, end_time|
+      if start_time < Date.today.beginning_of_month
+        start_time = Date.today.beginning_of_month
+      end
+
+      if end_time > Date.today.end_of_month
+        end_time = Date.today.end_of_month
+      end
+
+      booked_days += (end_time.to_date - start_time.to_date + 1).to_i
+    end
+    puts 'trulala'
+    puts booked_days
   end
 
 
