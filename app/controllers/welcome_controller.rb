@@ -101,6 +101,10 @@ class WelcomeController < ApplicationController
 
     # Last users login
     @users = current_user.company.users
+
+    # Quotations created vs closed
+    @quotations_created = current_user.company.quotations.group_by_day('quotations.created_at', last: 30, format: "%e").count
+    @quotations_closed = current_user.company.quotations.group_by_day('quotations.fecha_fin', last: 30, format: "%e").count
   end
 
 
