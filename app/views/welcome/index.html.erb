@@ -249,4 +249,105 @@
     </div>
 </div>
 
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>News Statistics</h5>
+            <div class="card-header-right">
+                <div class="btn-group card-option">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="feather icon-more-horizontal"></i>
+                    </button>
+                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-block pl-0 pr-0 pb-2">
+            <div id="bar-chart" class="ChartShadow BarChart" style="height:250px;"></div>
+        </div>
+        <div class="card-block border-top">
+            <div class="row">
+                <div class="col text-center">
+                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2">48</h6>
+                    <h6 class="mt-2 mb-0">Sport</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2">36</h6>
+                    <h6 class="mt-2 mb-0">Music</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="bg-c-blue d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2">41</h6>
+                    <h6 class="mt-2 mb-0">Travel</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="bg-c-red d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2">7</h6>
+                    <h6 class="mt-2 mb-0">News</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var chart = AmCharts.makeChart("bar-chart", {
+            "type": "serial",
+            "theme": "light",
+            "dataProvider": [{
+                "game": "Sport",
+                "visits": 53,
+                "color": ["#1de9b6", "#1dc4e9"]
+            }, {
+                "game": "Music",
+                "visits": 13,
+                "color": ["#a389d4", "#899ed4"]
+            }, {
+                "game": "Travel",
+                "visits": 30,
+                "color": ["#04a9f5", "#049df5"]
+            }, {
+                "game": "News",
+                "visits": 4,
+                "color": ["#f44236", "#f48f36"]
+            }],
+            "valueAxes": [{
+                "gridAlpha": 0,
+                "axisAlpha": 0,
+                "lineAlpha": 0,
+                "fontSize": 0,
+            }],
+            "startDuration": 1,
+            "graphs": [{
+                "balloonText": "<b>[[category]]: [[value]]</b>",
+                "fillColorsField": "color",
+                "fillAlphas": 0.9,
+                "lineAlpha": 0,
+                "columnWidth": 0.2,
+                "type": "column",
+                "valueField": "visits"
+            }],
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "game",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "gridAlpha": 0,
+                "axisAlpha": 0,
+                "lineAlpha": 0,
+            }
+        });
+    });
+</script>
+
 <%= content_tag :div, class: "chart_data", data: {data: @data} do %><% end %>
