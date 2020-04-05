@@ -126,6 +126,11 @@ class WelcomeController < ApplicationController
     @quotations_last_30_days = current_user.company.quotations.where("((quotations.fecha_inicio >= :start AND quotations.fecha_inicio <= :end) OR (quotations.fecha_fin >= :start AND quotations.fecha_fin <= :end)) OR (quotations.fecha_inicio < :start AND quotations.fecha_fin > :end)", {start: Date.today-1.month, end: Date.today}).count
     quotations_previous_30_days = current_user.company.quotations.where("((quotations.fecha_inicio >= :start AND quotations.fecha_inicio <= :end) OR (quotations.fecha_fin >= :start AND quotations.fecha_fin <= :end)) OR (quotations.fecha_inicio < :start AND quotations.fecha_fin > :end)", {start: Date.today-2.month, end: Date.today-1.month}).count
     @quotations_change = ((@quotations_last_30_days.to_f / quotations_previous_30_days - 1) * 100).to_i
+
+    # Monthly services
+    @services_last_30_days = current_user.company.services.where("services.fecha >= :start AND services.fecha <= :end", {start: Date.today-1.month, end: Date.today}).count
+    services_previous_30_days = current_user.company.services.where("services.fecha >= :start AND services.fecha <= :end", {start: Date.today-2.month, end: Date.today-1.month}).count
+    @services_change = ((@services_last_30_days.to_f / services_previous_30_days - 1) * 100).to_i
   end
 
 
