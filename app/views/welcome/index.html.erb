@@ -299,4 +299,29 @@
     </div>
 </div>
 
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Records status<br><small>last 30 days</small></h5>
+        </div>
+        <div class="card-block pl-0 pr-0 pb-2">
+            <div id="bar-chart-3" class="ChartShadow BarChart" style="height:250px;"></div>
+        </div>
+        <div class="card-block border-top">
+            <div class="row">
+                <div class="col text-center">
+                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @records_open %></h6>
+                    <h6 class="mt-2 mb-0">Open records</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @records_closed %></h6>
+                    <h6 class="mt-2 mb-0">Closed records</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%= content_tag :div, class: "chart_data", data: {data: @data} do %><% end %>

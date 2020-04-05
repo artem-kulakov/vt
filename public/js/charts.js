@@ -580,4 +580,40 @@ $(document).ready(function() {
         }
     });
 
+
+    // Records status, month
+    var chart = AmCharts.makeChart("bar-chart-3", {
+        "type": "serial",
+        "theme": "light",
+        "dataProvider": data.records_status,
+        "valueAxes": [{
+            "gridAlpha": 0,
+            "axisAlpha": 0,
+            "lineAlpha": 0,
+            "fontSize": 0,
+        }],
+        "startDuration": 1,
+        "graphs": [{
+            "balloonText": "<b>[[category]]: [[value]]</b>",
+            "fillColorsField": "color",
+            "fillAlphas": 0.9,
+            "lineAlpha": 0,
+            "columnWidth": 0.2,
+            "type": "column",
+            "valueField": "visits"
+        }],
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "game",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "gridAlpha": 0,
+            "axisAlpha": 0,
+            "lineAlpha": 0,
+        }
+    });
+
 });

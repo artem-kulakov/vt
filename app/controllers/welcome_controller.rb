@@ -160,6 +160,21 @@ class WelcomeController < ApplicationController
       color: ["#a389d4", "#899ed4"]
     }
 
+    # Records status, last 30 days
+    data[:records_status] = []
+    @records_open = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time > :end", {start: Date.today-1.month, end: Date.today}).count
+    @records_closed = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time <= :end", {start: Date.today-1.month, end: Date.today}).count
+    data[:records_status] << {
+      game: 'Open records',
+      visits: @records_open,
+      color: ["#1de9b6", "#1dc4e9"]
+    }
+    data[:records_status] << {
+      game: 'Closed records',
+      visits: @quotations_closed,
+      color: ["#a389d4", "#899ed4"]
+    }
+
     @data = data
   end
 
