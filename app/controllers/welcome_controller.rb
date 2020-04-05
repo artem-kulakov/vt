@@ -145,6 +145,21 @@ class WelcomeController < ApplicationController
       color: ["#a389d4", "#899ed4"]
     }
 
+    # Quotations status, last 7 days
+    data[:quotations_status_week] = []
+    @quotations_open_week = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin > :end", {start: Date.today-7.day, end: Date.today}).count
+    @quotations_closed_week = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin <= :end", {start: Date.today-7.day, end: Date.today}).count
+    data[:quotations_status_week] << {
+      game: 'Open quotations',
+      visits: @quotations_open_week,
+      color: ["#1de9b6", "#1dc4e9"]
+    }
+    data[:quotations_status_week] << {
+      game: 'Closed quotations',
+      visits: @quotations_closed_week,
+      color: ["#a389d4", "#899ed4"]
+    }
+
     @data = data
   end
 
