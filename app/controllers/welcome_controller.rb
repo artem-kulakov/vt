@@ -175,6 +175,21 @@ class WelcomeController < ApplicationController
       color: ["#a389d4", "#899ed4"]
     }
 
+    # Records status, last 7 days
+    data[:records_status_week] = []
+    @records_open_week = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time > :end", {start: Date.today-7.day, end: Date.today}).count
+    @records_closed_week = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time <= :end", {start: Date.today-7.day, end: Date.today}).count
+    data[:records_status_week] << {
+      game: 'Open records',
+      visits: @records_open_week,
+      color: ["#1de9b6", "#1dc4e9"]
+    }
+    data[:records_status_week] << {
+      game: 'Closed records',
+      visits: @records_closed_week,
+      color: ["#a389d4", "#899ed4"]
+    }
+
     @data = data
   end
 
