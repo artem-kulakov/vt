@@ -119,6 +119,7 @@
                             <th>Name</th>
                             <th>Puesto</th>
                             <th>Last login</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <% @users.each do |user| %>
@@ -349,15 +350,17 @@
     </div>
 </div>
 
-<div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h5>Income<br><small>last 12 months</small></h5>
-        </div>
-        <div class="card-block">
-            <div id="line-chart4" class="lineChart2 ChartShadow" style="height:350px;"></div>
+<% if current_user.admin == true %>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Income<br><small>last 12 months</small></h5>
+            </div>
+            <div class="card-block">
+                <div id="line-chart4" class="lineChart2 ChartShadow" style="height:350px;"></div>
+            </div>
         </div>
     </div>
-</div>
+<% end %>
 
 <%= content_tag :div, class: "chart_data", data: {data: @data} do %><% end %>
