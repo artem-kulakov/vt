@@ -659,7 +659,7 @@ $(document).ready(function() {
         "theme": "light",
         "marginTop": 10,
         "marginRight": 0,
-        "dataProvider": data.quotations_created,
+        "dataProvider": data.income_year,
         "valueAxes": [{
             "axisAlpha": 0,
             "minimum": 0,
@@ -680,23 +680,7 @@ $(document).ready(function() {
             "lineThickness": 2,
             "type": "smoothedLine",
             "valueField": "value",
-            "title": "Quotations created"
-        }, {
-            "id": "g2",
-            "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
-            "bullet": "round",
-            "bulletBorderAlpha": 2,
-            "bulletAlpha": 1,
-            "bulletSize": 12,
-            "stackable": false,
-            "bulletColor": "#fff",
-            "bulletBorderColor": "#1ddcc8",
-            "bulletBorderThickness": 3,
-            "lineColor": "#1ddcc8",
-            "lineThickness": 2,
-            "type": "smoothedLine",
-            "valueField": "value2",
-            "title": "Quotations closed"
+            "title": "Income"
         }],
         "chartCursor": {
             "cursorAlpha": 0,

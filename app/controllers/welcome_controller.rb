@@ -190,6 +190,13 @@ class WelcomeController < ApplicationController
       color: ["#a389d4", "#899ed4"]
     }
 
+    # Revenues
+    data[:income_year] = []
+    income = current_user.company.records.group_by_month('records.start_time', last: 12, format: "%b").sum('records.precio_final')
+    income.each do |key, value|
+      data[:income_year] << { year: key, value: value }
+    end
+
     @data = data
   end
 
