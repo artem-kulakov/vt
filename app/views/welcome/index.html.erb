@@ -252,20 +252,7 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>News Statistics</h5>
-            <div class="card-header-right">
-                <div class="btn-group card-option">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="feather icon-more-horizontal"></i>
-                    </button>
-                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
-                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
-                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
-                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
-                    </ul>
-                </div>
-            </div>
+            <h5>Quotations status<br><small>last 30 days</small></h5>
         </div>
         <div class="card-block pl-0 pr-0 pb-2">
             <div id="bar-chart" class="ChartShadow BarChart" style="height:250px;"></div>
@@ -274,23 +261,13 @@
             <div class="row">
                 <div class="col text-center">
                     <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2">48</h6>
-                    <h6 class="mt-2 mb-0">Sport</h6>
+                    <h6 class="mb-2"><%= @quotations_open %></h6>
+                    <h6 class="mt-2 mb-0">Open quotations</h6>
                 </div>
                 <div class="col text-center">
                     <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2">36</h6>
-                    <h6 class="mt-2 mb-0">Music</h6>
-                </div>
-                <div class="col text-center">
-                    <span class="bg-c-blue d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2">41</h6>
-                    <h6 class="mt-2 mb-0">Travel</h6>
-                </div>
-                <div class="col text-center">
-                    <span class="bg-c-red d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2">7</h6>
-                    <h6 class="mt-2 mb-0">News</h6>
+                    <h6 class="mb-2"><%= @quotations_closed %></h6>
+                    <h6 class="mt-2 mb-0">Closed quotations</h6>
                 </div>
             </div>
         </div>

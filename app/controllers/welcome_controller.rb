@@ -120,8 +120,6 @@ class WelcomeController < ApplicationController
       data[:records_created] << { year: key, value: value, value2: records_closed[key] }
     end
 
-    @data = data
-
     # Monthly quotations
     @quotations_last_30_days = current_user.company.quotations.where("((quotations.fecha_inicio >= :start AND quotations.fecha_inicio <= :end) OR (quotations.fecha_fin >= :start AND quotations.fecha_fin <= :end)) OR (quotations.fecha_inicio < :start AND quotations.fecha_fin > :end)", {start: Date.today-1.month, end: Date.today}).count
     quotations_previous_30_days = current_user.company.quotations.where("((quotations.fecha_inicio >= :start AND quotations.fecha_inicio <= :end) OR (quotations.fecha_fin >= :start AND quotations.fecha_fin <= :end)) OR (quotations.fecha_inicio < :start AND quotations.fecha_fin > :end)", {start: Date.today-2.month, end: Date.today-1.month}).count
@@ -131,6 +129,23 @@ class WelcomeController < ApplicationController
     @services_last_30_days = current_user.company.services.where("services.fecha >= :start AND services.fecha <= :end", {start: Date.today-1.month, end: Date.today}).count
     services_previous_30_days = current_user.company.services.where("services.fecha >= :start AND services.fecha <= :end", {start: Date.today-2.month, end: Date.today-1.month}).count
     @services_change = ((@services_last_30_days.to_f / services_previous_30_days - 1) * 100).to_i
+
+    # Quotations status, last 30 days
+    data[:quotations_status] = []
+    @quotations_open = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin > :end", {start: Date.today-1.month, end: Date.today}).count
+    @quotations_closed = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin <= :end", {start: Date.today-1.month, end: Date.today}).count
+    data[:quotations_status] << {
+      game: 'Open quotations',
+      visits: @quotations_open,
+      color: ["#1de9b6", "#1dc4e9"]
+    }
+    data[:quotations_status] << {
+      game: 'Closed quotations',
+      visits: @quotations_closed,
+      color: ["#a389d4", "#899ed4"]
+    }
+
+    @data = data
   end
 
 
