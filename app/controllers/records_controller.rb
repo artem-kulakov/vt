@@ -40,33 +40,10 @@ class RecordsController < ApplicationController
 
   def pizarron
     @active2 = "active"
+
     start_time = params[:start] ? params[:start].to_time : Time.now
-
-    @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time.beginning_of_month, end: start_time.end_of_month})
-
-    colors = [
-      '#04a9f5',
-      '#f44236',
-      '#f4c22b',
-      '#3ebfea',
-      '#1de9b6',
-      '#a389d4'
-    ]
-
-    @events = []
-
-    @records.each do |record|
-      color = colors.sample
-      @events << {
-          title: record.title,
-          url: record_url(record),
-          start: record.start_time,
-          end: record.end_time,
-          borderColor: color,
-          backgroundColor: color,
-          textColor: '#fff'
-      }
-    end
+    end_time = params[:end] ? params[:end].to_time : Time.now
+    @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time, end: end_time})
   end
 
   def operaciones

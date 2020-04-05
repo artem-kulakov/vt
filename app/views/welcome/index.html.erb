@@ -1,15 +1,13 @@
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Cotizaciones</h5>
+            <h5>Cotizaciones Mensuales<br><small>últimos doce meses</small></h5>
         </div>
-        <div class="card-block">
-            <canvas id="chart-bar-1" style="width: 100%; height: 300px"></canvas>
-        </div>
+        <div id="call-chart" style="width: 100%; height: 350px"></div>
     </div>
 </div>
 
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header">
             <h5>Registros</h5>
@@ -20,18 +18,16 @@
     </div>
 </div>
 
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Servicios</h5>
+            <h5>Servicios Mensuales<br><small>últimos doce meses</small></h5>
         </div>
-        <div class="card-block">
-            <canvas id="chart-line-2" style="width: 100%; height: 300px"></canvas>
-        </div>
+        <div id="services-chart" style="width: 100%; height: 350px"></div>
     </div>
 </div>
 
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header">
             <h5>Gastos</h5>
@@ -42,7 +38,7 @@
     </div>
 </div>
 
-<div class="col-md-6 col-xl-4">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header">
             <h5>Ingresos</h5>
@@ -52,5 +48,319 @@
         </div>
     </div>
 </div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Utilización de la flota de autobuses, %<br><small>últimos 30 días</small></h5>
+        </div>
+        <div class="card-block">
+            <div id="line-area2" class="lineAreaDashboard" style="height:300px;"></div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-4 col-md-12 m-b-30 datta-example">
+    <h5 class="docs-header" id="page-table">Autobuses menos reservados</h5>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Today</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">This Month</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">This Year</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent" style="padding: 35px 30px;">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <% @free_buses.each do |bus| %>
+                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
+                    <div class="media-body">
+                        <h6 class="m-0 d-inline"><%= bus %></h6>
+                        <span class="float-right d-flex align-items-center">1 dia</span>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <% @free_buses_month.each do |number, days| %>
+                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
+                    <div class="media-body">
+                        <h6 class="m-0 d-inline"><%= number %></h6>
+                        <span class="float-right d-flex align-items-center"><%= days %> dias</span>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <% @free_buses_year.each do |number, days| %>
+                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
+                    <div class="media-body">
+                        <h6 class="m-0 d-inline"><%= number %></h6>
+                        <span class="float-right d-flex align-items-center"><%= days %> dias</span>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-8 col-md-12 datta-example">
+    <div class="card user-list">
+        <div class="card-header">
+            <h5>Last users login</h5>
+        </div>
+        <div class="card-block pb-0">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Puesto</th>
+                            <th>Last login</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @users.each do |user| %>
+                            <tr>
+                                <td>
+                                    <h6 class="m-0"><%= user.name %></h6>
+                                </td>
+                                <td>
+                                    <h6 class="m-0"><%= user.puesto %></h6>
+                                </td>
+                                <td>
+                                    <h6 class="m-0"><%= user.current_sign_in_at %></h6>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Quotations created/closed<br><small>last 30 days</small></h5>
+        </div>
+        <div class="card-block">
+            <div id="line-chart2" class="lineChart2 ChartShadow" style="height:350px;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Records created/closed<br><small>last 30 days</small></h5>
+        </div>
+        <div class="card-block">
+            <div id="line-chart3" class="lineChart2 ChartShadow" style="height:350px;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card theme-bg2 assets-value">
+        <div class="bg-img"></div>
+        <div class="card-block  text-center">
+            <i class="fas fa-chart-line text-white f-30 m-b-20"></i>
+            <h5 class="text-white m-b-12">Bus fleet</h5>
+            <h3 class="text-white f-w-300"><%= current_user.company.buses.count %> buses</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card theme-bg2 assets-value">
+        <div class="bg-img"></div>
+        <div class="card-block  text-center">
+            <i class="fas fa-chart-line text-white f-30 m-b-20"></i>
+            <h5 class="text-white m-b-12">Operators count</h5>
+            <h3 class="text-white f-w-300"><%= current_user.company.operators.count %> operators</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Last 30 days quotations</h5>
+        </div>
+        <div class="card-block">
+            <div class="row d-flex align-items-center">
+                <div class="col-9">
+                    <h3 class="f-w-300 d-flex align-items-center m-b-0">
+                        <% if @quotations_change.to_i > 0 %>
+                            <i class="feather icon-arrow-up text-c-green f-30 m-r-5"></i>
+                        <% else %>
+                            <i class="feather icon-arrow-down text-c-red f-30 m-r-5"></i>
+                        <% end %>
+                        <%= @quotations_last_30_days %>
+                    </h3>
+                </div>
+                <div class="col-3 text-right">
+                    <p class="m-b-0"><%= @quotations_change %>%</p>
+                </div>
+            </div>
+            <div class="progress m-t-30" style="height: 7px;">
+                <% if @quotations_change.to_i > 0 %>
+                    <div class="progress-bar progress-c-theme" role="progressbar" style="width: <%= @quotations_change %>%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <% else %>
+                    <div class="progress-bar progress-c-theme2" role="progressbar" style="width: <%= -@quotations_change %>%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Last 30 days services</h5>
+        </div>
+        <div class="card-block">
+            <div class="row d-flex align-items-center">
+                <div class="col-9">
+                    <h3 class="f-w-300 d-flex align-items-center m-b-0">
+                        <% if @services_change.to_i > 0 %>
+                            <i class="feather icon-arrow-up text-c-green f-30 m-r-5"></i>
+                        <% else %>
+                            <i class="feather icon-arrow-down text-c-red f-30 m-r-5"></i>
+                        <% end %>
+                        <%= @services_last_30_days %>
+                    </h3>
+                </div>
+                <div class="col-3 text-right">
+                    <p class="m-b-0"><%= @services_change %>%</p>
+                </div>
+            </div>
+            <div class="progress m-t-30" style="height: 7px;">
+                <% if @services_change.to_i > 0 %>
+                    <div class="progress-bar progress-c-theme" role="progressbar" style="width: <%= @services_change %>%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <% else %>
+                    <div class="progress-bar progress-c-theme2" role="progressbar" style="width: <%= -@services_change %>%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Quotations status<br><small>last 30 days</small></h5>
+        </div>
+        <div class="card-block pl-0 pr-0 pb-2">
+            <div id="bar-chart" class="ChartShadow BarChart" style="height:250px;"></div>
+        </div>
+        <div class="card-block border-top">
+            <div class="row">
+                <div class="col text-center">
+                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @quotations_open %></h6>
+                    <h6 class="mt-2 mb-0">Open quotations</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @quotations_closed %></h6>
+                    <h6 class="mt-2 mb-0">Closed quotations</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Quotations status<br><small>last 7 days</small></h5>
+        </div>
+        <div class="card-block pl-0 pr-0 pb-2">
+            <div id="bar-chart-2" class="ChartShadow BarChart" style="height:250px;"></div>
+        </div>
+        <div class="card-block border-top">
+            <div class="row">
+                <div class="col text-center">
+                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @quotations_open_week %></h6>
+                    <h6 class="mt-2 mb-0">Open quotations</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @quotations_closed_week %></h6>
+                    <h6 class="mt-2 mb-0">Closed quotations</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Records status<br><small>last 30 days</small></h5>
+        </div>
+        <div class="card-block pl-0 pr-0 pb-2">
+            <div id="bar-chart-3" class="ChartShadow BarChart" style="height:250px;"></div>
+        </div>
+        <div class="card-block border-top">
+            <div class="row">
+                <div class="col text-center">
+                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @records_open %></h6>
+                    <h6 class="mt-2 mb-0">Open records</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @records_closed %></h6>
+                    <h6 class="mt-2 mb-0">Closed records</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Records status<br><small>last 7 days</small></h5>
+        </div>
+        <div class="card-block pl-0 pr-0 pb-2">
+            <div id="bar-chart-4" class="ChartShadow BarChart" style="height:250px;"></div>
+        </div>
+        <div class="card-block border-top">
+            <div class="row">
+                <div class="col text-center">
+                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @records_open_week %></h6>
+                    <h6 class="mt-2 mb-0">Open records</h6>
+                </div>
+                <div class="col text-center">
+                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                    <h6 class="mb-2"><%= @records_closed_week %></h6>
+                    <h6 class="mt-2 mb-0">Closed records</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% if current_user.admin == true %>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Income<br><small>last 12 months</small></h5>
+            </div>
+            <div class="card-block">
+                <div id="line-chart4" class="lineChart2 ChartShadow" style="height:350px;"></div>
+            </div>
+        </div>
+    </div>
+<% end %>
 
 <%= content_tag :div, class: "chart_data", data: {data: @data} do %><% end %>
