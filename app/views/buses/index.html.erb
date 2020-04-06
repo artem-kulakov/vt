@@ -27,7 +27,12 @@
                   <td><%= bus.placa %></td>
                   <td><%= bus.version %></td>
                   <td><%= bus.operator.try(:nombre) %></td>
-                  <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= bus.status %></span></td>
+                  <%
+                    last_checkup_date = bus.checkups.last.fecha_fin
+                    kms_since_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_checkup_date, Date.today).sum(:km_finales)
+                    status = kms_since_checkup >= bus.kms_servicio_preventivo ? 'checkup' : 'ok'
+                  %>
+                  <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= status %></span></td>
                   <td><%= link_to 'Editar', edit_bus_path(bus) %></td>
                   <td><%= link_to 'Eliminar', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>

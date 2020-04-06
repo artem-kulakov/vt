@@ -306,30 +306,37 @@
 #   client.update(user_id: [1,3,4,6].sample)
 # end
 
-Checkup.delete_all
+# Checkup.delete_all
 
-Bus.all.each do |bus|
-  # bus.update(
-  #   status: 'ok',
-  #   kms_servicio_preventivo: [10000,15000].sample,
-  #   kms_servicio_correctivo: [25000,35000].sample
-  # )
+# Bus.all.each do |bus|
+#   # bus.update(
+#   #   status: 'ok',
+#   #   kms_servicio_preventivo: [10000,15000].sample,
+#   #   kms_servicio_correctivo: [25000,35000].sample
+#   # )
 
-  date = Faker::Date.between(from: 1.month.ago, to: 3.week.ago)
+#   date = Faker::Date.between(from: 1.month.ago, to: 3.week.ago)
 
-  Checkup.create(
-    bus: bus,
-    category: 'preventivo',
-    fecha_inicio: date,
-    fecha_fin: date + 2.day
-  )
+#   Checkup.create(
+#     bus: bus,
+#     category: 'preventivo',
+#     fecha_inicio: date,
+#     fecha_fin: date + 2.day
+#   )
 
-  date = Faker::Date.between(from: 1.month.ago, to: 3.week.ago)
+#   date = Faker::Date.between(from: 1.month.ago, to: 3.week.ago)
 
-  Checkup.create(
-    bus: bus,
-    category: 'correctivo',
-    fecha_inicio: date,
-    fecha_fin: date + 2.day
+#   Checkup.create(
+#     bus: bus,
+#     category: 'correctivo',
+#     fecha_inicio: date,
+#     fecha_fin: date + 2.day
+#   )
+# end
+
+Service.all.each do |service|
+  service.update(
+    km_inicio: 0,
+    km_fin: Faker::Number.between(from: 500, to: 1000)
   )
 end
