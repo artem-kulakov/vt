@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_160726) do
+ActiveRecord::Schema.define(version: 2020_04_06_171050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2020_04_06_160726) do
     t.integer "operator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
+    t.float "kms_servicio_preventivo"
+    t.float "kms_servicio_correctivo"
     t.index ["operator_id"], name: "index_buses_on_operator_id"
     t.index ["user_id"], name: "index_buses_on_user_id"
   end
