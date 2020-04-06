@@ -6,6 +6,4 @@ class Bus < ActiveRecord::Base
   has_many :records, through: :services
   has_many :receipts, dependent: :destroy
   has_many :checkups, dependent: :destroy
-
-  enum status: %w(ok checkup)
 end
