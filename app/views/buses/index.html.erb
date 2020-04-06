@@ -14,6 +14,7 @@
                 <th>Placa</th>
                 <th>Versión</th>
                 <th>Operador</th>
+                <th>Status</th>
                 <th colspan="2"></th>
               </thead>
               <tbody>
@@ -26,6 +27,7 @@
                   <td><%= bus.placa %></td>
                   <td><%= bus.version %></td>
                   <td><%= bus.operator.try(:nombre) %></td>
+                  <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= bus.status %></span></td>
                   <td><%= link_to 'Editar', edit_bus_path(bus) %></td>
                   <td><%= link_to 'Eliminar', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
