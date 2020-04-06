@@ -36,11 +36,13 @@
 
                     if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
                       status = 'checkup'
+                      color = 'theme-bg2'
                     else
                       status = 'ok'
+                      color = 'theme-bg'
                     end
                   %>
-                  <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= status %></span></td>
+                  <td class="text-center"><span class="label <%= color %> f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= status %></span></td>
                   <td><%= link_to 'Editar', edit_bus_path(bus) %></td>
                   <td><%= link_to 'Eliminar', bus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
