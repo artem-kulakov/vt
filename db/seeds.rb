@@ -334,9 +334,18 @@
 #   )
 # end
 
-Service.all.each do |service|
-  service.update(
-    km_inicio: 0,
-    km_fin: Faker::Number.between(from: 500, to: 1000)
+# Service.all.each do |service|
+#   service.update(
+#     km_inicio: 0,
+#     km_fin: Faker::Number.between(from: 500, to: 1000)
+#   )
+# end
+
+Checkup.all.each do |checkup|
+  date = Faker::Date.between(from: 5.month.ago, to: 3.week.ago)
+
+  checkup.update(
+    fecha_inicio: date,
+    fecha_fin: date + 2.day
   )
 end

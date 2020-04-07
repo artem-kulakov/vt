@@ -44,6 +44,28 @@ class RecordsController < ApplicationController
     start_time = params[:start] ? params[:start].to_time : Time.now
     end_time = params[:end] ? params[:end].to_time : Time.now
     @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time, end: end_time})
+
+    # Checkups
+    @checkups = []
+    current_user.company.buses.each do |bus|
+      last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+      services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
+      kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
+
+      last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+      kms_since_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup).sum(:km_finales)
+
+      if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+        @checkups << {
+          start_time: services_after_preventivo_checkup.order(:fecha).last.record.end_time,
+          bus_id: bus.id
+        }
+      end
+
+      puts 'trulala'
+      puts @checkups
+    end
+
   end
 
   def operaciones
