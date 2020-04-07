@@ -15,6 +15,11 @@ class CheckupsController < ApplicationController
   # GET /checkups/new
   def new
     @checkup = Checkup.new
+
+    @categories = {}
+    Checkup.categories.each do |key, value|
+      @categories[key] = key
+    end
   end
 
   # GET /checkups/1/edit
