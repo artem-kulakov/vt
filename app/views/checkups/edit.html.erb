@@ -1,6 +1,10 @@
-<h1>Editing Checkup</h1>
-
-<%= render 'form', checkup: @checkup %>
-
-<%= link_to 'Show', @checkup %> |
-<%= link_to 'Back', checkups_path %>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Edit checkup</h5>
+        </div>
+        <div class="card-block">
+            <%= render 'form', checkup: @checkup %>
+        </div>
+    </div>
+</div>

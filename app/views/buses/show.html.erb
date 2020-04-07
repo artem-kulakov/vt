@@ -41,6 +41,40 @@
                         <%= @bus.version %>
                     </h6>
                 </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Bus</th>
+                              <th>Category</th>
+                              <th>Fecha inicio</th>
+                              <th>Fecha fin</th>
+                              <th>Comment</th>
+                              <th colspan="2"></th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <% @bus.checkups.each do |checkup| %>
+                              <tr>
+                                <td><%= checkup.bus_id %></td>
+                                <td><%= checkup.category %></td>
+                                <td><%= checkup.fecha_inicio %></td>
+                                <td><%= checkup.fecha_fin %></td>
+                                <td><%= checkup.comment %></td>
+                                <td><%= link_to 'Editar', edit_checkup_path(checkup) %></td>
+                                <td><%= link_to 'Eliminar', checkup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

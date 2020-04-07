@@ -24,6 +24,10 @@ class CheckupsController < ApplicationController
 
   # GET /checkups/1/edit
   def edit
+    @categories = {}
+    Checkup.categories.each do |key, value|
+      @categories[key] = key
+    end
   end
 
   # POST /checkups
