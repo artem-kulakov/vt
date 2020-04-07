@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Checkups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bus</th>
+      <th>Category</th>
+      <th>Fecha inicio</th>
+      <th>Fecha fin</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @checkups.each do |checkup| %>
+      <tr>
+        <td><%= checkup.bus_id %></td>
+        <td><%= checkup.category %></td>
+        <td><%= checkup.fecha_inicio %></td>
+        <td><%= checkup.fecha_fin %></td>
+        <td><%= checkup.comment %></td>
+        <td><%= link_to 'Show', checkup %></td>
+        <td><%= link_to 'Edit', edit_checkup_path(checkup) %></td>
+        <td><%= link_to 'Destroy', checkup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Checkup', new_checkup_path %>

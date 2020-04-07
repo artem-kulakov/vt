@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bus:</strong>
+  <%= @checkup.bus_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @checkup.category %>
+</p>
+
+<p>
+  <strong>Fecha inicio:</strong>
+  <%= @checkup.fecha_inicio %>
+</p>
+
+<p>
+  <strong>Fecha fin:</strong>
+  <%= @checkup.fecha_fin %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @checkup.comment %>
+</p>
+
+<%= link_to 'Edit', edit_checkup_path(@checkup) %> |
+<%= link_to 'Back', checkups_path %>
