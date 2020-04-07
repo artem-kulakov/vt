@@ -39,7 +39,7 @@ class CheckupsController < ApplicationController
 
     respond_to do |format|
       if @checkup.save
-        format.html { redirect_to @checkup, notice: 'Checkup was successfully created.' }
+        format.html { redirect_to @checkup.bus, notice: 'Checkup was successfully created.' }
         format.json { render :show, status: :created, location: @checkup }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class CheckupsController < ApplicationController
   def update
     respond_to do |format|
       if @checkup.update(checkup_params)
-        format.html { redirect_to @checkup, notice: 'Checkup was successfully updated.' }
+        format.html { redirect_to @checkup.bus, notice: 'Checkup was successfully updated.' }
         format.json { render :show, status: :ok, location: @checkup }
       else
         format.html { render :edit }
