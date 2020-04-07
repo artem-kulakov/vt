@@ -197,6 +197,9 @@ class WelcomeController < ApplicationController
       data[:income_year] << { year: key, value: value }
     end
 
+    # Buses availability
+    @buses = current_user.company.buses
+
     @data = data
   end
 
