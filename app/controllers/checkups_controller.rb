@@ -14,6 +14,8 @@ class CheckupsController < ApplicationController
 
   # GET /checkups/new
   def new
+    @active10 = "active pcoded-trigger"
+
     @checkup = Checkup.new
 
     @categories = {}
