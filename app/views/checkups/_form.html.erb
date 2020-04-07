@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :bus_id %>
-    <%= form.text_field :bus_id %>
+    <%= form.text_field :bus_id, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :category %>
-    <%= form.number_field :category %>
+    <%= form.number_field :category, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :fecha_inicio %>
-    <%= form.date_select :fecha_inicio %>
+    <%= form.date_field :fecha_inicio, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :fecha_fin %>
-    <%= form.date_select :fecha_fin %>
+    <%= form.date_field :fecha_fin, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :comment %>
-    <%= form.text_field :comment %>
+    <%= form.text_field :comment, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
