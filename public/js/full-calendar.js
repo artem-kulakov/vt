@@ -1,7 +1,4 @@
 $(window).on('load', function() {
-    var events = $('.full_calendar_events').data('events');
-    console.log(events);
-
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',

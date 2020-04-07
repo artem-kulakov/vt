@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :companies
+  resources :checkups
   
   resources :reviews
 get '/reporte' => 'welcome#reporte'

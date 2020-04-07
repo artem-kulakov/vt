@@ -20,3 +20,9 @@ colors = [
   end
 end
 
+json.array!@checkups do |checkup|
+  json.title 'checkup'
+  json.start (checkup[:start_time].strftime(" %Y-%m-%d"))
+  json.end ((checkup[:start_time]+24*60*60).strftime(" %Y-%m-%d"))
+  json.color "#000"
+end

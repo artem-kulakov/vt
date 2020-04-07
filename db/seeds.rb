@@ -13,27 +13,27 @@
 #   address: 'Another Place'
 # )
 
-co3 = Company.create(
-  razon_social: '111',
-  name: 'root'
-)
+# co3 = Company.create(
+#   razon_social: '111',
+#   name: 'root'
+# )
 
 # a01= User.create!({:email => "gonzalo@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => true, :name => "Gonzalo Jimenez", :puesto => "Director General", :phone => "", company: co1 })
 # a02= User.create!({:email => "comercial@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Iván del Toro", :puesto => "Director Comercial", :phone => "55 2981 3313", company: co1 })
 # a03= User.create!({:email => "operaciones@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Octavio Aridjis", :puesto => "Director de Operaciones", :phone => "", company: co1 })
 # a04= User.create!({:email => "ventas@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => true, :name => "Estefany Rodríguez", :puesto => "Ejecutivo de Venta", :phone => "55 2803 7565", company: co2 })
 # a05= User.create!({:email => "administracion@tuttoilmondo.com", :password => "tuttoilmondo", :password_confirmation => "tuttoilmondo", :admin => false, :name => "Alma", :puesto => "Directora Administrativa", :phone => "", company: co2 })
-a06= User.create!({
-  :email => "superadmin@tuttoilmondo.com",
-  :password => "tuttoilmondo",
-  :password_confirmation => "tuttoilmondo",
-  :admin => false,
-  :name => "Pedro",
-  :puesto => "Super Administrator",
-  :phone => "",
-  company: co3,
-  super_admin: true
-})
+# a06= User.create!({
+#   :email => "superadmin@tuttoilmondo.com",
+#   :password => "tuttoilmondo",
+#   :password_confirmation => "tuttoilmondo",
+#   :admin => false,
+#   :name => "Pedro",
+#   :puesto => "Super Administrator",
+#   :phone => "",
+#   company: co3,
+#   super_admin: true
+# })
 
 
 # o01= Operator.create!({ :nombre => "Jorge Amador"})
@@ -305,3 +305,47 @@ a06= User.create!({
 # Client.all.each do |client|
 #   client.update(user_id: [1,3,4,6].sample)
 # end
+
+# Checkup.delete_all
+
+# Bus.all.each do |bus|
+#   # bus.update(
+#   #   status: 'ok',
+#   #   kms_servicio_preventivo: [10000,15000].sample,
+#   #   kms_servicio_correctivo: [25000,35000].sample
+#   # )
+
+#   date = Faker::Date.between(from: 1.month.ago, to: 3.week.ago)
+
+#   Checkup.create(
+#     bus: bus,
+#     category: 'preventivo',
+#     fecha_inicio: date,
+#     fecha_fin: date + 2.day
+#   )
+
+#   date = Faker::Date.between(from: 1.month.ago, to: 3.week.ago)
+
+#   Checkup.create(
+#     bus: bus,
+#     category: 'correctivo',
+#     fecha_inicio: date,
+#     fecha_fin: date + 2.day
+#   )
+# end
+
+# Service.all.each do |service|
+#   service.update(
+#     km_inicio: 0,
+#     km_fin: Faker::Number.between(from: 500, to: 1000)
+#   )
+# end
+
+Checkup.all.each do |checkup|
+  date = Faker::Date.between(from: 5.month.ago, to: 3.week.ago)
+
+  checkup.update(
+    fecha_inicio: date,
+    fecha_fin: date + 2.day
+  )
+end

@@ -1,39 +1,80 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Autobus <%= @bus.numero %></h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Operador:</span>
+                        <%= @bus.operator.nombre %>
+                    </h6>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Marca:</span>
+                        <%= @bus.marca %>
+                    </h6>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Capacidad:</span>
+                        <%= @bus.capacidad %>
+                    </h6>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Modelo:</span>
+                        <%= @bus.modelo %>
+                    </h6>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Placa:</span>
+                        <%= @bus.placa %>
+                    </h6>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Version:</span>
+                        <%= @bus.version %>
+                    </h6>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Bus</th>
+                              <th>Category</th>
+                              <th>Fecha inicio</th>
+                              <th>Fecha fin</th>
+                              <th>Comment</th>
+                              <th colspan="2"></th>
+                            </tr>
+                          </thead>
 
-<p>
-  <strong>Numero:</strong>
-  <%= @bus.numero %>
-</p>
-
-<p>
-  <strong>Marca:</strong>
-  <%= @bus.marca %>
-</p>
-
-<p>
-  <strong>Capacidad:</strong>
-  <%= @bus.capacidad %>
-</p>
-
-<p>
-  <strong>Modelo:</strong>
-  <%= @bus.modelo %>
-</p>
-
-<p>
-  <strong>Placa:</strong>
-  <%= @bus.placa %>
-</p>
-
-<p>
-  <strong>Version:</strong>
-  <%= @bus.version %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @bus.user %>
-</p>
-
-<%= link_to 'Edit', edit_bus_path(@bus) %> |
-<%= link_to 'Back', buses_path %>
+                          <tbody>
+                            <% @bus.checkups.each do |checkup| %>
+                              <tr>
+                                <td><%= checkup.bus_id %></td>
+                                <td><%= checkup.category %></td>
+                                <td><%= checkup.fecha_inicio %></td>
+                                <td><%= checkup.fecha_fin %></td>
+                                <td><%= checkup.comment %></td>
+                                <td><%= link_to 'Editar', edit_checkup_path(checkup) %></td>
+                                <td><%= link_to 'Eliminar', checkup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

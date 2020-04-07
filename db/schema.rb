@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_202312) do
+ActiveRecord::Schema.define(version: 2020_04_06_213238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2020_04_03_202312) do
     t.integer "operator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "kms_servicio_preventivo"
+    t.float "kms_servicio_correctivo"
     t.index ["operator_id"], name: "index_buses_on_operator_id"
     t.index ["user_id"], name: "index_buses_on_user_id"
   end
@@ -54,6 +56,17 @@ ActiveRecord::Schema.define(version: 2020_04_03_202312) do
   create_table "buses_expenses", id: false, force: :cascade do |t|
     t.integer "bus_id", null: false
     t.integer "expense_id", null: false
+  end
+
+  create_table "checkups", force: :cascade do |t|
+    t.bigint "bus_id"
+    t.integer "category"
+    t.date "fecha_inicio"
+    t.date "fecha_fin"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bus_id"], name: "index_checkups_on_bus_id"
   end
 
   create_table "clients", id: :serial, force: :cascade do |t|
@@ -323,6 +336,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_202312) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "buses", "operators"
   add_foreign_key "buses", "users"
+  add_foreign_key "checkups", "buses"
   add_foreign_key "clients", "users"
   add_foreign_key "operators", "users"
   add_foreign_key "payments", "records"

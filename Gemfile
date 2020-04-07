@@ -45,6 +45,7 @@ gem 'rails-timeago'
 gem 'bootsnap', require: false
 gem 'webpacker'
 gem 'will_paginate-bootstrap4'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 # Wicked PDF
 gem 'wicked_pdf'

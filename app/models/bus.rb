@@ -5,5 +5,5 @@ class Bus < ActiveRecord::Base
   has_many :vouchers, dependent: :destroy
   has_many :records, through: :services
   has_many :receipts, dependent: :destroy
-
+  has_many :checkups, dependent: :destroy
 end
