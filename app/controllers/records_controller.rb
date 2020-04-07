@@ -53,17 +53,28 @@ class RecordsController < ApplicationController
       kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
 
       last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-      kms_since_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup).sum(:km_finales)
+      services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
+      kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
 
-      if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+      preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
+      correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+
+      if preventivo_checkup_needed || correctivo_checkup_needed
+
+        if preventivo_checkup_needed
+          start_time = services_after_preventivo_checkup.order(:fecha).last.record.end_time
+        else
+          start_time = services_after_correctivo_checkup.order(:fecha).last.record.end_time
+        end
+
         @checkups << {
-          start_time: services_after_preventivo_checkup.order(:fecha).last.record.end_time,
+          start_time: start_time,
           bus_id: bus.id
         }
       end
 
-      puts 'trulala'
-      puts @checkups
+      # puts 'trulala'
+      # puts @checkups
     end
 
   end
