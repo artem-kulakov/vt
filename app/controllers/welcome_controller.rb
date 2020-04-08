@@ -205,6 +205,8 @@ class WelcomeController < ApplicationController
 
 
   def reporte
+    authorize! :read, nil
+
     @active14 = "active pcoded-trigger"
 
     @years = current_user.company.services.select("created_at").map{ |i| i.created_at.year }.uniq.sort

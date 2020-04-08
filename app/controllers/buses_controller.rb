@@ -17,6 +17,8 @@ class BusesController < ApplicationController
 
   # GET /buses/new
   def new
+    authorize! :read, nil
+    
     @active10 = "active pcoded-trigger"
 
     @bus = Bus.new
