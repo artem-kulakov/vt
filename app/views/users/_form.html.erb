@@ -19,10 +19,14 @@
     <%= f.label :email %><br>
     <%= f.text_field :email, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :admin %><br>
-    <%= f.check_box :admin, class: "form-control" %>
-  </div>
+
+  <% if current_user.admin == true %>
+    <div class="form-group">
+      <%= f.label :admin %><br>
+      <%= f.check_box :admin, class: "form-control" %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :puesto %><br>
     <%= f.text_field :puesto, class: "form-control" %>
@@ -32,6 +36,6 @@
     <%= f.text_field :phone, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
