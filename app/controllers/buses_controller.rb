@@ -17,6 +17,8 @@ class BusesController < ApplicationController
 
   # GET /buses/new
   def new
+    authorize! :read, @bus
+
     @active10 = "active pcoded-trigger"
 
     @bus = Bus.new
@@ -24,13 +26,30 @@ class BusesController < ApplicationController
 
   # GET /buses/1/edit
   def edit
+    authorize! :edit, @bus
   end
 
   # POST /buses
   # POST /buses.json
   def create
+    authorize! :create, @bus
+
     @bus = Bus.new(bus_params)
     @bus.user_id = current_user.id
+
+    Checkup.create(
+      bus: @bus,
+      category: 'preventivo',
+      fecha_inicio: params[:checkup_date],
+      fecha_fin: params[:checkup_date]
+    )
+
+    Checkup.create(
+      bus: @bus,
+      category: 'correctivo',
+      fecha_inicio: params[:checkup_date],
+      fecha_fin: params[:checkup_date]
+    )
 
     respond_to do |format|
       if @bus.save
@@ -46,6 +65,8 @@ class BusesController < ApplicationController
   # PATCH/PUT /buses/1
   # PATCH/PUT /buses/1.json
   def update
+    authorize! :update, @bus
+
     @bus.user_id = current_user.id
     respond_to do |format|
       if @bus.update(bus_params)
@@ -76,6 +97,6 @@ class BusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bus_params
-      params.require(:bus).permit(:numero, :marca, :capacidad, :modelo, :placa, :version, :user_id, :operator_id)
+      params.require(:bus).permit(:numero, :marca, :capacidad, :modelo, :placa, :version, :user_id, :operator_id, :kms_servicio_preventivo, :kms_servicio_correctivo)
     end
 end

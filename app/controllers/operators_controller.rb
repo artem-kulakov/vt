@@ -18,6 +18,8 @@ class OperatorsController < ApplicationController
 
   # GET /operators/new
   def new
+    authorize! :read, @bus
+
     @active9 = "active pcoded-trigger"
 
     @operator = Operator.new
@@ -25,11 +27,14 @@ class OperatorsController < ApplicationController
 
   # GET /operators/1/edit
   def edit
+    authorize! :edit, @bus
   end
 
   # POST /operators
   # POST /operators.json
   def create
+    authorize! :create, @bus
+
     @operator = Operator.new(operator_params)
     @operator.user_id = current_user.id
 
@@ -47,6 +52,8 @@ class OperatorsController < ApplicationController
   # PATCH/PUT /operators/1
   # PATCH/PUT /operators/1.json
   def update
+    authorize! :update, @bus
+
     respond_to do |format|
       if @operator.update(operator_params)
         format.html { redirect_to @operator, notice: 'Operator was successfully updated.' }
