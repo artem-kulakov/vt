@@ -23,7 +23,8 @@ get '/reporte' => 'welcome#reporte'
   resources :buses
   resources :clients
   devise_for :users
-  resources :users
+  # resources :users
+  resources :users_admin, :controller => 'users'
   resources :categories
 
   resources :records do

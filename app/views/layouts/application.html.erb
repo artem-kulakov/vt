@@ -197,11 +197,11 @@
                         <ul class="pcoded-submenu">
                             <% if current_user.super_admin? %>
                                 <li class="">
-                                    <%= link_to 'Nuevo Usuario', new_user_path, class: "" %>
+                                    <%= link_to 'Nuevo Usuario', new_users_admin_path, class: "" %>
                                 </li>
                             <% end %>
                             <li class="">
-                                <%= link_to 'Usuarios', users_path, class: "" %>
+                                <%= link_to 'Usuarios', users_admin_index_path, class: "" %>
                             </li>
                         </ul>
                     </li>
