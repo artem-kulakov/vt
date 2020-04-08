@@ -40,6 +40,18 @@
     <%= f.label :version %><br>
     <%= f.text_field :version, class: "form-control" %>
   </div>
+  <div class="form-group">
+    <%= label_tag :last_checkup_date %><br>
+    <%= date_field_tag :checkup_date, {}, {class: "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Preventivo servicio, kms' %><br>
+    <%= f.number_field :kms_servicio_preventivo, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Correctivo servicio, kms' %><br>
+    <%= f.number_field :kms_servicio_correctivo, class: "form-control" %>
+  </div>
   
   <br>
   <div class="actions">
