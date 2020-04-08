@@ -11,10 +11,12 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :company %><br>
-    <%= f.select :company_id, Company.all.collect { |p| [ p.name, p.id ] }, {:prompt => 'Elige emprese'}, {:required => true, class: "form-control"} %>
-  </div>
+  <% if current_user.super_admin? %>
+    <div class="form-group">
+      <%= f.label :company %><br>
+      <%= f.select :company_id, Company.all.collect { |p| [ p.name, p.id ] }, {:prompt => 'Elige emprese'}, {:required => true, class: "form-control"} %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :name %><br>
