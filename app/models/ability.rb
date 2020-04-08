@@ -13,6 +13,7 @@ class Ability
 
     cannot :reporte, WelcomeController
     cannot [:new, :create, :edit, :update], [Bus, Operator]
+    cannot :all, Expense
 
     #
     # The first argument to `can` is the action you are giving the user
