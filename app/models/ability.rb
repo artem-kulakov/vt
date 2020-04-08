@@ -12,7 +12,8 @@ class Ability
     end
 
     cannot :reporte, WelcomeController
-    cannot :new, Bus
+    cannot [:new, :create, :edit, :update], [Bus, Operator]
+
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

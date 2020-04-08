@@ -26,6 +26,7 @@ class BusesController < ApplicationController
 
   # GET /buses/1/edit
   def edit
+    authorize! :edit, @bus
   end
 
   # POST /buses
@@ -64,6 +65,8 @@ class BusesController < ApplicationController
   # PATCH/PUT /buses/1
   # PATCH/PUT /buses/1.json
   def update
+    authorize! :update, @bus
+
     @bus.user_id = current_user.id
     respond_to do |format|
       if @bus.update(bus_params)
