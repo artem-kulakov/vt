@@ -17,7 +17,12 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    if current_user.super_admin?
+      @active11 = "active pcoded-trigger"
+      @user = User.new
+    else
+      redirect_to users_admin_index_path
+    end
   end
 
   # GET /users/1/edit

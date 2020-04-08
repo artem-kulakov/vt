@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    if current_user.super_admin
+    if current_user.super_admin?
       @active15 = 'active pcoded-trigger'
       @company = Company.new
     else
