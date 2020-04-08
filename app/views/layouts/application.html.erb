@@ -192,11 +192,18 @@
                         </ul>
                     </li>
 
-                    <li data-username="Full Calendar" class="nav-item <%= @active11 %>">
-                        <%= link_to users_path, class: "nav-link" do %>
-                            <span class="pcoded-micon"><i class="feather icon-user-check"></i></span>
-                            <span class="pcoded-mtext">Usuarios</span>
-                        <% end %>
+                    <li data-username="Task list board details" class="nav-item pcoded-hasmenu <%= @active11 %>">
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-user-check"></i></span><span class="pcoded-mtext">Usuarios</span></a>
+                        <ul class="pcoded-submenu">
+                            <% if current_user.super_admin? %>
+                                <li class="">
+                                    <%= link_to 'Nuevo Usuario', new_user_path, class: "" %>
+                                </li>
+                            <% end %>
+                            <li class="">
+                                <%= link_to 'Usuarios', users_path, class: "" %>
+                            </li>
+                        </ul>
                     </li>
 
                     <li data-username="Full Calendar" class="nav-item <%= @active12 %>">
