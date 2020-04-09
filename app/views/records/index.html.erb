@@ -8,18 +8,24 @@
 
 
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                     <label>Registro:</label>
                     <%= f.search_field :id_eq, placeholder: "Buscar número de registro", class: "form-control" %>
                 </div>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                     <label>Cliente:</label>
                     <%= f.search_field :client_razon_social_or_client_rfc_or_client_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias", class: "form-control"  %>
                 </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <%= f.label :Status %>
+                      <%= f.select :status_eq, Record.statuses, {prompt: 'Select status'}, {class: "form-control"} %>
+                  </div>
               </div>
 
             </div>
