@@ -130,34 +130,40 @@ class WelcomeController < ApplicationController
     services_previous_30_days = current_user.company.services.where("services.fecha >= :start AND services.fecha <= :end", {start: Date.today-2.month, end: Date.today-1.month}).count
     @services_change = ((@services_last_30_days.to_f / services_previous_30_days - 1) * 100).to_i
 
-    # Quotations status, last 30 days
+    # Quotations status
     data[:quotations_status] = []
-    @quotations_open = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin > :end", {start: Date.today-1.month, end: Date.today}).count
-    @quotations_closed = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin <= :end", {start: Date.today-1.month, end: Date.today}).count
-    data[:quotations_status] << {
-      game: 'Open quotations',
-      visits: @quotations_open,
-      color: ["#1de9b6", "#1dc4e9"]
-    }
-    data[:quotations_status] << {
-      game: 'Closed quotations',
-      visits: @quotations_closed,
-      color: ["#a389d4", "#899ed4"]
-    }
 
-    # Quotations status, last 7 days
-    data[:quotations_status_week] = []
-    @quotations_open_week = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin > :end", {start: Date.today-7.day, end: Date.today}).count
-    @quotations_closed_week = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin <= :end", {start: Date.today-7.day, end: Date.today}).count
-    data[:quotations_status_week] << {
-      game: 'Open quotations',
-      visits: @quotations_open_week,
+    quotations = current_user.company.quotations
+    @quotations_abierto = quotations.where(status: 'Abierto').count
+    @quotations_itinerario = quotations.where(status: 'Itinerario').count
+    @quotations_distancia = quotations.where(status: 'Distancia').count
+    @quotations_precios = quotations.where(status: 'Precios').count
+    @quotations_cerrado = quotations.where(status: 'Cerrado').count
+
+    data[:quotations_status] << {
+      game: 'Abierto',
+      visits: @quotations_abierto,
       color: ["#1de9b6", "#1dc4e9"]
     }
-    data[:quotations_status_week] << {
-      game: 'Closed quotations',
-      visits: @quotations_closed_week,
+    data[:quotations_status] << {
+      game: 'Itinerario',
+      visits: @quotations_itinerario,
       color: ["#a389d4", "#899ed4"]
+    }
+    data[:quotations_status] << {
+      game: 'Distancia',
+      visits: @quotations_distancia,
+      color: ["#04a9f5", "#049df5"]
+    }
+    data[:quotations_status] << {
+      game: 'Precios',
+      visits: @quotations_precios,
+      color: ["#f44236", "#f48f36"]
+    }
+    data[:quotations_status] << {
+      game: 'Cerrado',
+      visits: @quotations_cerrado,
+      color: ["#1de9b6", "#1dc4e9"]
     }
 
     # Records status, last 30 days
