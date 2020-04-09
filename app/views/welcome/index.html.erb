@@ -255,7 +255,7 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Quotations status<br><small>last 30 days</small></h5>
+            <h5>Quotations status</h5>
         </div>
         <div class="card-block pl-0 pr-0 pb-2">
             <div id="bar-chart" class="ChartShadow BarChart" style="height:250px;"></div>
@@ -263,27 +263,22 @@
         <div class="card-block border-top">
             <div class="row">
                 <div class="col text-center">
-                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
                     <h6 class="mb-2"><%= @quotations_abierto %></h6>
                     <h6 class="mt-2 mb-0">Abierto</h6>
                 </div>
                 <div class="col text-center">
-                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
                     <h6 class="mb-2"><%= @quotations_itinerario %></h6>
                     <h6 class="mt-2 mb-0">Itinerario</h6>
                 </div>
                 <div class="col text-center">
-                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
                     <h6 class="mb-2"><%= @quotations_distancia %></h6>
                     <h6 class="mt-2 mb-0">Distancia</h6>
                 </div>
                 <div class="col text-center">
-                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
                     <h6 class="mb-2"><%= @quotations_precios %></h6>
                     <h6 class="mt-2 mb-0">Precios</h6>
                 </div>
                 <div class="col text-center">
-                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
                     <h6 class="mb-2"><%= @quotations_cerrado %></h6>
                     <h6 class="mt-2 mb-0">Cerrado</h6>
                 </div>
@@ -292,10 +287,11 @@
     </div>
 </div>
 
-<div class="col-md-6">
+
+<div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5>Records status<br><small>last 30 days</small></h5>
+            <h5>Records status</h5>
         </div>
         <div class="card-block pl-0 pr-0 pb-2">
             <div id="bar-chart-3" class="ChartShadow BarChart" style="height:250px;"></div>
@@ -303,39 +299,36 @@
         <div class="card-block border-top">
             <div class="row">
                 <div class="col text-center">
-                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2"><%= @records_open %></h6>
-                    <h6 class="mt-2 mb-0">Open records</h6>
+                    <h6 class="mb-2"><%= @records_abierto %></h6>
+                    <h6 class="mt-2 mb-0">Abierto</h6>
                 </div>
                 <div class="col text-center">
-                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2"><%= @records_closed %></h6>
-                    <h6 class="mt-2 mb-0">Closed records</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h5>Records status<br><small>last 7 days</small></h5>
-        </div>
-        <div class="card-block pl-0 pr-0 pb-2">
-            <div id="bar-chart-4" class="ChartShadow BarChart" style="height:250px;"></div>
-        </div>
-        <div class="card-block border-top">
-            <div class="row">
-                <div class="col text-center">
-                    <span class="theme-bg d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2"><%= @records_open_week %></h6>
-                    <h6 class="mt-2 mb-0">Open records</h6>
+                    <h6 class="mb-2"><%= @records_cliente %></h6>
+                    <h6 class="mt-2 mb-0">Cliente</h6>
                 </div>
                 <div class="col text-center">
-                    <span class="theme-bg2 d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                    <h6 class="mb-2"><%= @records_closed_week %></h6>
-                    <h6 class="mt-2 mb-0">Closed records</h6>
+                    <h6 class="mb-2"><%= @records_itinerario %></h6>
+                    <h6 class="mt-2 mb-0">Itinerario</h6>
+                </div>
+                <div class="col text-center">
+                    <h6 class="mb-2"><%= @records_adicional %></h6>
+                    <h6 class="mt-2 mb-0">Adiciional</h6>
+                </div>
+                <div class="col text-center">
+                    <h6 class="mb-2"><%= @records_autobuses %></h6>
+                    <h6 class="mt-2 mb-0">Autobuses</h6>
+                </div>
+                <div class="col text-center">
+                    <h6 class="mb-2"><%= @records_precios %></h6>
+                    <h6 class="mt-2 mb-0">Precios</h6>
+                </div>
+                <div class="col text-center">
+                    <h6 class="mb-2"><%= @records_pagos %></h6>
+                    <h6 class="mt-2 mb-0">Pagos</h6>
+                </div>
+                <div class="col text-center">
+                    <h6 class="mb-2"><%= @records_cerrado %></h6>
+                    <h6 class="mt-2 mb-0">Cerrado</h6>
                 </div>
             </div>
         </div>
