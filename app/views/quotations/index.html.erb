@@ -71,8 +71,21 @@
                             <td><%= quotation.pasajeros %></td>
                             <td><%= quotation.user.name %></td>
                             <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= quotation.status %></span></td>
-                            <td><%= link_to 'Ver más', quotation %></td>
-                            <td><%= link_to 'Editar', edit_quotation_path(quotation) %></td>
+                            <%
+                              status = quotation.status
+                              if status == 'Abierto'
+                                path = edit_quotation_path(quotation)
+                              elsif status == 'Itinerario'
+                                path = itinerary_quotation_path(quotation)
+                              elsif status == 'Distancia'
+                                path = distance_quotation_path(quotation)
+                              elsif status == 'Precios'
+                                path = prices_quotation_path(quotation)
+                              else
+                                path = pdf_quotation_path(quotation)
+                              end
+                            %>
+                            <td><%= link_to 'Ver más', path %></td>
                             <td><%= link_to 'Eliminar', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                           </tr>
                         <% end %>
