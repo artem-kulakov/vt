@@ -32,6 +32,7 @@
         <div class="col text-right mt-4">
             <%= form_for @quotation do |f| %>
                 <%= f.hidden_field :distancia, id: "distance" %>
+                <%= f.hidden_field :status, value: 'Distancia' %>
                 <%= hidden_field_tag :step, 2 %>
                 <%= f.submit "Siguiente", class: "btn btn-primary" %>
             <% end %>

@@ -341,11 +341,19 @@
 #   )
 # end
 
-Checkup.all.each do |checkup|
-  date = Faker::Date.between(from: 5.month.ago, to: 3.week.ago)
+# Checkup.all.each do |checkup|
+#   date = Faker::Date.between(from: 5.month.ago, to: 3.week.ago)
 
-  checkup.update(
-    fecha_inicio: date,
-    fecha_fin: date + 2.day
-  )
+#   checkup.update(
+#     fecha_inicio: date,
+#     fecha_fin: date + 2.day
+#   )
+# end
+
+# Quotation.all.each do |quotation|
+#   quotation.update(status: [0,1,2,3,4].sample)
+# end
+
+Record.all.each do |record|
+  record.update(status: [0,1,2,3,4,5,6,7].sample)
 end

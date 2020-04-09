@@ -16,6 +16,7 @@
                 </div>
             </div>
             <div class="col-md-12 text-right">
+                <%= f.hidden_field :status, value: 'Pagos' %>
                 <%= hidden_field_tag :step, 6 %>
                 <%= f.submit 'Siguiente', class: "btn btn-primary" %>
             </div>

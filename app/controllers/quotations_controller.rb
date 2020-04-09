@@ -7,6 +7,9 @@ class QuotationsController < ApplicationController
   def index
     @active3 = "active pcoded-trigger"
 
+    puts 'trulala'
+    puts params[:q]
+
     @years = current_user.company.quotations.select("quotations.created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year
@@ -143,6 +146,6 @@ class QuotationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quotation_params
-      params.require(:quotation).permit(:nombre, :telefono, :email, :origen, :num_dias, :fecha_inicio, :fecha_fin, :pasajeros, :distancia, :observaciones, :user_id, :segmento1, :dia_extra1, :segmento2, :dia_extra2, :segmento3, :dia_extra3, :segmento4, :dia_extra4)
+      params.require(:quotation).permit(:nombre, :telefono, :email, :origen, :num_dias, :fecha_inicio, :fecha_fin, :pasajeros, :distancia, :observaciones, :user_id, :segmento1, :dia_extra1, :segmento2, :dia_extra2, :segmento3, :dia_extra3, :segmento4, :dia_extra4, :status)
     end
 end

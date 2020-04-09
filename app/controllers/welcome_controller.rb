@@ -130,64 +130,94 @@ class WelcomeController < ApplicationController
     services_previous_30_days = current_user.company.services.where("services.fecha >= :start AND services.fecha <= :end", {start: Date.today-2.month, end: Date.today-1.month}).count
     @services_change = ((@services_last_30_days.to_f / services_previous_30_days - 1) * 100).to_i
 
-    # Quotations status, last 30 days
+    # Quotations status
     data[:quotations_status] = []
-    @quotations_open = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin > :end", {start: Date.today-1.month, end: Date.today}).count
-    @quotations_closed = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin <= :end", {start: Date.today-1.month, end: Date.today}).count
+
+    quotations = current_user.company.quotations
+    @quotations_abierto = quotations.where(status: 'Abierto').count
+    @quotations_itinerario = quotations.where(status: 'Itinerario').count
+    @quotations_distancia = quotations.where(status: 'Distancia').count
+    @quotations_precios = quotations.where(status: 'Precios').count
+    @quotations_cerrado = quotations.where(status: 'Cerrado').count
+
     data[:quotations_status] << {
-      game: 'Open quotations',
-      visits: @quotations_open,
+      game: 'Abierto',
+      visits: @quotations_abierto,
       color: ["#1de9b6", "#1dc4e9"]
     }
     data[:quotations_status] << {
-      game: 'Closed quotations',
-      visits: @quotations_closed,
+      game: 'Itinerario',
+      visits: @quotations_itinerario,
       color: ["#a389d4", "#899ed4"]
     }
-
-    # Quotations status, last 7 days
-    data[:quotations_status_week] = []
-    @quotations_open_week = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin > :end", {start: Date.today-7.day, end: Date.today}).count
-    @quotations_closed_week = current_user.company.quotations.where("quotations.created_at >= :start AND quotations.created_at <= :end AND quotations.fecha_fin <= :end", {start: Date.today-7.day, end: Date.today}).count
-    data[:quotations_status_week] << {
-      game: 'Open quotations',
-      visits: @quotations_open_week,
+    data[:quotations_status] << {
+      game: 'Distancia',
+      visits: @quotations_distancia,
+      color: ["#04a9f5", "#049df5"]
+    }
+    data[:quotations_status] << {
+      game: 'Precios',
+      visits: @quotations_precios,
+      color: ["#f44236", "#f48f36"]
+    }
+    data[:quotations_status] << {
+      game: 'Cerrado',
+      visits: @quotations_cerrado,
       color: ["#1de9b6", "#1dc4e9"]
     }
-    data[:quotations_status_week] << {
-      game: 'Closed quotations',
-      visits: @quotations_closed_week,
-      color: ["#a389d4", "#899ed4"]
-    }
 
-    # Records status, last 30 days
+    # Records status
     data[:records_status] = []
-    @records_open = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time > :end", {start: Date.today-1.month, end: Date.today}).count
-    @records_closed = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time <= :end", {start: Date.today-1.month, end: Date.today}).count
-    data[:records_status] << {
-      game: 'Open records',
-      visits: @records_open,
-      color: ["#1de9b6", "#1dc4e9"]
-    }
-    data[:records_status] << {
-      game: 'Closed records',
-      visits: @quotations_closed,
-      color: ["#a389d4", "#899ed4"]
-    }
 
-    # Records status, last 7 days
-    data[:records_status_week] = []
-    @records_open_week = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time > :end", {start: Date.today-7.day, end: Date.today}).count
-    @records_closed_week = current_user.company.records.where("records.created_at >= :start AND records.created_at <= :end AND records.end_time <= :end", {start: Date.today-7.day, end: Date.today}).count
-    data[:records_status_week] << {
-      game: 'Open records',
-      visits: @records_open_week,
+    records = current_user.company.records
+    @records_abierto = records.where(status: 'Abierto').count
+    @records_cliente = records.where(status: 'Cliente').count
+    @records_itinerario = records.where(status: 'Itinerario').count
+    @records_adicional = records.where(status: 'Adicional').count
+    @records_autobuses = records.where(status: 'Autobuses').count
+    @records_precios = records.where(status: 'Precios').count
+    @records_pagos = records.where(status: 'Pagos').count
+    @records_cerrado = records.where(status: 'Cerrado').count
+
+    data[:records_status] << {
+      game: 'Abierto',
+      visits: @records_abierto,
       color: ["#1de9b6", "#1dc4e9"]
     }
-    data[:records_status_week] << {
-      game: 'Closed records',
-      visits: @records_closed_week,
+    data[:records_status] << {
+      game: 'Cliente',
+      visits: @records_cliente,
       color: ["#a389d4", "#899ed4"]
+    }
+    data[:records_status] << {
+      game: 'Itinerario',
+      visits: @records_itinerario,
+      color: ["#04a9f5", "#049df5"]
+    }
+    data[:records_status] << {
+      game: 'Adicional',
+      visits: @records_adicional,
+      color: ["#f44236", "#f48f36"]
+    }
+    data[:records_status] << {
+      game: 'Autobuses',
+      visits: @records_autobuses,
+      color: ["#1de9b6", "#1dc4e9"]
+    }
+    data[:records_status] << {
+      game: 'Precios',
+      visits: @records_precios,
+      color: ["#a389d4", "#899ed4"]
+    }
+    data[:records_status] << {
+      game: 'Pagos',
+      visits: @records_pagos,
+      color: ["#04a9f5", "#049df5"]
+    }
+    data[:records_status] << {
+      game: 'Cerrado',
+      visits: @records_cerrado,
+      color: ["#f44236", "#f48f36"]
     }
 
     # Revenues

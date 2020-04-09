@@ -6,6 +6,8 @@ class Record < ActiveRecord::Base
   has_many :payments, dependent: :destroy
   has_many :routes, dependent: :destroy
 
+  enum status: %w(Abierto Cliente Itinerario Adicional Autobuses Precios Pagos Cerrado)
+
   def sum_payments
     payments.count == 0 ? 0 : payments.sum(:cantidad).round(2)
   end
