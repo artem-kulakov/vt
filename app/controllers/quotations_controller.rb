@@ -7,6 +7,9 @@ class QuotationsController < ApplicationController
   def index
     @active3 = "active pcoded-trigger"
 
+    puts 'trulala'
+    puts params[:q]
+
     @years = current_user.company.quotations.select("quotations.created_at").map{ |i| i.created_at.year }.uniq.sort
 
     @year = params[:year] || Date.current.year

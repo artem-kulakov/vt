@@ -6,16 +6,22 @@
         <div class="card-block">
             <%= search_form_for @q do |f| %>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <%= f.label :Registro %>
                             <%= f.search_field :id_eq, placeholder: "Buscar por número de cotización", class: "form-control" %>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <%= f.label :Cliente %>
                             <%= f.search_field :email_or_nombre_cont, placeholder: "Buscar por Cliente", class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <%= f.label :Status %>
+                            <%= f.select :status_eq, Quotation.statuses, {prompt: 'Select status'}, {class: "form-control"} %>
                         </div>
                     </div>
                     <div class="col-md-12">
