@@ -236,10 +236,16 @@ class RecordsController < ApplicationController
           path = client_record_path(@record)
         elsif step == 2
           path = itinerary_record_path(@record)
+        elsif step == 3
+          path = trip_record_path(@record)
         elsif step == 4
           path = bus_record_path(@record)
+        elsif step == 5
+          path = price_record_path(@record)
         elsif step == 6
           path = payments_record_path(@record)
+        elsif step == 7
+          path = pdf_record_path(@record)
         end
 
         format.html { redirect_to path, notice: 'Record was successfully updated.' }
@@ -269,6 +275,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:start_time, :end_time, :initial_time, :finish_time, :title, :client_id, :user_id, :numero_pasajeros, :numero_de_camiones, :lugar_salida, :referencia_salida, :nombre_referencia, :telefono_referencia, :precio, :precio_final, :factura, :num_factura, :status_op, :status_admin, :observaciones, :condiciones, :distancia)
+      params.require(:record).permit(:start_time, :end_time, :initial_time, :finish_time, :title, :client_id, :user_id, :numero_pasajeros, :numero_de_camiones, :lugar_salida, :referencia_salida, :nombre_referencia, :telefono_referencia, :precio, :precio_final, :factura, :num_factura, :status_op, :status_admin, :observaciones, :condiciones, :distancia, :status)
     end
 end

@@ -70,7 +70,11 @@
 	<% end %>
     <div class="row">
         <div class="col-md-12 text-right">
-            <%= link_to 'Siguiente', pdf_record_path(@record), class: "btn btn-primary" %>
+            <%= form_for(@record) do |f| %>
+                <%= f.hidden_field :status, value: 'Cerrado' %>
+                <%= hidden_field_tag :step, 7 %>
+                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+            <% end %>
         </div>
     </div>
 </div>

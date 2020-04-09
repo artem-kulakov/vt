@@ -64,6 +64,7 @@
                 </div>
             </div>
             <div class="col-md-12 text-right">
+                <%= f.hidden_field :status, value: 'Autobuses' %>
                 <%= hidden_field_tag :step, 4 %>
                 <%= f.submit 'Siguiente', class: "btn btn-primary" %>
             </div>
