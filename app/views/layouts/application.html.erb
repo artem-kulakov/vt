@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="/assets/plugins/notification/css/notification.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- pnotify css -->
+    <link rel="stylesheet" href="/assets/plugins/pnotify/css/pnotify.custom.min.css">
+    <!-- pnotify-custom css -->
+    <link rel="stylesheet" href="/assets/css/pages/pnotify.css">
     <!-- Full calendar -->
     <% if controller_name == 'records' && action_name == 'pizarron' %>
         <link rel="stylesheet" href="/assets/plugins/fullcalendar/css/fullcalendar.min.css">
@@ -58,6 +62,7 @@
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
                     <li data-username="Documentation" class="nav-item mt-3 <%= @active1 %>">
+                      <button type="button" class="btn btn-success btn-sm" id="pnotify-desktop-success"><i class="feather icon-bell"></i> Click here!</button>
                         <%= link_to root_path, class: "nav-link" do %>
                             <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                             <span class="pcoded-mtext">Inicio</span>
@@ -585,6 +590,10 @@
 
     <!-- dashboard-custom js -->
     <script src="/assets/js/pages/dashboard-custom.js"></script>
+
+    <!-- pnotify Js -->
+    <script src="assets/plugins/pnotify/js/pnotify.custom.min.js"></script>
+    <script src="assets/plugins/pnotify/js/notify-event.js"></script>
 
     <!-- chartjs js -->
     <% if controller_name == 'welcome' && action_name == 'index' %>
