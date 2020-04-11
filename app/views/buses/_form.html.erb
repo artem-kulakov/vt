@@ -1,4 +1,4 @@
-<%= form_for(@bus) do |f| %>
+<%= form_for(@bus, html: { autocomplete: "off" }) do |f| %>
   <% if @bus.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bus.errors.count, "error") %> prohibited this bus from being saved:</h2>
@@ -42,7 +42,7 @@
   </div>
   <div class="form-group">
     <%= label_tag :last_checkup_date %><br>
-    <%= date_field_tag :checkup_date, {}, {class: "form-control"} %>
+    <%= text_field_tag :checkup_date, nil, {class: "form-control d_today", autocomplete: 'off'} %>
   </div>
   <div class="form-group">
     <%= f.label 'Preventivo servicio, kms' %><br>

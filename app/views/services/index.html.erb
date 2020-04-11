@@ -4,7 +4,7 @@
             <h5>Filtrar por operador y fecha</h5>
         </div>
         <div class="card-block">
-            <%= search_form_for @q do |f| %>
+            <%= search_form_for @q, html: { autocomplete: "off" } do |f| %>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -23,13 +23,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fecha Inicio:</label>
-                            <%= f.date_field :record_start_time_gteq, class: "form-control", placeholder: "Date >= to" %>
+                            <%= f.text_field :record_start_time_gteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date >= to" %>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fecha Final:</label>
-                            <%= f.date_field :record_start_time_lteq, class: "form-control", placeholder: "Date <= to" %>
+                            <%= f.text_field :record_start_time_lteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date <= to" %>
                         </div>
                     </div>
                 </div>
