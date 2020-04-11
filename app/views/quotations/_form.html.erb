@@ -47,14 +47,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :fecha_inicio_tentativa %>
-                    <!-- <input type="text" class="form-control" id="d_today"> -->
-                    <%= f.text_field :fecha_inicio, :required => true, class: "form-control", id: "d_today" %>
+                    <%= f.text_field :fecha_inicio, :required => true, class: "form-control d_today" %>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :fecha_fin_tentativa %><br>
-                    <%= f.date_field :fecha_fin, :required => true, class: "form-control" %>
+                    <%= f.text_field :fecha_fin, :required => true, class: "form-control d_today" %>
                 </div>
             </div>
             <div class="col-md-12 text-right">
@@ -68,10 +67,11 @@
 
 <script type="text/javascript">
     $(window).ready(function() {
-        $('#d_today').datepicker({
+        $('.d_today').datepicker({
             keyboardNavigation: false,
             forceParse: false,
-            todayHighlight: true
+            todayHighlight: true,
+            format: 'dd/mm/yyyy'
         });
     });
 </script>
