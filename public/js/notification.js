@@ -1,5 +1,6 @@
 $( document ).ready(function() {
-  var notice = $('#notification');
+  var notice = $('#notice');
+  var alert = $('#alert');
 
   if (notice.length > 0) {
     (new PNotify({
@@ -10,6 +11,20 @@ $( document ).ready(function() {
         desktop: {
             desktop: true,
             icon: 'assets/images/pnotify/success.png'
+        }
+    })
+    );
+  }
+
+  if (alert.length > 0) {
+    (new PNotify({
+        title: 'Alert',
+        type: 'warning',
+        delay: 3000,
+        text: alert.text(),
+        desktop: {
+            desktop: true,
+            icon: 'assets/images/pnotify/warning.png'
         }
     })
     );
