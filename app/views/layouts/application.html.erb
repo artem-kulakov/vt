@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="/assets/plugins/notification/css/notification.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- pnotify css -->
+    <link rel="stylesheet" href="/assets/plugins/pnotify/css/pnotify.custom.min.css">
+    <!-- pnotify-custom css -->
+    <link rel="stylesheet" href="/assets/css/pages/pnotify.css">
     <!-- Full calendar -->
     <% if controller_name == 'records' && action_name == 'pizarron' %>
         <link rel="stylesheet" href="/assets/plugins/fullcalendar/css/fullcalendar.min.css">
@@ -504,6 +508,15 @@
                     <!-- [ breadcrumb ] end -->
                     <div class="main-body">
                         <div class="page-wrapper">
+    <!-- Notification -->
+    <% if notice %>
+      <div id="notice" style="display: none;"><%= notice %></div>
+    <% end %>
+
+    <% if alert %>
+      <div id="alert"> <%= alert %></div>
+    <% end %>
+
                             <!-- [ Main Content ] start -->
                             <div class="row">
                                 <%= ((controller_name == 'quotations' && %w(new edit itinerary distance prices pdf).include?(action_name)) || (controller_name == 'records' && %w(new edit client itinerary trip bus price payments pdf).include?(action_name))) ? yield(:content) : yield %>
@@ -585,6 +598,11 @@
 
     <!-- dashboard-custom js -->
     <script src="/assets/js/pages/dashboard-custom.js"></script>
+
+    <!-- pnotify Js -->
+    <script src="/js/notification.js?v=<%= Time.now.to_i %>"></script>
+    <script src="assets/plugins/pnotify/js/pnotify.custom.min.js"></script>
+    <script src="assets/plugins/pnotify/js/notify-event.js"></script>
 
     <!-- chartjs js -->
     <% if controller_name == 'welcome' && action_name == 'index' %>
