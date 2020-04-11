@@ -509,9 +509,8 @@
                     <div class="main-body">
                         <div class="page-wrapper">
     <!-- Notification -->
-    <% notice = 'foo' %>
     <% if notice %>
-      <div id="notification"><%= notice %></div>
+      <div id="notification" style="display: none;"><%= notice %></div>
     <% end %>
 
     <% if alert %>
