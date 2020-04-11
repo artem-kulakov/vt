@@ -1,5 +1,8 @@
 $(document).ready(function() {
     $('#example').DataTable( {
-        "order": [[ 0, "asc" ]]
+        "order": [[ 0, "asc" ]],
+        "paging": false,
+        "searching": false,
+        "bInfo" : false
     } );
 } );
