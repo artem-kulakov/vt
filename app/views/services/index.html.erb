@@ -57,7 +57,7 @@
         </div>
         <div class="card-block">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="example">
                     <thead>
                         <th>ID</th>
                         <th>Autobús</th>
@@ -81,18 +81,11 @@
                             <td><%= number_to_currency service.sum_gastos %></td> 
                         </tr>
                         <% end %>
-                        <tr>            
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total:  <%= number_to_currency @services.sum(:suma) %></td>
-                        </tr>
                     </tbody>
                 </table>
+
+                <div class="text-right w-100">Total:  <%= number_to_currency @services.sum(:suma) %></div>
+
                 <div style="display:flex; justify-content:center; align-items:center;">
                     <% unless @services.blank? %>
                         <%= will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
