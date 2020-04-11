@@ -1,7 +1,7 @@
 <div id="step-1" class="tab-pane step-content" style="display: block;">
     <h5>Información básica</h5>
     <hr>
-    <%= form_for(@quotation) do |f| %>
+    <%= form_for @quotation, html: { autocomplete: "off" } do |f| %>
       <% if @quotation.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
@@ -47,13 +47,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :fecha_inicio_tentativa %>
-                    <%= f.text_field :fecha_inicio, :required => true, class: "form-control d_today" %>
+                    <%= f.text_field :fecha_inicio, :required => true, class: "form-control d_today", autocomplete: 'off' %>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :fecha_fin_tentativa %><br>
-                    <%= f.text_field :fecha_fin, :required => true, class: "form-control d_today" %>
+                    <%= f.text_field :fecha_fin, :required => true, class: "form-control d_today", autocomplete: 'off' %>
                 </div>
             </div>
             <div class="col-md-12 text-right">
@@ -64,14 +64,3 @@
         </div>
     <% end %>
 </div>
-
-<script type="text/javascript">
-    $(window).ready(function() {
-        $('.d_today').datepicker({
-            keyboardNavigation: false,
-            forceParse: false,
-            todayHighlight: true,
-            format: 'dd/mm/yyyy'
-        });
-    });
-</script>
