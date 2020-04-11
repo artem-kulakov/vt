@@ -3,6 +3,8 @@ $(window).ready(function() {
         keyboardNavigation: false,
         forceParse: false,
         todayHighlight: true,
-        format: 'dd/mm/yyyy'
+        format: 'dd/mm/yyyy',
+        startDate: '-2y',
+        endDate: '+2y'
     });
 });

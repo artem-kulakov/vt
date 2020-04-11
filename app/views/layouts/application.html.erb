@@ -618,7 +618,7 @@
     <!-- datepicker js -->
     <script src="/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="/assets/js/pages/ac-datepicker.js"></script>
-    <script src="/js/datepicker.js"></script>
+    <script src="/js/datepicker.js?v=<%= Time.now.to_i %>"></script>
 
     <!-- chartjs js -->
     <% if controller_name == 'welcome' && action_name == 'index' %>
