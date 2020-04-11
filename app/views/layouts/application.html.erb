@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- table -->
+    <link rel="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <!-- Full calendar -->
     <% if controller_name == 'records' && action_name == 'pizarron' %>
         <link rel="stylesheet" href="/assets/plugins/fullcalendar/css/fullcalendar.min.css">
@@ -620,6 +622,10 @@
     <script src="/assets/js/pages/ac-datepicker.js"></script>
     <script src="/js/datepicker.js?v=<%= Time.now.to_i %>"></script>
     <script src="/js/compare-dates.js?v=<%= Time.now.to_i %>"></script>
+
+    <!-- table -->
+    <script src="/js/table.js?v=<%= Time.now.to_i %>"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
     <!-- chartjs js -->
     <% if controller_name == 'welcome' && action_name == 'index' %>
