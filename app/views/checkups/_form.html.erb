@@ -1,4 +1,4 @@
-<%= form_with(model: checkup, local: true) do |form| %>
+<%= form_with(model: checkup, local: true, html: { autocomplete: "off" }) do |form| %>
   <% if checkup.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(checkup.errors.count, "error") %> prohibited this checkup from being saved:</h2>
@@ -23,12 +23,12 @@
 
   <div class="form-group">
     <%= form.label :fecha_inicio %>
-    <%= form.date_field :fecha_inicio, class: "form-control" %>
+    <%= form.text_field :fecha_inicio, class: "form-control d_today", autocomplete: 'off', onblur: "compare();", id: "startDate" %>
   </div>
 
   <div class="form-group">
     <%= form.label :fecha_fin %>
-    <%= form.date_field :fecha_fin, class: "form-control" %>
+    <%= form.text_field :fecha_fin, class: "form-control d_today", autocomplete: 'off', onblur: "compare();", id: "endDate" %>
   </div>
 
   <div class="form-group">

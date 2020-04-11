@@ -30,7 +30,7 @@
         </div>
         <div class="card-block">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="example">
                 <thead>
                   <th>ID</th>
                   <th>Status</th>
@@ -42,16 +42,20 @@
                   <th>Estado</th>
                   <th>Email</th>
                   <th>Teléfono</th>
+                  <th></th>
+                  <th></th>
                 </thead>
                 <tbody>
                   <% @clients.each do |client| %>
                   <tr>
                     <td><%= client.id%></td>
+
                     <% if client.records.where({ "records.status_admin" => false }).count > 0%>
-                    <td class="text-danger">Deudor</td>
+                      <td class="text-danger">Deudor</td>
                     <% else %>
-                    <td class="text-success">No debe</td>
+                      <td class="text-success">No debe</td>
                     <% end %>
+
                     <td class="text-success"><%= client.records.where({ "records.status_admin" => false }).count%></td>
                     <td><%= client.razon_social %></td>
                     <td><%= client.rfc %></td>

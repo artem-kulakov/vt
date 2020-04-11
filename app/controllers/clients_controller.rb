@@ -15,6 +15,8 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
+    @active8 = "active pcoded-trigger"
+
     @records = @client.records.paginate(:page => params[:page], :per_page => 10)
   end
 

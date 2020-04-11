@@ -4,7 +4,7 @@
             <h5>Filtrar por operador y fecha</h5>
         </div>
         <div class="card-block">
-            <%= search_form_for @q do |f| %>
+            <%= search_form_for @q, html: { autocomplete: "off" } do |f| %>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -23,13 +23,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fecha Inicio:</label>
-                            <%= f.date_field :record_start_time_gteq, class: "form-control", placeholder: "Date >= to" %>
+                            <%= f.text_field :record_start_time_gteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date >= to", onblur: "compare();", id: "startDate" %>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fecha Final:</label>
-                            <%= f.date_field :record_start_time_lteq, class: "form-control", placeholder: "Date <= to" %>
+                            <%= f.text_field :record_start_time_lteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date <= to", onblur: "compare();", id: "endDate" %>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="card-block">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="example">
                     <thead>
                         <th>ID</th>
                         <th>Autobús</th>
@@ -81,18 +81,11 @@
                             <td><%= number_to_currency service.sum_gastos %></td> 
                         </tr>
                         <% end %>
-                        <tr>            
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total:  <%= number_to_currency @services.sum(:suma) %></td>
-                        </tr>
                     </tbody>
                 </table>
+
+                <div class="text-right w-100">Total:  <%= number_to_currency @services.sum(:suma) %></div>
+
                 <div style="display:flex; justify-content:center; align-items:center;">
                     <% unless @services.blank? %>
                         <%= will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>

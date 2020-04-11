@@ -1,7 +1,7 @@
 <div id="step-1" class="tab-pane step-content" style="display: block;">
     <h5>Información básica</h5>
     <hr>
-    <%= form_for(@quotation) do |f| %>
+    <%= form_for @quotation, html: { autocomplete: "off" } do |f| %>
       <% if @quotation.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
@@ -35,7 +35,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :email %>
-                    <%= f.text_field :email, required: true, class: "form-control" %>
+                    <%= f.text_field :email, required: true, class: "form-control", pattern: "[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*" %>
                 </div>
             </div>
             <div class="col-md-4">
@@ -47,13 +47,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :fecha_inicio_tentativa %>
-                    <%= f.date_field :fecha_inicio, :required => true, class: "form-control" %>
+                    <%= f.text_field :fecha_inicio, :required => true, class: "form-control d_today", autocomplete: 'off', onblur: "compare();", id: "startDate" %>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <%= f.label :fecha_fin_tentativa %><br>
-                    <%= f.date_field :fecha_fin, :required => true, class: "form-control" %>
+                    <%= f.text_field :fecha_fin, :required => true, class: "form-control d_today", autocomplete: 'off', onblur: "compare();", id: "endDate" %>
                 </div>
             </div>
             <div class="col-md-12 text-right">
