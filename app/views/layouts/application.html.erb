@@ -62,7 +62,6 @@
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
                     <li data-username="Documentation" class="nav-item mt-3 <%= @active1 %>">
-                      <button type="button" class="btn btn-success btn-sm" id="pnotify-desktop-success"><i class="feather icon-bell"></i> Click here!</button>
                         <%= link_to root_path, class: "nav-link" do %>
                             <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                             <span class="pcoded-mtext">Inicio</span>
@@ -509,6 +508,16 @@
                     <!-- [ breadcrumb ] end -->
                     <div class="main-body">
                         <div class="page-wrapper">
+    <!-- Notification -->
+    <% notice = 'foo' %>
+    <% if notice %>
+      <div id="notification"><%= notice %></div>
+    <% end %>
+
+    <% if alert %>
+      <div id="notification"> <%= alert %></div>
+    <% end %>
+
                             <!-- [ Main Content ] start -->
                             <div class="row">
                                 <%= ((controller_name == 'quotations' && %w(new edit itinerary distance prices pdf).include?(action_name)) || (controller_name == 'records' && %w(new edit client itinerary trip bus price payments pdf).include?(action_name))) ? yield(:content) : yield %>
@@ -592,6 +601,7 @@
     <script src="/assets/js/pages/dashboard-custom.js"></script>
 
     <!-- pnotify Js -->
+    <script src="/js/notification.js?v=<%= Time.now.to_i %>"></script>
     <script src="assets/plugins/pnotify/js/pnotify.custom.min.js"></script>
     <script src="assets/plugins/pnotify/js/notify-event.js"></script>
 

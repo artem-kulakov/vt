@@ -237,7 +237,7 @@ $(function() {
 
     // Success
     $('#pnotify-desktop-success').on('click', function () {
-        PNotify.desktop.permission();
+        // PNotify.desktop.permission();
         (new PNotify({
             title: 'Success Desktop Notice',
             type: 'success',
