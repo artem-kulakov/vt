@@ -5,7 +5,17 @@ function compare()
 
     if( (new Date(startDt).getTime() > new Date(endDt).getTime()))
     {
-        alert("¡La fecha de finalización debe ser posterior a la fecha de inicio!");
+        (new PNotify({
+            title: 'Alert',
+            type: 'warning',
+            delay: 3000,
+            text: "¡La fecha de finalización debe ser posterior a la fecha de inicio!",
+            desktop: {
+                desktop: true,
+                icon: 'assets/images/pnotify/warning.png'
+            }
+        })
+        );
         document.getElementById("endDate").value = '';
     }
 }
