@@ -13,6 +13,14 @@ class BusesController < ApplicationController
   # GET /buses/1
   # GET /buses/1.json
   def show
+    @active10 = "active pcoded-trigger"
+
+    @checkup = Checkup.new
+
+    @categories = {}
+    Checkup.categories.each do |key, value|
+      @categories[key] = key
+    end
   end
 
   # GET /buses/new
