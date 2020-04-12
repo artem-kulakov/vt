@@ -39,7 +39,7 @@ class WelcomeController < ApplicationController
       booked_buses = current_user.company.buses.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: date.beginning_of_day, end: date.end_of_day}).pluck(:id).uniq.count
       data[:buses] << {
         year: date.strftime("%e"),
-        value: (booked_buses.to_f / total_buses * 100).to_i
+        value: booked_buses == 0 || total_buses == 0 ? 0 : (booked_buses.to_f / total_buses * 100).to_i
       }
     end
 
