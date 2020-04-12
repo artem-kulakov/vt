@@ -29,11 +29,11 @@ class WelcomeController < ApplicationController
       data[:receipts] << { year: key, value: value }
     end
 
-
-    data[:income] = {}
+    data[:income] = []
     income = current_user.company.records.group_by_month('records.start_time', last: 12, format: "%b'%y").sum('records.precio_final')
-    data[:income][:labels] = income.keys
-    data[:income][:data] = income.values
+    income.each do |key, value|
+      data[:income] << { year: key, value: value }
+    end
 
     data[:buses] = []
     total_buses = current_user.company.buses.count
