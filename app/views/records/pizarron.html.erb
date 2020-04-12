@@ -34,25 +34,15 @@
       header: {
         left: 'today prev,next',
         center: 'title',
-        right: 'resourceTimelineMonth,resourceTimelineYear'
+        right: 'resourceTimelineDay,resourceTimelineMonth,resourceTimelineYear'
       },
       buttonText: {
         today:    'hoy',
+        day: 'dia',
         month:    'mes',
         year:     'año'
       },
       defaultView: 'resourceTimelineMonth',
-      views: {
-        resourceTimelineDay: {
-          buttonText: ':15 slots',
-          slotDuration: '00:15'
-        },
-        resourceTimelineTenDay: {
-          type: 'resourceTimeline',
-          duration: { days: 10 },
-          buttonText: '10 days'
-        }
-      },
       navLinks: true,
       resourceAreaWidth: '10%',
       resourceLabelText: 'Autobuses',
