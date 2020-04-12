@@ -6869,42 +6869,6 @@ body.layout-1 .pcoded-navbar.hide-sidemenu .toggle-sidemenu i {
   }
 }
 
-.fullcalendar-card .fc-button {
-  background-color: #04a9f5;
-  border-color: #fff;
-  color: #fff;
-  background-image: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  text-shadow: none;
-  height: 37px;
-  padding: 0 15px;
-}
-.fullcalendar-card h2 {
-  font-size: 28px;
-}
-@media screen and (max-width: 768px) {
-  .fullcalendar-card .fc .fc-toolbar > * > * {
-    float: none;
-  }
-  .fullcalendar-card .fc-toolbar .fc-left, .fullcalendar-card .fc-toolbar .fc-right, .fullcalendar-card .fc-toolbar .fc-center {
-    float: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 10px;
-  }
-}
-
 .ck-content strong {
   font-weight: 600;
 }
@@ -10226,32 +10190,6 @@ div.code-toolbar > .toolbar span:hover {
 }
 
 /**====== Icon layouts css end ======**/
-/**  =====================
-      Calendar css start
-==========================  **/
-.external-events .fc-event {
-  color: #fff;
-  cursor: move;
-  padding: 5px 18px;
-  margin-top: 5px;
-  background: #04a9f5;
-  border-color: #04a9f5;
-}
-
-.calendar a:not([href]):not([tabindex]), .calendar a:not([href]):not([tabindex]):focus, .calendar a:not([href]):not([tabindex]):hover {
-  color: #fff;
-}
-.calendar .fc-event,
-.calendar .fc-event:hover {
-  color: #fff;
-  cursor: move;
-  padding: 5px 18px;
-  margin-top: 2px;
-  background: #04a9f5;
-  border-color: #04a9f5;
-}
-
-/**====== Calendar css end ======**/
 /**  =====================
       File Upload css start
 ==========================  **/
