@@ -50,7 +50,7 @@ get '/reporte' => 'welcome#reporte'
     resources :services
   end
 
-  resources :services, only: [:index]
+  resources :services, only: [:index, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
