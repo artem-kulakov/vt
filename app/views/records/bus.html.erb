@@ -69,17 +69,17 @@
                     <tr class="text-center">
                       <%= form_for service, url: {controller: 'services', action: 'update', id: service.id} do |f| %>
                         <td><%= service.bus.numero %></td>
-                        <td><%= f.text_field :precio_unidad, class: "" %></td>
-                        <td><%= service.caseta %></td>
-                        <td><%= service.hotel %></td>
-                        <td><%= service.viaticos %></td>
-                        <td><%= service.estacionamientos %></td>
-                        <td><%= service.lavadas %></td>
-                        <td><%= service.aeropuerto %></td>
-                        <td><%= service.otros %></td>
+                        <td><%= f.text_field :precio_unidad, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :caseta, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :hotel, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :viaticos, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :estacionamientos, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :lavadas, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :aeropuerto, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :otros, class: "", style: "color:#888;width:70px;" %></td>
                         <td><%= service.sum_gastos %></td>
                         <%= hidden_field_tag :record_id, @record.id %>
-                        <td><%= f.submit 'Save', class: "" %></td>
+                        <td><%= f.submit 'Save', class: "btn btn-secondary btn-sm" %></td>
                         <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       <% end %>
                     </tr>
