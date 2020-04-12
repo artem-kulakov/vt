@@ -60,6 +60,8 @@
                     <th>Aeropuerto</th>
                     <th>Otros</th>
                     <th>Total</th>
+                    <th>km inicio</th>
+                    <th>km fin</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -78,6 +80,8 @@
                         <td><%= f.text_field :aeropuerto, class: "", style: "color:#888;width:70px;" %></td>
                         <td><%= f.text_field :otros, class: "", style: "color:#888;width:70px;" %></td>
                         <td><%= service.sum_gastos %></td>
+                        <td><%= f.text_field :km_inicio, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :km_fin, class: "", style: "color:#888;width:70px;" %></td>
                         <%= hidden_field_tag :record_id, @record.id %>
                         <td><%= f.submit 'Save', class: "btn btn-secondary btn-sm" %></td>
                         <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
