@@ -259,28 +259,53 @@ $(document).ready(function() {
 
 
     // Gastos
-    var bar = document.getElementById("chart-line-3").getContext('2d');
-    var theme_g1 = bar.createLinearGradient(0, 300, 0, 0);
-    theme_g1.addColorStop(0, '#1de9b6');
-    theme_g1.addColorStop(1, '#1dc4e9');
-    var data1 = {
-        labels: data.receipts.labels,
-        datasets: [{
-            label: "Gastos Mensuales",
-            data: data.receipts.data,
-            fill: false,
-            borderWidth: 4,
-            borderColor: theme_g1,
-            backgroundColor: theme_g1,
-            hoverborderColor: theme_g1,
-            hoverBackgroundColor: theme_g1
-        }]
-    };
-    var myBarChart = new Chart(bar, {
-        type: 'line',
-        data: data1,
-        responsive: true,
-        options: line_chart_options
+    var chart = AmCharts.makeChart("chart-line-1", {
+        "type": "serial",
+        "theme": "light",
+        "marginTop": 10,
+        "marginRight": 0,
+        "dataProvider": data.receipts,
+        "valueAxes": [{
+            "axisAlpha": 0,
+            "minimum": 0,
+            "position": "left"
+        }],
+        "graphs": [{
+            "id": "g1",
+            "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+            "bullet": "round",
+            "bulletBorderAlpha": 2,
+            "bulletAlpha": 1,
+            "bulletSize": 12,
+            "stackable": false,
+            "bulletColor": "#fff",
+            "bulletBorderColor": "#a389d4",
+            "bulletBorderThickness": 3,
+            "lineColor": "#a389d4",
+            "lineThickness": 2,
+            "type": "smoothedLine",
+            "valueField": "value",
+            "title": "Gastos"
+        }],
+        "chartCursor": {
+            "cursorAlpha": 0,
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true
+        },
+        "categoryField": "year",
+        "categoryAxis": {
+            "minorGridAlpha": 0,
+            "minorGridEnabled": true,
+            "gridAlpha": 0,
+            "axisAlpha": 0,
+            "lineAlpha": 0
+        },
+        "legend": {
+            "useGraphSettings": true,
+            "position": "top"
+        },
     });
 
 
