@@ -142,7 +142,7 @@ a.text-secondary.btn, a.text-secondary.btn:Active, a.text-secondary.btn:focus, a
   background-color: rgba(33, 34, 36, 0.8);
 }
 .card.card-load .card-loader i {
-  color: #ff7a59;
+  color: #ffce4b;
 }
 
 /* ==========  card css End  =========== */
@@ -284,11 +284,11 @@ a.text-secondary.btn, a.text-secondary.btn:Active, a.text-secondary.btn:focus, a
   background: #1a1a1c;
 }
 .header-user-list .h-list-body .userlist-box .live-status {
-  background: #1dc4e9;
+  background: #ffce4b;
   color: #111;
 }
 .header-user-list .h-list-body .userlist-box .text-c-green {
-  color: #1dc4e9;
+  color: #ffce4b;
 }
 .header-user-list.open .h-close-text i {
   color: #adb7be;
@@ -394,7 +394,7 @@ a.text-secondary.btn, a.text-secondary.btn:Active, a.text-secondary.btn:focus, a
 }
 
 .page-link {
-  color: #007bff;
+  color: #ffce4b;
   background-color: #212224;
   border: 1px solid #090909;
 }
@@ -496,7 +496,7 @@ table.DTFC_Cloned tr {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff !important;
-  background: #ff7a59;
+  background: #ffce4b;
   -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }

@@ -51,7 +51,7 @@
                 <table class="table" id="example">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Información</th>
                         
                             <th>Num días</th>
                             <th>Fecha inicio</th>
@@ -66,13 +66,13 @@
                     <tbody>
                         <% @quotations.each do |quotation| %>
                           <tr>
-                            <td><%= quotation.nombre %> <br> <i class="feather icon-home"></i> <%= quotation.telefono %> <br> <i class="feather icon-home"></i> <%= quotation.email %>  </td>
+                            <td><%= quotation.nombre %> <br> <i class="feather icon-smartphone"></i> <%= quotation.telefono %> <br> <i class="feather icon-mail"></i> <%= quotation.email %>  </td>
                             
                             <td><%= quotation.num_dias %></td>
                             <td><%= quotation.try(:fecha_inicio).strftime(" %b-%d-%Y") %></td>
                             <td><%= quotation.try(:fecha_fin).strftime(" %b-%d-%Y") %></td>
-                            <td><i class="feather icon-home"></i> <%= quotation.pasajeros %></td>
-                            <td><i class="feather icon-home"></i>  <%= quotation.user.name %></td>
+                            <td><i class="feather icon-users"></i> <%= quotation.pasajeros %></td>
+                            <td><i class="feather icon-user"></i>  <%= quotation.user.name %></td>
                             <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= quotation.status %></span></td>
                             <%
                               status = quotation.status
