@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @active13 = "active pcoded-trigger"
+    @active4 = "active pcoded-trigger"
 
     @years = current_user.company.records.select("records.created_at").map{ |i| i.created_at.year }.uniq.sort
     @year = params[:year] || Date.current.year

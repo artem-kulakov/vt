@@ -106,13 +106,13 @@
                         <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Ordenes</span></a>
                         <ul class="pcoded-submenu">
                             <li class="">
-                                <%= link_to 'Nuevo Bloqueo', new_record_path, class: "" %>
+                                <%= link_to 'Nueva Orden', new_record_path, class: "" %>
                             </li>
                             <li class="">
                                 <%= link_to 'Operaciones', operaciones_records_path, class: "" %>
                             </li>
                             <li class="">
-                                <%= link_to 'Cobranza', cobranza_records_path, class: "" %>
+                                <%= link_to 'Todas las Órdenes', records_path, class: "" %>
                             </li>
                         </ul>
                     </li>
@@ -229,13 +229,6 @@
                         <%= link_to gas_path, class: "nav-link" do %>
                             <span class="pcoded-micon"><i class="feather icon-target"></i></span>
                             <span class="pcoded-mtext">Diesel</span>
-                        <% end %>
-                    </li>
-
-                    <li data-username="Full Calendar" class="nav-item <%= @active13 %>">
-                        <%= link_to records_path, class: "nav-link" do %>
-                            <span class="pcoded-micon"><i class="feather icon-clock"></i></span>
-                            <span class="pcoded-mtext">Historico</span>
                         <% end %>
                     </li>
 

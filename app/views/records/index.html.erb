@@ -77,55 +77,43 @@
             <% end %>
         </div>
         <div class="card-block">
-        <label>Ordenar por:</label>
-        <div id="filtro">
-          <span class="mr-4"><%= sort_link(@q, :id, 'Folio', default_order: :desc) %></span>
-          <span class="mr-4"><%= sort_link(@q, :start_time, 'Fechas', default_order: :desc) %></span>
-          <span class="mr-4"><%= sort_link(@q, :numero_pasajeros, 'Número Pasajeros', default_order: :desc) %></span>
-          <span class="mr-4"><%= sort_link(@q, :sum_total, '% Completo', default_order: :desc) %></span>
-        </div>
         <div class="table-responsive mt-4">
           <table class="table" id="example">
             <thead>
-              <th>I.D</th>
+              <th>ID</th>
+              <th>Información</th>
               <th>Fecha de<br>Inicio</th>
-              <th>Fecha de<br>Regreso</th>
-              <th>Referencia</th>
-              <th>Cliente</th>
-              <th>R.F.C</th>
-              <th>Numero<br>pasajeros</th>
-              <th>Numero de<br>camiones</th>
-              <th>Luagr de<br>Salida</th>
+              <th>Fecha de<br>Fin</th>
+              <th>Número<br>pasajeros</th>
+              <th>Número de<br>camiones</th>
               <th>Precio</th>
               <th>Pagos</th>
-              <th>Status op</th>
+
               <th>Status<br>admin</th>
-              <th>% Completo</th>
               <th>Status</th>
+              <th>Usuario</th>
               <th></th>
               <th></th>
+
             </thead>
             <tbody>
               <% @records.each do |record| %>
               <tr>
                 <td><%= record.try(:id)%></td>
+                <td><i class="feather icon-smartphone"></i> <%= record.try(:title) %> <br> <i class="feather icon-smartphone"></i> <%= record.try(:razon_social) %> (<%= record.client.try(:rfc) %>) <br> </td>
                 <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
                 <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
-                <td><%= record.try(:title) %></td>
-                <td><%= record.client.try(:razon_social) %></td>
-                <td><%= record.client.try(:rfc) %></td>
-                <td><%= record.try(:numero_pasajeros) %></td>
-                <td><%= record.try(:numero_de_camiones) %></td>
-                <td><%= record.try(:lugar_salida) %></td>
+                <td><i class="feather icon-users"></i> <%= record.try(:numero_pasajeros) %></td>
+                <td><i class="feather icon-disc"></i> <%= record.try(:numero_de_camiones) %></td>
                 <td><%= record.try(:precio_final) %></td>
                 <td><%= record.try(:sum_payments) %></td>
-                <td><%= record.try(:status_op) %></td>
+  
                 <% if record.try(:status_admin) == true %>
-                <td class="green">Cobrado</td>
+                <td class="text-center"><span class="label theme-bg4 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Cobrado</span></td>
                 <% else %>
-                <td class="red">Por Cobrar</td>
+                <td class="text-center"><span class="label theme-bg3 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Por cobrar</span></td>
                 <% end %>
-                <td><%= record.sum_total %> % </td>
+                
                 <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= record.status %></span></td>
                 <%
                   status = record.status
@@ -147,6 +135,7 @@
                     path = pdf_record_path(record)
                   end
                 %>
+                <td><%= record.user.name %></td>
                 <td><%= link_to 'Ver más', path %></td>
                 <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

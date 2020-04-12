@@ -1,10 +1,80 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5>Lista de Bloqueos</h5>
+            <h5 class="mr-3">Operaciones</h5>
         </div>
         <div class="card-block">
-            <%=  render 'formato' %>
+        <div class="table-responsive mt-4">
+          <table class="table" id="example">
+            <thead>
+              <th>ID</th>
+              <th>Información</th>
+              <th>Fecha de<br>Inicio</th>
+              <th>Fecha de<br>Fin</th>
+              <th>Número<br>pasajeros</th>
+              <th>Número de<br>camiones</th>
+              <th>Precio</th>
+              <th>Pagos</th>
+
+              <th>Status<br>admin</th>
+              <th>Status</th>
+              <th>Usuario</th>
+              <th></th>
+              <th></th>
+
+            </thead>
+            <tbody>
+              <% @records.each do |record| %>
+              <tr>
+                <td><%= record.try(:id)%></td>
+                <td><i class="feather icon-smartphone"></i> <%= record.try(:title) %> <br> <i class="feather icon-smartphone"></i> <%= record.try(:razon_social) %> (<%= record.client.try(:rfc) %>) <br> </td>
+                <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
+                <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
+                <td><i class="feather icon-users"></i> <%= record.try(:numero_pasajeros) %></td>
+                <td><i class="feather icon-disc"></i> <%= record.try(:numero_de_camiones) %></td>
+                <td><%= record.try(:precio_final) %></td>
+                <td><%= record.try(:sum_payments) %></td>
+  
+                <% if record.try(:status_admin) == true %>
+                <td class="text-center"><span class="label theme-bg4 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Cobrado</span></td>
+                <% else %>
+                <td class="text-center"><span class="label theme-bg3 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Por cobrar</span></td>
+                <% end %>
+                
+                <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= record.status %></span></td>
+                <%
+                  status = record.status
+                  if status == 'Abierto'
+                    path = edit_record_path(record)
+                  elsif status == 'Cliente'
+                    path = client_record_path(record)
+                  elsif status == 'Itinerario'
+                    path = itinerary_record_path(record)
+                  elsif status == 'Adicional'
+                    path = trip_record_path(record)
+                  elsif status == 'Autobuses'
+                    path = bus_record_path(record)
+                  elsif status == 'Precios'
+                    path = price_record_path(record)
+                  elsif status == 'Pagos'
+                    path = payments_record_path(record)
+                  else
+                    path = pdf_record_path(record)
+                  end
+                %>
+                <td><%= record.user.name %></td>
+                <td><%= link_to 'Ver más', path %></td>
+                <td><%= link_to 'Eliminar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div style="display:flex; justify-content:center; align-items:center;">
+              <% unless @records.blank? %>
+                  <%= will_paginate @records, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+              <% end %>
+          </div>
+        </div>     
         </div>
     </div>
 </div>
