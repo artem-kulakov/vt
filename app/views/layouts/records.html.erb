@@ -6,45 +6,127 @@
             </div>
             <div class="card-block">
                 <!-- [ SmartWizard html ] start -->
-                <div id="smartwizard" class="sw-main sw-theme-default">
-                    <ul class="nav nav-tabs step-anchor">
-                        <li class="nav-item wizard-item <%= @step_1_active %>"><a href="#step-1" class="nav-link">
-                                <h6>Step 1</h6>
-                                <p class="m-0">Información<br>básica</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_2_active %>"><a href="#step-2" class="nav-link">
-                                <h6>Step 2</h6>
-                                <p class="m-0">Cliente</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_3_active %>"><a href="#step-3" class="nav-link">
-                                <h6>Step 3</h6>
-                                <p class="m-0">Itinerario</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_4_active %>"><a href="#step-4" class="nav-link">
-                                <h6>Step 4</h6>
-                                <p class="m-0">Información<br>del viaje</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_5_active %>"><a href="#step-5" class="nav-link">
-                                <h6>Step 5</h6>
-                                <p class="m-0">Servicio<br>de autobuses</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_6_active %>"><a href="#step-5" class="nav-link">
-                                <h6>Step 6</h6>
-                                <p class="m-0">Precio</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_7_active %>"><a href="#step-5" class="nav-link">
-                                <h6>Step 7</h6>
-                                <p class="m-0">Pagos</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_8_active %>"><a href="#step-5" class="nav-link">
-                                <h6>Step 8</h6>
-                                <p class="m-0">Reporte</p>
-                            </a></li>
-                    </ul>
-                    <div class="sw-container tab-content">
-                        <%= yield %>
-                    </div>
-                </div>
+                <% if action_name != 'index' %>
+                  <div id="smartwizard" class="sw-main sw-theme-default">
+                      <ul class="nav nav-tabs step-anchor">
+                          <li class="nav-item wizard-item <%= @step_1_active %>">
+                              <% if @record.id.present? %>
+                                <%= link_to edit_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 1</h6>
+                                  <p class="m-0">Información<br>básica</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 1</h6>
+                                  <p class="m-0">Información<br>básica</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_2_active %>">
+                              <% if Record.statuses[@record.status] >= 1 %>
+                                <%= link_to client_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 2</h6>
+                                  <p class="m-0">Cliente</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 2</h6>
+                                  <p class="m-0">Cliente</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_3_active %>">
+                              <% if Record.statuses[@record.status] >= 2 %>
+                                <%= link_to itinerary_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 3</h6>
+                                  <p class="m-0">Itinerario</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 3</h6>
+                                  <p class="m-0">Itinerario</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_4_active %>">
+                              <% if Record.statuses[@record.status] >= 3 %>
+                                <%= link_to trip_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 4</h6>
+                                  <p class="m-0">Información<br>del viaje</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 4</h6>
+                                  <p class="m-0">Información<br>del viaje</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_5_active %>">
+                              <% if Record.statuses[@record.status] >= 4 %>
+                                <%= link_to bus_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 5</h6>
+                                  <p class="m-0">Servicio<br>de autobuses</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 5</h6>
+                                  <p class="m-0">Servicio<br>de autobuses</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_6_active %>">
+                              <% if Record.statuses[@record.status] >= 5 %>
+                                <%= link_to price_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 6</h6>
+                                  <p class="m-0">Precio</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 6</h6>
+                                  <p class="m-0">Precio</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_7_active %>">
+                              <% if Record.statuses[@record.status] >= 6 %>
+                                <%= link_to payments_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 7</h6>
+                                  <p class="m-0">Pagos</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 7</h6>
+                                  <p class="m-0">Pagos</p>
+                                </a>
+                              <% end %>
+                          </li>
+
+                          <li class="nav-item wizard-item <%= @step_8_active %>">
+                              <% if Record.statuses[@record.status] >= 7 %>
+                                <%= link_to pdf_record_path(@record), class: "nav-link" do %>
+                                  <h6>Step 8</h6>
+                                  <p class="m-0">Reporte</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 8</h6>
+                                  <p class="m-0">Reporte</p>
+                                </a>
+                              <% end %>
+                          </li>
+                      </ul>
+
+                      <div class="sw-container tab-content">
+                          <%= yield %>
+                      </div>
+                  </div>
+                <% end %>
             </div>
         </div>
     </div>
