@@ -6,7 +6,7 @@
             </div>
             <div class="card-block">
                 <!-- [ SmartWizard html ] start -->
-                <% if action_name != 'index' %>
+                <% if %w(new edit client itinerary trip bus price payments pdf).include?(action_name) %>
                   <div id="smartwizard" class="sw-main sw-theme-default">
                       <ul class="nav nav-tabs step-anchor">
                           <li class="nav-item wizard-item <%= @step_1_active %>">
