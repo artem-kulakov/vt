@@ -15,7 +15,7 @@ $(document).ready(function() {
         }, {
             "Average": "8-24",
             "value": 30,
-            "color": ["#04a9f5", "#049df5"]
+            "color": ["#ff7a59", "#049df5"]
         }, {
             "Average": ">24",
             "value": 4,
@@ -72,7 +72,7 @@ $(document).ready(function() {
         }, {
             "title": "page started",
             "value": 28,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         }],
         "titleField": "title",
         "valueField": "value",

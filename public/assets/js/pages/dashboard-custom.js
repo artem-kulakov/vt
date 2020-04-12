@@ -130,7 +130,7 @@ $(document).ready(function() {
             "code": "PH",
             "name": "Philippines",
             "value": 94852030,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         },
         {
             "code": "AU",
@@ -148,7 +148,7 @@ $(document).ready(function() {
             "code": "BW",
             "name": "Botswana",
             "value": 2030738,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         },
         {
             "code": "MY",
@@ -160,7 +160,7 @@ $(document).ready(function() {
             "code": "NZ",
             "name": "New Zealand",
             "value": 4414509,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         },
         {
             "code": "NI",

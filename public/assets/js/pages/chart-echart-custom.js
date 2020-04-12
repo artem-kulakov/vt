@@ -17,7 +17,7 @@ $(document).ready(function() {
             yAxis: {
                 type: 'value'
             },
-            color: "#04a9f5",
+            color: "#ff7a59",
             series: [{
                 data: [1, 5, 3, 6, 4, 8, 10],
                 type: 'line',
@@ -316,7 +316,7 @@ $(document).ready(function() {
                             'tot sal': false
                         }
                     },
-                    color: ['#1de9b6', '#f44236', '#04a9f5', '#f4c22b', '#A389D4', '#3ebfea'],
+                    color: ['#1de9b6', '#f44236', '#ff7a59', '#f4c22b', '#A389D4', '#3ebfea'],
                     toolbox: {
                         'show': true,
                         orient: 'vertical',
@@ -672,7 +672,7 @@ $(document).ready(function() {
                 x: 'left',
                 data: ['HTML', 'SCSS', 'JS', 'Images', 'Icons']
             },
-            color: ['#f4c22b', '#A389D4', '#3ebfea', '#04a9f5', '#1de9b6'],
+            color: ['#f4c22b', '#A389D4', '#3ebfea', '#ff7a59', '#1de9b6'],
             toolbox: {
                 show: true,
                 feature: {
@@ -755,7 +755,7 @@ $(document).ready(function() {
                 x: 'left',
                 data: ['HTML', 'SCSS', 'JS', 'Images', 'Icons']
             },
-            color: ['#f4c22b', '#A389D4', '#3ebfea', '#04a9f5', '#1de9b6'],
+            color: ['#f4c22b', '#A389D4', '#3ebfea', '#ff7a59', '#1de9b6'],
             toolbox: {
                 show: true,
                 feature: {
@@ -872,7 +872,7 @@ $(document).ready(function() {
                     legend: {
                         data: ['Chrome', 'Firefox', 'Safari', 'IE9+', 'IE8-']
                     },
-                    color: ['#f4c22b', '#A389D4', '#3ebfea', '#04a9f5', '#1de9b6'],
+                    color: ['#f4c22b', '#A389D4', '#3ebfea', '#ff7a59', '#1de9b6'],
                     toolbox: {
                         show: true,
                         feature: {
@@ -1256,7 +1256,7 @@ $(document).ready(function() {
                     lineStyle: {
                         color: [
                             [0.2, '#1de9b6'],
-                            [0.8, '#04a9f5'],
+                            [0.8, '#ff7a59'],
                             [1, '#A389D4']
                         ],
                         width: 10

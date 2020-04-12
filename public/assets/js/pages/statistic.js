@@ -104,7 +104,7 @@ function floatchart() {
                 [13, 10],
                 [14, 5],
             ],
-            color: "#04a9f5",
+            color: "#ff7a59",
             bars: {
                 show: true,
                 lineWidth: 0,
@@ -788,7 +788,7 @@ function floatchart() {
                 [15, 50],
                 [18, 70],
             ],
-            color: "#04a9f5",
+            color: "#ff7a59",
             lines: {
                 show: true,
                 fill: false,
@@ -845,7 +845,7 @@ function floatchart() {
                 [15, 60],
                 [18, 10],
             ],
-            color: "#04a9f5",
+            color: "#ff7a59",
             lines: {
                 show: true,
                 fill: false,

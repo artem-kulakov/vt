@@ -52,7 +52,7 @@ $(document).ready(function() {
                 {
                     values: cos,
                     key: 'Cosine Wave',
-                    color: '#04a9f5'
+                    color: '#ff7a59'
                 },
                 {
                     values: sin2,
@@ -94,7 +94,7 @@ $(document).ready(function() {
                 }, {
                     "label": "B",
                     "value": 10,
-                    "color": "#04a9f5"
+                    "color": "#ff7a59"
                 }, {
                     "label": "C",
                     "value": 32.807804682612,
@@ -131,7 +131,7 @@ $(document).ready(function() {
                 .rotateLabels(0)
                 .showControls(true)
                 .groupSpacing(0.1)
-                .color(['#04a9f5', '#A389D4', '#1de9b6']);
+                .color(['#ff7a59', '#A389D4', '#1de9b6']);
 
             chart.xAxis
                 .tickFormat(d3.format(',f'));
@@ -191,7 +191,7 @@ $(document).ready(function() {
             }, {
                 "label": "Three",
                 "value": 32.807804682612,
-                "color": "#04a9f5"
+                "color": "#ff7a59"
             }, {
                 "label": "Four",
                 "value": 196.45946739256,
@@ -250,7 +250,7 @@ $(document).ready(function() {
             }, {
                 "label": "Three",
                 "value": 32.807804682612,
-                "color": "#04a9f5"
+                "color": "#ff7a59"
             }, {
                 "label": "Four",
                 "value": 196.45946739256,

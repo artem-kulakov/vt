@@ -142,7 +142,7 @@ a.text-secondary.btn, a.text-secondary.btn:Active, a.text-secondary.btn:focus, a
   background-color: rgba(33, 34, 36, 0.8);
 }
 .card.card-load .card-loader i {
-  color: #04a9f5;
+  color: #ff7a59;
 }
 
 /* ==========  card css End  =========== */
@@ -496,7 +496,7 @@ table.DTFC_Cloned tr {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff !important;
-  background: #04a9f5;
+  background: #ff7a59;
   -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
@@ -891,8 +891,8 @@ pre[class*=language-] {
 }
 
 .card .card-block pre[class*=language-] > code {
-  -webkit-box-shadow: -1px 0 0 0 #04a9f5, 0 0 0 1px #2d2f31;
-          box-shadow: -1px 0 0 0 #04a9f5, 0 0 0 1px #2d2f31;
+  -webkit-box-shadow: -1px 0 0 0 #ff7a59, 0 0 0 1px #2d2f31;
+          box-shadow: -1px 0 0 0 #ff7a59, 0 0 0 1px #2d2f31;
   background: #212224;
   background-size: 3em 3em;
   background-origin: content-box;

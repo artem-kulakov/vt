@@ -116,7 +116,7 @@ $(document).ready(function() {
             "code": "PH",
             "name": "Philippines",
             "value": 94852030,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         },
         {
             "code": "AU",
@@ -134,7 +134,7 @@ $(document).ready(function() {
             "code": "BW",
             "name": "Botswana",
             "value": 2030738,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         },
         {
             "code": "MY",
@@ -146,7 +146,7 @@ $(document).ready(function() {
             "code": "NZ",
             "name": "New Zealand",
             "value": 4414509,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         },
         {
             "code": "NI",
@@ -1074,7 +1074,7 @@ $(document).ready(function() {
         }, {
             "game": "Travel",
             "visits": 30,
-            "color": ["#04a9f5", "#049df5"]
+            "color": ["#ff7a59", "#049df5"]
         }, {
             "game": "News",
             "visits": 4,
@@ -1126,7 +1126,7 @@ $(document).ready(function() {
         }, {
             "Average": "8-24",
             "value": 30,
-            "color": ["#04a9f5", "#049df5"]
+            "color": ["#ff7a59", "#049df5"]
         }, {
             "Average": ">24",
             "value": 4,
@@ -1412,8 +1412,8 @@ $(document).ready(function() {
         }, {
             "id": "g3",
             "valueAxis": "v1",
-            "lineColor": ["#04a9f5", "#049df5"],
-            "fillColors": ["#04a9f5", "#049df5"],
+            "lineColor": ["#ff7a59", "#049df5"],
+            "fillColors": ["#ff7a59", "#049df5"],
             "fillAlphas": 1,
             "type": "column",
             "title": "CLICKS",
@@ -1567,7 +1567,7 @@ $(document).ready(function() {
         }, {
             "device": "Mobile",
             "percentage": 32.5,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         }, {
             "device": "Desktop",
             "percentage": 41.6,
@@ -1597,7 +1597,7 @@ $(document).ready(function() {
         }, {
             "title": "page Likes",
             "value": 23.5,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         }, {
             "title": "page",
             "value": 15.5,
@@ -1635,7 +1635,7 @@ $(document).ready(function() {
         }, {
             "title": "page started",
             "value": 28,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         }],
         "titleField": "title",
         "valueField": "value",
@@ -1665,7 +1665,7 @@ $(document).ready(function() {
         }, {
             "title": "Food & Drink",
             "value": 33.33,
-            "color": "#04a9f5"
+            "color": "#ff7a59"
         }],
         "titleField": "title",
         "valueField": "value",
@@ -1972,7 +1972,7 @@ $(document).ready(function() {
             "cursorAlpha": 0,
             "zoomable": false,
             "cursorColor": "#fff",
-            "categoryBalloonColor": "#04a9f5",
+            "categoryBalloonColor": "#ff7a59",
             "valueZoomable": false,
             "valueLineAlpha": 0
         },
@@ -1989,7 +1989,7 @@ $(document).ready(function() {
             "id": "g1",
             "valueField": "value",
             "type": "smoothedLine",
-            "lineColor": '#04a9f5',
+            "lineColor": '#ff7a59',
             "fillColors": [
                 "#23b7e5"
             ],

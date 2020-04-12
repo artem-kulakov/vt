@@ -85,7 +85,7 @@ $(document).ready(function() {
                 vAxis: {
                     title: 'City'
                 },
-                colors: ['#A389D4', '#04a9f5']
+                colors: ['#A389D4', '#ff7a59']
             };
             var chart = new google.visualization.BarChart(document.getElementById('chart-google-bar'));
             chart.draw(data, options);
@@ -126,7 +126,7 @@ $(document).ready(function() {
                         fontSize: 11
                     }
                 },
-                colors: ['#1de9b6', '#04a9f5', '#A389D4']
+                colors: ['#1de9b6', '#ff7a59', '#A389D4']
             };
             var chart = new google.visualization.BubbleChart(document.getElementById('chart-google-bubble'));
             chart.draw(data, options);
@@ -150,7 +150,7 @@ $(document).ready(function() {
             ], true);
             var optionsCandlestick = {
                 legend: 'none',
-                colors: ['#04a9f5']
+                colors: ['#ff7a59']
             };
             var chart = new google.visualization.CandlestickChart(document.getElementById('chart-google-Candlestick'));
             chart.draw(dataCandlestick, optionsCandlestick);
@@ -182,7 +182,7 @@ $(document).ready(function() {
                 candlestick: {
                     fallingColor: {
                         strokeWidth: 0,
-                        fill: '#04a9f5'
+                        fill: '#ff7a59'
                     }, // red
                     risingColor: {
                         strokeWidth: 0,
@@ -227,7 +227,7 @@ $(document).ready(function() {
                         type: 'line'
                     }
                 },
-                colors: ['#04a9f5', '#1de9b6', '#f44236', '#1dc4e9', '#A389D4', '#3ebfea']
+                colors: ['#ff7a59', '#1de9b6', '#f44236', '#1dc4e9', '#A389D4', '#3ebfea']
             };
 
             var chart = new google.visualization.ComboChart(document.getElementById('chart-google-Combo'));
@@ -305,7 +305,7 @@ $(document).ready(function() {
                         offset: 0.5
                     },
                 },
-                colors: ['#04a9f5', '#1de9b6', '#1dc4e9', '#FE8A7D', '#A389D4', '#3ebfea']
+                colors: ['#ff7a59', '#1de9b6', '#1dc4e9', '#FE8A7D', '#A389D4', '#3ebfea']
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('chart-google-Exploading'));
@@ -335,7 +335,7 @@ $(document).ready(function() {
             var optionsThreshold = {
                 title: 'Popularity of Types of Pizza',
                 sliceVisibilityThreshold: .2,
-                colors: ['#04a9f5', '#1de9b6', '#A389D4', '#899FD4']
+                colors: ['#ff7a59', '#1de9b6', '#A389D4', '#899FD4']
             };
             var chart = new google.visualization.PieChart(document.getElementById('chart-google-Threshold'));
             chart.draw(dataThreshold, optionsThreshold);

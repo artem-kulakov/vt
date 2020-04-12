@@ -149,10 +149,10 @@ $(document).ready(function() {
             data: [50, 75, 80, 70, 85, 80, 70],
             fill: false,
             borderWidth: 4,
-            borderColor: "#04a9f5",
-            backgroundColor: "#04a9f5",
-            hoverborderColor: "#04a9f5",
-            hoverBackgroundColor: "#04a9f5",
+            borderColor: "#ff7a59",
+            backgroundColor: "#ff7a59",
+            hoverborderColor: "#ff7a59",
+            hoverBackgroundColor: "#ff7a59",
         }]
     };
     var myBarChart = new Chart(bar, {
@@ -447,12 +447,12 @@ $(document).ready(function() {
             backgroundColor: [
                 theme_g1,
                 theme_g2,
-                "#04a9f5"
+                "#ff7a59"
             ],
             hoverBackgroundColor: [
                 theme_g1,
                 theme_g2,
-                "#04a9f5"
+                "#ff7a59"
             ]
         }]
     };
@@ -485,12 +485,12 @@ $(document).ready(function() {
             backgroundColor: [
                 theme_g1,
                 theme_g2,
-                "#04a9f5"
+                "#ff7a59"
             ],
             hoverBackgroundColor: [
                 theme_g1,
                 theme_g2,
-                "#04a9f5"
+                "#ff7a59"
             ]
         }]
     };

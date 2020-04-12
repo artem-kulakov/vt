@@ -42,7 +42,7 @@ $(document).ready(function() {
             responsive: true,
             ykeys: ['a', 'b', 'c'],
             labels: ['Bar 1', 'Bar 2', 'Bar 3'],
-            barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
+            barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#ff7a59"]
         });
         // [ bar-simple ] chart end
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
             responsive: true,
             ykeys: ['a', 'b', 'c'],
             labels: ['Bar 1', 'Bar 2', 'Bar 3'],
-            barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
+            barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#ff7a59"]
         });
         // [ bar-stacked ] chart end
 
@@ -187,7 +187,7 @@ $(document).ready(function() {
                 ipad: 10,
                 itouch: 10
             }],
-            lineColors: ['#A389D4', '#1de9b6', '#04a9f5'],
+            lineColors: ['#A389D4', '#1de9b6', '#ff7a59'],
             xkey: 'period',
             ykeys: ['iphone', 'ipad', 'itouch'],
             labels: ['Site A', 'Site B', 'Site C'],
@@ -249,7 +249,7 @@ $(document).ready(function() {
             hideHover: 'auto',
             responsive: true,
             labels: ['Series A', 'Series B'],
-            lineColors: ['#1de9b6', '#04a9f5']
+            lineColors: ['#1de9b6', '#ff7a59']
         });
         // [ line-angle-chart ] end
 
@@ -329,11 +329,11 @@ $(document).ready(function() {
             parseTime: false,
             ymin: -1.0,
             ymax: 1.0,
-            lineColors: ['#A389D4', '#1de9b6', '#04a9f5'],
+            lineColors: ['#A389D4', '#1de9b6', '#ff7a59'],
             pointSize: 4,
             responsive: true,
             pointFillColors: ['#fff', '#fff', '#fff'],
-            pointStrokeColors: ['#A389D4', '#1de9b6', '#04a9f5'],
+            pointStrokeColors: ['#A389D4', '#1de9b6', '#ff7a59'],
             lineWidth: 2,
             hideHover: true
         });
@@ -368,7 +368,7 @@ $(document).ready(function() {
             colors: [
                 '#1de9b6',
                 '#A389D4',
-                '#04a9f5',
+                '#ff7a59',
                 '#1dc4e9',
             ],
             resize: true,

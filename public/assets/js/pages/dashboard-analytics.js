@@ -108,8 +108,8 @@ $(document).ready(function() {
            },{
                "id": "g3",
                "valueAxis": "v1",
-               "lineColor": ["#04a9f5", "#049df5"],
-               "fillColors": ["#04a9f5", "#049df5"],
+               "lineColor": ["#ff7a59", "#049df5"],
+               "fillColors": ["#ff7a59", "#049df5"],
                "fillAlphas": 1,
                "type": "column",
                "title": "CLICKS",

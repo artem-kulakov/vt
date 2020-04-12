@@ -20,7 +20,7 @@ $(document).ready(function() {
         }, {
             "game": "Travel",
             "visits": 30,
-            "color": ["#04a9f5", "#049df5"]
+            "color": ["#ff7a59", "#049df5"]
         }, {
             "game": "News",
             "visits": 4,

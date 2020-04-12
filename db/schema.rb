@@ -314,10 +314,8 @@ ActiveRecord::Schema.define(version: 2020_04_13_201118) do
     t.string "puesto"
     t.string "phone"
     t.boolean "admin", default: false
-    t.string "authentication_token", limit: 30
     t.bigint "company_id"
     t.boolean "super_admin"
-    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

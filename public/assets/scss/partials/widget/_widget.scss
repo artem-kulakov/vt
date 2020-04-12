@@ -136,7 +136,7 @@
 
 .chat-sanders {
     .card-header {
-        background: linear-gradient(-135deg, #3f4d67 0%, #3f4d67 100%);
+        background: linear-gradient(-135deg, #33475a 0%, #33475a 100%);
     }
 
     .msg {
@@ -1394,16 +1394,16 @@
 .datepicker-dropdown {
     padding: 20px;
     color: #fff;
-    background: #3f4d67;
+    background: #33475a;
     font-size: 14px;
 
     &:after {
-        border-bottom: 6px solid #3f4d67;
+        border-bottom: 6px solid #33475a;
     }
 }
 
 .datepicker-dropdown.datepicker-orient-top:after {
-    border-top: 6px solid #3f4d67;
+    border-top: 6px solid #33475a;
 }
 
 .datepicker table tr td.active.active,.datepicker table tr td.active.highlighted.active,.datepicker table tr td.active.highlighted:active,
@@ -1509,7 +1509,7 @@
 div.code-toolbar{
     > .toolbar a, > .toolbar button, >.toolbar span{
         padding: 3px 0.9em !important;
-        background:#04a9f5 !important;
+        background:#ff7a59 !important;
         color:#fff !important;
         box-shadow:none !important;
     }

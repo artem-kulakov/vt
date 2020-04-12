@@ -40,7 +40,7 @@
             <h5>Cotizaciones</h5>
             <% @years.reverse.each do |year| %>
               <% if year.to_s == @year.to_s %>
-                <span class="mr-2"><%= year %></span>
+                <span class="mr-2 label theme-bg2 f-15 text-white active" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= year %></span>
               <% else %>
                 <%= link_to year, quotations_path(year: year), class: "mr-2" %>
               <% end %>
@@ -52,9 +52,7 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Teléfono</th>
-                            <th>Email</th>
-                            <th>Origen</th>
+                        
                             <th>Num días</th>
                             <th>Fecha inicio</th>
                             <th>Fecha fin</th>
@@ -68,15 +66,13 @@
                     <tbody>
                         <% @quotations.each do |quotation| %>
                           <tr>
-                            <td><%= quotation.nombre %></td>
-                            <td><%= quotation.telefono %></td>
-                            <td><%= quotation.email %></td>
-                            <td><%= quotation.origen %></td>
+                            <td><%= quotation.nombre %> <br> <i class="feather icon-home"></i> <%= quotation.telefono %> <br> <i class="feather icon-home"></i> <%= quotation.email %>  </td>
+                            
                             <td><%= quotation.num_dias %></td>
                             <td><%= quotation.try(:fecha_inicio).strftime(" %b-%d-%Y") %></td>
                             <td><%= quotation.try(:fecha_fin).strftime(" %b-%d-%Y") %></td>
-                            <td><%= quotation.pasajeros %></td>
-                            <td><%= quotation.user.name %></td>
+                            <td><i class="feather icon-home"></i> <%= quotation.pasajeros %></td>
+                            <td><i class="feather icon-home"></i>  <%= quotation.user.name %></td>
                             <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= quotation.status %></span></td>
                             <%
                               status = quotation.status

@@ -155,7 +155,7 @@ class WelcomeController < ApplicationController
     data[:quotations_status] << {
       game: 'Distancia',
       visits: @quotations_distancia,
-      color: ["#04a9f5", "#049df5"]
+      color: ["#ff7a59", "#049df5"]
     }
     data[:quotations_status] << {
       game: 'Precios',
@@ -194,7 +194,7 @@ class WelcomeController < ApplicationController
     data[:records_status] << {
       game: 'Itinerario',
       visits: @records_itinerario,
-      color: ["#04a9f5", "#049df5"]
+      color: ["#ff7a59", "#049df5"]
     }
     data[:records_status] << {
       game: 'Adicional',
@@ -214,7 +214,7 @@ class WelcomeController < ApplicationController
     data[:records_status] << {
       game: 'Pagos',
       visits: @records_pagos,
-      color: ["#04a9f5", "#049df5"]
+      color: ["#ff7a59", "#049df5"]
     }
     data[:records_status] << {
       game: 'Cerrado',
