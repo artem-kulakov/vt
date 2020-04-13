@@ -354,13 +354,22 @@
                   <tr>
                     <td><%= bus.numero %></td>
                     <%
-                      last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
-                      kms_since_preventivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_preventivo_checkup, Date.today).sum(:km_finales)
+                      if bus.checkups.preventivo.any?
+                        last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+                        kms_since_preventivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_preventivo_checkup, Date.today).sum(:km_finales)
+                        preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
+                      end
 
-                      last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-                      kms_since_correctivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_correctivo_checkup, Date.today).sum(:km_finales)
+                      if bus.checkups.correctivo.any?
+                        last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+                        kms_since_correctivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_correctivo_checkup, Date.today).sum(:km_finales)
+                        correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+                      end
 
-                      if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+                      if !defined?(preventivo_checkup_needed) && !defined?(correctivo_checkup_needed)
+                        status = 'unknown'
+                        color = 'theme-bg2'
+                      elsif preventivo_checkup_needed || correctivo_checkup_needed
                         status = 'checkup'
                         color = 'theme-bg2'
                       else
