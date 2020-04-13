@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if current_user.super_admin?
+      @active11 = "active pcoded-trigger"
+    else
+      redirect_to users_admin_index_path
+    end
   end
 
   # GET /users/new

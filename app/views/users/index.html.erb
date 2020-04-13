@@ -15,6 +15,7 @@
                     <th>Teléfono</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                   </tr>
                 </thead>
 
@@ -26,7 +27,8 @@
                     <td><%= user.admin %></td>
                     <td><%= user.puesto %></td>
                     <td><%= user.phone %></td>
-                    <td><%= link_to 'Edit', edit_users_admin_path(user) %></td>
+                    <td><%= link_to 'Ver mas', users_admin_path(user) %></td>
+                    <td><%= link_to 'Editar', edit_users_admin_path(user) %></td>
                     <td><%= link_to 'Eliminar', users_admin_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                   <% end %>
