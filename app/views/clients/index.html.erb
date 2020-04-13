@@ -36,6 +36,7 @@
                   <th>Status</th>
                   <th>Servicios que debe</th>
                   <th>Razon Social</th>
+                  <th>Address</th>
                   <th>R.F.C</th>
                   <th>Dirección</th>
                   <th>Colonia</th>
@@ -58,6 +59,7 @@
 
                     <td class="text-success"><%= client.records.where({ "records.status_admin" => false }).count%></td>
                     <td><%= client.razon_social %></td>
+                    <td><%= client.address %></td>
                     <td><%= client.rfc %></td>
                     <td><%= client.calle_y_numero %></td>
                     <td><%= client.colonia %></td>
