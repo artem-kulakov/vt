@@ -232,8 +232,9 @@ class WelcomeController < ApplicationController
     # Buses availability
     @buses = current_user.company.buses
 
-    # Checkups
-    @checkups = []
+    # Prevenvivo checkups
+    @preventivo_checkups = []
+    @correctivo_checkups = []
     current_user.company.buses.each do |bus|
       if bus.checkups.preventivo.any?
         last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
@@ -249,21 +250,22 @@ class WelcomeController < ApplicationController
         correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
       end
 
-      if preventivo_checkup_needed || correctivo_checkup_needed
+      if preventivo_checkup_needed
+        @preventivo_checkups << {
+          date: services_after_preventivo_checkup.order(:fecha).last.record.end_time,
+          bus: bus.numero
+        }
+      end
 
-        if preventivo_checkup_needed
-          start_time = services_after_preventivo_checkup.order(:fecha).last.record.end_time
-        else
-          start_time = services_after_correctivo_checkup.order(:fecha).last.record.end_time
-        end
-
-        @checkups << {
-          date: start_time,
+      if correctivo_checkup_needed
+        @correctivo_checkups << {
+          date: services_after_correctivo_checkup.order(:fecha).last.record.end_time,
           bus: bus.numero
         }
       end
     end
-    @checkups.sort_by! { |hsh| hsh[:start_time] }
+    @preventivo_checkups.sort_by! { |hsh| hsh[:start_time] }
+    @correctivo_checkups.sort_by! { |hsh| hsh[:start_time] }
 
     @data = data
   end

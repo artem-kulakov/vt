@@ -402,7 +402,7 @@
                 <th class="text-center">Date</th>
               </thead>
               <tbody>
-                <% @checkups.each do |checkup| %>
+                <% @preventivo_checkups.first(5).each do |checkup| %>
                   <tr>
                     <td><%= checkup[:bus] %></td>
                     <td class="text-center"><%= checkup[:date].strftime('%F') %></td>
@@ -413,14 +413,22 @@
           </div>
         </div>
         <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
-            <% @free_buses_year.each do |number, days| %>
-                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div class="media-body">
-                        <h6 class="m-0 d-inline"><%= number %></h6>
-                        <span class="float-right d-flex align-items-center"><%= days %> dias</span>
-                    </div>
-                </div>
-            <% end %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <th>Número</th>
+                <th class="text-center">Date</th>
+              </thead>
+              <tbody>
+                <% @correctivo_checkups.first(5).each do |checkup| %>
+                  <tr>
+                    <td><%= checkup[:bus] %></td>
+                    <td class="text-center"><%= checkup[:date].strftime('%F') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
     </div>
 </div>
