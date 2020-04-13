@@ -354,6 +354,10 @@
 #   quotation.update(status: [0,1,2,3,4].sample)
 # end
 
-Record.all.each do |record|
-  record.update(status: [0,1,2,3,4,5,6,7].sample)
+# Record.all.each do |record|
+#   record.update(status: [0,1,2,3,4,5,6,7].sample)
+# end
+
+Ga.all.each do |ga|
+  ga.update(company_id: 9)
 end
