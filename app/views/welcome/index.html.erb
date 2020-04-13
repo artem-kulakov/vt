@@ -50,6 +50,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-xl-4 col-md-12 m-b-30 datta-example">
     <h5 class="docs-header" id="page-table">Autobuses menos reservados</h5>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -337,12 +338,21 @@
     </div>
 <% end %>
 
-<div class="col-md-6 datta-example">
-    <div class="card user-list">
-        <div class="card-header">
-            <h5>Buses checkup status</h5>
-        </div>
-        <div class="card-block pb-0">
+<div class="col-md-6 m-b-30 datta-example">
+    <h5 class="docs-header" id="page-table">Buses checkup status</h5>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">All</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Nearest preventivo</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Nearest correctivo</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent" style="padding: 35px 30px;">
+        <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home2-tab">
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -383,6 +393,26 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+            <% @free_buses_month.each do |number, days| %>
+                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
+                    <div class="media-body">
+                        <h6 class="m-0 d-inline"><%= number %></h6>
+                        <span class="float-right d-flex align-items-center"><%= days %> dias</span>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
+            <% @free_buses_year.each do |number, days| %>
+                <div class="media friendlist-box align-items-center justify-content-center m-b-20">
+                    <div class="media-body">
+                        <h6 class="m-0 d-inline"><%= number %></h6>
+                        <span class="float-right d-flex align-items-center"><%= days %> dias</span>
+                    </div>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>
