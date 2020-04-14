@@ -347,7 +347,7 @@ ul.notifications > li {
   -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  border-color: #eaeaea; }
+  border-color: #c5c5c5; }
   .dropdown-menu > li > a {
     color: #676a6d; }
   .dropdown-menu > li i {
@@ -454,7 +454,7 @@ ul.list-justify > li {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  border-color: #eaeaea;
+  border-color: #c5c5c5;
   background-color: #fcfcfc; }
   .form-control:focus {
     -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -474,7 +474,7 @@ ul.list-justify > li {
   box-shadow: none; }
 
 .input-group-addon {
-  border: 1px solid #eaeaea; }
+  border: 1px solid #c5c5c5; }
 
 /* fancy checkbox and radio button */
 .fancy-checkbox {
@@ -919,7 +919,7 @@ ul.activity-list > li {
     background-color: #00AAFF; }
 
 .custom-tabs-line.tabs-line-bottom {
-  border-bottom: 1px solid #eaeaea; }
+  border-bottom: 1px solid #c5c5c5; }
   .custom-tabs-line.tabs-line-bottom ul > li {
     margin-bottom: -1px; }
   .custom-tabs-line.tabs-line-bottom a {
@@ -1663,7 +1663,7 @@ ul.activity-list > li {
 .profile-right .heading {
   padding-bottom: 10px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #eaeaea; }
+  border-bottom: 1px solid #c5c5c5; }
 
 .awards {
   margin-bottom: 50px; }
@@ -1743,7 +1743,7 @@ ul.activity-timeline > li {
   ul.activity-timeline > li:after {
     content: "";
     display: block;
-    border-left: 1px solid #eaeaea;
+    border-left: 1px solid #c5c5c5;
     width: 1px;
     height: 100px;
     position: absolute;

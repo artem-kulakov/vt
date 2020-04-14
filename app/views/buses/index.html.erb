@@ -7,6 +7,7 @@
           <div class="table-responsive">
             <table class="table" id="example-3">
               <thead>
+                <th>ID</th>
                 <th>Número</th>
                 <th>Marca</th>
                 <th>Capacidad</th>
@@ -22,6 +23,7 @@
               <tbody>
                 <% @buses.each do |bus| %>
                 <tr>
+                  <td><%= bus.id %></td>
                   <td><%= bus.numero %></td>
                   <td><%= bus.marca %></td>
                   <td><%= bus.capacidad %></td>

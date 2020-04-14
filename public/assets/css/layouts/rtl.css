@@ -462,7 +462,7 @@ body {
 }
 
 .note-card .note-box-aside {
-  border-left: 1px solid #eaeaea;
+  border-left: 1px solid #c5c5c5;
   border-right: none;
 }
 
@@ -1025,7 +1025,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 .Active-visitor .card-active > div + div,
 .card-social .card-active > div + div {
-  border-right: 1px solid #eaeaea;
+  border-right: 1px solid #c5c5c5;
   border-left: 0 !important;
 }
 

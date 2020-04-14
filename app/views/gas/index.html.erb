@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-6">
     <div class="card">
         <div class="card-header">
             <h5>Precios de Diesel</h5>
@@ -17,8 +17,8 @@
               <tbody>
                 <% @gas.each do |ga| %>
                 <tr>
-                  <td><%= ga.cantidad %></td>
-                  <td><%= ga.month %></td>
+                  <td><i class="feather icon-droplet"></i> <%= ga.try(:cantidad) %></td>
+                  <td><i class="feather icon-calendar"></i> <%= ga.try(:month) %></td>
                   <td><%= link_to 'Editar', edit_ga_path(ga) %></td>
                 </tr>
                 <% end %>

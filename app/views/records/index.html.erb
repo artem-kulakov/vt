@@ -70,7 +70,7 @@
             <h5 class="mr-3">Registro Histórico</h5>
             <% @years.reverse.each do |year| %>
               <% if year.to_s == @year.to_s %>
-                <span class="mr-3"><%= year %></span>
+                <span class="mr-2 label theme-bg2 f-15 text-white active" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= year %></span>
               <% else %>
                 <%= link_to year, records_path(year: year), class: "mr-3" %>
               <% end %>
@@ -100,7 +100,7 @@
               <% @records.each do |record| %>
               <tr>
                 <td><%= record.try(:id)%></td>
-                <td><i class="feather icon-smartphone"></i> <%= record.try(:title) %> <br> <i class="feather icon-smartphone"></i> <%= record.try(:razon_social) %> (<%= record.client.try(:rfc) %>) <br> </td>
+                <td><i class="feather icon-file-text"></i> <%= record.try(:title) %> <br> <i class="feather icon-file"></i> <%= record.try(:razon_social) %> (<%= record.client.try(:rfc) %>) <br> </td>
                 <td><%= record.try(:start_time).strftime(" %b-%d-%Y") %></td>
                 <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
                 <td><i class="feather icon-users"></i> <%= record.try(:numero_pasajeros) %></td>
