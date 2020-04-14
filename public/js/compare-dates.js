@@ -1,10 +1,13 @@
-function compare()
-{
-    var startDt = document.getElementById("startDate").value;
-    var endDt = document.getElementById("endDate").value;
+function compareDates() {
+    var startDateString = document.getElementById("startDate").value;
+    var startDateParts = startDateString.split("/");
+    var startDate = new Date(+startDateParts[2], startDateParts[1] - 1, +startDateParts[0]);
 
-    if( (new Date(startDt).getTime() > new Date(endDt).getTime()))
-    {
+    var endDateString = document.getElementById("endDate").value;
+    var endDateParts = endDateString.split("/");
+    var endDate = new Date(+endDateParts[2], endDateParts[1] - 1, +endDateParts[0]);
+
+    if(startDate > endDate) {
         (new PNotify({
             title: 'Alert',
             type: 'warning',
@@ -14,8 +17,7 @@ function compare()
                 desktop: true,
                 icon: 'assets/images/pnotify/warning.png'
             }
-        })
-        );
+        }));
         document.getElementById("endDate").value = '';
     }
 }
