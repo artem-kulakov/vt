@@ -23,15 +23,17 @@ class WelcomeController < ApplicationController
       data[:services] << { year: key, value: value }
     end
 
-    data[:receipts] = {}
+    data[:receipts] = []
     receipts = current_user.company.receipts.group_by_month('receipts.fecha', last: 12, format: "%b'%y").sum('receipts.cantidad')
-    data[:receipts][:labels] = receipts.keys
-    data[:receipts][:data] = receipts.values
+    receipts.each do |key, value|
+      data[:receipts] << { year: key, value: value }
+    end
 
-    data[:income] = {}
+    data[:income] = []
     income = current_user.company.records.group_by_month('records.start_time', last: 12, format: "%b'%y").sum('records.precio_final')
-    data[:income][:labels] = income.keys
-    data[:income][:data] = income.values
+    income.each do |key, value|
+      data[:income] << { year: key, value: value }
+    end
 
     data[:buses] = []
     total_buses = current_user.company.buses.count
@@ -39,7 +41,7 @@ class WelcomeController < ApplicationController
       booked_buses = current_user.company.buses.joins(:records).where("((records.start_time >= :start AND records.start_time <= :end) OR (records.end_time >= :start AND records.end_time <= :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: date.beginning_of_day, end: date.end_of_day}).pluck(:id).uniq.count
       data[:buses] << {
         year: date.strftime("%e"),
-        value: (booked_buses.to_f / total_buses * 100).to_i
+        value: booked_buses == 0 || total_buses == 0 ? 0 : (booked_buses.to_f / total_buses * 100).to_i
       }
     end
 
@@ -229,6 +231,41 @@ class WelcomeController < ApplicationController
 
     # Buses availability
     @buses = current_user.company.buses
+
+    # Prevenvivo checkups
+    @preventivo_checkups = []
+    @correctivo_checkups = []
+    current_user.company.buses.each do |bus|
+      if bus.checkups.preventivo.any?
+        last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+        services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
+        kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
+        preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
+      end
+
+      if bus.checkups.correctivo.any?
+        last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+        services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
+        kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
+        correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+      end
+
+      if preventivo_checkup_needed
+        @preventivo_checkups << {
+          date: services_after_preventivo_checkup.order(:fecha).last.record.end_time,
+          bus: bus.numero
+        }
+      end
+
+      if correctivo_checkup_needed
+        @correctivo_checkups << {
+          date: services_after_correctivo_checkup.order(:fecha).last.record.end_time,
+          bus: bus.numero
+        }
+      end
+    end
+    @preventivo_checkups.sort_by! { |hsh| hsh[:start_time] }
+    @correctivo_checkups.sort_by! { |hsh| hsh[:start_time] }
 
     @data = data
   end

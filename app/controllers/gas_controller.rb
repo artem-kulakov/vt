@@ -7,7 +7,7 @@ class GasController < ApplicationController
   def index
     @active12 = "active pcoded-trigger"
 
-    @gas = Ga.all.order(:fecha)
+    @gas = current_user.company.gas.all.order(:fecha)
   end
 
   # GET /gas/1

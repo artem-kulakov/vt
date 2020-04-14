@@ -7,4 +7,9 @@
             <%= link_to 'Ver Cotización', quotation_path(@quotation, :format => 'pdf'), class: "btn btn-primary", :target => "_blank" %>
         </div>
     </div>
+    <div class="row">
+        <div class="col text-right">
+            <%= link_to 'Back', prices_quotation_path(@quotation), class: "btn btn-primary" %>
+        </div>
+    </div>
 </div>

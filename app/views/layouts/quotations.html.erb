@@ -6,33 +6,84 @@
             </div>
             <div class="card-block">
                 <!-- [ SmartWizard html ] start -->
-                <div id="smartwizard" class="sw-main sw-theme-default">
-                    <ul class="nav nav-tabs step-anchor">
-                        <li class="nav-item wizard-item <%= @step_1_active %>"><a href="#step-1" class="nav-link">
-                                <h6>Step 1</h6>
-                                <p class="m-0">Información básica</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_2_active %>"><a href="#step-2" class="nav-link">
-                                <h6>Step 2</h6>
-                                <p class="m-0">Itinerario</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_3_active %>"><a href="#step-3" class="nav-link">
-                                <h6>Step 3</h6>
-                                <p class="m-0">Confirmar Distancia</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_4_active %>"><a href="#step-4" class="nav-link">
-                                <h6>Step 4</h6>
-                                <p class="m-0">Precios</p>
-                            </a></li>
-                        <li class="nav-item wizard-item <%= @step_5_active %>"><a href="#step-5" class="nav-link">
-                                <h6>Step 5</h6>
-                                <p class="m-0">Reporte</p>
-                            </a></li>
-                    </ul>
-                    <div class="sw-container tab-content">
-                        <%= yield %>
+                <% if action_name != 'index' %>
+                    <div id="smartwizard" class="sw-main sw-theme-default">
+                        <ul class="nav nav-tabs step-anchor">
+                            <li class="nav-item wizard-item <%= @step_1_active %>">
+                              <% if @quotation.id.present? %>
+                                <%= link_to edit_quotation_path(@quotation), class: "nav-link" do %>
+                                  <h6>Step 1</h6>
+                                  <p class="m-0">Información básica</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 1</h6>
+                                  <p class="m-0">Información básica</p>
+                                </a>
+                              <% end %>
+                            </li>
+
+                            <li class="nav-item wizard-item <%= @step_2_active %>">
+                              <% if Quotation.statuses[@quotation.status] >= 1 %>
+                                <%= link_to itinerary_quotation_path(@quotation), class: "nav-link" do %>
+                                  <h6>Step 2</h6>
+                                  <p class="m-0">Itinerario</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 2</h6>
+                                  <p class="m-0">Itinerario</p>
+                                </a>
+                              <% end %>
+                            </li>
+
+                            <li class="nav-item wizard-item <%= @step_3_active %>">
+                              <% if Quotation.statuses[@quotation.status] >= 2 %>
+                                <%= link_to distance_quotation_path(@quotation), class: "nav-link" do %>
+                                  <h6>Step 3</h6>
+                                  <p class="m-0">Confirmar Distancia</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 3</h6>
+                                  <p class="m-0">Confirmar Distancia</p>
+                                </a>
+                              <% end %>
+                            </li>
+
+                            <li class="nav-item wizard-item <%= @step_4_active %>">
+                              <% if Quotation.statuses[@quotation.status] >= 3 %>
+                                <%= link_to prices_quotation_path(@quotation), class: "nav-link" do %>
+                                  <h6>Step 4</h6>
+                                  <p class="m-0">Precios</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 4</h6>
+                                  <p class="m-0">Precios</p>
+                                </a>
+                              <% end %>
+                            </li>
+
+                            <li class="nav-item wizard-item <%= @step_5_active %>">
+                              <% if Quotation.statuses[@quotation.status] >= 4 %>
+                                <%= link_to pdf_quotation_path(@quotation), class: "nav-link" do %>
+                                  <h6>Step 5</h6>
+                                  <p class="m-0">Reporte</p>
+                                <% end %>
+                              <% else %>
+                                <a href="#" class="nav-link">
+                                  <h6>Step 5</h6>
+                                  <p class="m-0">Reporte</p>
+                                </a>
+                              <% end %>
+                            </li>
+                        </ul>
+                        <div class="sw-container tab-content">
+                            <%= yield %>
+                        </div>
                     </div>
-                </div>
+                <% end %>
             </div>
         </div>
     </div>

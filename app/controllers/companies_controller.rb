@@ -14,6 +14,11 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    if current_user.super_admin?
+      @active15 = 'active pcoded-trigger'
+    else
+      redirect_to current_user.company
+    end
   end
 
   # GET /companies/new

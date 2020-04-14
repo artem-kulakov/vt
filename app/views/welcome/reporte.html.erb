@@ -67,7 +67,13 @@
             							<% @bo= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%>
 
             								<!-- litros diesel -->
-            								<td><%= @a= (@bo / @bobo).round(2)%></td>
+            								<td><%= 
+                                  if @bobo.nan? || @bo.nan?
+                                    @a = 0
+                                  else
+                                    @a= (@bo / @bobo).round(2)
+                                  end
+                                %></td>
             								
             								<!-- total diesel en pesos -->
             								<td><%= number_to_currency @qo= @gas.select{|c| c.month == month }.map(&:cantidad).sum * @a%></td>

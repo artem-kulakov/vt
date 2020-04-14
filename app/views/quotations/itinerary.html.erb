@@ -34,7 +34,10 @@
                 <%= f.hidden_field :distancia, id: "distance" %>
                 <%= f.hidden_field :status, value: 'Distancia' %>
                 <%= hidden_field_tag :step, 2 %>
-                <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                <div class="btn-group">
+                  <%= link_to 'Back', edit_quotation_path(@quotation), class: "btn btn-primary" %>
+                  <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                </div>
             <% end %>
         </div>
     </div>

@@ -42,39 +42,88 @@
                     </h6>
                 </div>
             </div>
-            <h5 class="mt-4">Checkups</h5>
-            <div class="row">
-                <div class="col-12">
-                    <div class="table-responsive">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Bus</th>
-                              <th>Category</th>
-                              <th>Fecha inicio</th>
-                              <th>Fecha fin</th>
-                              <th>Comment</th>
-                              <th colspan="2"></th>
-                            </tr>
-                          </thead>
+            <% if @bus.checkups.any? %>
+                <h5 class="mt-4">Checkups</h5>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Bus</th>
+                                  <th>Category</th>
+                                  <th>Fecha inicio</th>
+                                  <th>Fecha fin</th>
+                                  <th>Comment</th>
+                                  <th colspan="2"></th>
+                                </tr>
+                              </thead>
 
-                          <tbody>
-                            <% @bus.checkups.each do |checkup| %>
-                              <tr>
-                                <td><%= checkup.bus_id %></td>
-                                <td><%= checkup.category %></td>
-                                <td><%= checkup.fecha_inicio %></td>
-                                <td><%= checkup.fecha_fin %></td>
-                                <td><%= checkup.comment %></td>
-                                <td><%= link_to 'Editar', edit_checkup_path(checkup) %></td>
-                                <td><%= link_to 'Eliminar', checkup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                              </tr>
-                            <% end %>
-                          </tbody>
-                        </table>
+                              <tbody>
+                                <% @bus.checkups.each do |checkup| %>
+                                  <tr>
+                                    <td><%= checkup.bus_id %></td>
+                                    <td><%= checkup.category %></td>
+                                    <td><%= checkup.fecha_inicio %></td>
+                                    <td><%= checkup.fecha_fin %></td>
+                                    <td><%= checkup.comment %></td>
+                                    <td><%= link_to 'Editar', edit_checkup_path(checkup) %></td>
+                                    <td><%= link_to 'Eliminar', checkup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                  </tr>
+                                <% end %>
+                              </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Neuvo Checkup</h5>
+        </div>
+        <div class="card-block">
+          <%= form_with(model: @checkup, local: true, html: { autocomplete: "off" }) do |form| %>
+            <% if @checkup.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@checkup.errors.count, "error") %> prohibited this checkup from being saved:</h2>
+
+                <ul>
+                  <% @checkup.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <%= form.hidden_field :bus_id, value: @bus.id %>
+
+            <div class="form-group">
+              <%= form.label :category %>
+              <%= form.select :category, @categories, {prompt: 'Select category'}, {class: "form-control"} %>
             </div>
+
+            <div class="form-group">
+              <%= form.label :fecha_inicio %>
+              <%= form.text_field :fecha_inicio, class: "form-control d_today", autocomplete: 'off', onblur: "compareDates();", id: "startDate" %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :fecha_fin %>
+              <%= form.text_field :fecha_fin, class: "form-control d_today", autocomplete: 'off', onblur: "compareDates();", id: "endDate" %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :comment %>
+              <%= form.text_field :comment, class: "form-control" %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
     </div>
 </div>

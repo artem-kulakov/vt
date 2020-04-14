@@ -33,6 +33,19 @@
     <h6>Actualizado hace: <%= time_ago_in_words(@record.updated_at) %></h6>
     <h6>Precio por autobús (<%=@record.services.count %> autobuses) sugerido: <%= number_to_currency @record.try(:precio_final)/@record.services.count %></h6>
 
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <%= form_for(@record) do |f| %>
+                <%= f.hidden_field :status, value: 'Precios' %>
+                <%= hidden_field_tag :step, 5 %>
+                <div class="btn-group">
+                  <%= link_to 'Back', trip_record_path(@record), class: "btn btn-primary" %>
+                  <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
     <div class="table-responsive mt-5">
         <table class="table">
             <thead>
@@ -47,35 +60,35 @@
                     <th>Aeropuerto</th>
                     <th>Otros</th>
                     <th>Total</th>
+                    <th>km inicio</th>
+                    <th>km fin</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @services.each do |service| %>
                     <tr class="text-center">
+                      <%= form_for service, url: {controller: 'services', action: 'update', id: service.id} do |f| %>
                         <td><%= service.bus.numero %></td>
-                        <td><%= service.precio_unidad %></td>
-                        <td><%= service.caseta %></td>
-                        <td><%= service.hotel %></td>
-                        <td><%= service.viaticos %></td>
-                        <td><%= service.estacionamientos %></td>
-                        <td><%= service.lavadas %></td>
-                        <td><%= service.aeropuerto %></td>
-                        <td><%= service.otros %></td>
+                        <td><%= f.text_field :precio_unidad, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :caseta, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :hotel, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :viaticos, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :estacionamientos, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :lavadas, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :aeropuerto, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :otros, class: "", style: "color:#888;width:70px;" %></td>
                         <td><%= service.sum_gastos %></td>
+                        <td><%= f.text_field :km_inicio, class: "", style: "color:#888;width:70px;" %></td>
+                        <td><%= f.text_field :km_fin, class: "", style: "color:#888;width:70px;" %></td>
+                        <%= hidden_field_tag :record_id, @record.id %>
+                        <td><%= f.submit 'Save', class: "btn btn-secondary btn-sm" %></td>
                         <td><%= link_to "Eliminar Autobús", record_service_path(@record, service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% end %>
                     </tr>
                 <% end %>
             </tbody>
         </table>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <%= form_for(@record) do |f| %>
-                <%= f.hidden_field :status, value: 'Precios' %>
-                <%= hidden_field_tag :step, 5 %>
-                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
-            <% end %>
-        </div>
     </div>
 </div>

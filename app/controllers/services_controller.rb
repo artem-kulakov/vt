@@ -58,7 +58,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to @record, notice: 'Service was successfully updated.' }
+        format.html { redirect_to bus_record_path(@record), notice: 'Service was successfully updated.' }
         format.json { respond_with_bip(@service) }
       else
         format.html { render :edit }

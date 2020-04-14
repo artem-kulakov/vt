@@ -18,7 +18,10 @@
             <div class="col-md-12 text-right">
                 <%= f.hidden_field :status, value: 'Pagos' %>
                 <%= hidden_field_tag :step, 6 %>
-                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+                <div class="btn-group">
+                  <%= link_to 'Back', bus_record_path(@record), class: "btn btn-primary" %>
+                  <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                </div>
             </div>
         </div>
 	<% end %>

@@ -5,7 +5,7 @@
         </div>
         <div class="card-block">
           <div class="table-responsive">
-            <table class="table" id="example">
+            <table class="table" id="example-3">
               <thead>
                 <th>Número</th>
                 <th>Marca</th>
@@ -30,18 +30,23 @@
                   <td><%= bus.version %></td>
                   <td><%= bus.operator.try(:nombre) %></td>
                   <%
-                    last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
-                    kms_since_preventivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_preventivo_checkup, Date.today).sum(:km_finales)
+                    if bus.checkups.preventivo.any? && bus.checkups.correctivo.any?
+                      last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+                      kms_since_preventivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_preventivo_checkup, Date.today).sum(:km_finales)
 
-                    last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-                    kms_since_correctivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_correctivo_checkup, Date.today).sum(:km_finales)
+                      last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+                      kms_since_correctivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_correctivo_checkup, Date.today).sum(:km_finales)
 
-                    if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
-                      status = 'checkup'
-                      color = 'theme-bg2'
+                      if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+                        status = 'checkup'
+                        color = 'theme-bg2'
+                      else
+                        status = 'ok'
+                        color = 'theme-bg'
+                      end
                     else
-                      status = 'ok'
-                      color = 'theme-bg'
+                      status = 'unknown'
+                      color = 'theme-bg2'
                     end
                   %>
                   <td class="text-center"><span class="label <%= color %> f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= status %></span></td>

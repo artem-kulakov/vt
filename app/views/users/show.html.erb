@@ -1,29 +1,41 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
-
-<p>
-  <strong>Puesto:</strong>
-  <%= @user.puesto %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5><%= @user.name %></h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Company:</span>
+                        <%= @user.company.name %>
+                    </h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Name:</span>
+                        <%= @user.name %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Email:</span>
+                        <%= @user.email %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Puesto:</span>
+                        <%= @user.puesto %>
+                    </h6>
+                </div>
+                <div class="col-6 mt-3">
+                    <h6 class="">
+                        <span class="text-muted m-r-5">Phone:</span>
+                        <%= @user.phone %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

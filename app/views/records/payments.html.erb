@@ -40,7 +40,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <%= f.label :metodo %><br>
-                    <%= f.select :metodo, [["Prob Baja"], ["Prob Media"], ["Prob Alta"], ["Venta"]], {:prompt => 'Cuál es el Status?'}, {:required => true, class: "form-control"} %>
+                    <%= f.select :metodo, [["Efectivo"], ["Cheque"], ["Tranferencia"], ["Tarjeta"]], {:prompt => 'Método de pago'}, {:required => true, class: "form-control"} %>
                 </div>
             </div>
             <div class="col-md-3">
@@ -73,7 +73,10 @@
             <%= form_for(@record) do |f| %>
                 <%= f.hidden_field :status, value: 'Cerrado' %>
                 <%= hidden_field_tag :step, 7 %>
-                <%= f.submit 'Siguiente', class: "btn btn-primary" %>
+                <div class="btn-group">
+                  <%= link_to 'Back', price_record_path(@record), class: "btn btn-primary" %>
+                  <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                </div>
             <% end %>
         </div>
     </div>

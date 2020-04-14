@@ -1,3 +1,9 @@
+<script src='/packages/core/main.js'></script>
+<script src='/packages/interaction/main.js'></script>
+<script src='/packages-premium/timeline/main.js'></script>
+<script src='/packages-premium/resource-common/main.js'></script>
+<script src='/packages-premium/resource-timeline/main.js'></script>
+
 <div class="col-sm-12">
     <div class="card fullcalendar-card">
         <div class="card-header">
@@ -13,4 +19,41 @@
     </div>
 </div>
 
-<%= content_tag :div, class: "full_calendar_events", data: {events: @events} do %><% end %>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'resourceTimeline' ],
+      now: Date.now(),
+      editable: true,
+      aspectRatio: 1.8,
+      scrollTime: '00:00',
+      header: {
+        left: 'today prev,next',
+        center: 'title',
+        right: 'resourceTimelineDay,resourceTimelineMonth,resourceTimelineYear'
+      },
+      buttonText: {
+        today:    'hoy',
+        day: 'dia',
+        month:    'mes',
+        year:     'año'
+      },
+      defaultView: 'resourceTimelineMonth',
+      navLinks: true,
+      resourceAreaWidth: '10%',
+      resourceLabelText: 'Autobuses',
+      resources: [
+        <% @buses.each do |bus| %>
+          { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
+        <% end %>
+      ],
+      events: '/records/pizarron.json'
+    });
+
+    calendar.setOption('locale', 'es');
+
+    calendar.render();
+  });
+</script>

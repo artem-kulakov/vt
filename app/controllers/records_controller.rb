@@ -41,6 +41,8 @@ class RecordsController < ApplicationController
   def pizarron
     @active2 = "active"
 
+    @buses = current_user.company.buses
+
     start_time = params[:start] ? params[:start].to_time : Time.now
     end_time = params[:end] ? params[:end].to_time : Time.now
     @records = current_user.company.records.where("((records.start_time > :start AND records.start_time < :end) OR (records.end_time > :start AND records.end_time < :end)) OR (records.start_time < :start AND records.end_time > :end)", {start: start_time, end: end_time})
@@ -48,16 +50,19 @@ class RecordsController < ApplicationController
     # Checkups
     @checkups = []
     current_user.company.buses.each do |bus|
-      last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
-      services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
-      kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
+      if bus.checkups.preventivo.any?
+        last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+        services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
+        kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
+        preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
+      end
 
-      last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-      services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
-      kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
-
-      preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
-      correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+      if bus.checkups.correctivo.any?
+        last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+        services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
+        kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
+        correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+      end
 
       if preventivo_checkup_needed || correctivo_checkup_needed
 
@@ -160,16 +165,26 @@ class RecordsController < ApplicationController
     # Checkups
     available_buses = []
     current_user.company.buses.where(id: free_buses).each do |bus|
-      last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
-      services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
-      kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
+      if bus.checkups.preventivo.any?
+        last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+        services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
+        kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
 
-      last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-      services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
-      kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
+        preventivo_checkup_not_needed = kms_since_preventivo_checkup < bus.kms_servicio_preventivo
+      else
+        preventivo_checkup_needed = true
+      end
 
-      preventivo_checkup_not_needed = kms_since_preventivo_checkup < bus.kms_servicio_preventivo
-      correctivo_checkup_not_needed = kms_since_correctivo_checkup < bus.kms_servicio_correctivo
+      if bus.checkups.correctivo.any?
+        last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+        services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
+        kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
+
+        correctivo_checkup_not_needed = kms_since_correctivo_checkup < bus.kms_servicio_correctivo
+      else
+        correctivo_checkup_needed = true
+      end
+
 
       if preventivo_checkup_not_needed && correctivo_checkup_not_needed
         available_buses << bus.id

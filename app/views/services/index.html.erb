@@ -23,13 +23,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fecha Inicio:</label>
-                            <%= f.text_field :record_start_time_gteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date >= to", onblur: "compare();", id: "startDate" %>
+                            <%= f.text_field :record_start_time_gteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date >= to", onblur: "compareDates();", id: "startDate" %>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Fecha Final:</label>
-                            <%= f.text_field :record_start_time_lteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date <= to", onblur: "compare();", id: "endDate" %>
+                            <%= f.text_field :record_start_time_lteq, class: "form-control d_today", autocomplete: 'off', placeholder: "Date <= to", onblur: "compareDates();", id: "endDate" %>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="card-block">
             <div class="table-responsive">
-                <table class="table" id="example">
+                <table class="table" id="example-0">
                     <thead>
                         <th>ID</th>
                         <th>Autobús</th>

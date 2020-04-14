@@ -39,8 +39,12 @@
     <link rel="stylesheet" href="/css/dataTables.bootstrap4.css">
     <!-- Full calendar -->
     <% if controller_name == 'records' && action_name == 'pizarron' %>
-        <link rel="stylesheet" href="/assets/plugins/fullcalendar/css/fullcalendar.min.css">
+        <link rel="stylesheet" href="/css/scheduler.min.css">
+        <link rel="stylesheet" href="/css/packages/core/main.min.css">
+        <link rel="stylesheet" href="/css/packages-premium/timeline/main.min.css">
+        <link rel="stylesheet" href="/css/packages-premium/resource-timeline/main.min.css">
     <% end %>
+    <!-- Date picker -->
     <style>
         .datepicker>.datepicker-days {
             display: block;
@@ -280,14 +284,6 @@
                                     <i class="feather icon-log-out"></i>
                                 <% end %>
                             </div>
-                            <ul class="pro-body">
-                                <li>
-                                    <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
-                                        <i class="feather icon-user"></i>
-                                        Mi Perfil
-                                    <% end %>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </li>
@@ -635,10 +631,9 @@
 
     <!-- Full calendar js -->
     <% if controller_name == 'records' && action_name == 'pizarron' %>
-        <script src="/assets/plugins/fullcalendar/js/lib/moment.min.js"></script>
+        <!-- <script src="/assets/plugins/fullcalendar/js/lib/moment.min.js"></script>
         <script src="/assets/plugins/fullcalendar/js/lib/jquery-ui.min.js"></script>
-        <script src="/assets/plugins/fullcalendar/js/fullcalendar.min.js"></script>
-        <script src="/js/full-calendar.js"></script>
+        <script src="/assets/plugins/fullcalendar/js/fullcalendar.min.js"></script> -->
     <% end %>
 </body>
 

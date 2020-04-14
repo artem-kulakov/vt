@@ -57,7 +57,10 @@
                     <div class="col-md-12 text-right">
                         <%= f.hidden_field :status, value: 'Cerrado' %>
                         <%= hidden_field_tag :step, 4 %>
-                        <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                        <div class="btn-group">
+                          <%= link_to 'Back', distance_quotation_path(@quotation), class: "btn btn-primary" %>
+                          <%= f.submit "Siguiente", class: "btn btn-primary" %>
+                        </div>
                     </div>
                 </div>
             <% end %>

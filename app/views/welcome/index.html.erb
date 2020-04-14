@@ -10,17 +10,6 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Registros</h5>
-        </div>
-        <div class="card-block">
-            <canvas id="chart-line-1" style="width: 100%; height: 300px"></canvas>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
             <h5>Servicios Mensuales<br><small>últimos doce meses</small></h5>
         </div>
         <div id="services-chart" style="width: 100%; height: 350px"></div>
@@ -33,7 +22,7 @@
             <h5>Gastos</h5>
         </div>
         <div class="card-block">
-            <canvas id="chart-line-3" style="width: 100%; height: 300px"></canvas>
+            <div id="chart-line-1" class="lineChart2 ChartShadow" style="height:350px;"></div>
         </div>
     </div>
 </div>
@@ -45,7 +34,7 @@
                 <h5>Ingresos</h5>
             </div>
             <div class="card-block">
-                <canvas id="chart-line-4" style="width: 100%; height: 300px"></canvas>
+                <div id="chart-line-2" class="lineChart2 ChartShadow" style="height:350px;"></div>
             </div>
         </div>
     </div>
@@ -61,6 +50,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-xl-4 col-md-12 m-b-30 datta-example">
     <h5 class="docs-header" id="page-table">Autobuses menos reservados</h5>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -348,12 +338,21 @@
     </div>
 <% end %>
 
-<div class="col-md-6 datta-example">
-    <div class="card user-list">
-        <div class="card-header">
-            <h5>Buses checkup status</h5>
-        </div>
-        <div class="card-block pb-0">
+<div class="col-md-6 m-b-30 datta-example">
+    <h5 class="docs-header" id="page-table">Buses checkup status</h5>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">All</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Nearest preventivo</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Nearest correctivo</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent" style="padding: 35px 30px;">
+        <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home2-tab">
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -365,13 +364,22 @@
                   <tr>
                     <td><%= bus.numero %></td>
                     <%
-                      last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
-                      kms_since_preventivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_preventivo_checkup, Date.today).sum(:km_finales)
+                      if bus.checkups.preventivo.any?
+                        last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
+                        kms_since_preventivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_preventivo_checkup, Date.today).sum(:km_finales)
+                        preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
+                      end
 
-                      last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-                      kms_since_correctivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_correctivo_checkup, Date.today).sum(:km_finales)
+                      if bus.checkups.correctivo.any?
+                        last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
+                        kms_since_correctivo_checkup = bus.services.where('services.fecha > ? AND services.fecha <= ?', last_correctivo_checkup, Date.today).sum(:km_finales)
+                        correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+                      end
 
-                      if kms_since_preventivo_checkup >= bus.kms_servicio_preventivo || kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
+                      if !defined?(preventivo_checkup_needed) && !defined?(correctivo_checkup_needed)
+                        status = 'unknown'
+                        color = 'theme-bg2'
+                      elsif preventivo_checkup_needed || correctivo_checkup_needed
                         status = 'checkup'
                         color = 'theme-bg2'
                       else
@@ -380,6 +388,42 @@
                       end
                     %>
                     <td class="text-center"><span class="label <%= color %> f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= status %></span></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <th>Número</th>
+                <th class="text-center">Date</th>
+              </thead>
+              <tbody>
+                <% @preventivo_checkups.first(5).each do |checkup| %>
+                  <tr>
+                    <td><%= checkup[:bus] %></td>
+                    <td class="text-center"><%= checkup[:date].strftime('%F') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <th>Número</th>
+                <th class="text-center">Date</th>
+              </thead>
+              <tbody>
+                <% @correctivo_checkups.first(5).each do |checkup| %>
+                  <tr>
+                    <td><%= checkup[:bus] %></td>
+                    <td class="text-center"><%= checkup[:date].strftime('%F') %></td>
                   </tr>
                 <% end %>
               </tbody>
