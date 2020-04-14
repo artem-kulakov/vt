@@ -468,12 +468,12 @@
       plugins: [ 'interaction', 'resourceTimeline' ],
       now: Date.now(),
       editable: true,
-      aspectRatio: 1.8,
+      aspectRatio: 0.6,
       scrollTime: '00:00',
       header: {
         left: 'today prev,next',
         center: 'title',
-        right: 'resourceTimelineDay,resourceTimelineMonth,resourceTimelineYear'
+        right: 'resourceTimelineDay'
       },
       buttonText: {
         today:    'hoy',
@@ -481,7 +481,7 @@
         month:    'mes',
         year:     'año'
       },
-      defaultView: 'resourceTimelineMonth',
+      defaultView: 'resourceTimelineDay',
       navLinks: true,
       resourceAreaWidth: '10%',
       resourceLabelText: 'Autobuses',
