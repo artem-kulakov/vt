@@ -434,3 +434,67 @@
 </div>
 
 <%= content_tag :div, class: "chart_data", data: {data: @data} do %><% end %>
+
+
+
+
+
+<script src='/packages/core/main.js'></script>
+<script src='/packages/interaction/main.js'></script>
+<script src='/packages-premium/timeline/main.js'></script>
+<script src='/packages-premium/resource-common/main.js'></script>
+<script src='/packages-premium/resource-timeline/main.js'></script>
+
+<div class="col-md-6">
+    <div class="card fullcalendar-card">
+        <div class="card-header">
+            <h5>Pizarron</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id='calendar' class='calendar'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'resourceTimeline' ],
+      now: Date.now(),
+      editable: true,
+      aspectRatio: 0.6,
+      scrollTime: '00:00',
+      header: {
+        left: 'today prev,next',
+        center: 'title',
+        right: 'resourceTimelineDay'
+      },
+      buttonText: {
+        today:    'hoy',
+        day: 'dia',
+        month:    'mes',
+        year:     'año'
+      },
+      defaultView: 'resourceTimelineDay',
+      navLinks: true,
+      resourceAreaWidth: '10%',
+      resourceLabelText: 'Autobuses',
+      resources: [
+        <% @buses.each do |bus| %>
+          { id: '<%=bus.id%>', title: '<%= bus.numero %>- <%= bus.marca %> <%= bus.capacidad %>' },
+        <% end %>
+      ],
+      events: '/records/pizarron.json'
+    });
+
+    calendar.setOption('locale', 'es');
+
+    calendar.render();
+  });
+</script>

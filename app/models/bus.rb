@@ -6,4 +6,12 @@ class Bus < ActiveRecord::Base
   has_many :records, through: :services
   has_many :receipts, dependent: :destroy
   has_many :checkups, dependent: :destroy
+
+  def kms_servicio_preventivo
+    self[:kms_servicio_preventivo] || 0
+  end
+
+  def kms_servicio_correctivo
+    self[:kms_servicio_correctivo] || 0
+  end
 end
