@@ -250,14 +250,14 @@ class WelcomeController < ApplicationController
         correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
       end
 
-      if preventivo_checkup_needed
+      if preventivo_checkup_needed && services_after_preventivo_checkup.any?
         @preventivo_checkups << {
           date: services_after_preventivo_checkup.order(:fecha).last.record.end_time,
           bus: bus.numero
         }
       end
 
-      if correctivo_checkup_needed
+      if correctivo_checkup_needed && services_after_correctivo_checkup.any?
         @correctivo_checkups << {
           date: services_after_correctivo_checkup.order(:fecha).last.record.end_time,
           bus: bus.numero
