@@ -39,12 +39,6 @@
                     <%= f.text_field :end_time, required:true, class: "form-control d_today", autocomplete: 'off', onblur: "compareDates();", id: "endDate" %>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <%= f.label :Razon_social %><br>
-                    <%= f.text_field :client_id, data: {autocomplete_source: Client.order(:id).map(&:razon_social).uniq}, placeholder: "PROSPECTO", :value => "PROSPECTO", required:true, class: "form-control" %>
-                </div>
-            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <%= f.label :numero_pasajeros %><br>

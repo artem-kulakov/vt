@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-8">
     <div class="card">
         <div class="card-header">
             <h5>Autobus <%= @bus.numero %></h5>
@@ -79,10 +79,13 @@
             <% end %>
         </div>
     </div>
+</div>
 
-    <div class="card">
+
+<div class="col-md-4">
+   <div class="card">
         <div class="card-header">
-            <h5>Neuvo Checkup</h5>
+            <h5>Nuevo Checkup</h5>
         </div>
         <div class="card-block">
           <%= form_with(model: @checkup, local: true, html: { autocomplete: "off" }) do |form| %>

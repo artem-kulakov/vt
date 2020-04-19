@@ -591,11 +591,11 @@ ul.list-justify > li {
   padding: 5px 14px; }
 
 .btn-primary {
-  background-color: #00AAFF;
-  border-color: #00a0f0; }
+  background-color: #fed56f;
+  border-color: #fed56f; }
   .btn-primary:hover, .btn-primary:focus {
-    background-color: #00a0f0;
-    border-color: #00a0f0; }
+    background-color: #fec330;
+    border-color: #fec330; }
 
 .btn-warning {
   background-color: #e4cb10;

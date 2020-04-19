@@ -14,7 +14,7 @@ colors = [
     json.start (record.start_time.strftime(" %Y-%m-%d"))
     @end_time = record.end_time+100000
     json.end (@end_time.strftime(" %Y-%m-%d"))
-    json.url record_url(record, format: :html)
+    json.url record_path(record, format: :html)
     json.resourceId service.resourceId
     json.color colors.sample
   end

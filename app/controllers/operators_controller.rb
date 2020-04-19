@@ -14,6 +14,8 @@ class OperatorsController < ApplicationController
   # GET /operators/1.json
   def show
     @vouchers = @operator.vouchers
+    @voucher = Voucher.new
+    @review = Review.new
   end
 
   # GET /operators/new

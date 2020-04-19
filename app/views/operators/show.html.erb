@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-8">
     <div class="card">
         <div class="card-header">
             <h5><%= @operator.nombre %></h5>
@@ -23,32 +23,24 @@
                         <%= @operator.observaciones %>
                     </h6>
                 </div>
-                <div class="col-12">
-                    <%= link_to 'Editar Operador', edit_operator_path(@operator), class: "btn btn-primary" %>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
 
-  <% @vouchers.group_by(&:month).sort.each do |month, vouchers| %>
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5><%= month %></h5>
-            </div>
-            <div class="card-block">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Operador</th>
-                        <th>Operación</th>
-                        <th>Notas</th>
-                        <th>Fecha</th>
-                        <th>Cantidad</th>
-                        <th colspan="2"></th>
-                      </tr>
+            <h5 class="mt-4">Comprobantes</h5>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                      <% @vouchers.group_by(&:month).sort.each do |month, vouchers| %>
+                      <table class="table">
+                        <h6><%= month %></h6>
+                        <thead>
+                          <tr>
+                            <th>Operador</th>
+                            <th>Operación</th>
+                            <th>Notas</th>
+                            <th>Fecha</th>
+                            <th>Cantidad</th>
+                            <th colspan="2"></th>
+                        </tr>
                     </thead>
 
                     <tbody>
@@ -61,9 +53,9 @@
                         <td><%= voucher.cantidad %></td>
                         <td><%= link_to 'Ver mas', edit_voucher_path(voucher) %></td>
                         <td><%= link_to 'Eliminar', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                      </tr>
-                      <% end %>
-                      <tr>
+                    </tr>
+                    <% end %>
+                    <tr>
                         <td></td>
                         <td></td>
                         <td>Gastos totales: <%= number_to_currency @a= vouchers.select{|c| c.operacion == 'Gastos del mes'}.map(&:cantidad).sum%></td>
@@ -80,11 +72,134 @@
                         
                         <td></td>
                         <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
+                    </tr>
+                </tbody>
+            </table>
+            <% end %>
+
         </div>
     </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="col-md-4">
+   <div class="card">
+    <div class="card-header">
+        <h5>Nuevo Comprobante</h5>
+    </div>
+    <div class="card-block">
+      <%= form_for(@voucher) do |f| %>
+      <% if @voucher.errors.any? %>
+      <div id="error_explanation">
+          <h2><%= pluralize(@voucher.errors.count, "error") %> prohibited this voucher from being saved:</h2>
+
+          <ul>
+              <% @voucher.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+          </ul>
+      </div>
+      <% end %>
+
+      <%= f.hidden_field :operator_id, value: @operator.id %>
+
+
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :operacion %><br>
+                <%= f.select :operacion, [["Gastos del mes"], ["Comprobantes"], ["Penalizaciones"], ["Saldo a favor"]], {:prompt => 'Elige Operación'}, {:required => true, class: "form-control"}%>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :cantidad %><br>
+            <%= f.number_field :cantidad, required:true, class: "form-control" %>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :mes %><br>
+        <%= f.select :mes, [["Enero", "01"], ["Febrero", "02"], ["Marzo", "03"], ["Abril", "04"], ["Mayo", "05"], ["Junio", "06"], ["Julio", "07"], ["
+          Agosto", "08"], ["Septiembre", "09"], ["Octubre", "10"], ["Noviembre", "11"], ["Diciembre", "12"]], {:prompt => 'Elige mes'}, {:required => true, class: "form-control"}%>
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :año %><br>
+        <%= f.select :ano, [["2018", "2018"], ["2019", "2019"], ["2020", "2020"]], {:prompt => 'Elige año'}, {:required => true, class: "form-control"}%>
+    </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :nota %><br>
+    <%= f.text_area :nota, class: "form-control" %>
+</div>
+</div>
+</div>
+
+<div class="actions">
+    <%= f.submit class: "btn btn-primary"%>
+</div>
+<% end %>
+</div>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Nueva Calificación</h5>
+    </div>
+    <div class="card-block">
+      <%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
+
+
+<%= f.hidden_field :operator_id, value: @operator.id %>
+
+  <div class="form-group">
+    <%= f.label :categoria %><br>
+    <%= f.select :categoria, [["Encuesta de satisfacción"], ["Estado de la unidad"], ["Penalizaciones"]], {:prompt => 'Elige Operación'}, {:required => true, class: "form-control"}%>
+  </div>
+  <div class="form-group">
+    <%= f.label :cantidad %><br>
+    <div id="star-rating1"></div><br>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+</div>
+</div>
+
+
+</div>
+
+
+<script>
+  $('#star-rating1').raty({
+    path: '/images/raty',
+    socore: 3,
+    scoreName: 'review[cantidad]'
+  });
+</script>
