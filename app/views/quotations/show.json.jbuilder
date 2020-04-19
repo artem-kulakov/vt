@@ -1,1 +1,3 @@
-json.partial! "quotations/quotation", quotation: @quotation
+# frozen_string_literal: true
+
+json.partial! 'quotations/quotation', quotation: @quotation

@@ -1,15 +1,16 @@
-class Voucher < ActiveRecord::Base
-	belongs_to :operator
-	belongs_to :bus
+# frozen_string_literal: true
 
-	before_save :fecha
+class Voucher < ApplicationRecord
+  belongs_to :operator
+  belongs_to :bus
 
-	def fecha
-		self.fecha = "#{self.ano}-#{self.mes}-01 00:00:00"
-	end
+  before_save :fecha
 
-def month
-  self.fecha.to_date.strftime('%G-%B')
-end
+  def fecha
+    self.fecha = "#{ano}-#{mes}-01 00:00:00"
+  end
 
+  def month
+    fecha.to_date.strftime('%G-%B')
+  end
 end

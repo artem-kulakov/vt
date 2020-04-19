@@ -1,4 +1,6 @@
-class Bus < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Bus < ApplicationRecord
   belongs_to :user
   belongs_to :operator
   has_many :services, dependent: :destroy

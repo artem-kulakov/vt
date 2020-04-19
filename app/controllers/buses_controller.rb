@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class BusesController < ApplicationController
-  before_action :set_bus, only: [:show, :edit, :update, :destroy]
+  before_action :set_bus, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /buses
   # GET /buses.json
   def index
-    @active10 = "active pcoded-trigger"
+    @active10 = 'active pcoded-trigger'
 
     @buses = current_user.company.buses
   end
@@ -13,12 +15,12 @@ class BusesController < ApplicationController
   # GET /buses/1
   # GET /buses/1.json
   def show
-    @active10 = "active pcoded-trigger"
+    @active10 = 'active pcoded-trigger'
 
     @checkup = Checkup.new
 
     @categories = {}
-    Checkup.categories.each do |key, value|
+    Checkup.categories.each do |key, _value|
       @categories[key] = key
     end
   end
@@ -27,7 +29,7 @@ class BusesController < ApplicationController
   def new
     authorize! :read, @bus
 
-    @active10 = "active pcoded-trigger"
+    @active10 = 'active pcoded-trigger'
 
     @bus = Bus.new
   end
@@ -98,13 +100,14 @@ class BusesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bus
-      @bus = Bus.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def bus_params
-      params.require(:bus).permit(:numero, :marca, :capacidad, :modelo, :placa, :version, :user_id, :operator_id, :kms_servicio_preventivo, :kms_servicio_correctivo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bus
+    @bus = Bus.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def bus_params
+    params.require(:bus).permit(:numero, :marca, :capacidad, :modelo, :placa, :version, :user_id, :operator_id, :kms_servicio_preventivo, :kms_servicio_correctivo)
+  end
 end

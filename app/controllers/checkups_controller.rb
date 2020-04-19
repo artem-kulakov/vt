@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CheckupsController < ApplicationController
-  before_action :set_checkup, only: [:show, :edit, :update, :destroy]
+  before_action :set_checkup, only: %i[show edit update destroy]
 
   # GET /checkups
   # GET /checkups.json
@@ -9,17 +11,16 @@ class CheckupsController < ApplicationController
 
   # GET /checkups/1
   # GET /checkups/1.json
-  def show
-  end
+  def show; end
 
   # GET /checkups/new
   def new
-    @active10 = "active pcoded-trigger"
+    @active10 = 'active pcoded-trigger'
 
     @checkup = Checkup.new
 
     @categories = {}
-    Checkup.categories.each do |key, value|
+    Checkup.categories.each do |key, _value|
       @categories[key] = key
     end
   end
@@ -27,7 +28,7 @@ class CheckupsController < ApplicationController
   # GET /checkups/1/edit
   def edit
     @categories = {}
-    Checkup.categories.each do |key, value|
+    Checkup.categories.each do |key, _value|
       @categories[key] = key
     end
   end
@@ -73,13 +74,14 @@ class CheckupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_checkup
-      @checkup = Checkup.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def checkup_params
-      params.require(:checkup).permit(:bus_id, :category, :fecha_inicio, :fecha_fin, :comment)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_checkup
+    @checkup = Checkup.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def checkup_params
+    params.require(:checkup).permit(:bus_id, :category, :fecha_inicio, :fecha_fin, :comment)
+  end
 end

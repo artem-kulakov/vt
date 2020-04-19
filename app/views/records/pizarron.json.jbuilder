@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 colors = [
   '#04a9f5',
   '#f44236',
@@ -7,24 +9,24 @@ colors = [
   '#a389d4'
 ]
 
-(@records).map do |record|
-  json.array!record.services do |service|
+@records.map do |record|
+  json.array! record.services do |service|
     json.extract! service, :id
     json.title record.title
-    json.start (record.start_time.strftime(" %Y-%m-%d"))
-    @end_time = record.end_time+100000
-    json.end (@end_time.strftime(" %Y-%m-%d"))
+    json.start record.start_time.strftime(' %Y-%m-%d')
+    @end_time = record.end_time + 100_000
+    json.end @end_time.strftime(' %Y-%m-%d')
     json.url record_url(record, format: :html)
     json.resourceId service.resourceId
     json.color colors.sample
   end
 end
 
-json.array!@checkups do |checkup|
+json.array! @checkups do |checkup|
   json.title 'checkup'
-  json.start (checkup[:start_time].strftime(" %Y-%m-%d"))
-  json.end ((checkup[:start_time]+24*60*60).strftime(" %Y-%m-%d"))
+  json.start checkup[:start_time].strftime(' %Y-%m-%d')
+  json.end (checkup[:start_time] + 24 * 60 * 60).strftime(' %Y-%m-%d')
   json.url bus_url(checkup[:bus_id], format: :html)
   json.resourceId checkup[:bus_id]
-  json.color "#000"
+  json.color '#000'
 end

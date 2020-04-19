@@ -1,4 +1,6 @@
-class Service < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Service < ApplicationRecord
   belongs_to :bus
   belongs_to :record
   belongs_to :user
@@ -12,11 +14,11 @@ class Service < ActiveRecord::Base
   before_save :fecha
 
   def set_op
-    self.operator_id = self.bus.operator_id
+    self.operator_id = bus.operator_id
   end
 
   def sum_gastos
-    (self.hotel.to_f+self.caseta.to_f+self.viaticos.to_f+self.estacionamientos.to_f+self.lavadas.to_f+self.aeropuerto.to_f+self.diesel.to_f+self.otros).round(2)
+    (hotel.to_f + caseta.to_f + viaticos.to_f + estacionamientos.to_f + lavadas.to_f + aeropuerto.to_f + diesel.to_f + otros).round(2)
   end
 
   def suma
@@ -24,31 +26,30 @@ class Service < ActiveRecord::Base
   end
 
   def resourceId
-      @resourceId = self.bus_id
+    @resourceId = bus_id
   end
 
   def days
-      self.days = (self.record.end_time - self.record.start_time)/1.day.to_i+1
+    self.days = (record.end_time - record.start_time) / 1.day.to_i + 1
   end
 
   def km_finales
-      self.km_finales = self.km_fin - self.km_inicio
+    self.km_finales = km_fin - km_inicio
   end
 
   def rendimiento
-      self.rendimiento = self.km_finales/self.litros
+    self.rendimiento = km_finales / litros
   end
 
   def fecha
     self.fecha = record.start_time.to_date
   end
 
-def month
-  self.record.start_time.to_date.strftime('%B')
-end
+  def month
+    record.start_time.to_date.strftime('%B')
+  end
 
-def year
-  self.record.start_time.to_date.strftime('%G')
-end
-
+  def year
+    record.start_time.to_date.strftime('%G')
+  end
 end

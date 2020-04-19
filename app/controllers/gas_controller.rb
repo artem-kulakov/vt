@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
 class GasController < ApplicationController
-  before_action :set_ga, only: [:show, :edit, :update, :destroy]
+  before_action :set_ga, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /gas
   # GET /gas.json
   def index
-    @active12 = "active pcoded-trigger"
+    @active12 = 'active pcoded-trigger'
 
     @gas = current_user.company.gas.all.order(:fecha)
   end
 
   # GET /gas/1
   # GET /gas/1.json
-  def show
-  end
+  def show; end
 
   # GET /gas/new
   def new
@@ -21,8 +22,7 @@ class GasController < ApplicationController
   end
 
   # GET /gas/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /gas
   # POST /gas.json
@@ -65,13 +65,14 @@ class GasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ga
-      @ga = Ga.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ga_params
-      params.require(:ga).permit(:cantidad, :mes, :ano, :fecha)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ga
+    @ga = Ga.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ga_params
+    params.require(:ga).permit(:cantidad, :mes, :ano, :fecha)
+  end
 end

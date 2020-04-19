@@ -1,13 +1,14 @@
-class Client < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Client < ApplicationRecord
   belongs_to :user
   has_many :records, dependent: :destroy
 
   def sum_clients
-    self.records.map(&:sum_payments).sum.blank? == 0 ? 0 : self.records.map(&:sum_payments).sum
+    records.map(&:sum_payments).sum.blank? == 0 ? 0 : records.map(&:sum_payments).sum
   end
 
   def sum_clients_deu
-    self.records.map(&:sum_deuda).sum.blank? == 0 ? 0 : self.records.map(&:sum_deuda).sum
+    records.map(&:sum_deuda).sum.blank? == 0 ? 0 : records.map(&:sum_deuda).sum
   end
-
 end

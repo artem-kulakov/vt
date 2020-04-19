@@ -1,5 +1,6 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.0.2.1'
@@ -22,32 +23,32 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', group: :doc
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'sdoc', group: :doc
 # gem 'awesomplete'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
-gem 'chartkick'
-gem 'groupdate'
-gem 'geocoder'
-gem 'underscore-rails'
-gem 'kaminari'
-gem "prawnto_2", :require => "prawnto"
-gem 'prawn-table'
 gem 'best_in_place'
-gem 'ransack'
-gem 'will_paginate'
-gem "cocoon"
-gem 'highcharts-rails'
-gem 'rails_12factor', group: :production
-gem 'rails-timeago'
 gem 'bootsnap', require: false
-gem 'webpacker'
-gem 'will_paginate-bootstrap4'
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'cancancan'
+gem 'chartkick'
+gem 'cocoon'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+gem 'fullcalendar-rails'
+gem 'geocoder'
+gem 'groupdate'
+gem 'highcharts-rails'
+gem 'kaminari'
+gem 'momentjs-rails'
+gem 'prawn-table'
+gem 'prawnto_2', require: 'prawnto'
+gem 'rails-timeago'
+gem 'rails_12factor', group: :production
+gem 'ransack'
 gem 'rubocop-rails', require: false
+gem 'underscore-rails'
+gem 'webpacker'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
 
 # Wicked PDF
 gem 'wicked_pdf'
@@ -62,7 +63,7 @@ gem 'wkhtmltopdf-binary'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :staging, :production do
-  gem "wkhtmltopdf-heroku"
+  gem 'wkhtmltopdf-heroku'
 end
 
 group :development, :test do
@@ -79,4 +80,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

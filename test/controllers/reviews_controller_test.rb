@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ReviewsControllerTest < ActionController::TestCase
@@ -5,43 +7,43 @@ class ReviewsControllerTest < ActionController::TestCase
     @review = reviews(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:reviews)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create review" do
+  test 'should create review' do
     assert_difference('Review.count') do
-      post :create, review: { cantidad: @review.cantidad, categoria: @review.categoria, operator_id: @review.operator_id }
+      post :create, params: { review: { cantidad: @review.cantidad, categoria: @review.categoria, operator_id: @review.operator_id } }
     end
 
     assert_redirected_to review_path(assigns(:review))
   end
 
-  test "should show review" do
-    get :show, id: @review
+  test 'should show review' do
+    get :show, params: { id: @review }
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @review
+  test 'should get edit' do
+    get :edit, params: { id: @review }
     assert_response :success
   end
 
-  test "should update review" do
-    patch :update, id: @review, review: { cantidad: @review.cantidad, categoria: @review.categoria, operator_id: @review.operator_id }
+  test 'should update review' do
+    patch :update, params: { id: @review, review: { cantidad: @review.cantidad, categoria: @review.categoria, operator_id: @review.operator_id } }
     assert_redirected_to review_path(assigns(:review))
   end
 
-  test "should destroy review" do
+  test 'should destroy review' do
     assert_difference('Review.count', -1) do
-      delete :destroy, id: @review
+      delete :destroy, params: { id: @review }
     end
 
     assert_redirected_to reviews_path

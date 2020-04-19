@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :update, :destroy]
+  before_action :set_company, only: %i[show update destroy]
 
   # GET /companies
   # GET /companies.json
   def index
     @active15 = 'active pcoded-trigger'
 
-    if current_user.super_admin
-      @companies = Company.all
-    end
+    @companies = Company.all if current_user.super_admin
   end
 
   # GET /companies/1
@@ -79,13 +79,14 @@ class CompaniesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company
-      @company = Company.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def company_params
-      params.require(:company).permit(:razon_social, :name, :address, :industry, :rfc, :alias, :company_type, :cadena_verificacion, :type_a_name, :type_a_km_cost, :type_a_day_cost, :type_b_name, :type_b_km_cost, :type_b_day_cost, :type_c_name, :type_c_km_cost, :type_c_day_cost, :type_d_name, :type_d_km_cost, :type_d_day_cost, :logo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_company
+    @company = Company.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def company_params
+    params.require(:company).permit(:razon_social, :name, :address, :industry, :rfc, :alias, :company_type, :cadena_verificacion, :type_a_name, :type_a_km_cost, :type_a_day_cost, :type_b_name, :type_b_km_cost, :type_b_day_cost, :type_c_name, :type_c_km_cost, :type_c_day_cost, :type_d_name, :type_d_km_cost, :type_d_day_cost, :logo)
+  end
 end

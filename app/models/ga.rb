@@ -1,13 +1,13 @@
-class Ga < ActiveRecord::Base
+# frozen_string_literal: true
 
-	before_save :fecha
+class Ga < ApplicationRecord
+  before_save :fecha
 
-	def fecha
-		self.fecha = "#{self.ano}-#{self.mes}-01 00:00:00"
-	end
+  def fecha
+    self.fecha = "#{ano}-#{mes}-01 00:00:00"
+  end
 
-	def month
-  self.fecha.to_date.strftime('%G-%B')
-	end
-
+  def month
+    fecha.to_date.strftime('%G-%B')
+  end
 end

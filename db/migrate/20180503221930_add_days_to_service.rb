@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDaysToService < ActiveRecord::Migration
   def change
     add_column :services, :days, :integer, default: 0.0

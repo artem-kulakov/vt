@@ -1,8 +1,9 @@
-class Review < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Review < ApplicationRecord
   belongs_to :operator
 
-def year
-  self.created_at.to_date.strftime('%G')
-end
-
+  def year
+    created_at.to_date.strftime('%G')
+  end
 end

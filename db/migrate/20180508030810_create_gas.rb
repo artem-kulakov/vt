@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateGas < ActiveRecord::Migration
   def change
     create_table :gas do |t|

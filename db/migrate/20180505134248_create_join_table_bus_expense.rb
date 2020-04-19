@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateJoinTableBusExpense < ActiveRecord::Migration
   def change
     create_join_table :buses, :expenses do |t|

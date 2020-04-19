@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class BusesControllerTest < ActionController::TestCase
@@ -5,43 +7,43 @@ class BusesControllerTest < ActionController::TestCase
     @bus = buses(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:buses)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create bus" do
+  test 'should create bus' do
     assert_difference('Bus.count') do
-      post :create, bus: { capacidad: @bus.capacidad, marca: @bus.marca, modelo: @bus.modelo, numero: @bus.numero, placa: @bus.placa, user_id: @bus.user_id, version: @bus.version }
+      post :create, params: { bus: { capacidad: @bus.capacidad, marca: @bus.marca, modelo: @bus.modelo, numero: @bus.numero, placa: @bus.placa, user_id: @bus.user_id, version: @bus.version } }
     end
 
     assert_redirected_to bus_path(assigns(:bus))
   end
 
-  test "should show bus" do
-    get :show, id: @bus
+  test 'should show bus' do
+    get :show, params: { id: @bus }
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @bus
+  test 'should get edit' do
+    get :edit, params: { id: @bus }
     assert_response :success
   end
 
-  test "should update bus" do
-    patch :update, id: @bus, bus: { capacidad: @bus.capacidad, marca: @bus.marca, modelo: @bus.modelo, numero: @bus.numero, placa: @bus.placa, user_id: @bus.user_id, version: @bus.version }
+  test 'should update bus' do
+    patch :update, params: { id: @bus, bus: { capacidad: @bus.capacidad, marca: @bus.marca, modelo: @bus.modelo, numero: @bus.numero, placa: @bus.placa, user_id: @bus.user_id, version: @bus.version } }
     assert_redirected_to bus_path(assigns(:bus))
   end
 
-  test "should destroy bus" do
+  test 'should destroy bus' do
     assert_difference('Bus.count', -1) do
-      delete :destroy, id: @bus
+      delete :destroy, params: { id: @bus }
     end
 
     assert_redirected_to buses_path

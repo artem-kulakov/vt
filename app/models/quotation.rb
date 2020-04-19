@@ -1,6 +1,8 @@
-class Quotation < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Quotation < ApplicationRecord
   belongs_to :user
   has_many :places, dependent: :destroy
 
-  enum status: %w(Abierto Itinerario Distancia Precios Cerrado)
+  enum status: { 'Abierto' => 0, 'Itinerario' => 1, 'Distancia' => 2, 'Precios' => 3, 'Cerrado' => 4 }
 end

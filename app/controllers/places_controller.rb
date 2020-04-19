@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:show, :edit, :update, :destroy]
+  before_action :set_place, only: %i[show edit update destroy]
   before_action :set_quotation
   before_action :authenticate_user!
 
@@ -11,8 +13,7 @@ class PlacesController < ApplicationController
 
   # GET /places/1
   # GET /places/1.json
-  def show
-  end
+  def show; end
 
   # GET /places/new
   def new
@@ -20,8 +21,7 @@ class PlacesController < ApplicationController
   end
 
   # GET /places/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /places
   # POST /places.json
@@ -66,17 +66,18 @@ class PlacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_place
-      @place = Place.find(params[:id])
-    end
 
-    def set_quotation
-      @quotation = Quotation.find(params[:quotation_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_place
+    @place = Place.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def place_params
-      params.require(:place).permit(:quotation_id, :user_id, :address, :latitude, :longitude)
-    end
+  def set_quotation
+    @quotation = Quotation.find(params[:quotation_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def place_params
+    params.require(:place).permit(:quotation_id, :user_id, :address, :latitude, :longitude)
+  end
 end

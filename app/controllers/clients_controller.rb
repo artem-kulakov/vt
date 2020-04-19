@@ -1,35 +1,36 @@
+# frozen_string_literal: true
+
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /clients
   # GET /clients.json
   def index
-    @active8 = "active pcoded-trigger"
+    @active8 = 'active pcoded-trigger'
 
     @q = current_user.company.clients.ransack(params[:q])
     @clients = @q.result.distinct
-    @clients = @clients.order('id ASC').paginate(:page => params[:page], :per_page => 30)
+    @clients = @clients.order('id ASC').paginate(page: params[:page], per_page: 30)
   end
 
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @active8 = "active pcoded-trigger"
+    @active8 = 'active pcoded-trigger'
 
-    @records = @client.records.paginate(:page => params[:page], :per_page => 10)
+    @records = @client.records.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /clients/new
   def new
-    @active8 = "active pcoded-trigger"
+    @active8 = 'active pcoded-trigger'
 
     @client = Client.new
   end
 
   # GET /clients/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /clients
   # POST /clients.json
@@ -73,13 +74,14 @@ class ClientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_client
-      @client = Client.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def client_params
-      params.require(:client).permit(:user_id, :alias, :razon_social, :rfc, :calle_y_numero, :colonia, :municipio, :estado, :cp, :pais, :telefono, :email, :nombre_cobro, :telefono_cobro, :email_cobro, :address)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_client
+    @client = Client.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def client_params
+    params.require(:client).permit(:user_id, :alias, :razon_social, :rfc, :calle_y_numero, :colonia, :municipio, :estado, :cp, :pais, :telefono, :email, :nombre_cobro, :telefono_cobro, :email_cobro, :address)
+  end
 end

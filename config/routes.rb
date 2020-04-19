@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :companies
   resources :checkups
-  
+
   resources :reviews
-get '/reporte' => 'welcome#reporte'
+  get '/reporte' => 'welcome#reporte'
 
   resources :gas
   resources :receipts
@@ -24,7 +26,7 @@ get '/reporte' => 'welcome#reporte'
   resources :clients
   devise_for :users, skip: [:registrations]
   # resources :users
-  resources :users_admin, :controller => 'users'
+  resources :users_admin, controller: 'users'
   resources :categories
 
   resources :records do
@@ -50,7 +52,7 @@ get '/reporte' => 'welcome#reporte'
     resources :services
   end
 
-  resources :services, only: [:index, :update]
+  resources :services, only: %i[index update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

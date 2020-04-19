@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateClients < ActiveRecord::Migration
   def change
     create_table :clients do |t|
@@ -10,7 +12,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :municipio
       t.string :estado
       t.string :cp
-      t.string :pais, default: "México"
+      t.string :pais, default: 'México'
       t.string :telefono
       t.string :email
       t.string :nombre_cobro

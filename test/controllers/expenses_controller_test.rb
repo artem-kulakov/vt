@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ExpensesControllerTest < ActionController::TestCase
@@ -5,43 +7,43 @@ class ExpensesControllerTest < ActionController::TestCase
     @expense = expenses(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:expenses)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create expense" do
+  test 'should create expense' do
     assert_difference('Expense.count') do
-      post :create, expense: { ano: @expense.ano, bus_id: @expense.bus_id, cantidad: @expense.cantidad, categoria: @expense.categoria, fecha: @expense.fecha, mes: @expense.mes, nota: @expense.nota }
+      post :create, params: { expense: { ano: @expense.ano, bus_id: @expense.bus_id, cantidad: @expense.cantidad, categoria: @expense.categoria, fecha: @expense.fecha, mes: @expense.mes, nota: @expense.nota } }
     end
 
     assert_redirected_to expense_path(assigns(:expense))
   end
 
-  test "should show expense" do
-    get :show, id: @expense
+  test 'should show expense' do
+    get :show, params: { id: @expense }
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @expense
+  test 'should get edit' do
+    get :edit, params: { id: @expense }
     assert_response :success
   end
 
-  test "should update expense" do
-    patch :update, id: @expense, expense: { ano: @expense.ano, bus_id: @expense.bus_id, cantidad: @expense.cantidad, categoria: @expense.categoria, fecha: @expense.fecha, mes: @expense.mes, nota: @expense.nota }
+  test 'should update expense' do
+    patch :update, params: { id: @expense, expense: { ano: @expense.ano, bus_id: @expense.bus_id, cantidad: @expense.cantidad, categoria: @expense.categoria, fecha: @expense.fecha, mes: @expense.mes, nota: @expense.nota } }
     assert_redirected_to expense_path(assigns(:expense))
   end
 
-  test "should destroy expense" do
+  test 'should destroy expense' do
     assert_difference('Expense.count', -1) do
-      delete :destroy, id: @expense
+      delete :destroy, params: { id: @expense }
     end
 
     assert_redirected_to expenses_path

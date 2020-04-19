@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_route, only: %i[show edit update destroy]
   before_action :set_record
   before_action :authenticate_user!
 
@@ -11,8 +13,7 @@ class RoutesController < ApplicationController
 
   # GET /routes/1
   # GET /routes/1.json
-  def show
-  end
+  def show; end
 
   # GET /routes/new
   def new
@@ -20,8 +21,7 @@ class RoutesController < ApplicationController
   end
 
   # GET /routes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /routes
   # POST /routes.json
@@ -66,17 +66,18 @@ class RoutesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_route
-      @route = Route.find(params[:id])
-    end
 
-    def set_record
-      @record = Record.find(params[:record_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_route
+    @route = Route.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def route_params
-      params.require(:route).permit(:place, :record_id, :user_id)
-    end
+  def set_record
+    @record = Record.find(params[:record_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def route_params
+    params.require(:route).permit(:place, :record_id, :user_id)
+  end
 end

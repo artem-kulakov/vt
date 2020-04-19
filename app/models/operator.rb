@@ -1,4 +1,6 @@
-class Operator < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Operator < ApplicationRecord
   belongs_to :user
   has_one :company, through: :user
   has_many :buses, dependent: :destroy

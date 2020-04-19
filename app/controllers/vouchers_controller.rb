@@ -1,32 +1,32 @@
+# frozen_string_literal: true
+
 class VouchersController < ApplicationController
-  before_action :set_voucher, only: [:show, :edit, :update, :destroy]
+  before_action :set_voucher, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /vouchers
   # GET /vouchers.json
   def index
-    @active6 = "active pcoded-trigger"
+    @active6 = 'active pcoded-trigger'
 
     @q = current_user.company.vouchers.ransack(params[:q])
     @vouchers = @q.result.uniq
-    @vouchers = @vouchers.sort_by(&:'id')
+    @vouchers = @vouchers.sort_by(&:id)
   end
 
   # GET /vouchers/1
   # GET /vouchers/1.json
-  def show
-  end
+  def show; end
 
   # GET /vouchers/new
   def new
-    @active6 = "active pcoded-trigger"
+    @active6 = 'active pcoded-trigger'
 
     @voucher = Voucher.new
   end
 
   # GET /vouchers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /vouchers
   # POST /vouchers.json
@@ -69,13 +69,14 @@ class VouchersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_voucher
-      @voucher = Voucher.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def voucher_params
-      params.require(:voucher).permit(:operator_id, :operacion, :cantidad, :nota, :mes, :ano, :fecha, :bus_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_voucher
+    @voucher = Voucher.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def voucher_params
+    params.require(:voucher).permit(:operator_id, :operacion, :cantidad, :nota, :mes, :ano, :fecha, :bus_id)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Company.delete_all
 # User.delete_all
 
@@ -35,7 +37,6 @@
 #   super_admin: true
 # })
 
-
 # o01= Operator.create!({ :nombre => "Jorge Amador"})
 # o02= Operator.create!({ :nombre => "Gerardo Ramirez"})
 # o03= Operator.create!({ :nombre => "Eleazar Villar"})
@@ -57,8 +58,6 @@
 # o19= Operator.create!({ :nombre => "Erick Mendoza"})
 # o20= Operator.create!({ :nombre => "Marco A. Rodriguez"})
 # o21= Operator.create!({ :nombre => "Antonio Sanchez"})
-
-
 
 # b01= Bus.create!({:numero => "11", :marca => "SPRINTER", :capacidad => "19", :modelo => "2013", :placa => "732RP3", :version => "SPRINTER", :operator_id =>1 })
 # b02= Bus.create!({:numero => "12", :marca => "SPRINTER", :capacidad => "19", :modelo => "2013", :placa => "731RP3", :version => "SPRINTER", :operator_id =>2 })
@@ -125,8 +124,6 @@
 # c03= Ga.create!({:cantidad => 10, :mes => 11, :ano => 2020})
 # c03= Ga.create!({:cantidad => 10, :mes => 12, :ano => 2020})
 
-
-
 ### Seed records and services
 
 # Record.delete_all
@@ -167,8 +164,6 @@
 #   end
 # end
 
-
-
 ### Seed quotations
 
 # Quotation.delete_all
@@ -190,8 +185,6 @@
 #     end
 #   end
 # end
-
-
 
 ### Seed clients
 
@@ -221,28 +214,21 @@
 #   id += 1
 # end
 
-
-
 # Record.all.each do |record|
-  # if record.client_id == nil
-    # record.update(client_id: record.id-12822+3)
-  # end
+# if record.client_id == nil
+# record.update(client_id: record.id-12822+3)
+# end
 
 #   record.update(created_at: record.start_time)
 # end
-
 
 # Client.all.each do |client|
 #   client.update(razon_social: client.id)
 # end
 
-
-
 # Service.all.each do |service|
 #   service.update(created_at: service.fecha)
 # end
-
-
 
 # Receipt.delete_all
 # Expense.delete_all
@@ -274,10 +260,8 @@
 #   end
 # end
 
-
 # User.first(3).each { |user| user.update(company_id: co1.id) }
 # User.last(2).each { |user| user.update(company_id: co2.id) }
-
 
 # Quotation.all.each do |quotation|
 #   quotation.update(user_id: [1,3,4,6].sample)

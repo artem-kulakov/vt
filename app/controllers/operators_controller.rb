@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class OperatorsController < ApplicationController
-  before_action :set_operator, only: [:show, :edit, :update, :destroy]
+  before_action :set_operator, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /operators
   # GET /operators.json
   def index
-    @active9 = "active pcoded-trigger"
+    @active9 = 'active pcoded-trigger'
 
     @operators = current_user.company.operators
   end
@@ -20,7 +22,7 @@ class OperatorsController < ApplicationController
   def new
     authorize! :read, @bus
 
-    @active9 = "active pcoded-trigger"
+    @active9 = 'active pcoded-trigger'
 
     @operator = Operator.new
   end
@@ -76,13 +78,14 @@ class OperatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_operator
-      @operator = Operator.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def operator_params
-      params.require(:operator).permit(:nombre, :telefono, :papeles, :user_id, :observaciones, :validez, :licencia)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_operator
+    @operator = Operator.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def operator_params
+    params.require(:operator).permit(:nombre, :telefono, :papeles, :user_id, :observaciones, :validez, :licencia)
+  end
 end

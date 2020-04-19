@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReceiptsController < ApplicationController
-  before_action :set_receipt, only: [:show, :edit, :update, :destroy]
+  before_action :set_receipt, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /receipts
@@ -10,8 +12,7 @@ class ReceiptsController < ApplicationController
 
   # GET /receipts/1
   # GET /receipts/1.json
-  def show
-  end
+  def show; end
 
   # GET /receipts/new
   def new
@@ -19,8 +20,7 @@ class ReceiptsController < ApplicationController
   end
 
   # GET /receipts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /receipts
   # POST /receipts.json
@@ -63,13 +63,14 @@ class ReceiptsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_receipt
-      @receipt = Receipt.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def receipt_params
-      params.require(:receipt).permit(:categoria, :cantidad, :nota, :fecha, :bus_id, :expense_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_receipt
+    @receipt = Receipt.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def receipt_params
+    params.require(:receipt).permit(:categoria, :cantidad, :nota, :fecha, :bus_id, :expense_id)
+  end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ExpensesController < ApplicationController
-  before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_expense, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /expenses
@@ -7,28 +9,26 @@ class ExpensesController < ApplicationController
   def index
     authorize! :read, nil
 
-    @active7 = "active pcoded-trigger"
+    @active7 = 'active pcoded-trigger'
 
-    @expenses = current_user.company.expenses.paginate(:page => params[:page], :per_page => 30)
+    @expenses = current_user.company.expenses.paginate(page: params[:page], per_page: 30)
   end
 
   # GET /expenses/1
   # GET /expenses/1.json
-  def show
-  end
+  def show; end
 
   # GET /expenses/new
   def new
     authorize! :new, nil
 
-    @active7 = "active pcoded-trigger"
+    @active7 = 'active pcoded-trigger'
 
     @expense = Expense.new
   end
 
   # GET /expenses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /expenses
   # POST /expenses.json
@@ -71,13 +71,14 @@ class ExpensesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_expense
-      @expense = Expense.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def expense_params
-      params.require(:expense).permit(:categoria, :cantidad, :nota, :mes, :ano, :fecha, receipts_attributes: [:id, :expense_id, :bus_id, :categoria, :cantidad, :nota, :fecha])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_expense
+    @expense = Expense.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def expense_params
+    params.require(:expense).permit(:categoria, :cantidad, :nota, :mes, :ano, :fecha, receipts_attributes: %i[id expense_id bus_id categoria cantidad nota fecha])
+  end
 end
