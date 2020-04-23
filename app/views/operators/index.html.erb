@@ -35,9 +35,10 @@
                 <td class="text-center"><span class="label theme-bg3 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Incompletos</span></td>
                 <% end %>
                    <%  if operator.reviews.count > 0 %>
-                    <td><%= operator.reviews.sum(:cantidad) / operator.reviews.count %></td>
+                    <td><div class="star-rating" data-score= <%= operator.reviews.sum(:cantidad) / operator.reviews.count %> ></div></td>
                     <% else %>
-                    <td>0</td>
+                    <td><div class="star-rating" data-score= 0 ></div></td>
+                    0
                     <% end %>
                     <td></td>
                     <td><%= link_to 'Ver más', operator %></td>
@@ -51,3 +52,14 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
