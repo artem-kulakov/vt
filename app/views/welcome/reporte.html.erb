@@ -67,7 +67,7 @@
                                         <% @bo= cost.select{|c| c.is_a?(Service)}.map(&:km_finales).sum%>
 
                                             <!-- litros diesel -->
-                                            <td><%= 
+                                            <td><i class="feather icon-droplet"></i> <%= 
                                   if @bobo.nan? || @bo.nan?
                                     @a = 0
                                   else

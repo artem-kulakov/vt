@@ -72,8 +72,8 @@
                         <% @services.each do |service| %>
                         <tr>
                             <td><%= service.id%></td>
-                            <td><%= service.bus.numero%></td>
-                            <td><%= service.operator.nombre %></td>
+                            <td><i class="feather icon-disc"></i> <%= service.bus.numero%></td>
+                            <td><i class="feather icon-user"></i> <%= service.operator.nombre %></td>
                             <td><%= service.record.start_time.strftime(" %b-%d-%Y") %> - <%= service.record.end_time.strftime(" %b-%d-%Y") %></td>
                             <td><%= service.km_inicio %></td>
                             <td><%= service.km_fin %></td>

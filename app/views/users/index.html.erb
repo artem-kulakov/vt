@@ -22,11 +22,11 @@
                 <tbody>
                   <% @users.each do |user| %>
                   <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
+                    <td><i class="feather icon-user"></i> <%= user.name %></td>
+                    <td><i class="feather icon-mail"></i> <%= user.email %></td>
                     <td><%= user.admin %></td>
                     <td><%= user.puesto %></td>
-                    <td><%= user.phone %></td>
+                    <td><i class="feather icon-smartphone"></i> <%= user.phone %></td>
                     <td><%= link_to 'Ver mas', users_admin_path(user) %></td>
                     <td><%= link_to 'Editar', edit_users_admin_path(user) %></td>
                     <td><%= link_to 'Eliminar', users_admin_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
