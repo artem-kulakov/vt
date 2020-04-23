@@ -2,6 +2,8 @@
     <div class="card">
         <div class="card-header">
             <h5><%= @operator.nombre %></h5>
+            <div class=”review_rating’ data-score = “<%= @operator.reviews.sum(:cantidad) / @operator.reviews.count %>”></div>
+            <%= @operator.reviews.sum(:cantidad) / @operator.reviews.count %>
         </div>
         <div class="card-block">
             <div class="row">
@@ -39,7 +41,7 @@
                             <th>Notas</th>
                             <th>Fecha</th>
                             <th>Cantidad</th>
-                            <th colspan="2"></th>
+                            <th colspan="1"></th>
                         </tr>
                     </thead>
 
@@ -50,18 +52,18 @@
                         <td><%= voucher.operacion %></td>
                         <td><%= voucher.nota %></td>
                         <td><%= voucher.fecha.to_date.strftime('%G-%B') %></td>
-                        <td><%= voucher.cantidad %></td>
-                        <td><%= link_to 'Ver mas', edit_voucher_path(voucher) %></td>
+                        <td><%= number_to_currency voucher.cantidad %></td>
+                        
                         <td><%= link_to 'Eliminar', voucher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>
                     <% end %>
                     <tr>
                         <td></td>
                         <td></td>
-                        <td>Gastos totales: <%= number_to_currency @a= vouchers.select{|c| c.operacion == 'Gastos del mes'}.map(&:cantidad).sum%></td>
+                        <td>Gastos<br>totales: <%= number_to_currency @a= vouchers.select{|c| c.operacion == 'Gastos del mes'}.map(&:cantidad).sum%></td>
                         <% number_to_currency @c= vouchers.select{|c| c.operacion == 'Comprobantes'}.map(&:cantidad).sum%>
                         <% number_to_currency @d= vouchers.select{|c| c.operacion == 'Saldo a favor'}.map(&:cantidad).sum%>
-                        <td>Compr. y saldo a favor:  <%= number_to_currency @b= (@c + @d) %></td>
+                        <td>Compr. y saldo <br> a favor:  <%= number_to_currency @b= (@c + @d) %></td>
                         <% if @b < @a*0.5 %>
                         <td class="text-danger">Penalización</td>
                         <% elsif @b > @a+500 %>
@@ -69,7 +71,7 @@
                         <% else %>
                         <td></td>
                         <% end %>
-                        
+
                         <td></td>
                         <td></td>
                     </tr>
@@ -88,7 +90,7 @@
 
 
 <div class="col-md-4">
-   <div class="card">
+ <div class="card">
     <div class="card-header">
         <h5>Nuevo Comprobante</h5>
     </div>
@@ -160,33 +162,33 @@
     </div>
     <div class="card-block">
       <%= form_for(@review) do |f| %>
-  <% if @review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <% if @review.errors.any? %>
+      <div id="error_explanation">
+          <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-      <ul>
-      <% @review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+              <% @review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+          </ul>
+      </div>
       <% end %>
-      </ul>
+
+
+      <%= f.hidden_field :operator_id, value: @operator.id %>
+
+      <div class="form-group">
+        <%= f.label :categoria %><br>
+        <%= f.select :categoria, [["Encuesta de satisfacción"], ["Estado de la unidad"], ["Penalizaciones"]], {:prompt => 'Elige Operación'}, {:required => true, class: "form-control"}%>
     </div>
-  <% end %>
-
-
-<%= f.hidden_field :operator_id, value: @operator.id %>
-
-  <div class="form-group">
-    <%= f.label :categoria %><br>
-    <%= f.select :categoria, [["Encuesta de satisfacción"], ["Estado de la unidad"], ["Penalizaciones"]], {:prompt => 'Elige Operación'}, {:required => true, class: "form-control"}%>
-  </div>
-  <div class="form-group">
-    <%= f.label :cantidad %><br>
-    <div id="star-rating1"></div><br>
-  </div>
-  <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
-<% end %>
+    <div class="form-group">
+        <%= f.label :cantidad %><br>
+        <div id="star-rating1"></div><br>
+    </div>
+    <div class="actions">
+        <%= f.submit class: "btn btn-primary" %>
+    </div>
+    <% end %>
 
 
 </div>
@@ -201,5 +203,15 @@
     path: '/images/raty',
     socore: 3,
     scoreName: 'review[cantidad]'
-  });
+});
+</script>
+
+<script>
+$(‘.review_rating’).raty({
+readOnly: true,
+score: function() {
+return $(this).attr(‘data-score’);
+},
+path: ‘/assets/’
+});
 </script>

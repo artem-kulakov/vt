@@ -14,6 +14,8 @@
                     <th>Número de Licencia</th>
                     <th>Vigencia</th>
                     <th>Papeles</th>
+                    <th>Calificación</th>
+                    <th>Top</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -32,6 +34,12 @@
                 <% else %>
                 <td class="text-center"><span class="label theme-bg3 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Incompletos</span></td>
                 <% end %>
+                   <%  if operator.reviews.count > 0 %>
+                    <td><%= operator.reviews.sum(:cantidad) / operator.reviews.count %></td>
+                    <% else %>
+                    <td>0</td>
+                    <% end %>
+                    <td></td>
                     <td><%= link_to 'Ver más', operator %></td>
                     <td><%= link_to 'Editar', edit_operator_path(operator) %></td>
                     <td><%= link_to 'Eliminar', operator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
