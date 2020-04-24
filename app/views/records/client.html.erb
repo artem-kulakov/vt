@@ -35,7 +35,7 @@
             <tbody>
               <% @clients.each do |client| %>
                   <tr>
-                    <td><%= f.radio_button :client_id, client.id %></td>
+                    <td><%= f.radio_button :client_id, client.id, required: true %></td>
                     <td><%= client.id %></td>
                     <% if client.records.where({ "records.status_admin" => false }).count > 0%>
                     <td class="red">Deudor</td>
