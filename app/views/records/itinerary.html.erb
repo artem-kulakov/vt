@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-left">
-                        <%= f.submit "Añadir Lugar", class: "btn btn-primary" %>
+                        <%= f.submit "Añadir Lugar", class: "btn btn-secondary" %>
                     </div>
                 </div>
             <% end %>
@@ -45,7 +45,8 @@
 <script>
   function initialize() {
     var options = {
-      types: ['(cities)'],
+      types: ['(regions)'],
+      componentRestrictions: {country: 'mx'},
     };
 
     var input = document.getElementById('searchTextField');

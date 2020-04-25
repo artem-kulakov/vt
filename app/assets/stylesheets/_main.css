@@ -597,6 +597,13 @@ ul.list-justify > li {
     background-color: #fec330;
     border-color: #fec330; }
 
+.btn-third {
+  background-color: #6F98FE;
+  border-color: #6F98FE; }
+  .btn-third:hover, .btn-third:focus {
+    background-color: #fec330;
+    border-color: #fec330; }
+
 .btn-warning {
   background-color: #e4cb10;
   border-color: #d6be0f; }
