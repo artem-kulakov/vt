@@ -33,26 +33,15 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Razon social</th>
-                      <th>Name</th>
-                      <th>Address</th>
-                      <th>Industry</th>
-                      <th>Rfc</th>
-                      <th>Alias</th>
-                      <th>Company type</th>
-                      <th>Cadena verificacion</th>
-                      <th>Type a name</th>
-                      <th>Type a km cost</th>
-                      <th>Type a day cost</th>
-                      <th>Type b name</th>
-                      <th>Type b km cost</th>
-                      <th>Type b day cost</th>
-                      <th>Type c name</th>
-                      <th>Type c km cost</th>
-                      <th>Type c day cost</th>
-                      <th>Type d name</th>
-                      <th>Type d km cost</th>
-                      <th>Type d day cost</th>
+                      <th>ID</th>
+                      <th>Información</th>
+                      <th>Cotizaciones</th>
+                      <th>Órdenes</th>
+                      <th>Servicios</th>
+                      <th>Clientes</th>
+                      <th>Autobuses</th>
+                      <th>Operadores</th>
+                      <th>Usuarios</th>
                       <th colspan="3"></th>
                     </tr>
                   </thead>
@@ -60,26 +49,15 @@
                   <tbody>
                     <% @companies.each do |company| %>
                       <tr>
-                        <td><%= company.razon_social %></td>
-                        <td><%= company.name %></td>
-                        <td><%= company.address %></td>
-                        <td><%= company.industry %></td>
-                        <td><%= company.rfc %></td>
-                        <td><%= company.alias %></td>
-                        <td><%= company.company_type %></td>
-                        <td><%= company.cadena_verificacion %></td>
-                        <td><%= company.type_a_name %></td>
-                        <td><%= company.type_a_km_cost %></td>
-                        <td><%= company.type_a_day_cost %></td>
-                        <td><%= company.type_b_name %></td>
-                        <td><%= company.type_b_km_cost %></td>
-                        <td><%= company.type_b_day_cost %></td>
-                        <td><%= company.type_c_name %></td>
-                        <td><%= company.type_c_km_cost %></td>
-                        <td><%= company.type_c_day_cost %></td>
-                        <td><%= company.type_d_name %></td>
-                        <td><%= company.type_d_km_cost %></td>
-                        <td><%= company.type_d_day_cost %></td>
+                        <td><%= company.id %></td>
+                        <td><i class="feather icon-file-text"></i> <%= company.try(:nombre) %> <br> <i class="feather icon-file"></i> <%= company.try(:address) %> (<%= company.try(:rfc) %>) <br> <i class="feather icon-file"></i> <%= company.try(:razon_social) %> </td>
+                        <td><%= company.quotations.count %></td>
+                        <td><%= company.records.count %></td>
+                        <td><%= company.services.count %></td>
+                        <td><%= company.clients.count %></td>
+                        <td><%= company.buses.count %></td>
+                        <td><%= company.operators.count %></td>
+                        <td><%= company.users.count %></td>
                         <td><%= link_to 'Ver mas', company %></td>
                         <td><%= link_to 'Editar', edit_company_path(company) %></td>
                         <td><%= link_to 'Eliminar', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>

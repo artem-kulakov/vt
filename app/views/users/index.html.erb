@@ -13,6 +13,8 @@
                     <th>Admin</th>
                     <th>Puesto</th>
                     <th>Teléfono</th>
+                    <th>Cotizaciones</th>
+                    <th>Órdenes</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -27,6 +29,8 @@
                     <td><%= user.admin %></td>
                     <td><%= user.puesto %></td>
                     <td><i class="feather icon-smartphone"></i> <%= user.phone %></td>
+                    <td><%= user.quotations.count %></td>
+                    <td><%= user.records.count %></td>
                     <td><%= link_to 'Ver mas', users_admin_path(user) %></td>
                     <td><%= link_to 'Editar', edit_users_admin_path(user) %></td>
                     <td><%= link_to 'Eliminar', users_admin_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>

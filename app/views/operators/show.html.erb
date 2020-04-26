@@ -2,8 +2,13 @@
     <div class="card">
         <div class="card-header">
             <h5><%= @operator.nombre %></h5>
-            <div class="star-rating" data-score= <%= @operator.reviews.sum(:cantidad) / @operator.reviews.count %> ></div>
-            <%= @operator.reviews.sum(:cantidad) / @operator.reviews.count %>
+
+                    <%  if @operator.reviews.count > 0 %>
+                    <td><div class="star-rating" data-score= <%= @operator.reviews.sum(:cantidad) / @operator.reviews.count %> ></div></td>
+                    <% else %>
+                    <td><div class="star-rating" data-score= 0 ></div></td>
+                    0
+                    <% end %>
         </div>
         <div class="card-block">
             <div class="row">
