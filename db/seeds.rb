@@ -359,5 +359,5 @@
 # end
 
 Ga.all.each do |ga|
-  ga.update(company_id: 9)
+  ga.update(company_id: 1)
 end
