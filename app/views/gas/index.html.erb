@@ -18,7 +18,7 @@
                 <% @gas.each do |ga| %>
                 <tr>
                   <td><i class="feather icon-droplet"></i> <%= ga.try(:cantidad) %></td>
-                  <td><i class="feather icon-calendar"></i> <%= ga.try(:month) %></td>
+                  <td><i class="feather icon-calendar"></i> <%= ga.try(:month2) %></td>
                   <td><%= link_to 'Editar', edit_ga_path(ga) %></td>
                 </tr>
                 <% end %>

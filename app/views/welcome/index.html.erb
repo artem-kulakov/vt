@@ -98,10 +98,10 @@
     </div>
 </div>
 
-<div class="col-xl-8 col-md-12 datta-example">
+<div class="col-xl-12 col-md-12 datta-example">
     <div class="card user-list">
         <div class="card-header">
-            <h5>Last users login</h5>
+            <h5>Último inicio de sesión</h5>
         </div>
         <div class="card-block pb-0">
             <div class="table-responsive">
@@ -137,7 +137,7 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Quotations created/closed<br><small>last 30 days</small></h5>
+            <h5>Cotizaciones creadas/cerradas<br><small>últimos 30 días</small></h5>
         </div>
         <div class="card-block">
             <div id="line-chart2" class="lineChart2 ChartShadow" style="height:350px;"></div>
@@ -148,7 +148,7 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Records created/closed<br><small>last 30 days</small></h5>
+            <h5>Órdenes creadas/cerradas<br><small>últimos 30 días</small></h5>
         </div>
         <div class="card-block">
             <div id="line-chart3" class="lineChart2 ChartShadow" style="height:350px;"></div>
@@ -161,8 +161,8 @@
         <div class="bg-img"></div>
         <div class="card-block  text-center">
             <i class="fas fa-chart-line text-white f-30 m-b-20"></i>
-            <h5 class="text-white m-b-12">Bus fleet</h5>
-            <h3 class="text-white f-w-300"><%= current_user.company.buses.count %> buses</h3>
+            <h5 class="text-white m-b-12">Flota de autobuses</h5>
+            <h3 class="text-white f-w-300"><%= current_user.company.buses.count %> autobuses</h3>
         </div>
     </div>
 </div>
@@ -172,8 +172,8 @@
         <div class="bg-img"></div>
         <div class="card-block  text-center">
             <i class="fas fa-chart-line text-white f-30 m-b-20"></i>
-            <h5 class="text-white m-b-12">Operators count</h5>
-            <h3 class="text-white f-w-300"><%= current_user.company.operators.count %> operators</h3>
+            <h5 class="text-white m-b-12">Operadores en servicio</h5>
+            <h3 class="text-white f-w-300"><%= current_user.company.operators.count %> operadores</h3>
         </div>
     </div>
 </div>
@@ -181,7 +181,7 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Last 30 days quotations</h5>
+            <h5>Cotizaciones de los últimos 30 días</h5>
         </div>
         <div class="card-block">
             <div class="row d-flex align-items-center">
@@ -213,7 +213,7 @@
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
-            <h5>Last 30 days services</h5>
+            <h5>Servicios de los últimos 30 días</h5>
         </div>
         <div class="card-block">
             <div class="row d-flex align-items-center">
@@ -242,10 +242,10 @@
     </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5>Quotations status</h5>
+            <h5>Cotizaciones por status</h5>
         </div>
         <div class="card-block pl-0 pr-0 pb-2">
             <div id="bar-chart" class="ChartShadow BarChart" style="height:250px;"></div>
@@ -281,7 +281,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5>Records status</h5>
+            <h5>Órdenes por status</h5>
         </div>
         <div class="card-block pl-0 pr-0 pb-2">
             <div id="bar-chart-3" class="ChartShadow BarChart" style="height:250px;"></div>
@@ -325,30 +325,17 @@
     </div>
 </div>
 
-<% if current_user.admin == true %>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h5>Income<br><small>last 12 months</small></h5>
-            </div>
-            <div class="card-block">
-                <div id="line-chart4" class="lineChart2 ChartShadow" style="height:350px;"></div>
-            </div>
-        </div>
-    </div>
-<% end %>
-
 <div class="col-md-6 m-b-30 datta-example">
-    <h5 class="docs-header" id="page-table">Buses checkup status</h5>
+    <h5 class="docs-header" id="page-table">Status de los checkups</h5>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">All</a>
+            <a class="nav-link" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">Todos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Nearest preventivo</a>
+            <a class="nav-link active" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Próximo presentivo</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Nearest correctivo</a>
+            <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Próximo correctivo</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent" style="padding: 35px 30px;">

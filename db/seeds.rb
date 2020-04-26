@@ -358,6 +358,33 @@
 #   record.update(status: [0,1,2,3,4,5,6,7].sample)
 # end
 
-Ga.all.each do |ga|
-  ga.update(company_id: 1)
-end
+# User.all.each do |ga|
+#   ga.update(company_id: 1)
+# end
+
+
+# Bus.all.each do |bus|
+#   bus.update(kms_servicio_preventivo: 10000)
+#   bus.update(kms_servicio_correctivo: 10000)
+# end
+
+# Bus.all.each do |bus|
+#   Checkup.create(
+#     bus: bus,
+#     category: 'preventivo',
+#     fecha_inicio: "2020-04-24",
+#     fecha_fin: "2020-04-25",
+#     comment: "Checkup preventivo inicial"
+#   )
+
+
+
+#   Checkup.create(
+#     bus: bus,
+#     category: 'correctivo',
+#     fecha_inicio: "2020-04-24",
+#     fecha_fin: "2020-04-25",
+#     comment: "Checkup correctivo inicial"
+#   )
+# end
+
