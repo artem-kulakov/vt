@@ -50,31 +50,10 @@ class RecordsController < ApplicationController
     # Checkups
     @checkups = []
     current_user.company.buses.each do |bus|
-      if bus.checkups.preventivo.any?
-        last_preventivo_checkup = bus.checkups.preventivo.last.fecha_fin
-        services_after_preventivo_checkup = bus.services.where('services.fecha > ?', last_preventivo_checkup)
-        kms_since_preventivo_checkup = services_after_preventivo_checkup.sum(:km_finales)
-        preventivo_checkup_needed = kms_since_preventivo_checkup >= bus.kms_servicio_preventivo
-      end
-
-      if bus.checkups.correctivo.any?
-        last_correctivo_checkup = bus.checkups.correctivo.last.fecha_fin
-        services_after_correctivo_checkup = bus.services.where('services.fecha > ?', last_correctivo_checkup)
-        kms_since_correctivo_checkup = services_after_correctivo_checkup.sum(:km_finales)
-        correctivo_checkup_needed = kms_since_correctivo_checkup >= bus.kms_servicio_correctivo
-      end
-
-      if (preventivo_checkup_needed && services_after_preventivo_checkup.any?) ||
-        (correctivo_checkup_needed && services_after_correctivo_checkup.any?)
-
-        if preventivo_checkup_needed
-          start_time = services_after_preventivo_checkup.order(:fecha).last.record.end_time
-        elsif 
-          start_time = services_after_correctivo_checkup.order(:fecha).last.record.end_time
-        end
-
+      bus.checkups.each do |checkup|
         @checkups << {
-          start_time: start_time,
+          start_time: checkup.fecha_inicio,
+          end_time: checkup.fecha_fin + 1.day,
           bus_id: bus.id
         }
       end
