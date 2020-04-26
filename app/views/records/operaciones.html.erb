@@ -32,8 +32,8 @@
                 <td><%= record.try(:end_time).strftime(" %b-%d-%Y") %></td>
                 <td><i class="feather icon-users"></i> <%= record.try(:numero_pasajeros) %></td>
                 <td><i class="feather icon-disc"></i> <%= record.try(:numero_de_camiones) %></td>
-                <td><%= record.try(:precio_final) %></td>
-                <td><%= record.try(:sum_payments) %></td>
+                <td><%= number_to_currency record.try(:precio_final) %></td>
+                <td><%= number_to_currency record.try(:sum_payments) %></td>
   
                 <% if record.try(:status_admin) == true %>
                 <td class="text-center"><span class="label theme-bg4 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Cobrado</span></td>
@@ -41,7 +41,12 @@
                 <td class="text-center"><span class="label theme-bg3 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Por cobrar</span></td>
                 <% end %>
                 
-                <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= record.status %></span></td>
+              <% if record.status == 'Cerrado'%>
+              <td class="text-center"><span class="label theme-bg5 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= record.status %></span></td>
+              <%else%>
+              <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= record.status %></span></td>
+              <%end%> 
+
                 <%
                   status = record.status
                   if status == 'Abierto'

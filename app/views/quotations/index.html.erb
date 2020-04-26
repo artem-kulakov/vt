@@ -14,8 +14,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <%= f.label :Cliente %>
-                            <%= f.search_field :email_or_nombre_cont, placeholder: "Buscar por Cliente", class: "form-control" %>
+                            <%= f.label :Cliente_promesa %>
+                            <%= f.search_field :email_or_nombre_cont, placeholder: "Buscar por cliente promesa", class: "form-control" %>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,7 +73,13 @@
                             <td><%= quotation.try(:fecha_inicio).strftime(" %b-%d-%Y") %></td>
                             <td><%= quotation.try(:fecha_fin).strftime(" %b-%d-%Y") %></td>
                             <td><i class="feather icon-users"></i> <%= quotation.pasajeros %></td>
+                            
+                            <% if quotation.status == 'Cerrado'%>
+                            <td class="text-center"><span class="label theme-bg5 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= quotation.status %></span></td>
+                            <%else%>
                             <td class="text-center"><span class="label theme-bg f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= quotation.status %></span></td>
+                            <%end%>
+                            
                             <%
                               status = quotation.status
                               if status == 'Abierto'
@@ -88,6 +94,7 @@
                                 path = pdf_quotation_path(quotation)
                               end
                             %>
+                            
                             <td><i class="feather icon-user"></i>  <%= quotation.user.name %></td>
                             <td><%= link_to 'Ver más', path %></td>
                             <td><%= link_to 'Eliminar', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

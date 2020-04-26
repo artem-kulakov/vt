@@ -7,7 +7,9 @@ class BusesController < ApplicationController
   def index
     @active10 = "active pcoded-trigger"
 
-    @buses = current_user.company.buses
+    @q = current_user.company.buses.ransack(params[:q])
+    @buses = @q.result.distinct
+    @buses = @buses.order('id ASC').paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /buses/1

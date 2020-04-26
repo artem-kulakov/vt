@@ -7,7 +7,10 @@ class OperatorsController < ApplicationController
   def index
     @active9 = "active pcoded-trigger"
 
-    @operators = current_user.company.operators
+    @q = current_user.company.operators.ransack(params[:q])
+    @operators = @q.result.distinct
+    @operators = @operators.order('id ASC').paginate(:page => params[:page], :per_page => 30)
+
   end
 
   # GET /operators/1

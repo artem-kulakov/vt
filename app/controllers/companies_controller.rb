@@ -8,6 +8,10 @@ class CompaniesController < ApplicationController
 
     if current_user.super_admin
       @companies = Company.all
+    @q = @companies.ransack(params[:q])
+    @companies = @q.result.distinct
+    @companies = @companies.order('id ASC').paginate(:page => params[:page], :per_page => 30)
+
     end
   end
 

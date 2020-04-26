@@ -9,7 +9,7 @@
           <div class="col-md-12">
             <div class="form-group">
                 <label>Cliente:</label>
-                <%= f.search_field :razon_social_or_rfc_or_alias_cont, placeholder: "Buscar cliente por Razón Social, R.F.C o Alias", class: "form-control" %>
+                <%= f.search_field :razon_social_or_rfc_or_alias_cont, placeholder: "Buscar cliente", class: "form-control" %>
             </div>
           </div>
         </div>
@@ -33,16 +33,11 @@
               <table class="table" id="example">
                 <thead>
                   <th>ID</th>
-                  <th>Status</th>
-                  <th>Servicios que debe</th>
+                  <th>Información</th>
                   <th>Razon Social</th>
-                  <th>Address</th>
-                  <th>R.F.C</th>
-                  <th>Dirección</th>
-                  <th>Colonia</th>
-                  <th>Estado</th>
-                  <th>Email</th>
-                  <th>Teléfono</th>
+                  <th>Status</th>
+                  <th>Servicios <br> que debe</th>
+                  
                   <th></th>
                   <th></th>
                 </thead>
@@ -50,22 +45,17 @@
                   <% @clients.each do |client| %>
                   <tr>
                     <td><%= client.id%></td>
+                    <td><%= client.alias %> <br> <i class="feather icon-smartphone"></i> <%= client.telefono %> <br> <i class="feather icon-mail"></i> <%= client.email %>  </td>
+                    <td><%= client.razon_social %></td>
 
                     <% if client.records.where({ "records.status_admin" => false }).count > 0%>
-                      <td class="text-danger">Deudor</td>
+                      <td class="text-center"><span class="label theme-bg6 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">Debe</span></td>
                     <% else %>
-                      <td class="text-success">No debe</td>
+                      <td class="text-center"><span class="label theme-bg5 f-12 text-white" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);">No debe</span></td>
                     <% end %>
 
-                    <td class="text-success"><%= client.records.where({ "records.status_admin" => false }).count%></td>
-                    <td><%= client.razon_social %></td>
-                    <td><%= client.address %></td>
-                    <td><%= client.rfc %></td>
-                    <td><%= client.calle_y_numero %></td>
-                    <td><%= client.colonia %></td>
-                    <td><%= client.estado %></td>
-                    <td><%= client.email %></td>
-                    <td><%= client.telefono %></td>
+                    <td><%= client.records.where({ "records.status_admin" => false }).count%></td>
+                    
                     <td><%= link_to 'Ver más', client %></td>
                     <td><%= link_to 'Editar', edit_client_path(client) %></td>
                   </tr>

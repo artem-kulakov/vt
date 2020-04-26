@@ -49,7 +49,7 @@
             <h5 class="">Servicios</h5>
             <% @years.reverse.each do |year| %>
               <% if year.to_s == @year.to_s %>
-                <span class="mr-2"><%= year %></span>
+                <span class="mr-2 label theme-bg2 f-15 text-white active" style="border-radius: 15px;box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);"><%= year %></span>
               <% else %>
                 <%= link_to year, services_path(year: year), class: "mr-2" %>
               <% end %>

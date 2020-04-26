@@ -1,6 +1,31 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
+            <h5>Busca operadores</h5>
+        </div>
+        <div class="card-block">
+         <%= search_form_for @q do |f| %>
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>Operador:</label>
+                <%= f.search_field :nombre_or_id_or_telefono_cont, placeholder: "Buscar operador", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.submit "Buscar", class: "btn btn-primary" %>
+          </div>
+          </div>    
+        <% end %>       
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
             <h5>Operadores</h5>
         </div>
         <div class="card-block">

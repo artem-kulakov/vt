@@ -1,10 +1,7 @@
 colors = [
-  '#ff7a59',
-  '#f44236',
-  '#f4c22b',
-  '#3ebfea',
-  '#1de9b6',
-  '#a389d4'
+  '#FED56F',
+  '#A1EC90',
+  '#78E0FF'
 ]
 
 (@records).map do |record|
@@ -21,10 +18,10 @@ colors = [
 end
 
 json.array!@checkups do |checkup|
-  json.title 'checkup'
+  json.title ('checkup')
   json.start (checkup[:start_time].strftime(" %Y-%m-%d"))
   json.end (checkup[:end_time].strftime(" %Y-%m-%d"))
   json.url bus_url(checkup[:bus_id], format: :html)
   json.resourceId checkup[:bus_id]
-  json.color "#000"
+  json.color "#FE6F9A"
 end
